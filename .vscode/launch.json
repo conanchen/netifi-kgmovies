@@ -49,6 +49,16 @@
             "mainClass": "io.github.GraphqlApplication",
             "projectName": "api-gateway",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<movie-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "kgmovies.service.movie.Application",
+            "projectName": "movie-service",
+            "args": ""
         }
     ]
 }
