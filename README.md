@@ -1,7 +1,8 @@
-# netifi-acmeshoes
-Simple store application that composes calls to backend product information services and displays a product page.
+# netifi-kgmovies
+Simple  application that composes calls to backend product information services and displays a product page.
+Simple  application that composes calls to backend movie information services and provides movie graphql api-gateway.
 
-This example application shows you how to build microservice architectures using [Netifi](https://www.netifi.com) and [RSocket](http://rsocket.io).
+This example application shows you how to build microservice architectures using [Netifi](https://www.netifi.com), [RSocket](http://rsocket.io),[Graphql](https://graphql.org/) and [Dgraph](http://dgraph.io).
 
 ## What is Netifi?
 [Netifi](https://www.netifi.com) is a platform for building cloud-native applications with the power of [RSocket](http://rsocket.io).
