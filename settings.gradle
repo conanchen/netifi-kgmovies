@@ -1,0 +1,8 @@
+rootProject.name = 'netifi-acmeshoes'
+include 'product-service'
+include 'product-service-idl'
+include 'inventory-service'
+include 'inventory-service-idl'
+include 'store-app'
+include 'api-gateway'
+

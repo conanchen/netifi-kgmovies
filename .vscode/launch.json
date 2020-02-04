@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "acmeshoes.store.Application",
+            "projectName": "api-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "acmeshoes.apigw.Application",
+            "projectName": "api-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GraphqlApplication<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.graphql.GraphqlApplication",
+            "projectName": "api-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GraphqlApplication<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "GraphqlApplication",
+            "projectName": "api-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GraphqlApplication<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "io.github.GraphqlApplication",
+            "projectName": "api-gateway",
+            "args": ""
+        }
+    ]
+}

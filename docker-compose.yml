@@ -1,0 +1,39 @@
+version: '3'
+services:
+  broker:
+    image: netifi/broker:1.6.9
+    environment:
+      - "BROKER_SERVER_OPTS=-Dnetifi.broker.ssl.disabled=true -Dnetifi.broker.cluster.clusterName=acmeshoes -Dnetifi.broker.admin.accessKey=8833333111127534 -Dnetifi.broker.admin.accessToken=Ih+hNsSdxLxAtHceTeEia2MGXSc= -Dnetifi.authentication.0.accessKey=8833333111127534 -Dnetifi.authentication.0.accessToken=Ih+hNsSdxLxAtHceTeEia2MGXSc="
+    ports:
+      - "6001:6001"
+      - "7001:7001"
+      - "8001:8001"
+      - "8101:8101"
+  inventory-service:
+    image: gregnetifi/acmeshoes-inventory-service
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    depends_on:
+      - broker
+  product-service:
+    image: gregnetifi/acmeshoes-product-service
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    depends_on:
+      - broker
+  store-app:
+    image: gregnetifi/acmeshoes-store-app
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - broker
+  api-gateway:
+    image: gregnetifi/kgmovies-api-gateway
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    ports:
+      - "8888:8888"
+    depends_on:
+      - broker
