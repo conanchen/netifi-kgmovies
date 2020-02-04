@@ -1,0 +1,118 @@
+extend type Query {
+  allMovies(after: String, first: Int, before: String, last: Int): MoviesConnection
+  movie(id: ID, movieID: ID): Movie
+
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+
+"""Define Types, copied from https://tour.dgraph.io/moredata/2/"""
+type MPerson implements Node{
+    name: String
+    directorOfFilm: [Movie]
+    """The id of the object."""
+    id: ID!
+}
+
+"""Define Types, copied from https://tour.dgraph.io/moredata/2/"""
+type Movie implements Node{
+    name: String
+    initial_release_date: String
+    genre: [Genre]
+    starring: [Performance]
+    """The id of the object."""
+    id: ID!
+}
+
+type Genre implements Node{
+    name: String
+    """The id of the object."""
+    id: ID!
+}
+
+type Performance implements Node{
+    film: Movie
+    character_note: String
+    character: MPerson
+    actor: MPerson
+    """The id of the object."""
+    id: ID!
+}
+
+"""A connection to a list of items."""
+type MoviesConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [MoviesEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  films: [Movie]
+}
+
+"""An edge in a connection."""
+type MoviesEdge {
+  """The item at the end of the edge"""
+  node: Movie
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+
+"""A connection to a list of items."""
+type MovieGenreConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [MovieGenreEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  genres: [Genre]
+}
+
+"""An edge in a connection."""
+type MovieGenreEdge {
+  """The item at the end of the edge"""
+  node: Genre
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
