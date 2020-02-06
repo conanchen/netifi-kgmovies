@@ -123,6 +123,8 @@ type Message implements Node{
     potentialActions0: [CreateAction]
     potentialActions1: [UpdateAction]
 
+    potentialActions: [PotentialAction]
+    
     """The id of the object."""
     id: ID!
 }
