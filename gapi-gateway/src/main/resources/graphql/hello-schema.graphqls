@@ -1,13 +1,13 @@
 extend type Query {
     hello(who: String): String!
-    people: [Person!]!
+    people: [HelloPerson!]!
 }
 
 extend type Mutation {
-    createPerson(firstName: String!, lastName: String!): Person!
+    createHelloPerson(firstName: String!, lastName: String!): HelloPerson!
 }
 
-type Person {
+type HelloPerson {
     id: Int!
     firstName: String!
     lastName: String!

@@ -49,7 +49,7 @@ task buildImage(type: DockerBuildImage, dependsOn: build) {
     buildArgs = ['JAR_FILE': "${bootJar.archiveName}"]
     dockerFile = file("${projectDir}/Dockerfile")
     inputDir = file("${projectDir}")
-    tags = ["gregnetifi/acmeshoes-${projectDir.name}", "gregnetifi/acmeshoes-${projectDir.name}:${version}"]
+    tags = ["gregnetifi/kgmovies-${projectDir.name}", "gregnetifi/kgmovies-${projectDir.name}:${version}"]
 }
 
 
@@ -88,6 +88,17 @@ task graphqlCodegenMovie(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     generateApis = true
 }
 
+task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/message-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/message")
+    apiPackageName = "io.github.conanchen.message.graphql.api"
+    modelPackageName = "io.github.conanchen.message.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
 
 protobuf {
     protoc {
@@ -118,6 +129,7 @@ sourceSets {
             srcDirs = ['src/main/java',
             'build/generated/graphql/zommon',
             'build/generated/graphql/bikeshop',
+            'build/generated/graphql/message',
             'build/generated/graphql/movies',
             'build/generated/source/proto/main/java',
             'build/generated/source/proto/main/rsocketRpc',

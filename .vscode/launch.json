@@ -59,6 +59,46 @@
             "mainClass": "kgmovies.service.movie.Application",
             "projectName": "movie-service",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<rapi-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "rapi.gateway.Application",
+            "projectName": "rapi-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<rapi-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "kgmovies.rapi.gateway.Application",
+            "projectName": "rapi-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GraphqlApplication<gapi-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "io.github.GraphqlApplication",
+            "projectName": "gapi-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<inventory-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "acmeshoes.service.inventory.Application",
+            "projectName": "inventory-service",
+            "args": ""
         }
     ]
 }

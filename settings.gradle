@@ -6,5 +6,7 @@ include 'inventory-service-idl'
 include 'movie-service'
 include 'movie-service-idl'
 include 'store-app'
-include 'api-gateway'
+include 'gapi-gateway'
+include 'rapi-gateway'
+include 'datalake-dgraph'
 

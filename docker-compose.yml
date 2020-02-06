@@ -26,11 +26,11 @@ services:
     environment:
       - "SPRING_PROFILES_ACTIVE=localdocker"
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
       - broker
-  api-gateway:
-    image: gregnetifi/kgmovies-api-gateway
+  gapi-gateway:
+    image: gregnetifi/kgmovies-gapi-gateway
     environment:
       - "SPRING_PROFILES_ACTIVE=localdocker"
     ports:
