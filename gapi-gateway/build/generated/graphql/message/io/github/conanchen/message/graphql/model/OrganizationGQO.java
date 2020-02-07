@@ -1,10 +1,9 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.Collection;
+import java.util.*;
+import io.github.conanchen.message.graphql.api.*;
 
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
-
-public class OrganizationGQO implements NodeGQO{
+public class OrganizationGQO implements ConversationAboutUnionGQO, NodeGQO{
 
     @javax.validation.constraints.NotNull
     private String name;
@@ -16,16 +15,16 @@ public class OrganizationGQO implements NodeGQO{
     private Collection<PersonGQO> employees;
     private Collection<PersonGQO> members;
     private Collection<PersonGQO> followees;
-    private Collection<CreateActionGQO> potentialActions0;
-    private Collection<UpdateActionGQO> potentialActions1;
+    private Collection<ConversationGQO> availableConversations;
     private ConversationGQO defaultConversation;
+    private Collection<ActionUnionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public OrganizationGQO() {
     }
 
-    public OrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> members, Collection<PersonGQO> followees, Collection<CreateActionGQO> potentialActions0, Collection<UpdateActionGQO> potentialActions1, ConversationGQO defaultConversation, String id) {
+    public OrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> members, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionUnionGQO> potentialActions, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -35,9 +34,9 @@ public class OrganizationGQO implements NodeGQO{
         this.employees = employees;
         this.members = members;
         this.followees = followees;
-        this.potentialActions0 = potentialActions0;
-        this.potentialActions1 = potentialActions1;
+        this.availableConversations = availableConversations;
         this.defaultConversation = defaultConversation;
+        this.potentialActions = potentialActions;
         this.id = id;
     }
 
@@ -104,18 +103,11 @@ public class OrganizationGQO implements NodeGQO{
         this.followees = followees;
     }
 
-    public Collection<CreateActionGQO> getPotentialActions0() {
-        return potentialActions0;
+    public Collection<ConversationGQO> getAvailableConversations() {
+        return availableConversations;
     }
-    public void setPotentialActions0(Collection<CreateActionGQO> potentialActions0) {
-        this.potentialActions0 = potentialActions0;
-    }
-
-    public Collection<UpdateActionGQO> getPotentialActions1() {
-        return potentialActions1;
-    }
-    public void setPotentialActions1(Collection<UpdateActionGQO> potentialActions1) {
-        this.potentialActions1 = potentialActions1;
+    public void setAvailableConversations(Collection<ConversationGQO> availableConversations) {
+        this.availableConversations = availableConversations;
     }
 
     public ConversationGQO getDefaultConversation() {
@@ -123,6 +115,13 @@ public class OrganizationGQO implements NodeGQO{
     }
     public void setDefaultConversation(ConversationGQO defaultConversation) {
         this.defaultConversation = defaultConversation;
+    }
+
+    public Collection<ActionUnionGQO> getPotentialActions() {
+        return potentialActions;
+    }
+    public void setPotentialActions(Collection<ActionUnionGQO> potentialActions) {
+        this.potentialActions = potentialActions;
     }
 
     public String getId() {

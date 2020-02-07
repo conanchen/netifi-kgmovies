@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import graphql.GraphQL;
 import graphql.execution.AsyncExecutionStrategy;
 import graphql.language.StringValue;
-import graphql.language.UnionTypeDefinition;
 import graphql.schema.Coercing;
 import graphql.schema.CoercingParseLiteralException;
 import graphql.schema.CoercingParseValueException;
@@ -19,7 +18,6 @@ import graphql.schema.GraphQLObjectType;
 import graphql.schema.GraphQLScalarType;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.GraphQLUnionType;
-import graphql.schema.TypeResolver;
 
 /**
  * @author bogdankobylinsky
@@ -42,10 +40,12 @@ public class GraphQLConfiguration {
     public GraphQLUnionType potentialActionType(){
 		return GraphQLUnionType
         .newUnionType()
-        .name("PotentialAction")
+        .name("ActionUnion")
         .possibleType(GraphQLObjectType.newObject().name("CreateAction").build())
         .possibleType(GraphQLObjectType.newObject().name("UpdateAction").build())
-
+        .name("ConversationAboutUnion")
+        .possibleType(GraphQLObjectType.newObject().name("Organization").build())
+        .possibleType(GraphQLObjectType.newObject().name("Bike").build())
         .build();        
     }
     

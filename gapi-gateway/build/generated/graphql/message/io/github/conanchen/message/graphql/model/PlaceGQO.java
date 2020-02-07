@@ -1,8 +1,7 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.Collection;
-
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import java.util.*;
+import io.github.conanchen.message.graphql.api.*;
 
 public class PlaceGQO implements NodeGQO{
 

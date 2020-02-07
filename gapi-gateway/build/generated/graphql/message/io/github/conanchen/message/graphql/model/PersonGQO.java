@@ -1,8 +1,7 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.Collection;
-
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import java.util.*;
+import io.github.conanchen.message.graphql.api.*;
 
 public class PersonGQO implements NodeGQO{
 
@@ -14,13 +13,14 @@ public class PersonGQO implements NodeGQO{
     private String email;
     private Collection<PersonGQO> follows;
     private Collection<PersonGQO> followees;
+    private Collection<MovieGQO> directoredFilms;
     @javax.validation.constraints.NotNull
     private String id;
 
     public PersonGQO() {
     }
 
-    public PersonGQO(String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, String id) {
+    public PersonGQO(String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, String id) {
         this.familyName = familyName;
         this.givenName = givenName;
         this.birthDate = birthDate;
@@ -29,6 +29,7 @@ public class PersonGQO implements NodeGQO{
         this.email = email;
         this.follows = follows;
         this.followees = followees;
+        this.directoredFilms = directoredFilms;
         this.id = id;
     }
 
@@ -86,6 +87,13 @@ public class PersonGQO implements NodeGQO{
     }
     public void setFollowees(Collection<PersonGQO> followees) {
         this.followees = followees;
+    }
+
+    public Collection<MovieGQO> getDirectoredFilms() {
+        return directoredFilms;
+    }
+    public void setDirectoredFilms(Collection<MovieGQO> directoredFilms) {
+        this.directoredFilms = directoredFilms;
     }
 
     public String getId() {

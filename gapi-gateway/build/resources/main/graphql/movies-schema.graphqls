@@ -12,14 +12,6 @@ extend type Query {
 
 
 """Define Types, copied from https://tour.dgraph.io/moredata/2/"""
-type MPerson implements Node{
-    name: String
-    directorOfFilm: [Movie]
-    """The id of the object."""
-    id: ID!
-}
-
-"""Define Types, copied from https://tour.dgraph.io/moredata/2/"""
 type Movie implements Node{
     name: String
     initial_release_date: String
@@ -38,8 +30,8 @@ type Genre implements Node{
 type Performance implements Node{
     film: Movie
     character_note: String
-    character: MPerson
-    actor: MPerson
+    character: Person
+    actor: Person
     """The id of the object."""
     id: ID!
 }

@@ -1,8 +1,7 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.Collection;
-
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import java.util.*;
+import io.github.conanchen.message.graphql.api.*;
 
 public class MessageGQO implements NodeGQO{
 
@@ -17,19 +16,14 @@ public class MessageGQO implements NodeGQO{
     @javax.validation.constraints.NotNull
     private String text;
     private Collection<CommentGQO> comments;
-    private Collection<CreateActionGQO> potentialActions0;
-    private Collection<UpdateActionGQO> potentialActions1;
-    private Collection<PotentialActionGQO> potentialActions;
+    private Collection<ActionUnionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public MessageGQO() {
     }
 
-	public MessageGQO(Collection<ConversationGQO> isPartOf, PersonGQO sender, java.util.Date dateSent, 
-    PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, 
-    String text, Collection<CommentGQO> comments, Collection<CreateActionGQO> potentialActions0, 
-    Collection<UpdateActionGQO> potentialActions1, Collection<PotentialActionGQO> potentialActions,String id) {
+    public MessageGQO(Collection<ConversationGQO> isPartOf, PersonGQO sender, java.util.Date dateSent, PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, String text, Collection<CommentGQO> comments, Collection<ActionUnionGQO> potentialActions, String id) {
         this.isPartOf = isPartOf;
         this.sender = sender;
         this.dateSent = dateSent;
@@ -39,9 +33,7 @@ public class MessageGQO implements NodeGQO{
         this.recipient = recipient;
         this.text = text;
         this.comments = comments;
-        this.potentialActions0 = potentialActions0;
-        this.potentialActions1 = potentialActions1;
-        this.setPotentialActions(potentialActions);
+        this.potentialActions = potentialActions;
         this.id = id;
     }
 
@@ -108,27 +100,12 @@ public class MessageGQO implements NodeGQO{
         this.comments = comments;
     }
 
-    public Collection<CreateActionGQO> getPotentialActions0() {
-        return potentialActions0;
+    public Collection<ActionUnionGQO> getPotentialActions() {
+        return potentialActions;
     }
-    public void setPotentialActions0(Collection<CreateActionGQO> potentialActions0) {
-        this.potentialActions0 = potentialActions0;
+    public void setPotentialActions(Collection<ActionUnionGQO> potentialActions) {
+        this.potentialActions = potentialActions;
     }
-
-    public Collection<UpdateActionGQO> getPotentialActions1() {
-        return potentialActions1;
-    }
-    public void setPotentialActions1(Collection<UpdateActionGQO> potentialActions1) {
-        this.potentialActions1 = potentialActions1;
-    }
-
-    public Collection<PotentialActionGQO> getPotentialActions() {
-		return potentialActions;
-	}
-
-	public void setPotentialActions(Collection<PotentialActionGQO> potentialActions) {
-		this.potentialActions = potentialActions;
-	}
 
     public String getId() {
         return id;

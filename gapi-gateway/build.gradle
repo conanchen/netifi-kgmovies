@@ -127,10 +127,6 @@ sourceSets {
     main {
         java {
             srcDirs = ['src/main/java',
-            'build/generated/graphql/zommon',
-            'build/generated/graphql/bikeshop',
-            'build/generated/graphql/message',
-            'build/generated/graphql/movies',
             'build/generated/source/proto/main/java',
             'build/generated/source/proto/main/rsocketRpc',
             'build/generated/sources/annotationProcessor/java/main'
