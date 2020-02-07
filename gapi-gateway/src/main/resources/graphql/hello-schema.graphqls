@@ -7,6 +7,10 @@ extend type Mutation {
     createHelloPerson(firstName: String!, lastName: String!): HelloPerson!
 }
 
+type Subscription {
+    helloWorld : String!
+}
+
 type HelloPerson {
     id: Int!
     firstName: String!
