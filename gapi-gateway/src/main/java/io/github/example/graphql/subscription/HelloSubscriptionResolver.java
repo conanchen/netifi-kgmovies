@@ -1,4 +1,4 @@
-package io.github.example.graphql.query;
+package io.github.example.graphql.subscription;
 
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
 
