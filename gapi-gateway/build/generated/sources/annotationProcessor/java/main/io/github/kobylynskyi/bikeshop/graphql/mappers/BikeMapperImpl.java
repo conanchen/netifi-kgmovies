@@ -6,13 +6,13 @@ import io.github.kobylynskyi.bikeshop.graphql.model.BikeTypeTO;
 import io.github.kobylynskyi.bikeshop.model.Bike;
 import io.github.kobylynskyi.bikeshop.model.BikeType;
 import java.math.BigDecimal;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-02-07T16:58:05+0800",
-    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_162 (Oracle Corporation)"
+    date = "2020-02-09T17:16:55+0800",
+    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 13.0.2 (Oracle Corporation)"
 )
 @Component
 public class BikeMapperImpl implements BikeMapper {

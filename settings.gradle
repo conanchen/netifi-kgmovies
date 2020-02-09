@@ -8,5 +8,5 @@ include 'movie-service-idl'
 include 'store-app'
 include 'gapi-gateway'
 include 'rapi-gateway'
-include 'datalake-dgraph'
-
+include 'kgis-datalake'
+include 'kgis-datalake-idl'

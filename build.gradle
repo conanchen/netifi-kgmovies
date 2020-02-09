@@ -1,14 +1,5 @@
 buildscript {
-    ext {
-        protobufVersion = "3.7.1"
-        lombokVersion = "1.16.20"
-        springBootVersion =  "2.1.6.RELEASE"
-        graphqlStarterVersion = "6.0.1"
-        protobufConverterVersion = "1.1.5"
-        futuresExtraVersion = "4.2.0"
-        protosVersion = "0.1.131-SNAPSHOT"
-        gradleDownloadTaskVersion = "4.0.0"
-    }
+
     repositories {
         repositories {
             mavenLocal()
@@ -33,11 +24,11 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
     }
 }
 
 plugins {
-    id "com.gradle.build-scan" version "3.0"
     //id "com.github.hierynomus.license" version "0.14.0"
     id "net.saliman.properties" version "1.4.6"
     id 'org.springframework.boot' version '2.2.4.RELEASE' apply false
@@ -45,10 +36,6 @@ plugins {
     id "com.google.protobuf" version "0.8.10" apply false
 }
 
-buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-}
 
 allprojects {
     apply plugin: 'idea'
@@ -89,7 +76,8 @@ subprojects {
             dependency "com.graphql-java-kickstart:graphiql-spring-boot-starter:${graphqlStarterVersion}"
             dependency "com.graphql-java-kickstart:voyager-spring-boot-starter:${graphqlStarterVersion}"
             dependency "com.graphql-java-kickstart:graphql-spring-boot-starter-test:${graphqlStarterVersion}"
-
-          }
+            dependency "org.springframework.boot:spring-boot-configuration-processor:$LIB_SPRING_BOOT_VER"
+            dependency 'io.dgraph:dgraph4j:2.0.1'
+        }
     }
 }

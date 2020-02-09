@@ -15,13 +15,14 @@
  */
 package kgmovies.service.movie.service;
 
-import kgmovies.service.movie.data.MovieRepository;
-import kgmovies.service.movie.data.model.Movie;
-import kgmovies.service.movie.service.error.MovieNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kgmovies.service.movie.data.MovieRepository;
+import kgmovies.service.movie.data.model.Movie;
+import kgmovies.service.movie.service.error.MovieNotFoundException;
 import reactor.core.publisher.Mono;
 
 /**
@@ -34,6 +35,7 @@ public class MovieReposervice {
     @Autowired
     private MovieRepository repo;
 
+    
     public Mono<Movie> getMovie(String movieId) {
         return repo.findOne(movieId)
                 .switchIfEmpty(Mono.error(new MovieNotFoundException(movieId)));

@@ -16,6 +16,7 @@ public class HelloSubscriptionResolver implements GraphQLSubscriptionResolver {
 
 
     public Publisher<String> helloWorld() {
+      //TODO: https://spring.io/guides/gs/spring-data-reactive-redis/
       return  Flux.just("Hello", "World!");
     }
 }
