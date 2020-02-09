@@ -46,15 +46,14 @@ public class DefaultMovieRepository implements MovieRepository {
 	public Mono<MovieInfoResponse> getMovieInfo(final MovieInfoRequest message, final ByteBuf metadata) {
 		String resJson = dgraphClient.newReadOnlyTransaction().query(queryForPerson).getJson().toString();
 		
-		  // Query
-		  String query =
-		  "query all($a: string){\n" + "all(func: eq(name, $a)) {\n" + "    name\n" + "  }\n" + "}";
-	  Map<String, String> vars = Collections.singletonMap("$a", "Alice");
-	  Response res = dgraphClient.newTransaction().queryWithVars(query, vars);
-  
-	  Gson gson = new Gson(); // For JSON encode/decode
-	  // Deserialize
-	  People ppl = gson.fromJson(res.getJson().toStringUtf8(), People.class);
+		// Query
+		String query ="query all($a: string){\n" + "all(func: eq(name, $a)) {\n" + "    name\n" + "  }\n" + "}";
+		Map<String, String> vars = Collections.singletonMap("$a", "Alice");
+		Response res = dgraphClient.newTransaction().queryWithVars(query, vars);
+
+		Gson gson = new Gson(); // For JSON encode/decode
+		// Deserialize
+		People ppl = gson.fromJson(res.getJson().toStringUtf8(), People.class);
   
 		return null;
 	}

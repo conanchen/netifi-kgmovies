@@ -51,3 +51,5 @@ Dgraph Alpha will now be running and listening for HTTP requests on port 8080 an
 # Real Example 
 1. [IEntityService define interfaces to manipulate data](https://github.com/intuit/katlas/blob/c0529ed75d7f121eca08e92791043ff132b6019b/service/apis/entity_service.go)
 1. Dgraph is at version 1.1.x and is production ready. Apart from the vast open source community, it is being used in production at multiple Fortune 500 companies, and by [Intuit Katlas](https://github.com/intuit/katlas) and [VMware Purser](https://github.com/vmware/purser).
+
+[![Movie Schema](document/movies-schema.png)](https://blog.dgraph.io/post/client0.8.0/)
