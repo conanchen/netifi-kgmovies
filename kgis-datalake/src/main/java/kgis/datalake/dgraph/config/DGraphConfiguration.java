@@ -27,7 +27,8 @@ public class DGraphConfiguration {
     }
     
     private static final String TEST_HOSTNAME = "localhost";
-    private static final int TEST_PORT = 9180;
+    // private static final int TEST_PORT = 9180;
+    private static final int TEST_PORT = 9080;
 
     private static DgraphClient createDgraphClient(boolean withAuthHeader) {
         ManagedChannel channel =

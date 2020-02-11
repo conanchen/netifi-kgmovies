@@ -15,12 +15,13 @@
  */
 package kgmovies.service.movie.service;
 
+import com.netifi.spring.core.annotation.Group;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import kgmovies.service.movie.data.MovieRepository;
+import kgis.datalake.movie.protobuf.MovieRepositoryClient;
+import kgmovies.service.movie.data.MovieRepositoryLocal;
 import kgmovies.service.movie.data.model.Movie;
 import kgmovies.service.movie.service.error.MovieNotFoundException;
 import reactor.core.publisher.Mono;
@@ -33,10 +34,13 @@ public class MovieReposervice {
     private static final Logger LOG = LoggerFactory.getLogger(MovieReposervice.class);
 
     @Autowired
-    private MovieRepository repo;
+    private MovieRepositoryLocal repo;
 
-    
-    public Mono<Movie> getMovie(String movieId) {
+    @Group("kgis.datalake")
+    private MovieRepositoryClient movieRepositoryClient;
+
+
+    public Mono<Movie> getMovie(final String movieId) {
         return repo.findOne(movieId)
                 .switchIfEmpty(Mono.error(new MovieNotFoundException(movieId)));
     }

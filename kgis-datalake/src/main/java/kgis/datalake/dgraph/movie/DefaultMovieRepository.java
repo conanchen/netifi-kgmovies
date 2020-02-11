@@ -19,12 +19,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import com.google.gson.Gson;
-
+import com.google.protobuf.ByteString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import io.dgraph.DgraphClient;
 import io.dgraph.DgraphProto.Response;
 import io.netty.buffer.ByteBuf;
@@ -44,7 +42,7 @@ public class DefaultMovieRepository implements MovieRepository {
 
 	@Override
 	public Mono<MovieInfoResponse> getMovieInfo(final MovieInfoRequest message, final ByteBuf metadata) {
-		String resJson = dgraphClient.newReadOnlyTransaction().query(queryForPerson).getJson().toString();
+		ByteString resJson = dgraphClient.newReadOnlyTransaction().query(queryForPerson).getJson();
 		
 		// Query
 		String query ="query all($a: string){\n" + "all(func: eq(name, $a)) {\n" + "    name\n" + "  }\n" + "}";
@@ -55,27 +53,27 @@ public class DefaultMovieRepository implements MovieRepository {
 		// Deserialize
 		People ppl = gson.fromJson(res.getJson().toStringUtf8(), People.class);
   
-		return null;
+		return  Mono.just( MovieInfoResponse.newBuilder().setJson(resJson).build());
 	}
 
 	private static String queryForPerson =
-	"{ \n" +
-		"everyone(func: anyofterms(name, \"Michael Catalina\")) { \n" +
-		  "name\n" +
-		  "uid\n" +
-		"}\n" +
-	"}";
+		"{ \n" +
+			"everyone(func: anyofterms(name, \"Michael Catalina\")) { \n" +
+			"name\n" +
+			"uid\n" +
+			"}\n" +
+		"}";
 
 	static class Person {
 		String name;
-	
+
 		Person() {}
-	  }
+	}
 	
-	  static class People {
+	static class People {
 		List<Person> all;
-	
+
 		People() {}
-	  }
+	}
 }
 

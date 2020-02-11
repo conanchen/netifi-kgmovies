@@ -9,8 +9,20 @@ services:
       - "7001:7001"
       - "8001:8001"
       - "8101:8101"
+  kgis-datalake:
+    image: gregnetifi/kgis-datalake
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    depends_on:
+      - broker
   inventory-service:
     image: gregnetifi/acmeshoes-inventory-service
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    depends_on:
+      - broker
+  movie-service:
+    image: gregnetifi/kgmovies-movie-service
     environment:
       - "SPRING_PROFILES_ACTIVE=localdocker"
     depends_on:

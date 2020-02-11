@@ -10,6 +10,8 @@ plugins {
 
 dependencies {
     protobuf project(':product-service-idl')
+    
+    protobuf project(':kgis-datalake-idl')
 
     implementation "com.netifi:netifi-spring-boot-starter"
 }

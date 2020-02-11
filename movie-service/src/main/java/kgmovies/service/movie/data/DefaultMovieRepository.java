@@ -29,7 +29,7 @@ import kgmovies.service.movie.data.model.Sku;
 import reactor.core.publisher.Mono;
 
 @Component
-public class DefaultMovieRepository implements MovieRepository {
+public class DefaultMovieRepository implements MovieRepositoryLocal {
     private static final Random RAND = new Random(System.currentTimeMillis());
 
     private final Map<String, Movie> movieInfos = new HashMap<>();

@@ -14,6 +14,8 @@ service MovieRepository {
 
 message MovieInfoRequest {
     string movieId = 1;
+
+    bytes json = 911;
 }
 
 message MovieInfoResponse {
@@ -23,6 +25,8 @@ message MovieInfoResponse {
     string description = 4;
     bool active = 5;
     repeated SkuInfo skus = 6;
+
+	bytes json = 911;
 }
 
 message SkuInfo {
@@ -30,6 +34,8 @@ message SkuInfo {
     bool active = 2;
     string size = 3;
     PriceInfo prices = 4;
+
+	bytes json = 911;
 }
 
 message PriceInfo {
@@ -39,4 +45,6 @@ message PriceInfo {
     string formattedList = 4;
     string formattedMsrp = 5;
     string formattedSale = 6;
+
+    bytes json = 911;
 }

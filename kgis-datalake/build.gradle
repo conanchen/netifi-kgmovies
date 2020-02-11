@@ -9,18 +9,21 @@ plugins {
     id 'com.bmuschko.docker-remote-api' version '3.4.4'
 }
 
+
 dependencies {
     protobuf project(':kgis-datalake-idl')
 
-    implementation "com.netifi:netifi-spring-boot-starter"
+    implementation ("com.netifi:netifi-spring-boot-starter"){
+        exclude group: 'ch.qos.logback'
+    }
     compile 'io.dgraph:dgraph4j'
 
 }
 
 mainClassName = 'kgis.datalake.Application'
 java {
-    sourceCompatibility = JavaVersion.VERSION_13
-    targetCompatibility = JavaVersion.VERSION_13
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 // Packaging
@@ -28,7 +31,7 @@ task buildImage(type: DockerBuildImage, dependsOn: build) {
     buildArgs = ['JAR_FILE': "${bootJar.archiveName}"]
     dockerFile = file("${projectDir}/Dockerfile")
     inputDir = file("${projectDir}")
-    tags = ["gregnetifi/kgmovies-${projectDir.name}", "gregnetifi/kgmovies-${projectDir.name}:${version}"]
+    tags = ["gregnetifi/${projectDir.name}", "gregnetifi/${projectDir.name}:${version}"]
 }
 
 protobuf {

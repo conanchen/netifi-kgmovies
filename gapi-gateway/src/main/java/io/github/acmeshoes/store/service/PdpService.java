@@ -41,6 +41,7 @@ public class PdpService {
     @Group("acmeshoes.service.inventory")
     private InventoryServiceClient inventoryClient;
 
+    
     /**
      * Gathers the information necessary to display a PDP page from the backend services.
      *
