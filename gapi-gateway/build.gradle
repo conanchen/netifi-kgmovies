@@ -105,6 +105,18 @@ task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask,dependsOn: graphqlCod
     generateApis = true
 }
 
+task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/message-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/message")
+    apiPackageName = "io.github.conanchen.message.graphql.api"
+    modelPackageName = "io.github.conanchen.message.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenMovie(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/movies-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/movies")
@@ -117,11 +129,11 @@ task graphqlCodegenMovie(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     generateApis = true
 }
 
-task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
-    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/message-schema.graphqls".toString()]
-    outputDir = new File("$buildDir/generated/graphql/message")
-    apiPackageName = "io.github.conanchen.message.graphql.api"
-    modelPackageName = "io.github.conanchen.message.graphql.model"
+task graphqlCodegenShopping(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shopping-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shopping")
+    apiPackageName = "io.github.conanchen.shopping.graphql.api"
+    modelPackageName = "io.github.conanchen.shopping.graphql.model"
     customTypesMapping = [
             DateTime: "java.util.Date"
     ]
