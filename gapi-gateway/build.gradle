@@ -22,23 +22,49 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.8"
     annotationProcessor "org.projectlombok:lombok:1.18.8"
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'com.netifi:netifi-spring-boot-starter'
-    compile "com.graphql-java-kickstart:graphql-java-tools:5.7.1"
-    compile "org.springframework.boot:spring-boot-starter-data-mongodb"
-    compile "org.springframework.data:spring-data-commons"
+    implementation ('org.springframework.boot:spring-boot-starter-web'){
+                exclude group: 'ch.qos.logback'
+    }
+    implementation ('org.springframework.boot:spring-boot-starter-thymeleaf'){
+                exclude group: 'ch.qos.logback'
+    }
+    implementation ('com.netifi:netifi-spring-boot-starter'){
+                exclude group: 'ch.qos.logback'
+    }
+    compile ("com.graphql-java-kickstart:graphql-java-tools:5.7.1"){
+                exclude group: 'ch.qos.logback'
+    }
+    compile ("org.springframework.boot:spring-boot-starter-data-mongodb"){
+                exclude group: 'ch.qos.logback'
+    }
+    compile ("org.springframework.data:spring-data-commons"){
+                exclude group: 'ch.qos.logback'
+    }
 
-    compile "com.graphql-java-kickstart:graphql-spring-boot-starter:6.0.1"
+    compile ("com.graphql-java-kickstart:graphql-spring-boot-starter:6.0.1"){
+                exclude group: 'ch.qos.logback'
+    }
     // to embed Altair tool
-    compile 'com.graphql-java-kickstart:altair-spring-boot-starter:6.0.1'
+    compile ('com.graphql-java-kickstart:altair-spring-boot-starter:6.0.1'){
+                exclude group: 'ch.qos.logback'
+    }
     // to embed GraphiQL tool
-    compile 'com.graphql-java-kickstart:graphiql-spring-boot-starter:6.0.1'
+    compile ('com.graphql-java-kickstart:graphiql-spring-boot-starter:6.0.1'){
+                exclude group: 'ch.qos.logback'
+    }
     // to embed Voyager tool
-    implementation 'com.graphql-java-kickstart:voyager-spring-boot-starter:6.0.1'    
+    implementation ('com.graphql-java-kickstart:voyager-spring-boot-starter:6.0.1') {
+                exclude group: 'ch.qos.logback'
+    }
     
     // testing facilities
-    testCompile 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:6.0.1'
+    testCompile ('com.graphql-java-kickstart:graphql-spring-boot-starter-test:6.0.1'){
+                exclude group: 'ch.qos.logback'
+    }
+
+    compile ('io.dgraph:dgraph4j'){
+                exclude group: 'ch.qos.logback'
+    }
 }
 
 mainClassName = 'io.github.GraphqlApplication'
