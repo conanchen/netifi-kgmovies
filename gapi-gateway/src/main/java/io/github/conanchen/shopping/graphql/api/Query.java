@@ -11,4 +11,5 @@ public interface Query {
 
     ServiceGQO service(String id, String serviceID) throws Exception;
 
+    OrderGQO order(String id, String orderID) throws Exception;
 }

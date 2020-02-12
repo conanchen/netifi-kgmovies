@@ -2,6 +2,7 @@ extend type Query {
   allProducts(after: String, first: Int, before: String, last: Int): ProductsConnection
   product(id: ID, productID: ID): Product
   service(id: ID, serviceID: ID): Service
+  order(id: ID, orderID: ID): Order
 }
 
 extend type Mutation {
@@ -145,4 +146,159 @@ type OpeningHoursSpecification implements Node{
 
     """The id of the object."""
     id: ID!
+}
+
+"""https://schema.org/Order An order is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted by the customer."""
+type Order implements Node{
+    """
+    acceptedOffer	Offer 	The offer(s) -- e.g., product, quantity and price combinations -- included in the order.
+    billingAddress	PostalAddress 	The billing address for the order.
+    broker	Organization  or Person 	An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. Supersedes bookingAgent."""
+    broker:	Organization
+
+    """confirmationNumber	Text 	A number that confirms the given order or payment has been received.
+    customer	Organization  or Person 	Party placing the order or paying the invoice."""
+    customer:	Organization
+
+    """discount	Number  or Text 	Any discount applied (to an Order).
+    discountCode	Text 	Code used to redeem a discount.
+    discountCurrency	Text 	The currency of the discount.
+
+    Use standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g. "BTC"; well known names for Local Exchange Tradings Systems (LETS) and other currency types e.g. "Ithaca HOUR".
+    
+    isGift	Boolean 	Was the offer accepted as a gift for someone other than the buyer."""
+    isGift: Boolean
+
+    """orderDate	Date  or DateTime 	Date order was placed."""
+    orderDate: DateTime
+
+    """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
+    orderDelivery:	ParcelDelivery
+
+    """orderNumber	Text 	The identifier of the transaction."""
+    orderNumber: String
+
+    """orderStatus	OrderStatus 	The current status of the order."""
+    orderStatus:	OrderStatus
+
+    """orderedItem	OrderItem  or Product  or Service 	The item ordered."""
+    orderedItem:	[OrderItem]
+
+    """partOfInvoice	Invoice 	The order is being paid as part of the referenced Invoice.
+    paymentDueDate	Date  or DateTime 	The date that payment is due. Supersedes paymentDue.
+    paymentMethod	PaymentMethod 	The name of the credit card or other method of payment for the order.
+    paymentMethodId	Text 	An identifier for the method of payment used (e.g. the last 4 digits of the credit card).
+    paymentUrl	URL 	The URL for sending a payment.
+    seller	Organization  or Person 	An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
+    """
+    seller:	Organization
+    
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [ActionUnion]
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""https://schema.org/OrderItem
+An order item is a line of an order. It includes the quantity and shipping details of a bought offer."""
+type OrderItem implements Node{
+
+    """partOfOrder	Order 	The overall order the items in this delivery were included in."""
+    partOfOrder:	Order
+
+    """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
+    orderDelivery:	ParcelDelivery
+
+    """orderItemNumber	Text 	The identifier of the order item."""
+    orderItemNumber: String
+
+    """orderItemStatus	OrderStatus 	The current status of the order item."""
+    orderItemStatus:	OrderStatus
+
+    """orderQuantity	Number 	The number of the item ordered. If the property is not set, assume the quantity is one."""
+    orderQuantity: Int
+
+    """orderedItem	OrderItem  or Product  or Service"""
+    orderedItem: Product
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [ActionUnion]
+
+    """The id of the object."""
+    id: ID!
+}
+
+enum OrderStatus{
+  OrderCancelled
+  OrderDelivered
+  OrderInTransit
+  OrderPaymentDue
+  OrderPickupAvailable
+  OrderProblem
+  OrderProcessing
+  OrderReturned
+}
+
+
+"""https://schema.org/ParcelDelivery The delivery of a parcel either via the postal service or a commercial service."""
+type ParcelDelivery implements Node{
+
+    """deliveryAddress	PostalAddress 	Destination address."""
+    deliveryAddress:	PostalAddress
+
+    """deliveryStatus	DeliveryEvent 	New entry added as the package passes through each leg of its journey (from shipment to final delivery).
+    expectedArrivalFrom	Date  or DateTime 	The earliest date the package may arrive."""
+    expectedArrivalFrom: DateTime
+
+    """expectedArrivalUntil	Date  or DateTime 	The latest date the package may arrive."""
+    expectedArrivalUntil: DateTime
+
+    """hasDeliveryMethod	DeliveryMethod 	Method used for delivery or shipping.
+    itemShipped	Product 	Item(s) being shipped."""
+    itemShipped:	[Product]
+
+    """originAddress	PostalAddress 	Shipper's address."""
+    originAddress:	PostalAddress
+
+    """partOfOrder	Order 	The overall order the items in this delivery were included in."""
+    partOfOrder:	Order
+
+    """provider	Organization  or Person 	The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. Supersedes carrier."""
+    provider:	Organization
+
+    """trackingNumber	Text 	Shipper tracking number."""
+    trackingNumber: String
+
+    """trackingUrl	URL 	Tracking url for the parcel delivery."""
+    trackingUrl:	String
+
+    """The id of the object."""
+    id: ID!
+}
+
+
+"""https://schema.org/PostalAddress The mailing address."""
+type PostalAddress implements Node{
+    """addressCountry	Country  or Text 	The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code."""
+    addressCountry: String
+
+    """addressLocality	Text 	The locality in which the street address is, and which is in the region. For example, Mountain View."""
+    addressLocality: String
+
+    """addressRegion	Text 	The region in which the locality is, and which is in the country. For example, California or another appropriate first-level Administrative division"""
+    addressRegion: String
+
+    """postOfficeBoxNumber	Text 	The post office box number for PO box addresses."""
+    postOfficeBoxNumber: String
+
+    """postalCode	Text 	The postal code. For example, 94043."""
+    postalCode: String
+
+    """streetAddress	Text 	The street address. For example, 1600 Amphitheatre Pkwy."""
+    streetAddress: String
+
+    """The id of the object."""
+    id: ID!
+
 }

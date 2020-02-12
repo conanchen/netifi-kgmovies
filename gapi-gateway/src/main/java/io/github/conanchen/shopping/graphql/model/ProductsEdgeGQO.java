@@ -1,8 +1,5 @@
 package io.github.conanchen.shopping.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.shopping.graphql.api.*;
-
 public class ProductsEdgeGQO {
 
     private ProductGQO node;

@@ -198,8 +198,10 @@ type Message implements Node{
 
     """【收件人】 消息的直接收件人 A sub property of recipient. The recipient who was directly sent the message."""
     toRecipient: Person
+
     """【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has been read by the recipient if a single recipient exists."""
     dateRead: DateTime
+
     """【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists."""
     dateReceived: DateTime
 
@@ -226,10 +228,13 @@ Thing > CreativeWork > Comment
 type Comment implements Node{
     """【上级条目】 一个问题、答案或条目的父条目 The parent of a question, answer or item in general."""
     parentItem: Message
+
     """【作者】 此内容或评分的作者。"""
     author:	Person 
+
     """【文本】 作品的文字内容 The textual content of this CreativeWork."""
     text: String!
+
     """【创建日期】 创作出CreativeWork的日期。 """
     dateCreated: DateTime
 
@@ -247,8 +252,10 @@ AssessAction, InteractAction, ConsumeAction, CreateAction, PlayAction, SearchAct
 interface Action{
     """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
     agent: Person
+
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
+    
     """【结束时刻】 事件的结束时间 The endTime of something. """
     endTime: DateTime
 
@@ -261,8 +268,10 @@ interface Action{
     description: String
 }
 
+"""会话可能关于的对象，目前支持Organization | Bike"""
 union ConversationAboutUnion = Organization | Bike
 
+"""Action可能的动作，目前支持CreateAction | UpdateAction"""
 union ActionUnion = CreateAction | UpdateAction
 
 type CreateAction implements Action & Node{
