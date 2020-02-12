@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import io.github.conanchen.softwareapplication.graphql.api.Query;
 import io.github.conanchen.softwareapplication.graphql.model.SoftwareApplicationGQO;
 import io.github.conanchen.softwareapplication.graphql.model.SoftwareApplicationsConnectionGQO;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookGQO;
 
 
 @Service
@@ -24,5 +25,10 @@ public class SoftwareapplicationQueriesResolver implements Query, GraphQLQueryRe
     return null;
   }
 
+  @Override
+  public WebhookGQO webhook(String id, String webhookID) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
   
 }

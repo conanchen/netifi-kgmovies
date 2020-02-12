@@ -146,6 +146,9 @@ type Conversation implements Node{
     """参照 hasPart【作品组件】 表示某个作品是该作品的一部分 """
     hasParts: [Message]
 
+    """本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息"""
+    webhook: [Webhook]
+
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [ActionUnion]
 

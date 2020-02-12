@@ -1,7 +1,7 @@
 package io.github.conanchen.message.graphql.model;
 
 import java.util.Collection;
-
+import io.github.conanchen.softwareapplication.graphql.model.WebhookGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class ConversationGQO implements NodeGQO{
@@ -15,6 +15,7 @@ public class ConversationGQO implements NodeGQO{
     private java.util.Date dateCreated;
     private DataCatalogGQO includedInDataCatalog;
     private Collection<MessageGQO> hasParts;
+    private Collection<WebhookGQO> webhook;
     private Collection<ActionUnionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
@@ -22,7 +23,7 @@ public class ConversationGQO implements NodeGQO{
     public ConversationGQO() {
     }
 
-    public ConversationGQO(ConversationAboutUnionGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasParts, Collection<ActionUnionGQO> potentialActions, String id) {
+    public ConversationGQO(ConversationAboutUnionGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasParts, Collection<WebhookGQO> webhook,Collection<ActionUnionGQO> potentialActions, String id) {
         this.about = about;
         this.accountablePerson = accountablePerson;
         this.headline = headline;
@@ -32,6 +33,7 @@ public class ConversationGQO implements NodeGQO{
         this.dateCreated = dateCreated;
         this.includedInDataCatalog = includedInDataCatalog;
         this.hasParts = hasParts;
+        this.webhook = webhook;
         this.potentialActions = potentialActions;
         this.id = id;
     }
@@ -111,6 +113,14 @@ public class ConversationGQO implements NodeGQO{
     }
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Collection<WebhookGQO> getWebhook() {
+      return webhook;
+    }
+
+    public void setWebhook(Collection<WebhookGQO> webhook) {
+      this.webhook = webhook;
     }
 
 }
