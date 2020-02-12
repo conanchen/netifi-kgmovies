@@ -1,0 +1,94 @@
+extend type Query {
+  allSoftwareApplications(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection
+  softwareApplication(id: ID, softwareApplicationID: ID): SoftwareApplication
+}
+
+"""https://schema.org/SoftwareApplication A software application."""
+type SoftwareApplication implements Node {
+    """【名称】 条目的名称 The name of the item."""
+    name: String!
+    
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office)."""
+    applicationSuite: String
+
+    """availableOnDevice	Text 	Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
+    countriesNotSupported	Text 	Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    countriesSupported	Text 	Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    downloadUrl	URL 	If the file can be downloaded, URL to download the binary."""
+    downloadUrl: String
+
+    """featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications)."""
+    featureList: String
+
+    """fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
+    installUrl	URL 	URL at which the app may be installed, if different from the URL of the item."""
+    installUrl:String
+
+    """memoryRequirements	Text  or URL 	Minimum memory requirements.
+    operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
+    permissions	Text 	Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
+    processorRequirements	Text 	Processor architecture required to run the application (e.g. IA64).
+    releaseNotes	Text  or URL 	Description of what changed in this version.""""
+    releaseNotes: String
+
+    """screenshot	ImageObject  or URL 	A link to a screenshot image of the app."""
+    screenshot: String
+
+    """softwareAddOn	SoftwareApplication 	Additional content for a software application.
+    softwareHelp	CreativeWork 	Software application help.
+    softwareRequirements	Text  or URL 	Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.
+    softwareVersion	Text 	Version of the software instance.
+    storageRequirements	Text  or URL 	Storage requirements (free space required).
+    supportingData	DataFeed 	Supporting data for a SoftwareApplication."""
+    softwareVersion: String
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [ActionUnion]
+
+    """The id of the object."""
+    id: ID!
+}
+
+
+
+"""A connection to a list of items."""
+type SoftwareApplicationsConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SoftwareApplicationsEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  films: [SoftwareApplication]
+}
+
+"""An edge in a connection."""
+type SoftwareApplicationsEdge {
+  """The item at the end of the edge"""
+  node: SoftwareApplication
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}

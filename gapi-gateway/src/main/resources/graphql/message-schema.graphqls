@@ -55,10 +55,13 @@ type Organization  implements Node{
 
     """【名称】 条目的名称 The name of the item."""
     name: String!
+
     """【别名】 该项的别名。 An alias for the item."""
     alternateName: String
+
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
+
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
     parentOrganization: [Organization]
     """【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。"""
@@ -80,6 +83,7 @@ type Organization  implements Node{
     """ 本组织默认可访问的会话 """
     defaultConversation: Conversation
     
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [ActionUnion]
 
     """The id of the object."""
@@ -255,7 +259,7 @@ interface Action{
 
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
-    
+
     """【结束时刻】 事件的结束时间 The endTime of something. """
     endTime: DateTime
 
