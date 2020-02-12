@@ -2,6 +2,9 @@ extend type Query {
   allProducts(after: String, first: Int, before: String, last: Int): ProductsConnection
   product(id: ID, productID: ID): Product
   service(id: ID, serviceID: ID): Service
+  foodService(id: ID, serviceID: ID): FoodService
+  generalService(id: ID, serviceID: ID): GeneralService
+  governmentService(id: ID, serviceID: ID): GovernmentService
   order(id: ID, orderID: ID): Order
 }
 
@@ -11,7 +14,10 @@ extend type Mutation {
 
 """https://schema.org/Product
 Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."""
-type Product implements Node{
+type Product implements OrderableThing & Node{
+  """可以购买订购的产品或服务Product，Service"""
+  isOrderable: Boolean
+
     name: String
 
     """productID	Text 	The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
@@ -71,7 +77,51 @@ type ProductsEdge {
 
 """https://schema.org/Service
 A service provided by an organization, e.g. delivery service, print services, etc."""
-type Service implements Node{
+interface Service {
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """
+    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
+
+    areaServed	AdministrativeArea  or
+    GeoShape  or
+    Place  or
+    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    areaServed: Place
+
+    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award	Text 	An award won by or for this item. Supersedes awards.
+    brand	Brand  or
+    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+    
+    The hours during which this service or contact is available."""
+    hoursAvailable:	OpeningHoursSpecification
+
+    """isRelatedTo	Product  or
+    Service 	A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:	Product
+
+    """isSimilarTo	Product  or
+    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:	Product
+
+    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    potentialAction: [ActionUnion]
+
+}
+
+type GeneralService implements OrderableThing & Service & Node{
+  """可以购买订购的产品或服务Product，Service"""
+  isOrderable: Boolean
+
     """name	Text 	The name of the item."""
     name: String
 
@@ -112,6 +162,106 @@ type Service implements Node{
 
     """The id of the object."""
     id: ID!
+}
+
+"""https://schema.org/FoodService A food service, like breakfast, lunch, or dinner."""
+type FoodService implements OrderableThing & Service & Node{
+  """可以购买订购的产品或服务Product，Service"""
+  isOrderable: Boolean
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """
+    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
+
+    areaServed	AdministrativeArea  or
+    GeoShape  or
+    Place  or
+    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    areaServed: Place
+
+    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award	Text 	An award won by or for this item. Supersedes awards.
+    brand	Brand  or
+    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+    
+    The hours during which this service or contact is available."""
+    hoursAvailable:	OpeningHoursSpecification
+
+    """isRelatedTo	Product  or
+    Service 	A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:	Product
+
+    """isSimilarTo	Product  or
+    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:	Product
+
+    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    potentialAction: [ActionUnion]
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""https://schema.org/GovernmentService A service provided by a government organization, e.g. food stamps, veterans benefits, etc.."""
+type GovernmentService implements Service & Node{
+
+    """serviceOperator	Organization 	The operating organization, if different from the provider. This enables the representation of services that are provided by an organization, but operated by another organization like a subcontractor."""
+    serviceOperator:	Organization
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """
+    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
+
+    areaServed	AdministrativeArea  or
+    GeoShape  or
+    Place  or
+    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    areaServed: Place
+
+    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award	Text 	An award won by or for this item. Supersedes awards.
+    brand	Brand  or
+    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+    
+    The hours during which this service or contact is available."""
+    hoursAvailable:	OpeningHoursSpecification
+
+    """isRelatedTo	Product  or
+    Service 	A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:	Product
+
+    """isSimilarTo	Product  or
+    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:	Product
+
+    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    potentialAction: [ActionUnion]
+
+    """The id of the object."""
+    id: ID!
+}
+
+interface OrderableThing{
+  """可以购买订购的产品或服务Product，Service"""
+  isOrderable: Boolean
 }
 
 """A structured value providing information about the opening hours of a place or a certain service inside a place.
@@ -192,7 +342,7 @@ type Order implements Node{
     seller	Organization  or Person 	An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
     """
     seller:	Organization
-    
+
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [ActionUnion]
 
@@ -220,7 +370,7 @@ type OrderItem implements Node{
     orderQuantity: Int
 
     """orderedItem	OrderItem  or Product  or Service"""
-    orderedItem: Product
+    orderedItem: OrderableThing
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [ActionUnion]

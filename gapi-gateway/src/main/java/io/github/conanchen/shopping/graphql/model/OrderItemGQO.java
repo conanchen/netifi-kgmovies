@@ -11,7 +11,7 @@ public class OrderItemGQO implements NodeGQO{
     private String orderItemNumber;
     private OrderStatusGQO orderItemStatus;
     private Integer orderQuantity;
-    private ProductGQO orderedItem;
+    private OrderableThingGQO orderedItem;
     private Collection<ActionUnionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
@@ -19,7 +19,7 @@ public class OrderItemGQO implements NodeGQO{
     public OrderItemGQO() {
     }
 
-    public OrderItemGQO(OrderGQO partOfOrder, ParcelDeliveryGQO orderDelivery, String orderItemNumber, OrderStatusGQO orderItemStatus, Integer orderQuantity, ProductGQO orderedItem, Collection<ActionUnionGQO> potentialActions, String id) {
+    public OrderItemGQO(OrderGQO partOfOrder, ParcelDeliveryGQO orderDelivery, String orderItemNumber, OrderStatusGQO orderItemStatus, Integer orderQuantity, OrderableThingGQO orderedItem, Collection<ActionUnionGQO> potentialActions, String id) {
         this.partOfOrder = partOfOrder;
         this.orderDelivery = orderDelivery;
         this.orderItemNumber = orderItemNumber;
@@ -65,10 +65,10 @@ public class OrderItemGQO implements NodeGQO{
         this.orderQuantity = orderQuantity;
     }
 
-    public ProductGQO getOrderedItem() {
+    public OrderableThingGQO getOrderedItem() {
         return orderedItem;
     }
-    public void setOrderedItem(ProductGQO orderedItem) {
+    public void setOrderedItem(OrderableThingGQO orderedItem) {
         this.orderedItem = orderedItem;
     }
 

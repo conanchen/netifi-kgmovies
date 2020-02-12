@@ -4,8 +4,9 @@ import java.util.Collection;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class ProductGQO implements NodeGQO{
+public class ProductGQO implements OrderableThingGQO, NodeGQO{
 
+    private Boolean isOrderable;
     private String name;
     private String productID;
     private Collection<ProductGQO> isRelatedTo;
@@ -17,13 +18,21 @@ public class ProductGQO implements NodeGQO{
     public ProductGQO() {
     }
 
-    public ProductGQO(String name, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, String id) {
+    public ProductGQO(Boolean isOrderable, String name, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, String id) {
+        this.isOrderable = isOrderable;
         this.name = name;
         this.productID = productID;
         this.isRelatedTo = isRelatedTo;
         this.isSimilarTo = isSimilarTo;
         this.manufacturer = manufacturer;
         this.id = id;
+    }
+
+    public Boolean getIsOrderable() {
+        return isOrderable;
+    }
+    public void setIsOrderable(Boolean isOrderable) {
+        this.isOrderable = isOrderable;
     }
 
     public String getName() {

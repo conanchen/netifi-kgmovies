@@ -11,5 +11,12 @@ public interface Query {
 
     ServiceGQO service(String id, String serviceID) throws Exception;
 
+    FoodServiceGQO foodService(String id, String serviceID) throws Exception;
+
+    GeneralServiceGQO generalService(String id, String serviceID) throws Exception;
+
+    GovernmentServiceGQO governmentService(String id, String serviceID) throws Exception;
+
     OrderGQO order(String id, String orderID) throws Exception;
+
 }
