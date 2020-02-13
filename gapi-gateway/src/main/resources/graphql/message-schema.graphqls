@@ -49,9 +49,10 @@ type Person implements Node{
 
 """
 【机构】一个组织，例如学校、非政府组织、公司、俱乐部等 An organization such as a school, NGO, corporation, club, etc.
+也用于临时几个人组成的聊天小组，房间
 http://cnschema.org/Organization
 """
-type Organization  implements Node{
+type Organization  implements Thing & Node{
 
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -120,7 +121,7 @@ type DataCatalog implements Node{
 type Conversation implements Node{
 
     """【关于】 事物的关于信息 The subject matter of the content."""
-    about: ConversationAboutUnion
+    about: Thing
 
     """【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the CreativeWork."""
     accountablePerson: Person
@@ -275,8 +276,6 @@ interface Action{
     description: String
 }
 
-"""会话可能关于的对象，目前支持Organization | Bike"""
-union ConversationAboutUnion = Organization | Bike
 
 type CreateAction implements Action & Node{
     """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""

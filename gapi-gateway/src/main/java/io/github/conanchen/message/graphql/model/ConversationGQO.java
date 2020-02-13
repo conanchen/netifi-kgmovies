@@ -3,10 +3,11 @@ package io.github.conanchen.message.graphql.model;
 import java.util.Collection;
 import io.github.conanchen.softwareapplication.graphql.model.WebhookGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
 public class ConversationGQO implements NodeGQO{
 
-    private ConversationAboutUnionGQO about;
+    private ThingGQO about;
     private PersonGQO accountablePerson;
     private String headline;
     private String alternativeHeadline;
@@ -23,7 +24,7 @@ public class ConversationGQO implements NodeGQO{
     public ConversationGQO() {
     }
 
-    public ConversationGQO(ConversationAboutUnionGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasParts, Collection<WebhookGQO> webhook,Collection<ActionGQO> potentialActions, String id) {
+    public ConversationGQO(ThingGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasParts, Collection<WebhookGQO> webhook, Collection<ActionGQO> potentialActions, String id) {
         this.about = about;
         this.accountablePerson = accountablePerson;
         this.headline = headline;
@@ -38,10 +39,10 @@ public class ConversationGQO implements NodeGQO{
         this.id = id;
     }
 
-    public ConversationAboutUnionGQO getAbout() {
+    public ThingGQO getAbout() {
         return about;
     }
-    public void setAbout(ConversationAboutUnionGQO about) {
+    public void setAbout(ThingGQO about) {
         this.about = about;
     }
 
@@ -101,6 +102,13 @@ public class ConversationGQO implements NodeGQO{
         this.hasParts = hasParts;
     }
 
+    public Collection<WebhookGQO> getWebhook() {
+        return webhook;
+    }
+    public void setWebhook(Collection<WebhookGQO> webhook) {
+        this.webhook = webhook;
+    }
+
     public Collection<ActionGQO> getPotentialActions() {
         return potentialActions;
     }
@@ -113,14 +121,6 @@ public class ConversationGQO implements NodeGQO{
     }
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Collection<WebhookGQO> getWebhook() {
-      return webhook;
-    }
-
-    public void setWebhook(Collection<WebhookGQO> webhook) {
-      this.webhook = webhook;
     }
 
 }

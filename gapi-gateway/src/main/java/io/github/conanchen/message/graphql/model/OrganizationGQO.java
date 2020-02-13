@@ -1,10 +1,10 @@
 package io.github.conanchen.message.graphql.model;
 
 import java.util.Collection;
-
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class OrganizationGQO implements NodeGQO{
+public class OrganizationGQO implements ThingGQO, NodeGQO{
 
     @javax.validation.constraints.NotNull
     private String name;
