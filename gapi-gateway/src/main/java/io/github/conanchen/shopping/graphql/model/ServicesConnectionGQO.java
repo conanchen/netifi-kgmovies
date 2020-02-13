@@ -3,22 +3,22 @@ package io.github.conanchen.shopping.graphql.model;
 import java.util.Collection;
 import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
 
-public class ProductsConnectionGQO {
+public class ServicesConnectionGQO {
 
     @javax.validation.constraints.NotNull
     private PageInfoGQO pageInfo;
-    private Collection<ProductsEdgeGQO> edges;
+    private Collection<ServicesEdgeGQO> edges;
     private Integer totalCount;
-    private Collection<ProductGQO> products;
+    private Collection<ServiceGQO> services;
 
-    public ProductsConnectionGQO() {
+    public ServicesConnectionGQO() {
     }
 
-    public ProductsConnectionGQO(PageInfoGQO pageInfo, Collection<ProductsEdgeGQO> edges, Integer totalCount, Collection<ProductGQO> products) {
+    public ServicesConnectionGQO(PageInfoGQO pageInfo, Collection<ServicesEdgeGQO> edges, Integer totalCount, Collection<ServiceGQO> services) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
-        this.products = products;
+        this.services = services;
     }
 
     public PageInfoGQO getPageInfo() {
@@ -28,10 +28,10 @@ public class ProductsConnectionGQO {
         this.pageInfo = pageInfo;
     }
 
-    public Collection<ProductsEdgeGQO> getEdges() {
+    public Collection<ServicesEdgeGQO> getEdges() {
         return edges;
     }
-    public void setEdges(Collection<ProductsEdgeGQO> edges) {
+    public void setEdges(Collection<ServicesEdgeGQO> edges) {
         this.edges = edges;
     }
 
@@ -42,11 +42,11 @@ public class ProductsConnectionGQO {
         this.totalCount = totalCount;
     }
 
-    public Collection<ProductGQO> getProducts() {
-        return products;
+    public Collection<ServiceGQO> getServices() {
+        return services;
     }
-    public void setProducts(Collection<ProductGQO> products) {
-        this.products = products;
+    public void setServices(Collection<ServiceGQO> services) {
+        this.services = services;
     }
 
 }

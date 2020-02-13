@@ -15,7 +15,7 @@ public class FoodServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQO, 
     private PlaceGQO areaServed;
     private OpeningHoursSpecificationGQO hoursAvailable;
     private ProductGQO isRelatedTo;
-    private ProductGQO isSimilarTo;
+    private ServiceGQO isSimilarTo;
     private Collection<ActionGQO> potentialAction;
     private Collection<ItemCategoryGQO> itemCategory;
     @javax.validation.constraints.NotNull
@@ -24,7 +24,7 @@ public class FoodServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQO, 
     public FoodServiceGQO() {
     }
 
-    public FoodServiceGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ProductGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, String id) {
+    public FoodServiceGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;
@@ -87,10 +87,10 @@ public class FoodServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQO, 
         this.isRelatedTo = isRelatedTo;
     }
 
-    public ProductGQO getIsSimilarTo() {
+    public ServiceGQO getIsSimilarTo() {
         return isSimilarTo;
     }
-    public void setIsSimilarTo(ProductGQO isSimilarTo) {
+    public void setIsSimilarTo(ServiceGQO isSimilarTo) {
         this.isSimilarTo = isSimilarTo;
     }
 

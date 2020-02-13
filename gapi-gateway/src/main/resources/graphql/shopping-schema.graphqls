@@ -1,10 +1,14 @@
 extend type Query {
   allProducts(after: String, first: Int, before: String, last: Int): ProductsConnection
   product(id: ID, productID: ID): Product
+  generalProduct(id: ID, productID: ID): GeneralProduct
+
+  allServices(after: String, first: Int, before: String, last: Int): ServicesConnection
   service(id: ID, serviceID: ID): Service
   foodService(id: ID, serviceID: ID): FoodService
   generalService(id: ID, serviceID: ID): GeneralService
   governmentService(id: ID, serviceID: ID): GovernmentService
+  housekeepingService(id: ID, serviceID: ID): HousekeepingService  
   order(id: ID, orderID: ID): Order
   itemCategory(id: ID, itcgID: ID): ItemCategory
 }
@@ -15,7 +19,7 @@ extend type Mutation {
 
 """https://schema.org/Product
 Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."""
-type Product implements Thing & OrderableThing & Node{
+interface Product {
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
@@ -45,6 +49,57 @@ type Product implements Thing & OrderableThing & Node{
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
+    """isVariantOf	ProductModel 	A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive."""
+    isVariantOf:	Product
+
+    """predecessorOf	ProductModel 	A pointer from a previous, often discontinued variant of the product to its newer variant."""
+    predecessorOf:	Product
+
+    """successorOf	ProductModel 	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
+    successorOf:	Product
+}
+
+"""https://schema.org/Product
+Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."""
+type GeneralProduct implements Thing & Product & OrderableThing & Node{
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """productID	Text 	The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
+    productID: String
+
+    """isRelatedTo	Product  or
+    Service 	A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo: [Product]
+    
+    """isSimilarTo	Product  or
+    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo: [Product]
+
+    """ 	The manufacturer of the product."""
+    manufacturer:	Organization
+
+    """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
+    itemCategory: [ItemCategory]
+
+    """isVariantOf	ProductModel 	A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive."""
+    isVariantOf:	Product
+
+    """predecessorOf	ProductModel 	A pointer from a previous, often discontinued variant of the product to its newer variant."""
+    predecessorOf:	Product
+
+    """successorOf	ProductModel 	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
+    successorOf:	Product
+
     """The id of the object."""
     id: ID!
 }
@@ -73,7 +128,7 @@ type ProductsConnection {
   the edge to enable efficient pagination, this shortcut cannot be used, and the
   full "{ edges { node } }" version should be used instead.
   """
-  films: [Product]
+  products: [Product]
 }
 
 """An edge in a connection."""
@@ -122,7 +177,7 @@ interface Service {
 
     """isSimilarTo	Product  or
     Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Product
+    isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
@@ -169,7 +224,7 @@ type GeneralService implements Thing & OrderableThing & Service & Node{
 
     """isSimilarTo	Product  or
     Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Product
+    isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
@@ -219,7 +274,57 @@ type FoodService implements Thing & OrderableThing & Service & Node{
 
     """isSimilarTo	Product  or
     Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Product
+    isSimilarTo:	Service
+
+    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    potentialAction: [Action]
+
+    """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
+    itemCategory: [ItemCategory]
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""家政服务"""
+type HousekeepingService implements Thing & OrderableThing & Service & Node{
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """
+    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
+
+    areaServed	AdministrativeArea  or
+    GeoShape  or
+    Place  or
+    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    areaServed: Place
+
+    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award	Text 	An award won by or for this item. Supersedes awards.
+    brand	Brand  or
+    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+    
+    The hours during which this service or contact is available."""
+    hoursAvailable:	OpeningHoursSpecification
+
+    """isRelatedTo	Product  or
+    Service 	A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:	Product
+
+    """isSimilarTo	Product  or
+    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
@@ -270,7 +375,7 @@ type GovernmentService implements Thing & Service & Node{
 
     """isSimilarTo	Product  or
     Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Product
+    isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
@@ -280,6 +385,43 @@ type GovernmentService implements Thing & Service & Node{
 
     """The id of the object."""
     id: ID!
+}
+
+
+"""A connection to a list of items."""
+type ServicesConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ServicesEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  services: [Service]
+}
+
+"""An edge in a connection."""
+type ServicesEdge {
+  """The item at the end of the edge"""
+  node: Service
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 interface OrderableThing{

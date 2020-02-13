@@ -6,7 +6,7 @@ import io.github.conanchen.message.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class GeneralServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQO, NodeGQO{
+public class HousekeepingServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQO, NodeGQO{
 
     private Boolean isOrderable;
     private String name;
@@ -21,10 +21,10 @@ public class GeneralServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQ
     @javax.validation.constraints.NotNull
     private String id;
 
-    public GeneralServiceGQO() {
+    public HousekeepingServiceGQO() {
     }
 
-    public GeneralServiceGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, String id) {
+    public HousekeepingServiceGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;

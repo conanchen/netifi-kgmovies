@@ -18,7 +18,7 @@ public interface ServiceGQO {
 
     ProductGQO getIsRelatedTo();
 
-    ProductGQO getIsSimilarTo();
+    ServiceGQO getIsSimilarTo();
 
     Collection<ActionGQO> getPotentialAction();
 

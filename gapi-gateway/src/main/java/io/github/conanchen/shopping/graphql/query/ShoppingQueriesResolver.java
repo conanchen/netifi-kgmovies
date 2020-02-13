@@ -4,13 +4,16 @@ import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Service;
 import io.github.conanchen.shopping.graphql.api.Query;
 import io.github.conanchen.shopping.graphql.model.FoodServiceGQO;
+import io.github.conanchen.shopping.graphql.model.GeneralProductGQO;
 import io.github.conanchen.shopping.graphql.model.GeneralServiceGQO;
 import io.github.conanchen.shopping.graphql.model.GovernmentServiceGQO;
+import io.github.conanchen.shopping.graphql.model.HousekeepingServiceGQO;
 import io.github.conanchen.shopping.graphql.model.ItemCategoryGQO;
 import io.github.conanchen.shopping.graphql.model.OrderGQO;
 import io.github.conanchen.shopping.graphql.model.ProductGQO;
 import io.github.conanchen.shopping.graphql.model.ProductsConnectionGQO;
 import io.github.conanchen.shopping.graphql.model.ServiceGQO;
+import io.github.conanchen.shopping.graphql.model.ServicesConnectionGQO;
 
 @Service
 public class ShoppingQueriesResolver implements Query, GraphQLQueryResolver {
@@ -59,6 +62,25 @@ public class ShoppingQueriesResolver implements Query, GraphQLQueryResolver {
 
   @Override
   public ItemCategoryGQO itemCategory(String id, String itcgID) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public GeneralProductGQO generalProduct(String id, String productID) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public ServicesConnectionGQO allServices(String after, Integer first, String before, Integer last)
+      throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public HousekeepingServiceGQO housekeepingService(String id, String serviceID) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }
