@@ -4,8 +4,9 @@ import java.util.Collection;
 import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class FoodServiceGQO implements OrderableThingGQO, ServiceGQO, NodeGQO{
+public class FoodServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQO, NodeGQO{
 
     private Boolean isOrderable;
     private String name;

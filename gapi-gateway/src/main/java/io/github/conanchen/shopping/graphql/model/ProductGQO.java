@@ -3,11 +3,14 @@ package io.github.conanchen.shopping.graphql.model;
 import java.util.Collection;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class ProductGQO implements OrderableThingGQO, NodeGQO{
+public class ProductGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
 
     private Boolean isOrderable;
     private String name;
+    private String alternateName;
+    private String description;
     private String productID;
     private Collection<ProductGQO> isRelatedTo;
     private Collection<ProductGQO> isSimilarTo;
@@ -19,9 +22,11 @@ public class ProductGQO implements OrderableThingGQO, NodeGQO{
     public ProductGQO() {
     }
 
-    public ProductGQO(Boolean isOrderable, String name, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, String id) {
+    public ProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
+        this.alternateName = alternateName;
+        this.description = description;
         this.productID = productID;
         this.isRelatedTo = isRelatedTo;
         this.isSimilarTo = isSimilarTo;
@@ -42,6 +47,20 @@ public class ProductGQO implements OrderableThingGQO, NodeGQO{
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAlternateName() {
+        return alternateName;
+    }
+    public void setAlternateName(String alternateName) {
+        this.alternateName = alternateName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getProductID() {
