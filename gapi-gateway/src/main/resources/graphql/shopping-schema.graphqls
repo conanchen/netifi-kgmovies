@@ -649,3 +649,89 @@ type ItemCategory implements Node{
     id: ID!
 
 }
+
+
+
+"""https://schema.org/Offer
+An offer to transfer some rights to an item or to provide a service — for example, an offer to sell tickets to an event, to rent the DVD of a movie, to stream a TV show over the internet, to repair a motorcycle, or to loan a book.
+
+Note: As the businessFunction property, which identifies the form of offer (e.g. sell, lease, repair, dispose), defaults to http://purl.org/goodrelations/v1#Sell; an Offer without a defined businessFunction value can be assumed to be an offer to sell.
+"""
+type Offer implements Thing & OrderableThing & Node{
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """itemOffered	AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip 	An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
+    itemOffered: Product
+
+    """offeredBy	Organization  or Person 	A pointer to the organization or person making the offer. Inverse property: makesOffer."""
+    offeredBy: Party
+
+    """The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes."""
+    price: Int
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""https://schema.org/Demand
+A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a certain type of goods or services. For describing demand using this type, the very same properties used for Offer apply.
+"""
+type Demand implements Thing & OrderableThing & Node{
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided."""
+    areaServed: Place
+
+    """businessFunction	BusinessFunction 	The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell."""
+    businessFunction:	BusinessFunction
+
+    """itemOffered	AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip 	An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
+    itemOffered: Service
+
+    """seeks	Demand 	A pointer to products or services sought by the organization or person (demand). Inverse-property: seeker"""
+    seeker: Party
+
+    """The id of the object."""
+    id: ID!
+}
+
+enum BusinessFunction{
+  """
+  http://purl.org/goodrelations/v1#ConstructionInstallation
+  http://purl.org/goodrelations/v1#Dispose
+  http://purl.org/goodrelations/v1#LeaseOut
+  http://purl.org/goodrelations/v1#Maintain
+  http://purl.org/goodrelations/v1#ProvideService
+  http://purl.org/goodrelations/v1#Repair
+  http://purl.org/goodrelations/v1#Sell
+  http://purl.org/goodrelations/v1#Buy  
+  """
+  ConstructionInstallation
+  Dispose
+  LeaseOut
+  Maintain
+  ProvideService
+  Repair
+  Sell
+  Buy
+}
