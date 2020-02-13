@@ -1,7 +1,7 @@
 package io.github.conanchen.shopping.graphql.model;
 
 import java.util.Collection;
-import io.github.conanchen.message.graphql.model.ActionUnionGQO;
+import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
 import io.github.conanchen.message.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
@@ -16,14 +16,14 @@ public class GovernmentServiceGQO implements ServiceGQO, NodeGQO{
     private OpeningHoursSpecificationGQO hoursAvailable;
     private ProductGQO isRelatedTo;
     private ProductGQO isSimilarTo;
-    private Collection<ActionUnionGQO> potentialAction;
+    private Collection<ActionGQO> potentialAction;
     @javax.validation.constraints.NotNull
     private String id;
 
     public GovernmentServiceGQO() {
     }
 
-    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ProductGQO isSimilarTo, Collection<ActionUnionGQO> potentialAction, String id) {
+    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ProductGQO isSimilarTo, Collection<ActionGQO> potentialAction, String id) {
         this.serviceOperator = serviceOperator;
         this.name = name;
         this.alternateName = alternateName;
@@ -92,10 +92,10 @@ public class GovernmentServiceGQO implements ServiceGQO, NodeGQO{
         this.isSimilarTo = isSimilarTo;
     }
 
-    public Collection<ActionUnionGQO> getPotentialAction() {
+    public Collection<ActionGQO> getPotentialAction() {
         return potentialAction;
     }
-    public void setPotentialAction(Collection<ActionUnionGQO> potentialAction) {
+    public void setPotentialAction(Collection<ActionGQO> potentialAction) {
         this.potentialAction = potentialAction;
     }
 

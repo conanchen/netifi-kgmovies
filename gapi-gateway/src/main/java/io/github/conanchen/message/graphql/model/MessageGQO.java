@@ -17,14 +17,14 @@ public class MessageGQO implements NodeGQO{
     @javax.validation.constraints.NotNull
     private String text;
     private Collection<CommentGQO> comments;
-    private Collection<ActionUnionGQO> potentialActions;
+    private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public MessageGQO() {
     }
 
-    public MessageGQO(Collection<ConversationGQO> isPartOf, PersonGQO sender, java.util.Date dateSent, PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, String text, Collection<CommentGQO> comments, Collection<ActionUnionGQO> potentialActions, String id) {
+    public MessageGQO(Collection<ConversationGQO> isPartOf, PersonGQO sender, java.util.Date dateSent, PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, String text, Collection<CommentGQO> comments, Collection<ActionGQO> potentialActions, String id) {
         this.isPartOf = isPartOf;
         this.sender = sender;
         this.dateSent = dateSent;
@@ -101,10 +101,10 @@ public class MessageGQO implements NodeGQO{
         this.comments = comments;
     }
 
-    public Collection<ActionUnionGQO> getPotentialActions() {
+    public Collection<ActionGQO> getPotentialActions() {
         return potentialActions;
     }
-    public void setPotentialActions(Collection<ActionUnionGQO> potentialActions) {
+    public void setPotentialActions(Collection<ActionGQO> potentialActions) {
         this.potentialActions = potentialActions;
     }
 

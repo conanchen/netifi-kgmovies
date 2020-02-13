@@ -2,7 +2,7 @@ package io.github.conanchen.message.graphql.model;
 
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class CreateActionGQO implements ActionUnionGQO, ActionGQO, NodeGQO{
+public class CreateActionGQO implements ActionGQO, NodeGQO{
 
     private PersonGQO agent;
     private java.util.Date startTime;

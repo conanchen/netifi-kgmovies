@@ -1,7 +1,7 @@
 package io.github.conanchen.shopping.graphql.model;
 
 import java.util.Collection;
-import io.github.conanchen.message.graphql.model.ActionUnionGQO;
+import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
@@ -15,14 +15,14 @@ public class GeneralServiceGQO implements OrderableThingGQO, ServiceGQO, NodeGQO
     private OpeningHoursSpecificationGQO hoursAvailable;
     private ProductGQO isRelatedTo;
     private ProductGQO isSimilarTo;
-    private Collection<ActionUnionGQO> potentialAction;
+    private Collection<ActionGQO> potentialAction;
     @javax.validation.constraints.NotNull
     private String id;
 
     public GeneralServiceGQO() {
     }
 
-    public GeneralServiceGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ProductGQO isSimilarTo, Collection<ActionUnionGQO> potentialAction, String id) {
+    public GeneralServiceGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ProductGQO isSimilarTo, Collection<ActionGQO> potentialAction, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;
@@ -91,10 +91,10 @@ public class GeneralServiceGQO implements OrderableThingGQO, ServiceGQO, NodeGQO
         this.isSimilarTo = isSimilarTo;
     }
 
-    public Collection<ActionUnionGQO> getPotentialAction() {
+    public Collection<ActionGQO> getPotentialAction() {
         return potentialAction;
     }
-    public void setPotentialAction(Collection<ActionUnionGQO> potentialAction) {
+    public void setPotentialAction(Collection<ActionGQO> potentialAction) {
         this.potentialAction = potentialAction;
     }
 

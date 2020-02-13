@@ -84,7 +84,7 @@ type Organization  implements Node{
     defaultConversation: Conversation
     
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [ActionUnion]
+    potentialActions: [Action]
 
     """The id of the object."""
     id: ID!
@@ -150,7 +150,7 @@ type Conversation implements Node{
     webhook: [Webhook]
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [ActionUnion]
+    potentialActions: [Action]
 
     """The id of the object."""
     id: ID!
@@ -222,7 +222,7 @@ type Message implements Node{
     comments: [Comment]
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [ActionUnion]
+    potentialActions: [Action]
     
     """The id of the object."""
     id: ID!
@@ -277,9 +277,6 @@ interface Action{
 
 """会话可能关于的对象，目前支持Organization | Bike"""
 union ConversationAboutUnion = Organization | Bike
-
-"""Action可能的动作，目前支持CreateAction | UpdateAction"""
-union ActionUnion = CreateAction | UpdateAction
 
 type CreateAction implements Action & Node{
     """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""

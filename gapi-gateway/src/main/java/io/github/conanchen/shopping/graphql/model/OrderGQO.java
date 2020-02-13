@@ -1,7 +1,7 @@
 package io.github.conanchen.shopping.graphql.model;
 
 import java.util.Collection;
-import io.github.conanchen.message.graphql.model.ActionUnionGQO;
+import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
@@ -16,14 +16,14 @@ public class OrderGQO implements NodeGQO{
     private OrderStatusGQO orderStatus;
     private Collection<OrderItemGQO> orderedItem;
     private OrganizationGQO seller;
-    private Collection<ActionUnionGQO> potentialActions;
+    private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public OrderGQO() {
     }
 
-    public OrderGQO(OrganizationGQO broker, OrganizationGQO customer, Boolean isGift, java.util.Date orderDate, ParcelDeliveryGQO orderDelivery, String orderNumber, OrderStatusGQO orderStatus, Collection<OrderItemGQO> orderedItem, OrganizationGQO seller, Collection<ActionUnionGQO> potentialActions, String id) {
+    public OrderGQO(OrganizationGQO broker, OrganizationGQO customer, Boolean isGift, java.util.Date orderDate, ParcelDeliveryGQO orderDelivery, String orderNumber, OrderStatusGQO orderStatus, Collection<OrderItemGQO> orderedItem, OrganizationGQO seller, Collection<ActionGQO> potentialActions, String id) {
         this.broker = broker;
         this.customer = customer;
         this.isGift = isGift;
@@ -100,10 +100,10 @@ public class OrderGQO implements NodeGQO{
         this.seller = seller;
     }
 
-    public Collection<ActionUnionGQO> getPotentialActions() {
+    public Collection<ActionGQO> getPotentialActions() {
         return potentialActions;
     }
-    public void setPotentialActions(Collection<ActionUnionGQO> potentialActions) {
+    public void setPotentialActions(Collection<ActionGQO> potentialActions) {
         this.potentialActions = potentialActions;
     }
 

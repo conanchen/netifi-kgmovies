@@ -1,6 +1,7 @@
 package io.github.conanchen.softwareapplication.graphql.model;
 
 import java.util.Collection;
+import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
@@ -16,13 +17,14 @@ public class WebhookGQO implements NodeGQO{
     private PersonGQO creator;
     private java.util.Date dateCreated;
     private SoftwareApplicationGQO client;
+    private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public WebhookGQO() {
     }
 
-    public WebhookGQO(String name, String alternateName, String description, String payloadUrl, String contentType, String secret, PersonGQO creator, java.util.Date dateCreated, SoftwareApplicationGQO client, String id) {
+    public WebhookGQO(String name, String alternateName, String description, String payloadUrl, String contentType, String secret, PersonGQO creator, java.util.Date dateCreated, SoftwareApplicationGQO client, Collection<ActionGQO> potentialActions, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -32,6 +34,7 @@ public class WebhookGQO implements NodeGQO{
         this.creator = creator;
         this.dateCreated = dateCreated;
         this.client = client;
+        this.potentialActions = potentialActions;
         this.id = id;
     }
 
@@ -91,11 +94,18 @@ public class WebhookGQO implements NodeGQO{
         this.dateCreated = dateCreated;
     }
 
-    public  SoftwareApplicationGQO getClient() {
+    public SoftwareApplicationGQO getClient() {
         return client;
     }
-    public void setClient( SoftwareApplicationGQO client) {
+    public void setClient(SoftwareApplicationGQO client) {
         this.client = client;
+    }
+
+    public Collection<ActionGQO> getPotentialActions() {
+        return potentialActions;
+    }
+    public void setPotentialActions(Collection<ActionGQO> potentialActions) {
+        this.potentialActions = potentialActions;
     }
 
     public String getId() {

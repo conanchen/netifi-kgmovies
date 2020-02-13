@@ -18,14 +18,14 @@ public class OrganizationGQO implements NodeGQO{
     private Collection<PersonGQO> followees;
     private Collection<ConversationGQO> availableConversations;
     private ConversationGQO defaultConversation;
-    private Collection<ActionUnionGQO> potentialActions;
+    private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public OrganizationGQO() {
     }
 
-    public OrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> members, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionUnionGQO> potentialActions, String id) {
+    public OrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> members, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionGQO> potentialActions, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -118,10 +118,10 @@ public class OrganizationGQO implements NodeGQO{
         this.defaultConversation = defaultConversation;
     }
 
-    public Collection<ActionUnionGQO> getPotentialActions() {
+    public Collection<ActionGQO> getPotentialActions() {
         return potentialActions;
     }
-    public void setPotentialActions(Collection<ActionUnionGQO> potentialActions) {
+    public void setPotentialActions(Collection<ActionGQO> potentialActions) {
         this.potentialActions = potentialActions;
     }
 

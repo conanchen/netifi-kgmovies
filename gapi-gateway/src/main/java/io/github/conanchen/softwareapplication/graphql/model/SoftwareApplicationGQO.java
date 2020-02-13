@@ -1,7 +1,7 @@
 package io.github.conanchen.softwareapplication.graphql.model;
 
 import java.util.Collection;
-import io.github.conanchen.message.graphql.model.ActionUnionGQO;
+import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class SoftwareApplicationGQO implements NodeGQO{
@@ -17,14 +17,14 @@ public class SoftwareApplicationGQO implements NodeGQO{
     private String releaseNotes;
     private String screenshot;
     private String softwareVersion;
-    private Collection<ActionUnionGQO> potentialActions;
+    private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public SoftwareApplicationGQO() {
     }
 
-    public SoftwareApplicationGQO(String name, String alternateName, String description, String applicationSuite, String downloadUrl, String featureList, String installUrl, String releaseNotes, String screenshot, String softwareVersion, Collection<ActionUnionGQO> potentialActions, String id) {
+    public SoftwareApplicationGQO(String name, String alternateName, String description, String applicationSuite, String downloadUrl, String featureList, String installUrl, String releaseNotes, String screenshot, String softwareVersion, Collection<ActionGQO> potentialActions, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -109,10 +109,10 @@ public class SoftwareApplicationGQO implements NodeGQO{
         this.softwareVersion = softwareVersion;
     }
 
-    public Collection<ActionUnionGQO> getPotentialActions() {
+    public Collection<ActionGQO> getPotentialActions() {
         return potentialActions;
     }
-    public void setPotentialActions(Collection<ActionUnionGQO> potentialActions) {
+    public void setPotentialActions(Collection<ActionGQO> potentialActions) {
         this.potentialActions = potentialActions;
     }
 

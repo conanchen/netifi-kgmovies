@@ -114,7 +114,7 @@ interface Service {
     isSimilarTo:	Product
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [ActionUnion]
+    potentialAction: [Action]
 
 }
 
@@ -158,7 +158,7 @@ type GeneralService implements OrderableThing & Service & Node{
     isSimilarTo:	Product
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [ActionUnion]
+    potentialAction: [Action]
 
     """The id of the object."""
     id: ID!
@@ -205,7 +205,7 @@ type FoodService implements OrderableThing & Service & Node{
     isSimilarTo:	Product
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [ActionUnion]
+    potentialAction: [Action]
 
     """The id of the object."""
     id: ID!
@@ -253,7 +253,7 @@ type GovernmentService implements Service & Node{
     isSimilarTo:	Product
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [ActionUnion]
+    potentialAction: [Action]
 
     """The id of the object."""
     id: ID!
@@ -344,7 +344,7 @@ type Order implements Node{
     seller:	Organization
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [ActionUnion]
+    potentialActions: [Action]
 
     """The id of the object."""
     id: ID!
@@ -373,7 +373,7 @@ type OrderItem implements Node{
     orderedItem: OrderableThing
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [ActionUnion]
+    potentialActions: [Action]
 
     """The id of the object."""
     id: ID!

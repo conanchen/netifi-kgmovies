@@ -16,14 +16,14 @@ public class ConversationGQO implements NodeGQO{
     private DataCatalogGQO includedInDataCatalog;
     private Collection<MessageGQO> hasParts;
     private Collection<WebhookGQO> webhook;
-    private Collection<ActionUnionGQO> potentialActions;
+    private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
 
     public ConversationGQO() {
     }
 
-    public ConversationGQO(ConversationAboutUnionGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasParts, Collection<WebhookGQO> webhook,Collection<ActionUnionGQO> potentialActions, String id) {
+    public ConversationGQO(ConversationAboutUnionGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasParts, Collection<WebhookGQO> webhook,Collection<ActionGQO> potentialActions, String id) {
         this.about = about;
         this.accountablePerson = accountablePerson;
         this.headline = headline;
@@ -101,10 +101,10 @@ public class ConversationGQO implements NodeGQO{
         this.hasParts = hasParts;
     }
 
-    public Collection<ActionUnionGQO> getPotentialActions() {
+    public Collection<ActionGQO> getPotentialActions() {
         return potentialActions;
     }
-    public void setPotentialActions(Collection<ActionUnionGQO> potentialActions) {
+    public void setPotentialActions(Collection<ActionGQO> potentialActions) {
         this.potentialActions = potentialActions;
     }
 

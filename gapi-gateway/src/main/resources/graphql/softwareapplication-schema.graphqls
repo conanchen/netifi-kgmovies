@@ -51,7 +51,7 @@ type SoftwareApplication implements Node {
     softwareVersion: String
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [ActionUnion]
+    potentialActions: [Action]
 
     """The id of the object."""
     id: ID!
@@ -123,6 +123,9 @@ type Webhook implements Node{
     """ 调用此webhook的客户端 """
     client: SoftwareApplication
     
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [Action]
+
     """The id of the object."""
     id: ID!
 }

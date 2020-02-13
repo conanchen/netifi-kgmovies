@@ -1,7 +1,7 @@
 package io.github.conanchen.shopping.graphql.model;
 
 import java.util.Collection;
-import io.github.conanchen.message.graphql.model.ActionUnionGQO;
+import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.PlaceGQO;
 
 public interface ServiceGQO {
@@ -20,6 +20,6 @@ public interface ServiceGQO {
 
     ProductGQO getIsSimilarTo();
 
-    Collection<ActionUnionGQO> getPotentialAction();
+    Collection<ActionGQO> getPotentialAction();
 
 }
