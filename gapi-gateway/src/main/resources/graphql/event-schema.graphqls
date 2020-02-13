@@ -1,0 +1,116 @@
+extend type Query {
+  allEvents(after: String, first: Int, before: String, last: Int): EventsConnection
+  event(id: ID, eventID: ID): Event
+}
+
+
+"""https://schema.org/Event An event happening at a certain time and location, such as a concert, lecture, or festival."""
+type Event implements Node {
+    """about	Thing 	The subject matter of the content."""
+    about: Thing
+
+    """doorTime	DateTime  or Time 	The time admission will commence."""
+    doorTime:	DateTime
+
+    """duration	Duration 	The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format."""
+    duration:	Duration
+    
+    """endDate	Date  or DateTime 	The end date and time of the item (in ISO 8601 date format)."""
+    endDate:	DateTime
+
+    """eventSchedule	Schedule 	Associates an Event with a Schedule. There are circumstances where it is preferable to share a schedule for a series of repeating events rather than data on the individual events themselves. """
+    eventSchedule:	Schedule
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""A connection to a list of items."""
+type EventsConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [EventsEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  events: [Event]
+}
+
+"""An edge in a connection."""
+type EventsEdge {
+  """The item at the end of the edge"""
+  node: Event
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type Duration{
+    """【名称】 条目的名称 The name of the item."""
+    name: String!
+
+    """https://en.wikipedia.org/wiki/ISO_8601 PnYnMnDTnHnMnS For example, "P3Y6M4DT12H30M5S" represents a duration of "three years, six months, four days, twelve hours, thirty minutes, and five seconds"."""
+    duration: String
+
+}
+
+type Schedule implements Node{
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """byDay	DayOfWeek  or Text 	Defines the day(s) of the week on which a recurring Event takes place. May be specified using either DayOfWeek, or alternatively Text conforming to iCal's syntax for byDay recurrence rules"""
+    byDay:	DayOfWeek
+    """byMonth	Integer 	Defines the month(s) of the year on which a recurring Event takes place. Specified as an Integer between 1-12. January is 1."""
+    byMonth:	Int
+
+    """byMonthDay	Integer 	Defines the day(s) of the month on which a recurring Event takes place. Specified as an Integer between 1-31."""
+    byMonthDay:	Int
+
+    """duration	Duration 	The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format."""
+    duration:	Duration
+
+    """exceptDate	Date  or DateTime 	Defines a Date or DateTime during which a scheduled Event will not take place. The property allows exceptions to a Schedule to be specified. If an exception is specified as a DateTime then only the event that would have started at that specific date and time should be excluded from the schedule. If an exception is specified as a Date then any event that is scheduled for that 24 hour period should be excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event."""
+    exceptDate: DateTime
+
+    """repeatCount	Integer 	Defines the number of times a recurring Event will take place"""
+    repeatCount:	Int
+
+    """repeatFrequency	Duration  or Text 	Defines the frequency at which Events will occur according to a schedule Schedule. The intervals between events should be defined as a Duration of time."""
+    repeatFrequency:	Duration
+
+    """The id of the object."""
+    id: ID!
+}
+
+enum DayOfWeek{
+    PublicHolidays
+    Sunday
+    Monday
+    Tuesday
+    Wednesday
+    Thursday
+    Friday
+    Saturday
+}

@@ -105,6 +105,18 @@ task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask,dependsOn: graphqlCod
     generateApis = true
 }
 
+task graphqlCodegenEvent(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/event-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/event")
+    apiPackageName = "io.github.conanchen.event.graphql.api"
+    modelPackageName = "io.github.conanchen.event.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/message-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/message")
