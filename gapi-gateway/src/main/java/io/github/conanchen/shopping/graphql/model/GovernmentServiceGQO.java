@@ -17,13 +17,14 @@ public class GovernmentServiceGQO implements ServiceGQO, NodeGQO{
     private ProductGQO isRelatedTo;
     private ProductGQO isSimilarTo;
     private Collection<ActionGQO> potentialAction;
+    private Collection<ItemCategoryGQO> itemCategory;
     @javax.validation.constraints.NotNull
     private String id;
 
     public GovernmentServiceGQO() {
     }
 
-    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ProductGQO isSimilarTo, Collection<ActionGQO> potentialAction, String id) {
+    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ProductGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, String id) {
         this.serviceOperator = serviceOperator;
         this.name = name;
         this.alternateName = alternateName;
@@ -33,6 +34,7 @@ public class GovernmentServiceGQO implements ServiceGQO, NodeGQO{
         this.isRelatedTo = isRelatedTo;
         this.isSimilarTo = isSimilarTo;
         this.potentialAction = potentialAction;
+        this.itemCategory = itemCategory;
         this.id = id;
     }
 
@@ -97,6 +99,13 @@ public class GovernmentServiceGQO implements ServiceGQO, NodeGQO{
     }
     public void setPotentialAction(Collection<ActionGQO> potentialAction) {
         this.potentialAction = potentialAction;
+    }
+
+    public Collection<ItemCategoryGQO> getItemCategory() {
+        return itemCategory;
+    }
+    public void setItemCategory(Collection<ItemCategoryGQO> itemCategory) {
+        this.itemCategory = itemCategory;
     }
 
     public String getId() {

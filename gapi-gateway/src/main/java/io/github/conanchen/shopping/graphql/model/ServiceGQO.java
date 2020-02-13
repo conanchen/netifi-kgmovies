@@ -22,4 +22,6 @@ public interface ServiceGQO {
 
     Collection<ActionGQO> getPotentialAction();
 
+    Collection<ItemCategoryGQO> getItemCategory();
+
 }

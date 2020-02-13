@@ -6,6 +6,7 @@ import io.github.conanchen.shopping.graphql.api.Query;
 import io.github.conanchen.shopping.graphql.model.FoodServiceGQO;
 import io.github.conanchen.shopping.graphql.model.GeneralServiceGQO;
 import io.github.conanchen.shopping.graphql.model.GovernmentServiceGQO;
+import io.github.conanchen.shopping.graphql.model.ItemCategoryGQO;
 import io.github.conanchen.shopping.graphql.model.OrderGQO;
 import io.github.conanchen.shopping.graphql.model.ProductGQO;
 import io.github.conanchen.shopping.graphql.model.ProductsConnectionGQO;
@@ -52,6 +53,12 @@ public class ShoppingQueriesResolver implements Query, GraphQLQueryResolver {
 
   @Override
   public GovernmentServiceGQO governmentService(String id, String serviceID) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public ItemCategoryGQO itemCategory(String id, String itcgID) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }

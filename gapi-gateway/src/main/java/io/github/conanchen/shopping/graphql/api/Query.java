@@ -19,4 +19,6 @@ public interface Query {
 
     OrderGQO order(String id, String orderID) throws Exception;
 
+    ItemCategoryGQO itemCategory(String id, String itcgID) throws Exception;
+
 }

@@ -12,19 +12,21 @@ public class ProductGQO implements OrderableThingGQO, NodeGQO{
     private Collection<ProductGQO> isRelatedTo;
     private Collection<ProductGQO> isSimilarTo;
     private OrganizationGQO manufacturer;
+    private Collection<ItemCategoryGQO> itemCategory;
     @javax.validation.constraints.NotNull
     private String id;
 
     public ProductGQO() {
     }
 
-    public ProductGQO(Boolean isOrderable, String name, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, String id) {
+    public ProductGQO(Boolean isOrderable, String name, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.productID = productID;
         this.isRelatedTo = isRelatedTo;
         this.isSimilarTo = isSimilarTo;
         this.manufacturer = manufacturer;
+        this.itemCategory = itemCategory;
         this.id = id;
     }
 
@@ -68,6 +70,13 @@ public class ProductGQO implements OrderableThingGQO, NodeGQO{
     }
     public void setManufacturer(OrganizationGQO manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public Collection<ItemCategoryGQO> getItemCategory() {
+        return itemCategory;
+    }
+    public void setItemCategory(Collection<ItemCategoryGQO> itemCategory) {
+        this.itemCategory = itemCategory;
     }
 
     public String getId() {
