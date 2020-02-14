@@ -1,6 +1,7 @@
-package io.github.conanchen.localbusiness.graphql.model;
+package io.github.conanchen.zommon.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.LocalBusinessGQO;
+import java.util.*;
+import io.github.conanchen.zommon.graphql.api.*;
 
 public class LocalBusinessEdgeGQO {
 

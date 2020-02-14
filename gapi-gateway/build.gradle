@@ -85,12 +85,13 @@ task buildImage(type: DockerBuildImage, dependsOn: build) {
 task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/zommon-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/zommon")
+    apiPackageName = "io.github.conanchen.zommon.graphql.api"
     modelPackageName = "io.github.conanchen.zommon.graphql.model"
     customTypesMapping = [
             DateTime: "java.util.Date"
     ]
     modelNameSuffix = "GQO"
-    generateApis = false
+    generateApis = true
 }
 
 task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {

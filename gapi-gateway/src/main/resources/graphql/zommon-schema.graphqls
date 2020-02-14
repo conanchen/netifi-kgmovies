@@ -1,3 +1,12 @@
+#   """返回interface的http://localhost:8888/voyager会报错：
+#   react-dom.min.js:117 TypeError: Cannot read property 'type' of undefined
+#   所以想在voyager看关系图就屏蔽掉如下api，http://localhost:8888/graphiql就没有问题
+#   """
+# extend type Query {
+#   allLocalBusiness(after: String, first: Int, before: String, last: Int): LocalBusinessConnection
+#   localBusiness(id: ID, lbsID: ID): LocalBusiness
+
+# }
 
 """An object with an ID"""
 interface Node {
@@ -46,3 +55,41 @@ interface LocalBusiness{
     priceRange: String
 
 }
+
+
+"""A connection to a list of items."""
+type LocalBusinessConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [LocalBusiness]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  localBusiness: [LocalBusiness]
+}
+
+"""An edge in a connection."""
+type LocalBusinessEdge {
+  """The item at the end of the edge"""
+  node: LocalBusiness
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
