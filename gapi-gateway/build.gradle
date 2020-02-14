@@ -129,6 +129,19 @@ task graphqlCodegenIntangible(type: GraphqlCodegenGradleTask,dependsOn: graphqlC
     generateApis = true
 }
 
+task graphqlCodegenLocalBusiness(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/localbusiness-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/localbusiness")
+    apiPackageName = "io.github.conanchen.localbusiness.graphql.api"
+    modelPackageName = "io.github.conanchen.localbusiness.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
+
 task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/message-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/message")

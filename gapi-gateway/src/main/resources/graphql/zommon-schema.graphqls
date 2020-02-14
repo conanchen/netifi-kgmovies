@@ -33,3 +33,16 @@ interface Thing{
 
   
 }
+
+"""https://schema.org/LocalBusiness"""
+interface LocalBusiness{
+    """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
+    openingHours: String
+
+    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    paymentAccepted: String
+
+    """priceRange	Text 	The price range of the business, for example $$$."""
+    priceRange: String
+
+}

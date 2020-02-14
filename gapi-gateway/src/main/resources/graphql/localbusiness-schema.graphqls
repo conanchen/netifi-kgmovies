@@ -1,0 +1,132 @@
+extend type Query {
+  allStores(after: String, first: Int, before: String, last: Int): StoresConnection
+  store(id: ID, storeID: ID): Store
+
+  # allLocalBusiness(after: String, first: Int, before: String, last: Int): LocalBusinessConnection
+  # localBusiness(id: ID, lbsID: ID): LocalBusiness
+  childcare(id: ID, lbsID: ID): Childcare
+  eldercare(id: ID, lbsID: ID): Eldercare
+
+}
+
+
+
+"""https://schema.org/Store A retail good store."""
+type Store implements LocalBusiness & Node{
+    """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
+    openingHours: String
+
+    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    paymentAccepted: String
+
+    """priceRange	Text 	The price range of the business, for example $$$."""
+    priceRange: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+
+"""A connection to a list of items."""
+type StoresConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [StoresEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  films: [Store]
+}
+
+"""An edge in a connection."""
+type StoresEdge {
+  """The item at the end of the edge"""
+  node: Store
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""A connection to a list of items."""
+type LocalBusinessConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [LocalBusiness]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  localBusiness: [LocalBusiness]
+}
+
+"""An edge in a connection."""
+type LocalBusinessEdge {
+  """The item at the end of the edge"""
+  node: LocalBusiness
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+
+"""https://schema.org/ChildCare A Childcare center.托儿所"""
+type Childcare implements LocalBusiness & Node{
+    """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
+    openingHours: String
+
+    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    paymentAccepted: String
+
+    """priceRange	Text 	The price range of the business, for example $$$."""
+    priceRange: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""https://schema.org/ChildCare A Childcare center.托老所"""
+type Eldercare implements LocalBusiness & Node{
+    """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
+    openingHours: String
+
+    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    paymentAccepted: String
+
+    """priceRange	Text 	The price range of the business, for example $$$."""
+    priceRange: String
+
+    """The id of the object."""
+    id: ID!
+}
+
