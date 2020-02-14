@@ -3,8 +3,8 @@ package io.github.conanchen.shopping.graphql.model;
 import java.util.Collection;
 import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
-import io.github.conanchen.message.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
 public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{

@@ -43,6 +43,19 @@ interface Thing{
   
 }
 
+"""【地方】广泛意义上的一个地方 Entities that have a somewhat fixed, physical extension."""
+interface Place {
+    """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
+    【地址】 该项的物理地址。 Physical address of the item."""
+    address: String
+    """【包含在】 地点的包含关系 The basic containment relation between a place and one that contains it."""
+    containedInPlace: Place
+    """【包含】 地点的包含关系 The basic containment relation between a place and another that it contains."""
+    containsPlaces:	[Place]	
+    """【经纬度】 地理位置的坐标。 The geo coordinates of the place."""
+    geo: GeoCoordinates
+}
+
 """https://schema.org/LocalBusiness"""
 interface LocalBusiness{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """

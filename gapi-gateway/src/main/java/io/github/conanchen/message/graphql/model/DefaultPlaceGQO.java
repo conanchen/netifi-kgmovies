@@ -1,10 +1,10 @@
 package io.github.conanchen.message.graphql.model;
 
 import java.util.Collection;
-
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.PlaceGQO;
 
-public class PlaceGQO implements NodeGQO{
+public class DefaultPlaceGQO implements PlaceGQO, NodeGQO{
 
     private String address;
     private PlaceGQO containedInPlace;
@@ -13,10 +13,10 @@ public class PlaceGQO implements NodeGQO{
     @javax.validation.constraints.NotNull
     private String id;
 
-    public PlaceGQO() {
+    public DefaultPlaceGQO() {
     }
 
-    public PlaceGQO(String address, PlaceGQO containedInPlace, Collection<PlaceGQO> containsPlaces, GeoCoordinatesGQO geo, String id) {
+    public DefaultPlaceGQO(String address, PlaceGQO containedInPlace, Collection<PlaceGQO> containsPlaces, GeoCoordinatesGQO geo, String id) {
         this.address = address;
         this.containedInPlace = containedInPlace;
         this.containsPlaces = containsPlaces;

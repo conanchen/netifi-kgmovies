@@ -3,6 +3,8 @@ extend type Query {
     createAction(id: ID, createActionID: ID): CreateAction
     updateAction(id: ID, updateActionID: ID): UpdateAction
     allConversations(after: String, first: Int, before: String, last: Int): ConversationsConnection
+
+    defaultPlace(id: ID, defID: ID): DefaultPlace
 }
 
 """Party 代表有行动能力的人或组织"""
@@ -339,7 +341,7 @@ type UpdateAction implements Action & Node{
 
 
 """【地方】广泛意义上的一个地方 Entities that have a somewhat fixed, physical extension."""
-type Place implements Node{
+type DefaultPlace implements Place & Node{
     """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
     【地址】 该项的物理地址。 Physical address of the item."""
     address: String

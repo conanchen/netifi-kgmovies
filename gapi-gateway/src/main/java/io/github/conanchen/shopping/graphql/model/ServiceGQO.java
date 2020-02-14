@@ -2,7 +2,7 @@ package io.github.conanchen.shopping.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.message.graphql.model.ActionGQO;
-import io.github.conanchen.message.graphql.model.PlaceGQO;
+import io.github.conanchen.zommon.graphql.model.PlaceGQO;
 
 public interface ServiceGQO {
 

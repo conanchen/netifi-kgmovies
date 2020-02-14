@@ -1,6 +1,7 @@
 package io.github.conanchen.message.graphql.model;
 
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.PlaceGQO;
 
 public class UpdateActionGQO implements   ActionGQO, NodeGQO{
 

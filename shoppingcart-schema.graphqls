@@ -1,0 +1,457 @@
+
+extend type Query {
+    """https://api.cartql.com/ Use this to get a cart by a custom ID. If a cart doesn't exist with this ID, it will be created for you."""
+    cart(id: ID! currency: CurrencyInput): Cart
+}
+
+extend type Mutation {
+
+    """购物车添加条目或条目存在则增加数量Use this to add items to the cart. If the item already exists, the provided input will be merged and quantity will be increased."""
+    cartAddItem(input: AddToCartInput!): CartPayload!
+
+    """购物车设置条目Use this to set all the items at once in the cart. This will override any existing items."""
+    cartSetItems(input: SetCartItemsInput!): CartPayload!
+  
+    """购物车修改条目Use this to update any existing items in the cart. If the item doesn't exist, it'll return an error."""
+    cartUpdateItem(input: UpdateCartItemInput!): CartPayload!
+
+    """购物车增加数量Use this to increase the item quantity of the provided item ID. If the item doesn't exist, it'll throw an error."""
+    cartIncrementItemQuantity(input: UpdateItemQuantityInput!): CartPayload!
+
+    """购物车减少数量Use this to decrease the item quantity of the provided item ID. If the item doesn't exist, it'll throw an error."""
+    cartDecrementItemQuantity(input: UpdateItemQuantityInput!): CartPayload!
+
+    """购物车移除条目Use this to remove any items from the cart. If it doesn't exist, it'll throw an error."""
+    cartRemoveItem(input: RemoveCartItemInput!): CartPayload!
+
+    """购物车清空Use this to empty the cart. If the cart doesn't exist, it'll throw an error."""
+    cartEmpty(input: EmptyCartInput!): CartPayload!
+
+    """结算单创建https://shopify.dev/graphiql/storefront-graphiql Creates a new checkout."""
+    checkoutCreate(input: CheckoutCreateInput!): CheckoutPayload
+
+    """结算单折扣券加入Applies a discount to an existing checkout using a discount code."""
+    checkoutDiscountCodeApply(discountCode: String!checkoutId: ID!): CheckoutPayload
+
+    """结算单折扣券移除Removes the applied discount from an existing checkout."""
+    checkoutDiscountCodeRemove(checkoutId: ID!): CheckoutPayload
+
+    """结算单送货地址Updates the shipping address of an existing checkout."""
+    checkoutShippingAddressUpdate(shippingAddress: MailingAddressInput!checkoutId: ID!): CheckoutPayload
+
+    """结算单电子邮件Updates the email on an existing checkout."""
+    checkoutEmailUpdate(checkoutId: ID!email: String!): CheckoutPayload
+
+    """结算单手机号Updates the mobile phone on an existing checkout."""
+    checkoutPhoneUpdate(checkoutId: ID!email: String!): CheckoutPayload
+
+    """结算单其他属性Updates the attributes of a checkout."""
+    checkoutAttributesUpdate(checkoutId: ID!input: CheckoutAttributesUpdateInput!): CheckoutPayload
+
+    """结算单顾客关联Associates a customer to the checkout.如当服务员替顾客下单时设置结算单的顾客,默认顾客是自己"""
+    checkoutCustomerAssociate(checkoutId: ID!customerAccessToken: String!): CheckoutPayload
+
+    """结算单顾客取消Disassociates the current checkout customer from the checkout.如当服务员替顾客下单时设置结算单的顾客,默认顾客是自己"""
+    checkoutCustomerDisassociate(checkoutId: ID!): CheckoutPayload
+
+    """结算单结束，请求顾客（或自己）审批确认，例如服务员在自己手机填写完结算单请求老人顾客审批确认，结算单将发送到老人顾客手机app上或者验证码发送到手机上"""
+    checkoutCompleteRequest(checkoutId: ID!): CheckoutPayload
+
+    """结算单结束，顾客（或自己）审批确认或者服务员输入顾客验证码确认"""
+    checkoutCompleteApprove(checkoutId: ID!): CheckoutPayload
+
+}
+
+
+type Address {
+  company: String
+  name: String!
+  line1: String!
+  line2: String
+  city: String!
+  state: String
+  postalCode: String!
+  country: String!
+}
+
+input AddressInput {
+  company: String
+  name: String!
+  line1: String!
+  line2: String
+  city: String!
+  state: String
+  postalCode: String!
+  country: String!
+}
+
+input AddToCartInput {
+  cartId: ID!
+  id: ID!
+  name: String
+  description: String
+  type: CartItemType = SKU
+  images: [String]
+  price: Int!
+  currency: CurrencyInput
+  quantity: Int = 1
+  attributes: [CustomAttributeInput]
+}
+
+type Cart {
+  id: ID!
+  currency: Currency!
+  email: String
+  totalItems: Int
+  totalUniqueItems: Int
+  items: [CartItem!]!
+  subTotal: Money!
+  shippingTotal: Money!
+  taxTotal: Money!
+  grandTotal: Money!
+  isEmpty: Boolean
+  abandoned: Boolean
+  attributes: [CustomCartAttribute!]!
+  notes: String
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type CartItem {
+  id: ID!
+  name: String
+  description: String
+  type: CartItemType!
+  images: [String]
+  unitTotal: Money!
+  lineTotal: Money!
+  quantity: Int!
+  attributes: [CustomCartAttribute!]!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+enum CartItemType {
+  SKU
+  TAX
+  SHIPPING
+}
+
+input CheckoutInput {
+  cartId: ID!
+  email: String
+  shipping: AddressInput!
+  billing: AddressInput
+}
+
+type Currency {
+  code: CurrencyCode
+  symbol: String
+  thousandsSeparator: String
+  decimalSeparator: String
+  decimalDigits: Int
+}
+
+enum CurrencyCode {
+  AED
+  AFN
+  ALL
+  AMD
+  ANG
+  AOA
+  ARS
+  AUD
+  AWG
+  AZN
+  BAM
+  BBD
+  BDT
+  BGN
+  BHD
+  BIF
+  BMD
+  BND
+  BOB
+  BRL
+  BSD
+  BTC
+  BTN
+  BWP
+  BYR
+  BZD
+  CAD
+  CDF
+  CHF
+  CLP
+  CNY
+  COP
+  CRC
+  CUC
+  CUP
+  CVE
+  CZK
+  DJF
+  DKK
+  DOP
+  DZD
+  EGP
+  ERN
+  ETB
+  EUR
+  FJD
+  FKP
+  GBP
+  GEL
+  GHS
+  GIP
+  GMD
+  GNF
+  GTQ
+  GYD
+  HKD
+  HNL
+  HRK
+  HTG
+  HUF
+  IDR
+  ILS
+  INR
+  IQD
+  IRR
+  ISK
+  JMD
+  JOD
+  JPY
+  KES
+  KGS
+  KHR
+  KMF
+  KPW
+  KRW
+  KWD
+  KYD
+  KZT
+  LAK
+  LBP
+  LKR
+  LRD
+  LSL
+  LYD
+  MAD
+  MDL
+  MGA
+  MKD
+  MMK
+  MNT
+  MOP
+  MRO
+  MTL
+  MUR
+  MVR
+  MWK
+  MXN
+  MYR
+  MZN
+  NAD
+  NGN
+  NIO
+  NOK
+  NPR
+  NZD
+  OMR
+  PAB
+  PEN
+  PGK
+  PHP
+  PKR
+  PLN
+  PYG
+  QAR
+  RON
+  RSD
+  RUB
+  RWF
+  SAR
+  SBD
+  SCR
+  SDD
+  SDG
+  SEK
+  SGD
+  SHP
+  SLL
+  SOS
+  SRD
+  STD
+  SVC
+  SYP
+  SZL
+  THB
+  TJS
+  TMT
+  TND
+  TOP
+  TRY
+  TTD
+  TVD
+  TWD
+  TZS
+  UAH
+  UGX
+  USD
+  UYU
+  UZS
+  VEB
+  VEF
+  VND
+  VUV
+  WST
+  XAF
+  XCD
+  XBT
+  XOF
+  XPF
+  YER
+  ZAR
+  ZMW
+  WON
+}
+
+input CurrencyInput {
+  code: CurrencyCode
+  symbol: String
+  thousandsSeparator: String
+  decimalSeparator: String
+  decimalDigits: Int
+}
+
+input CustomAttributeInput {
+  key: String!
+  value: String
+}
+
+type CustomCartAttribute {
+  key: String!
+  value: String
+}
+
+type CustomOrderAttribute {
+  key: String!
+  value: String
+}
+
+input CustomOrderAttributeInput {
+  key: String!
+  value: String
+}
+
+scalar Date
+
+
+input EmptyCartInput {
+  id: ID!
+}
+
+type Money {
+  amount: Int
+  currency: Currency!
+  formatted: String!
+}
+
+
+type Order {
+  id: ID!
+  cartId: ID!
+  email: String!
+  shipping: Address!
+  billing: Address!
+  items: [OrderItem!]!
+  subTotal: Money!
+  shippingTotal: Money!
+  taxTotal: Money!
+  grandTotal: Money!
+  totalItems: Int!
+  totalUniqueItems: Int!
+  notes: String
+  attributes: [CustomOrderAttribute!]!
+  status: OrderStatus!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type OrderItem {
+  id: ID!
+  name: String
+  description: String
+  type: CartItemType!
+  images: [String]
+  unitTotal: Money!
+  lineTotal: Money!
+  quantity: Int!
+  createdAt: Date!
+  updatedAt: Date!
+  attributes: [CustomCartAttribute!]!
+}
+
+enum OrderStatus {
+  UNPAID
+  PAID
+}
+
+input RemoveCartItemInput {
+  cartId: ID!
+  id: ID!
+}
+
+input SetCartItemInput {
+  id: ID!
+  name: String
+  description: String
+  type: CartItemType = SKU
+  images: [String]
+  price: Int!
+  currency: CurrencyInput
+  quantity: Int = 1
+  attributes: [CustomAttributeInput]
+}
+
+input SetCartItemsInput {
+  cartId: ID!
+  items: [SetCartItemInput!]!
+}
+
+input UpdateCartItemInput {
+  cartId: ID!
+  id: ID!
+  name: String
+  description: String
+  type: CartItemType
+  images: [String]
+  price: Int
+  quantity: Int
+}
+
+input UpdateItemQuantityInput {
+  cartId: ID!
+  id: ID!
+  by: Int!
+}
+
+
+"""Cart mutation api response payload"""
+type CartPayload{
+    """The cart object ."""
+    cart: Cart
+
+    """List of errors that occurred executing the mutation."""
+    cartUserErrors: [CartUserError!]!
+}
+
+"""Checkout mutation api response payload"""
+type CheckoutPayload{
+    """The checkout object ."""
+    checkout: Checkout
+
+    """List of errors that occurred executing the mutation."""
+    checkoutUserErrors: [CheckoutUserError!]!
+}
