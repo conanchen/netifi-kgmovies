@@ -11,6 +11,10 @@ extend type Query {
   housekeepingService(id: ID, serviceID: ID): HousekeepingService  
   order(id: ID, orderID: ID): Order
   itemCategory(id: ID, itcgID: ID): ItemCategory
+
+  offer(id: ID, offerID: ID): Offer
+  demand(id: ID, demandID: ID): Demand
+
 }
 
 extend type Mutation {

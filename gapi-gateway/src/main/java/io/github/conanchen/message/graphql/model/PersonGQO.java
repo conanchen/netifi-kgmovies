@@ -5,8 +5,12 @@ import java.util.Collection;
 import io.github.conanchen.movies.graphql.model.MovieGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class PersonGQO implements NodeGQO{
+public class PersonGQO implements PartyGQO, NodeGQO{
 
+    @javax.validation.constraints.NotNull
+    private String name;
+    private String alternateName;
+    private String description;
     private String familyName;
     private String givenName;
     private java.util.Date birthDate;
@@ -16,14 +20,16 @@ public class PersonGQO implements NodeGQO{
     private Collection<PersonGQO> follows;
     private Collection<PersonGQO> followees;
     private Collection<MovieGQO> directoredFilms;
-
     @javax.validation.constraints.NotNull
     private String id;
 
     public PersonGQO() {
     }
 
-    public PersonGQO(String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, String id) {
+    public PersonGQO(String name, String alternateName, String description, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, String id) {
+        this.name = name;
+        this.alternateName = alternateName;
+        this.description = description;
         this.familyName = familyName;
         this.givenName = givenName;
         this.birthDate = birthDate;
@@ -34,6 +40,27 @@ public class PersonGQO implements NodeGQO{
         this.followees = followees;
         this.directoredFilms = directoredFilms;
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAlternateName() {
+        return alternateName;
+    }
+    public void setAlternateName(String alternateName) {
+        this.alternateName = alternateName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getFamilyName() {
@@ -105,4 +132,5 @@ public class PersonGQO implements NodeGQO{
     public void setId(String id) {
         this.id = id;
     }
+
 }

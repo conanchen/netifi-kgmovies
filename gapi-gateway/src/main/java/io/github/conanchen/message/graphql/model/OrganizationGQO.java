@@ -4,7 +4,7 @@ import java.util.Collection;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class OrganizationGQO implements ThingGQO, NodeGQO{
+public class OrganizationGQO implements ThingGQO, PartyGQO, NodeGQO{
 
     @javax.validation.constraints.NotNull
     private String name;

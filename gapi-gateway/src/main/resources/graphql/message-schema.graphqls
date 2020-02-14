@@ -7,10 +7,27 @@ extend type Query {
 
 """Party 代表有行动能力的人或组织"""
 interface Party{
+    """【名称】 条目的名称 The name of the item."""
+    name: String!
 
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
 }
+
 """【人】单独的人类个体（可以是现实中的或者虚构的） A person (alive, dead, undead, or fictional)."""
 type Person implements Party & Node{
+
+    """【名称】 条目的名称 The name of the item."""
+    name: String!
+
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
 
     """familyName	Text or Person	
     【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
@@ -55,7 +72,7 @@ type Person implements Party & Node{
 也用于临时几个人组成的聊天小组，房间
 http://cnschema.org/Organization
 """
-type Organization  implements Thing & Paty & Node{
+type Organization  implements Thing & Party & Node{
 
     """【名称】 条目的名称 The name of the item."""
     name: String!

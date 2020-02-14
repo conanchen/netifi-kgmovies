@@ -27,4 +27,8 @@ public interface Query {
 
     ItemCategoryGQO itemCategory(String id, String itcgID) throws Exception;
 
+    OfferGQO offer(String id, String offerID) throws Exception;
+
+    DemandGQO demand(String id, String demandID) throws Exception;
+
 }
