@@ -117,6 +117,18 @@ task graphqlCodegenEvent(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     generateApis = true
 }
 
+task graphqlCodegenIntangible(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/intangible-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/intangible")
+    apiPackageName = "io.github.conanchen.intangible.graphql.api"
+    modelPackageName = "io.github.conanchen.intangible.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/message-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/message")

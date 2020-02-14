@@ -1,0 +1,126 @@
+extend type Query {
+  allBrands(after: String, first: Int, before: String, last: Int): BrandsConnection
+  brand(id: ID, brandID: ID): Brand
+}
+
+
+"""https://schema.org/Brand A brand is a name used by an organization or business person for labeling a product, product group, or similar."""
+type Brand implements Thing & Node{
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating: AggregateRating
+
+    """logo	ImageObject  or URL 	An associated logo."""
+    logo: String
+
+    """review	Review 	A review of the item. Supersedes reviews."""
+    review: Review
+    
+    """slogan	Text 	A slogan or motto associated with the item."""
+    slogan: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""A connection to a list of items."""
+type BrandsConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [BrandsEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  films: [Brand]
+}
+
+"""An edge in a connection."""
+type BrandsEdge {
+  """The item at the end of the edge"""
+  node: Brand
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""Review A review of an item - for example, of a restaurant, movie, or store."""
+type Review implements Node{
+    """itemReviewed	Thing 	The item that is being reviewed/rated."""
+    itemReviewed:	Thing
+
+    """reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed."""
+    reviewAspect: String
+
+    """reviewBody	Text 	The actual body of the review."""
+    reviewBody: String
+
+    """reviewRating	Rating 	The rating given in this review. Note that reviews can themselves be rated. The reviewRating applies to rating given by the review. The aggregateRating property applies to the review itself, as a creative work."""
+    reviewRating: Rating
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""Rating A rating is an evaluation on a numeric scale, such as 1 to 5 stars."""
+type Rating implements Node{
+    """author	Organization  or Person 	The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably."""
+    author: Party    
+
+    """bestRating	Number  or Text 	The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed."""
+    bestRating: Int
+
+    """ratingExplanation	Text 	A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using ClaimReview."""
+    ratingExplanation: String
+
+    """ratingValue	Number  or Text 	The rating for the content."""
+    ratingValue: Int
+
+    """reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed."""
+    reviewAspect: String
+
+    """worstRating	Number  or Text 	The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed."""
+    worstRating: Int
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""AggregateRating The average rating based on multiple ratings or reviews."""
+type AggregateRating implements Node{
+
+    """itemReviewed	Thing 	The item that is being reviewed/rated."""
+    itemReviewed:	Thing
+
+    """ratingCount	Integer 	The count of total number of ratings."""
+    ratingCount:	Int
+
+    """reviewCount	Integer 	The count of total number of reviews."""
+    reviewCount:	Int
+
+    """The id of the object."""
+    id: ID!
+}
