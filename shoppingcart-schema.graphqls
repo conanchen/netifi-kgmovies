@@ -1,64 +1,84 @@
 
 extend type Query {
-    """https://api.cartql.com/ Use this to get a cart by a custom ID. If a cart doesn't exist with this ID, it will be created for you."""
-    cart(id: ID! currency: CurrencyInput): Cart
+  """https://api.cartql.com/ Use this to get a cart by a custom ID. If a cart doesn't exist with this ID, it will be created for you."""
+  cart(id: ID! currency: CurrencyInput): Cart
+  order(id: ID, orderID: ID): Order
 }
 
 extend type Mutation {
 
-    """购物车添加条目或条目存在则增加数量Use this to add items to the cart. If the item already exists, the provided input will be merged and quantity will be increased."""
-    cartAddItem(input: AddToCartInput!): CartPayload!
+  """购物车添加条目或条目存在则增加数量Use this to add items to the cart. If the item already exists, the provided input will be merged and quantity will be increased."""
+  cartAddItem(input: AddToCartInput!): CartPayload!
 
-    """购物车设置条目Use this to set all the items at once in the cart. This will override any existing items."""
-    cartSetItems(input: SetCartItemsInput!): CartPayload!
-  
-    """购物车修改条目Use this to update any existing items in the cart. If the item doesn't exist, it'll return an error."""
-    cartUpdateItem(input: UpdateCartItemInput!): CartPayload!
+  """购物车设置条目Use this to set all the items at once in the cart. This will override any existing items."""
+  cartSetItems(input: SetCartItemsInput!): CartPayload!
 
-    """购物车增加数量Use this to increase the item quantity of the provided item ID. If the item doesn't exist, it'll throw an error."""
-    cartIncrementItemQuantity(input: UpdateItemQuantityInput!): CartPayload!
+  """购物车修改条目Use this to update any existing items in the cart. If the item doesn't exist, it'll return an error."""
+  cartUpdateItem(input: UpdateCartItemInput!): CartPayload!
 
-    """购物车减少数量Use this to decrease the item quantity of the provided item ID. If the item doesn't exist, it'll throw an error."""
-    cartDecrementItemQuantity(input: UpdateItemQuantityInput!): CartPayload!
+  """购物车增加数量Use this to increase the item quantity of the provided item ID. If the item doesn't exist, it'll throw an error."""
+  cartIncrementItemQuantity(input: UpdateItemQuantityInput!): CartPayload!
 
-    """购物车移除条目Use this to remove any items from the cart. If it doesn't exist, it'll throw an error."""
-    cartRemoveItem(input: RemoveCartItemInput!): CartPayload!
+  """购物车减少数量Use this to decrease the item quantity of the provided item ID. If the item doesn't exist, it'll throw an error."""
+  cartDecrementItemQuantity(input: UpdateItemQuantityInput!): CartPayload!
 
-    """购物车清空Use this to empty the cart. If the cart doesn't exist, it'll throw an error."""
-    cartEmpty(input: EmptyCartInput!): CartPayload!
+  """购物车移除条目Use this to remove any items from the cart. If it doesn't exist, it'll throw an error."""
+  cartRemoveItem(input: RemoveCartItemInput!): CartPayload!
 
-    """结算单创建https://shopify.dev/graphiql/storefront-graphiql Creates a new checkout."""
-    checkoutCreate(input: CheckoutCreateInput!): CheckoutPayload
+  """购物车清空Use this to empty the cart. If the cart doesn't exist, it'll throw an error."""
+  cartEmpty(input: EmptyCartInput!): CartPayload!
 
-    """结算单折扣券加入Applies a discount to an existing checkout using a discount code."""
-    checkoutDiscountCodeApply(discountCode: String!checkoutId: ID!): CheckoutPayload
+  """结算单创建https://shopify.dev/graphiql/storefront-graphiql Creates a new checkout."""
+  checkoutCreate(input: CheckoutCreateInput!): CheckoutPayload
 
-    """结算单折扣券移除Removes the applied discount from an existing checkout."""
-    checkoutDiscountCodeRemove(checkoutId: ID!): CheckoutPayload
+  """结算单拼单创建https://shopify.dev/graphiql/storefront-graphiql Creates a new checkout with other customer's order."""
+  checkoutCreatePlusOrder(input: CheckoutCreatePlusOrderInput!): CheckoutPayload
 
-    """结算单送货地址Updates the shipping address of an existing checkout."""
-    checkoutShippingAddressUpdate(shippingAddress: MailingAddressInput!checkoutId: ID!): CheckoutPayload
+  """结算单折扣券加入Applies a discount to an existing checkout using a discount code."""
+  checkoutDiscountCodeApply(discountCode: String!checkoutId: ID!): CheckoutPayload
 
-    """结算单电子邮件Updates the email on an existing checkout."""
-    checkoutEmailUpdate(checkoutId: ID!email: String!): CheckoutPayload
+  """结算单折扣券移除Removes the applied discount from an existing checkout."""
+  checkoutDiscountCodeRemove(checkoutId: ID!): CheckoutPayload
 
-    """结算单手机号Updates the mobile phone on an existing checkout."""
-    checkoutPhoneUpdate(checkoutId: ID!email: String!): CheckoutPayload
+  """结算单送货地址Updates the shipping address of an existing checkout."""
+  checkoutShippingAddressUpdate(shippingAddress: MailingAddressInput!checkoutId: ID!): CheckoutPayload
 
-    """结算单其他属性Updates the attributes of a checkout."""
-    checkoutAttributesUpdate(checkoutId: ID!input: CheckoutAttributesUpdateInput!): CheckoutPayload
+  """结算单电子邮件Updates the email on an existing checkout."""
+  checkoutEmailUpdate(checkoutId: ID!email: String!): CheckoutPayload
 
-    """结算单顾客关联Associates a customer to the checkout.如当服务员替顾客下单时设置结算单的顾客,默认顾客是自己"""
-    checkoutCustomerAssociate(checkoutId: ID!customerAccessToken: String!): CheckoutPayload
+  """结算单手机号Updates the mobile phone on an existing checkout."""
+  checkoutPhoneUpdate(checkoutId: ID!email: String!): CheckoutPayload
 
-    """结算单顾客取消Disassociates the current checkout customer from the checkout.如当服务员替顾客下单时设置结算单的顾客,默认顾客是自己"""
-    checkoutCustomerDisassociate(checkoutId: ID!): CheckoutPayload
+  """结算单其他属性Updates the attributes of a checkout."""
+  checkoutAttributesUpdate(checkoutId: ID!input: CheckoutAttributesUpdateInput!): CheckoutPayload
 
-    """结算单结束，请求顾客（或自己）审批确认，例如服务员在自己手机填写完结算单请求老人顾客审批确认，结算单将发送到老人顾客手机app上或者验证码发送到手机上"""
-    checkoutCompleteRequest(checkoutId: ID!): CheckoutPayload
+  """结算单顾客关联Associates a customer to the checkout.如当服务员替顾客下单时设置结算单的顾客,默认顾客是自己"""
+  checkoutCustomerAssociate(checkoutId: ID!customerAccessToken: String!): CheckoutPayload
 
-    """结算单结束，顾客（或自己）审批确认或者服务员输入顾客验证码确认"""
-    checkoutCompleteApprove(checkoutId: ID!): CheckoutPayload
+  """结算单顾客取消Disassociates the current checkout customer from the checkout.如当服务员替顾客下单时设置结算单的顾客,默认顾客是自己"""
+  checkoutCustomerDisassociate(checkoutId: ID!): CheckoutPayload
+
+  """结算单结束，请求顾客（或自己）审批确认，例如服务员在自己手机填写完结算单请求老人顾客审批确认，结算单将发送到老人顾客手机app上或者验证码发送到手机上"""
+  checkoutCompleteRequest(input: CheckoutCompleteRequestInput!): CheckoutCompletePayload
+
+  """结算单结束，顾客（或自己）审批确认或者服务员输入顾客验证码确认"""
+  checkoutCompleteApprove(input: CheckoutCompleteApproveInput!): CheckoutCompletePayload
+
+  """支付：使用信用卡付款结算单，Before you can complete payment using paymentCompleteCheckoutWithCreditCard, you need to [request payment processing](https://shopify.dev/tutorials/build-a-sales-channel#request-payment-processing)."""
+  paymentCompleteCheckoutWithCreditCard(input: CreditCardPaymentInput!): PaymentCompletePayload
+
+  """支付：使用微信支付 付款结算单，Before you can complete payment using paymentCompleteCheckoutWithWeixinPaymentStep1, you need to [request payment processing](https://shopify.dev/tutorials/build-a-sales-channel#request-payment-processing)."""
+  paymentCompleteCheckoutWithWeixinPaymentStep1(input: WeixinPaymentStep1Input!): PaymentCompletePayload
+  """支付：使用微信支付 付款结算单，Before you can complete payment using paymentCompleteCheckoutWithWeixinPaymentStep2, you need to [request payment processing](https://shopify.dev/tutorials/build-a-sales-channel#request-payment-processing)."""
+  paymentCompleteCheckoutWithWeixinPaymentStep2(input: WeixinPaymentStep2Input!): PaymentCompletePayload
+
+  """支付：使用支付宝支付 付款结算单，Before you can complete payment using paymentCompleteCheckoutWithAlipayPaymentStep1, you need to [request payment processing](https://shopify.dev/tutorials/build-a-sales-channel#request-payment-processing)."""
+  paymentCompleteCheckoutWithAlipayPaymentStep1(input: AlipayPaymentStep1Input!): PaymentCompletePayload
+  """支付：使用支付宝支付 付款结算单，Before you can complete payment using paymentCompleteCheckoutWithAlipayPaymentStep2, you need to [request payment processing](https://shopify.dev/tutorials/build-a-sales-channel#request-payment-processing)."""
+  paymentCompleteCheckoutWithAlipayPaymentStep2(input: AlipayPaymentStep2Input!): PaymentCompletePayload
+
+  """支付：使用代币付款结算单，Before you can complete payment using paymentCompleteCheckoutWithTokenizedPayment, you need to [request payment processing](https://shopify.dev/tutorials/build-a-sales-channel#request-payment-processing)."""
+  paymentCompleteCheckoutWithTokenizedPayment(input: TokenizedPaymentInput!): PaymentCompletePayload
 
 }
 
@@ -111,7 +131,7 @@ type Cart {
   grandTotal: Money!
   isEmpty: Boolean
   abandoned: Boolean
-  attributes: [CustomCartAttribute!]!
+  attributes: [CustomAttribute!]!
   notes: String
   createdAt: Date!
   updatedAt: Date!
@@ -126,7 +146,7 @@ type CartItem {
   unitTotal: Money!
   lineTotal: Money!
   quantity: Int!
-  attributes: [CustomCartAttribute!]!
+  attributes: [CustomAttribute!]!
   createdAt: Date!
   updatedAt: Date!
 }
@@ -152,170 +172,7 @@ type Currency {
   decimalDigits: Int
 }
 
-enum CurrencyCode {
-  AED
-  AFN
-  ALL
-  AMD
-  ANG
-  AOA
-  ARS
-  AUD
-  AWG
-  AZN
-  BAM
-  BBD
-  BDT
-  BGN
-  BHD
-  BIF
-  BMD
-  BND
-  BOB
-  BRL
-  BSD
-  BTC
-  BTN
-  BWP
-  BYR
-  BZD
-  CAD
-  CDF
-  CHF
-  CLP
-  CNY
-  COP
-  CRC
-  CUC
-  CUP
-  CVE
-  CZK
-  DJF
-  DKK
-  DOP
-  DZD
-  EGP
-  ERN
-  ETB
-  EUR
-  FJD
-  FKP
-  GBP
-  GEL
-  GHS
-  GIP
-  GMD
-  GNF
-  GTQ
-  GYD
-  HKD
-  HNL
-  HRK
-  HTG
-  HUF
-  IDR
-  ILS
-  INR
-  IQD
-  IRR
-  ISK
-  JMD
-  JOD
-  JPY
-  KES
-  KGS
-  KHR
-  KMF
-  KPW
-  KRW
-  KWD
-  KYD
-  KZT
-  LAK
-  LBP
-  LKR
-  LRD
-  LSL
-  LYD
-  MAD
-  MDL
-  MGA
-  MKD
-  MMK
-  MNT
-  MOP
-  MRO
-  MTL
-  MUR
-  MVR
-  MWK
-  MXN
-  MYR
-  MZN
-  NAD
-  NGN
-  NIO
-  NOK
-  NPR
-  NZD
-  OMR
-  PAB
-  PEN
-  PGK
-  PHP
-  PKR
-  PLN
-  PYG
-  QAR
-  RON
-  RSD
-  RUB
-  RWF
-  SAR
-  SBD
-  SCR
-  SDD
-  SDG
-  SEK
-  SGD
-  SHP
-  SLL
-  SOS
-  SRD
-  STD
-  SVC
-  SYP
-  SZL
-  THB
-  TJS
-  TMT
-  TND
-  TOP
-  TRY
-  TTD
-  TVD
-  TWD
-  TZS
-  UAH
-  UGX
-  USD
-  UYU
-  UZS
-  VEB
-  VEF
-  VND
-  VUV
-  WST
-  XAF
-  XCD
-  XBT
-  XOF
-  XPF
-  YER
-  ZAR
-  ZMW
-  WON
-}
+
 
 input CurrencyInput {
   code: CurrencyCode
@@ -324,29 +181,6 @@ input CurrencyInput {
   decimalSeparator: String
   decimalDigits: Int
 }
-
-input CustomAttributeInput {
-  key: String!
-  value: String
-}
-
-type CustomCartAttribute {
-  key: String!
-  value: String
-}
-
-type CustomOrderAttribute {
-  key: String!
-  value: String
-}
-
-input CustomOrderAttributeInput {
-  key: String!
-  value: String
-}
-
-scalar Date
-
 
 input EmptyCartInput {
   id: ID!
@@ -373,7 +207,7 @@ type Order {
   totalItems: Int!
   totalUniqueItems: Int!
   notes: String
-  attributes: [CustomOrderAttribute!]!
+  attributes: [CustomAttribute!]!
   status: OrderStatus!
   createdAt: Date!
   updatedAt: Date!
@@ -390,7 +224,7 @@ type OrderItem {
   quantity: Int!
   createdAt: Date!
   updatedAt: Date!
-  attributes: [CustomCartAttribute!]!
+  attributes: [CustomAttribute!]!
 }
 
 enum OrderStatus {
@@ -440,11 +274,122 @@ input UpdateItemQuantityInput {
 
 """Cart mutation api response payload"""
 type CartPayload{
-    """The cart object ."""
-    cart: Cart
+  """The cart object ."""
+  cart: Cart
 
-    """List of errors that occurred executing the mutation."""
-    cartUserErrors: [CartUserError!]!
+  """List of errors that occurred executing the mutation."""
+  cartErrors: [CartError!]!
+}
+
+"""Represents an error that happens during execution of a cart mutation."""
+type  CartError implements DisplayableError{
+
+  """Error code to uniquely identify the error."""
+  code: CartErrorCode
+  
+  """Path to the input field which caused the error."""
+  field: [String!]
+  
+  """The error message."""
+  message: String!
+  
+}
+
+"""Possible error codes that could be returned by a cart mutation."""
+enum CartErrorCode{
+  """Input value is blank."""
+  BLANK
+
+  """Input value is invalid."""
+  INVALID
+
+  """Input value is too long."""
+  TOO_LONG
+}
+
+"""Checkout:A container for all the information required to checkout items and pay."""
+type Checkout implements Node{
+  """The gift cards used on the checkout."""
+  appliedGiftCards: [AppliedGiftCard!]!
+  
+  """The available shipping rates for this Checkout. Should only be used when checkout requiresShipping is true and the shipping address is valid."""
+  availableShippingRates: AvailableShippingRates
+  
+  """The date and time when the checkout was completed."""
+  completedAt: DateTime
+  
+  """The date and time when the checkout was created."""
+  createdAt: DateTime!
+  
+  """The currency code for the Checkout."""
+  currencyCode: CurrencyCode!
+  
+  """A list of extra information that is added to the checkout."""
+  customAttributes: [Attribute!]!
+  
+  """Discounts that have been applied on the checkout."""
+  discountApplications(first: Int after: String last: Int before: String reverse: Boolean = false): DiscountApplicationConnection!
+  
+  """The email attached to this checkout."""
+  email: String
+  
+  """A list of line item objects, each one containing information about an item in the checkout."""
+  lineItems(first: Int after: String last: Int before: String reverse: Boolean = false): CheckoutLineItemConnection!
+  
+  """The sum of all the prices of all the items in the checkout. Taxes, shipping and discounts excluded."""
+  lineItemsSubtotalPrice: Money!
+  
+  """The note associated with the checkout."""
+  note: String
+  
+  """The resulting order from a paid checkout."""
+  order: Order
+  
+  """The Order Status Page for this Checkout, null when checkout is not completed."""
+  orderStatusUrl: URL
+  
+  """The amount left to be paid. This is equal to the cost of the line items, taxes and shipping minus discounts and gift cards."""
+  paymentDueV2: Money!
+  
+  """Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is required until the value is true."""
+  ready: Boolean!
+  
+  """States whether or not the fulfillment requires shipping."""
+  requiresShipping: Boolean!
+  
+  """The shipping address to where the line items will be shipped."""
+  shippingAddress: MailingAddress
+  
+  """The discounts that have been allocated onto the shipping line by discount applications."""
+  shippingDiscountAllocations: [DiscountAllocation!]!
+  
+  """Once a shipping rate is selected by the customer it is transitioned to a shipping_line object."""
+  shippingLine: ShippingRate
+  
+  """Price of the checkout before shipping and taxes."""
+  subtotalPriceV2: Money!
+  
+  """Specifies if the Checkout is tax exempt."""
+  taxExempt: Boolean!
+  
+  """Specifies if taxes are included in the line item and shipping line prices."""
+  taxesIncluded: Boolean!
+  
+  """The sum of all the prices of all the items in the checkout, taxes and discounts included."""
+  totalPriceV2: Money!
+  
+  """The sum of all the taxes applied to the line items and shipping lines in the checkout."""
+  totalTaxV2: Money!
+  
+  """The date and time when the checkout was last updated."""
+  updatedAt: DateTime!
+  
+  """The url pointing to the checkout accessible from the web."""
+  webUrl: URL!
+  
+  """The id of the object. Globally unique identifier."""
+  id: ID!
+
 }
 
 """Checkout mutation api response payload"""
@@ -453,5 +398,340 @@ type CheckoutPayload{
     checkout: Checkout
 
     """List of errors that occurred executing the mutation."""
-    checkoutUserErrors: [CheckoutUserError!]!
+    checkoutErrors: [CheckoutError!]!
+}
+
+"""Checkout complete mutation api response payload"""
+type CheckoutCompletePayload{
+    """The order object ."""
+    order: Order
+
+    """List of errors that occurred executing the mutation."""
+    checkoutErrors: [CheckoutError!]!
+}
+
+"""Payment complete mutation api response payload"""
+type PaymentCompletePayload{
+    """The order object ."""
+    order: Order
+
+    """List of errors that occurred executing the mutation."""
+    paymentErrors: [PaymentError!]!
+}
+
+
+"""Represents an error in the input of a mutation."""
+interface DisplayableError{
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error message."""
+    message: String!
+}
+
+"""Represents an error that happens during execution of a checkout mutation."""
+type  CheckoutError implements DisplayableError{
+
+  """Error code to uniquely identify the error."""
+  code: CheckoutErrorCode
+  
+  """Path to the input field which caused the error."""
+  field: [String!]
+  
+  """The error message."""
+  message: String!
+}
+
+"""Represents an error that happens during execution of a payment mutation."""
+type  PaymentError implements DisplayableError{
+
+  """Error code to uniquely identify the error."""
+  code: PaymentErrorCode
+  
+  """Path to the input field which caused the error."""
+  field: [String!]
+  
+  """The error message."""
+  message: String!
+}
+
+"""Possible error codes that could be returned by a checkout mutation."""
+enum CheckoutErrorCode{
+  """Input value is blank."""
+  BLANK
+
+  """Input value is invalid."""
+  INVALID
+
+  """Input value is too long."""
+  TOO_LONG
+
+  """Input value is not present."""
+  PRESENT
+
+  """Input value should be less than maximum allowed value.""""
+  LESS_THAN
+
+  """Input value should be greater than or equal to minimum allowed value."""
+  GREATER_THAN_OR_EQUAL_TO
+
+  """Input value should be less or equal to maximum allowed value."""
+  LESS_THAN_OR_EQUAL_TO
+
+  """Checkout is already completed."""
+  ALREADY_COMPLETED
+
+  """Checkout is locked."""
+  LOCKED
+
+  """Input value is not supported."""
+  NOT_SUPPORTED
+
+  """Input email contains an invalid domain name."""
+  BAD_DOMAIN
+
+  """Input Zip is invalid for country provided."""
+  INVALID_FOR_COUNTRY
+
+  """Input Zip is invalid for country and province provided."""
+  INVALID_FOR_COUNTRY_AND_PROVINCE
+
+  """Invalid state in country."""
+  INVALID_STATE_IN_COUNTRY
+
+  """Invalid province in country."""
+  INVALID_PROVINCE_IN_COUNTRY
+
+  """Invalid region in country."""
+  INVALID_REGION_IN_COUNTRY
+
+  """Shipping rate expired."""
+  SHIPPING_RATE_EXPIRED
+
+  """Gift card cannot be applied to a checkout that contains a gift card."""
+  GIFT_CARD_UNUSABLE
+
+  """Gift card is disabled."""
+  GIFT_CARD_DISABLED
+
+  """Gift card code is invalid."""
+  GIFT_CARD_CODE_INVALID
+
+  """Gift card has already been applied."""
+  GIFT_CARD_ALREADY_APPLIED
+
+  """Gift card currency does not match checkout currency."""
+  GIFT_CARD_CURRENCY_MISMATCH
+
+  """Gift card is expired."""
+  GIFT_CARD_EXPIRED
+
+  """Gift card has no funds left."""
+  GIFT_CARD_DEPLETED
+
+  """Gift card was not found."""
+  GIFT_CARD_NOT_FOUND
+
+  """Cart does not meet discount requirements notice."""
+  CART_DOES_NOT_MEET_DISCOUNT_REQUIREMENTS_NOTICE
+
+  """Discount expired."""
+  DISCOUNT_EXPIRED
+
+  """Discount disabled."""
+  DISCOUNT_DISABLED
+
+  """Discount limit reached."""
+  DISCOUNT_LIMIT_REACHED
+
+  """Discount not found."""
+  DISCOUNT_NOT_FOUND
+
+  """Customer already used once per customer discount notice."""
+  CUSTOMER_ALREADY_USED_ONCE_PER_CUSTOMER_DISCOUNT_NOTICE
+
+  """Checkout is already completed."""
+  EMPTY
+
+  """Not enough in stock."""
+  NOT_ENOUGH_IN_STOCK
+
+  """Missing payment input."""
+  MISSING_PAYMENT_INPUT
+
+  """The amount of the payment does not match the value to be paid."""
+  TOTAL_PRICE_MISMATCH
+
+  """Line item was not found in checkout."""
+  LINE_ITEM_NOT_FOUND
+
+}
+
+"""Possible error codes that could be returned by a payment mutation."""
+enum PaymentErrorCode{
+  """Input value is blank."""
+  BLANK
+
+  """Input value is invalid."""
+  INVALID
+
+  """Input value is too long."""
+  TOO_LONG
+}
+
+"""A monetary value with currency.
+
+To format currencies, combine this type's amount and currencyCode fields with your client's locale.
+
+For example, in JavaScript you could use Intl.NumberFormat:
+
+new Intl.NumberFormat(locale, {
+  style: 'currency',
+  currency: currencyCode
+}).format(amount);
+Other formatting libraries include:
+
+iOS - NumberFormatter
+Android - NumberFormat
+PHP - NumberFormatter
+For a more general solution, the [Unicode CLDR number formatting database] is available with many implementations (such as TwitterCldr).
+
+"""
+type Money{
+  """Decimal money amount."""
+  amount: Decimal!
+
+  """Currency of the money."""
+  currencyCode: CurrencyCode!
+}
+
+
+
+"""https://schema.org/Order An order is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted by the customer."""
+type Order implements Node{
+    """
+    acceptedOffer	Offer 	The offer(s) -- e.g., product, quantity and price combinations -- included in the order.
+    billingAddress	PostalAddress 	The billing address for the order.
+    broker	Organization  or Person 	An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. Supersedes bookingAgent."""
+    broker:	Organization
+
+    """confirmationNumber	Text 	A number that confirms the given order or payment has been received.
+    customer	Organization  or Person 	Party placing the order or paying the invoice."""
+    customer:	Organization
+
+    """discount	Number  or Text 	Any discount applied (to an Order).
+    discountCode	Text 	Code used to redeem a discount.
+    discountCurrency	Text 	The currency of the discount.
+
+    Use standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g. "BTC"; well known names for Local Exchange Tradings Systems (LETS) and other currency types e.g. "Ithaca HOUR".
+    
+    isGift	Boolean 	Was the offer accepted as a gift for someone other than the buyer."""
+    isGift: Boolean
+
+    """orderDate	Date  or DateTime 	Date order was placed."""
+    orderDate: DateTime
+
+    """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
+    orderDelivery:	ParcelDelivery
+
+    """orderNumber	Text 	The identifier of the transaction."""
+    orderNumber: String
+
+    """orderStatus	OrderStatus 	The current status of the order."""
+    orderStatus:	OrderStatus
+
+    """orderedItem	OrderItem  or Product  or Service 	The item ordered."""
+    orderedItem:	[OrderItem]
+
+    """partOfInvoice	Invoice 	The order is being paid as part of the referenced Invoice.
+    paymentDueDate	Date  or DateTime 	The date that payment is due. Supersedes paymentDue.
+    paymentMethod	PaymentMethod 	The name of the credit card or other method of payment for the order.
+    paymentMethodId	Text 	An identifier for the method of payment used (e.g. the last 4 digits of the credit card).
+    paymentUrl	URL 	The URL for sending a payment.
+    seller	Organization  or Person 	An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
+    """
+    seller:	Organization
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [Action]
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""https://schema.org/OrderItem
+An order item is a line of an order. It includes the quantity and shipping details of a bought offer."""
+type OrderItem implements Node{
+
+    """partOfOrder	Order 	The overall order the items in this delivery were included in."""
+    partOfOrder:	Order
+
+    """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
+    orderDelivery:	ParcelDelivery
+
+    """orderItemNumber	Text 	The identifier of the order item."""
+    orderItemNumber: String
+
+    """orderItemStatus	OrderStatus 	The current status of the order item."""
+    orderItemStatus:	OrderStatus
+
+    """orderQuantity	Number 	The number of the item ordered. If the property is not set, assume the quantity is one."""
+    orderQuantity: Int
+
+    """orderedItem	OrderItem  or Product  or Service"""
+    orderedItem: OrderableThing
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [Action]
+
+    """The id of the object."""
+    id: ID!
+}
+
+enum OrderStatus{
+  OrderCancelled
+  OrderDelivered
+  OrderInTransit
+  OrderPaymentDue
+  OrderPickupAvailable
+  OrderProblem
+  OrderProcessing
+  OrderReturned
+}
+
+
+"""https://schema.org/ParcelDelivery The delivery of a parcel either via the postal service or a commercial service."""
+type ParcelDelivery implements Node{
+
+    """deliveryAddress	PostalAddress 	Destination address."""
+    deliveryAddress:	PostalAddress
+
+    """deliveryStatus	DeliveryEvent 	New entry added as the package passes through each leg of its journey (from shipment to final delivery).
+    expectedArrivalFrom	Date  or DateTime 	The earliest date the package may arrive."""
+    expectedArrivalFrom: DateTime
+
+    """expectedArrivalUntil	Date  or DateTime 	The latest date the package may arrive."""
+    expectedArrivalUntil: DateTime
+
+    """hasDeliveryMethod	DeliveryMethod 	Method used for delivery or shipping.
+    itemShipped	Product 	Item(s) being shipped."""
+    itemShipped:	[Product]
+
+    """originAddress	PostalAddress 	Shipper's address."""
+    originAddress:	PostalAddress
+
+    """partOfOrder	Order 	The overall order the items in this delivery were included in."""
+    partOfOrder:	Order
+
+    """provider	Organization  or Person 	The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. Supersedes carrier."""
+    provider:	Organization
+
+    """trackingNumber	Text 	Shipper tracking number."""
+    trackingNumber: String
+
+    """trackingUrl	URL 	Tracking url for the parcel delivery."""
+    trackingUrl:	String
+
+    """The id of the object."""
+    id: ID!
 }

@@ -14,11 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import io.dgraph.DgraphClient;
 import io.dgraph.DgraphProto.Response;
-import io.github.acmeshoes.store.service.PdpService;
 
 @Service
 public class HelloDgraphQueryResolver implements GraphQLQueryResolver {
-    private static final Logger LOG = LoggerFactory.getLogger(PdpService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HelloDgraphQueryResolver.class);
 
     
     @Autowired
