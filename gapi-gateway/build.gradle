@@ -90,9 +90,7 @@ task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     outputDir = new File("$buildDir/generated/graphql/zommon")
     apiPackageName = "io.github.conanchen.zommon.graphql.api"
     modelPackageName = "io.github.conanchen.zommon.graphql.model"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -170,13 +168,23 @@ task graphqlCodegenMovie(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     generateApis = true
 }
 
+task graphqlCodegenShoppingcart(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingcart-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shoppingcart")
+    apiPackageName = "io.github.conanchen.shoppingcart.graphql.api"
+    modelPackageName = "io.github.conanchen.shoppingcart.graphql.model"
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingdoor-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/shoppingdoor")
     apiPackageName = "io.github.conanchen.shoppingdoor.graphql.api"
     modelPackageName = "io.github.conanchen.shoppingdoor.graphql.model"
     customTypesMapping = [
-            DateTime: "java.util.Date"
+            URL: "java.lang.String"
     ]
     modelNameSuffix = "GQO"
     generateApis = true

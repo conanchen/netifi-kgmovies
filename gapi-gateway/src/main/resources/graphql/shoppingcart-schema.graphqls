@@ -133,8 +133,8 @@ type Cart {
   abandoned: Boolean
   attributes: [CustomAttribute!]!
   notes: String
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type CartItem {
@@ -147,8 +147,8 @@ type CartItem {
   lineTotal: Money!
   quantity: Int!
   attributes: [CustomAttribute!]!
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 enum CartItemType {
@@ -185,52 +185,43 @@ input CurrencyInput {
 input EmptyCartInput {
   id: ID!
 }
-
-type Money {
-  amount: Int
-  currency: Currency!
-  formatted: String!
-}
-
-
-type Order {
+input CheckoutCreateInput {
   id: ID!
-  cartId: ID!
-  email: String!
-  shipping: Address!
-  billing: Address!
-  items: [OrderItem!]!
-  subTotal: Money!
-  shippingTotal: Money!
-  taxTotal: Money!
-  grandTotal: Money!
-  totalItems: Int!
-  totalUniqueItems: Int!
-  notes: String
-  attributes: [CustomAttribute!]!
-  status: OrderStatus!
-  createdAt: Date!
-  updatedAt: Date!
 }
-
-type OrderItem {
+input CheckoutCreatePlusOrderInput {
   id: ID!
-  name: String
-  description: String
-  type: CartItemType!
-  images: [String]
-  unitTotal: Money!
-  lineTotal: Money!
-  quantity: Int!
-  createdAt: Date!
-  updatedAt: Date!
-  attributes: [CustomAttribute!]!
+}
+input MailingAddressInput {
+  id: ID!
+}
+input CheckoutAttributesUpdateInput {
+  id: ID!
+}
+input CheckoutCompleteRequestInput {
+  id: ID!
+}
+input CheckoutCompleteApproveInput {
+  id: ID!
+}
+input CreditCardPaymentInput {
+  id: ID!
+}
+input WeixinPaymentStep1Input {
+  id: ID!
+}
+input WeixinPaymentStep2Input {
+  id: ID!
+}
+input AlipayPaymentStep1Input {
+  id: ID!
+}
+input AlipayPaymentStep2Input {
+  id: ID!
+}
+input TokenizedPaymentInput {
+  id: ID!
 }
 
-enum OrderStatus {
-  UNPAID
-  PAID
-}
 
 input RemoveCartItemInput {
   cartId: ID!
@@ -306,7 +297,12 @@ enum CartErrorCode{
   """Input value is too long."""
   TOO_LONG
 }
-
+type AppliedGiftCard{
+  id: ID
+}
+type AvailableShippingRates{
+  id: ID
+}
 """Checkout:A container for all the information required to checkout items and pay."""
 type Checkout implements Node{
   """The gift cards used on the checkout."""
@@ -325,7 +321,7 @@ type Checkout implements Node{
   currencyCode: CurrencyCode!
   
   """A list of extra information that is added to the checkout."""
-  customAttributes: [Attribute!]!
+  customAttributes: [CustomAttribute!]!
   
   """Discounts that have been applied on the checkout."""
   discountApplications(first: Int after: String last: Int before: String reverse: Boolean = false): DiscountApplicationConnection!
@@ -387,6 +383,121 @@ type Checkout implements Node{
   """The url pointing to the checkout accessible from the web."""
   webUrl: URL!
   
+  """The id of the object. Globally unique identifier."""
+  id: ID!
+
+}
+
+"""A connection to a list of items."""
+type CheckoutLineItemConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CheckoutLineItemEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  films: [CheckoutLineItem]
+}
+
+"""An edge in a connection."""
+type CheckoutLineItemEdge {
+  """The item at the end of the edge"""
+  node: CheckoutLineItem
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+
+"""A single line item in the checkout, grouped by variant and attributes."""
+type CheckoutLineItem implements Node{
+  """Extra information in the form of an array of Key-Value pairs about the line item."""
+  customAttributes: [CustomAttribute!]!
+  
+  """The discounts that have been allocated onto the checkout line item by discount applications."""
+  discountAllocations: [DiscountAllocation!]!
+  
+  """The quantity of the line item."""
+  quantity: Int!
+  
+  """Title of the line item. Defaults to the product's title."""
+  title: String!
+  
+  """Product variant of the line item."""
+  variant: OrderableThing
+
+  """The id of the object. Globally unique identifier."""
+  id: ID!
+
+}
+
+"""An amount discounting the line that has been allocated by a discount."""
+type DiscountAllocation implements Node{
+  """Amount of discount allocated."""
+  allocatedAmount: Money!
+  
+  """The discount this allocated amount originated from."""
+  discountApplication: DiscountApplication!
+
+  """The id of the object. Globally unique identifier."""
+  id: ID!
+
+}
+
+"""A connection to a list of items."""
+type DiscountApplicationConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DiscountApplicationEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  films: [DiscountApplication]
+}
+
+"""An edge in a connection."""
+type DiscountApplicationEdge {
+  """The item at the end of the edge"""
+  node: DiscountApplication
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type DiscountApplication implements Node{
+
   """The id of the object. Globally unique identifier."""
   id: ID!
 
@@ -598,94 +709,118 @@ For a more general solution, the [Unicode CLDR number formatting database] is av
 
 """
 type Money{
-  """Decimal money amount."""
-  amount: Decimal!
+  """BigDecimal money amount."""
+  amount: BigDecimal!
 
   """Currency of the money."""
   currencyCode: CurrencyCode!
+
+  formatted: String!
 }
-
-
 
 """https://schema.org/Order An order is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted by the customer."""
 type Order implements Node{
-    """
-    acceptedOffer	Offer 	The offer(s) -- e.g., product, quantity and price combinations -- included in the order.
-    billingAddress	PostalAddress 	The billing address for the order.
-    broker	Organization  or Person 	An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. Supersedes bookingAgent."""
-    broker:	Organization
+  """
+  acceptedOffer	Offer 	The offer(s) -- e.g., product, quantity and price combinations -- included in the order.
+  billingAddress	PostalAddress 	The billing address for the order.
+  broker	Organization  or Person 	An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. Supersedes bookingAgent."""
+  broker:	Party
 
-    """confirmationNumber	Text 	A number that confirms the given order or payment has been received.
-    customer	Organization  or Person 	Party placing the order or paying the invoice."""
-    customer:	Organization
+  """confirmationNumber	Text 	A number that confirms the given order or payment has been received.
+  customer	Organization  or Person 	Party placing the order or paying the invoice."""
+  customer:	Party
 
-    """discount	Number  or Text 	Any discount applied (to an Order).
-    discountCode	Text 	Code used to redeem a discount.
-    discountCurrency	Text 	The currency of the discount.
+  """discount	Number  or Text 	Any discount applied (to an Order).
+  discountCode	Text 	Code used to redeem a discount.
+  discountCurrency	Text 	The currency of the discount.
 
-    Use standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g. "BTC"; well known names for Local Exchange Tradings Systems (LETS) and other currency types e.g. "Ithaca HOUR".
-    
-    isGift	Boolean 	Was the offer accepted as a gift for someone other than the buyer."""
-    isGift: Boolean
+  Use standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g. "BTC"; well known names for Local Exchange Tradings Systems (LETS) and other currency types e.g. "Ithaca HOUR".
+  
+  isGift	Boolean 	Was the offer accepted as a gift for someone other than the buyer."""
+  isGift: Boolean
 
-    """orderDate	Date  or DateTime 	Date order was placed."""
-    orderDate: DateTime
+  """orderDate	DateTime  or DateTime 	DateTime order was placed."""
+  orderDate: DateTime
 
-    """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
-    orderDelivery:	ParcelDelivery
+  """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
+  orderDelivery:	ParcelDelivery
 
-    """orderNumber	Text 	The identifier of the transaction."""
-    orderNumber: String
+  """orderNumber	Text 	The identifier of the transaction."""
+  orderNumber: String
 
-    """orderStatus	OrderStatus 	The current status of the order."""
-    orderStatus:	OrderStatus
+  """orderStatus	OrderStatus 	The current status of the order."""
+  orderStatus:	OrderStatus
 
-    """orderedItem	OrderItem  or Product  or Service 	The item ordered."""
-    orderedItem:	[OrderItem]
+  """orderedItem	OrderItem  or Product  or Service 	The item ordered."""
+  orderedItem:	[OrderItem]
 
-    """partOfInvoice	Invoice 	The order is being paid as part of the referenced Invoice.
-    paymentDueDate	Date  or DateTime 	The date that payment is due. Supersedes paymentDue.
-    paymentMethod	PaymentMethod 	The name of the credit card or other method of payment for the order.
-    paymentMethodId	Text 	An identifier for the method of payment used (e.g. the last 4 digits of the credit card).
-    paymentUrl	URL 	The URL for sending a payment.
-    seller	Organization  or Person 	An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
-    """
-    seller:	Organization
+  """partOfInvoice	Invoice 	The order is being paid as part of the referenced Invoice.
+  paymentDueDate	DateTime  or DateTime 	The date that payment is due. Supersedes paymentDue.
+  paymentMethod	PaymentMethod 	The name of the credit card or other method of payment for the order.
+  paymentMethodId	Text 	An identifier for the method of payment used (e.g. the last 4 digits of the credit card).
+  paymentUrl	URL 	The URL for sending a payment.
+  seller	Organization  or Person 	An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
+  """
+  seller:	Organization
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [Action]
+  """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+  potentialActions: [Action]
 
-    """The id of the object."""
-    id: ID!
+  cartId: ID!
+  email: String!
+  shipping: Address!
+  billing: Address!
+  subTotal: Money!
+  shippingTotal: Money!
+  taxTotal: Money!
+  grandTotal: Money!
+  totalItems: Int!
+  totalUniqueItems: Int!
+  notes: String
+  attributes: [CustomAttribute!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  """The id of the object."""
+  id: ID!
 }
 
 """https://schema.org/OrderItem
 An order item is a line of an order. It includes the quantity and shipping details of a bought offer."""
 type OrderItem implements Node{
 
-    """partOfOrder	Order 	The overall order the items in this delivery were included in."""
-    partOfOrder:	Order
+  """partOfOrder	Order 	The overall order the items in this delivery were included in."""
+  partOfOrder:	Order
 
-    """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
-    orderDelivery:	ParcelDelivery
+  """orderDelivery	ParcelDelivery 	The delivery of the parcel related to this order or order item."""
+  orderDelivery:	ParcelDelivery
 
-    """orderItemNumber	Text 	The identifier of the order item."""
-    orderItemNumber: String
+  """orderItemNumber	Text 	The identifier of the order item."""
+  orderItemNumber: String
 
-    """orderItemStatus	OrderStatus 	The current status of the order item."""
-    orderItemStatus:	OrderStatus
+  """orderItemStatus	OrderStatus 	The current status of the order item."""
+  orderItemStatus:	OrderStatus
 
-    """orderQuantity	Number 	The number of the item ordered. If the property is not set, assume the quantity is one."""
-    orderQuantity: Int
+  """orderQuantity	Number 	The number of the item ordered. If the property is not set, assume the quantity is one."""
+  orderQuantity: Int
 
-    """orderedItem	OrderItem  or Product  or Service"""
-    orderedItem: OrderableThing
+  """orderedItem	OrderItem  or Product  or Service"""
+  orderedItem: OrderableThing
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [Action]
+  """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+  potentialActions: [Action]
 
-    """The id of the object."""
-    id: ID!
+  type: CartItemType!
+  images: [String]
+  unitTotal: Money!
+  lineTotal: Money!
+  quantity: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  attributes: [CustomAttribute!]!
+
+  """The id of the object."""
+  id: ID!
 }
 
 enum OrderStatus{
@@ -693,45 +828,53 @@ enum OrderStatus{
   OrderDelivered
   OrderInTransit
   OrderPaymentDue
+  OrderUNPAID
+  OrderPAID
   OrderPickupAvailable
   OrderProblem
   OrderProcessing
   OrderReturned
 }
+type MailingAddress{
+  id: ID
+}
 
+type ShippingRate{
+  id: ID
+}
 
 """https://schema.org/ParcelDelivery The delivery of a parcel either via the postal service or a commercial service."""
 type ParcelDelivery implements Node{
 
-    """deliveryAddress	PostalAddress 	Destination address."""
-    deliveryAddress:	PostalAddress
+  """deliveryAddress	PostalAddress 	Destination address."""
+  deliveryAddress:	PostalAddress
 
-    """deliveryStatus	DeliveryEvent 	New entry added as the package passes through each leg of its journey (from shipment to final delivery).
-    expectedArrivalFrom	Date  or DateTime 	The earliest date the package may arrive."""
-    expectedArrivalFrom: DateTime
+  """deliveryStatus	DeliveryEvent 	New entry added as the package passes through each leg of its journey (from shipment to final delivery).
+  expectedArrivalFrom	DateTime  or DateTime 	The earliest date the package may arrive."""
+  expectedArrivalFrom: DateTime
 
-    """expectedArrivalUntil	Date  or DateTime 	The latest date the package may arrive."""
-    expectedArrivalUntil: DateTime
+  """expectedArrivalUntil	DateTime  or DateTime 	The latest date the package may arrive."""
+  expectedArrivalUntil: DateTime
 
-    """hasDeliveryMethod	DeliveryMethod 	Method used for delivery or shipping.
-    itemShipped	Product 	Item(s) being shipped."""
-    itemShipped:	[Product]
+  """hasDeliveryMethod	DeliveryMethod 	Method used for delivery or shipping.
+  itemShipped	Product 	Item(s) being shipped."""
+  itemShipped:	[Product]
 
-    """originAddress	PostalAddress 	Shipper's address."""
-    originAddress:	PostalAddress
+  """originAddress	PostalAddress 	Shipper's address."""
+  originAddress:	PostalAddress
 
-    """partOfOrder	Order 	The overall order the items in this delivery were included in."""
-    partOfOrder:	Order
+  """partOfOrder	Order 	The overall order the items in this delivery were included in."""
+  partOfOrder:	Order
 
-    """provider	Organization  or Person 	The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. Supersedes carrier."""
-    provider:	Organization
+  """provider	Organization  or Person 	The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. Supersedes carrier."""
+  provider:	Organization
 
-    """trackingNumber	Text 	Shipper tracking number."""
-    trackingNumber: String
+  """trackingNumber	Text 	Shipper tracking number."""
+  trackingNumber: String
 
-    """trackingUrl	URL 	Tracking url for the parcel delivery."""
-    trackingUrl:	String
+  """trackingUrl	URL 	Tracking url for the parcel delivery."""
+  trackingUrl:	String
 
-    """The id of the object."""
-    id: ID!
+  """The id of the object."""
+  id: ID!
 }

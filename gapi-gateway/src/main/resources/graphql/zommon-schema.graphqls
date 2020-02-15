@@ -281,3 +281,10 @@ enum CurrencyCode {
   ZMW
   WON
 }
+
+
+# Format: "yyyy-MM-dd HH:mm:ss Z"
+scalar DateTime
+scalar BigDecimal
+scalar URL
+scalar Text

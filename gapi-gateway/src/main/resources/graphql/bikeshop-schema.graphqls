@@ -42,6 +42,3 @@ enum BikeType {
     BMX
 }
 
-# Format: "yyyy-MM-dd HH:mm:ss Z"
-scalar DateTime
-scalar BigDecimal
