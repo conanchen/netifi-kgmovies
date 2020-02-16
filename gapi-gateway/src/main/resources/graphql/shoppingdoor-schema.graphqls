@@ -61,6 +61,18 @@ interface Product {
 
     """successorOf	ProductModel 	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
     successorOf:	Product
+
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: [Offer]
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
+
 }
 
 """https://schema.org/Product
@@ -103,6 +115,18 @@ type GeneralProduct implements Thing & Product & OrderableThing & Node{
 
     """successorOf	ProductModel 	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
     successorOf:	Product
+
+
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: [Offer]
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
 
     """The id of the object."""
     id: ID!
@@ -189,6 +213,16 @@ interface Service {
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: [Offer]
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
 }
 
 type GeneralService implements Thing & OrderableThing & Service & Node{
@@ -235,6 +269,17 @@ type GeneralService implements Thing & OrderableThing & Service & Node{
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
+
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: [Offer]
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
 
     """The id of the object."""
     id: ID!
@@ -286,6 +331,17 @@ type FoodService implements Thing & OrderableThing & Service & Node{
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: [Offer]
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
+
     """The id of the object."""
     id: ID!
 }
@@ -335,6 +391,17 @@ type HousekeepingService implements Thing & OrderableThing & Service & Node{
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
+
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: [Offer]
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
 
     """The id of the object."""
     id: ID!
@@ -386,6 +453,17 @@ type GovernmentService implements Thing & Service & Node{
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
+
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: [Offer]
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
 
     """The id of the object."""
     id: ID!
@@ -563,6 +641,7 @@ type Offer implements Thing & OrderableThing & Node{
 }
 
 """https://schema.org/Demand
+【需求】一个需求实体表示公众，不一定有约束力，不一定唯一，由某一组织或个人宣称，追求某一类型的物品或服务。为了描述使用这种类型的需求，使用与Offer完全一样的属性。
 A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a certain type of goods or services. For describing demand using this type, the very same properties used for Offer apply.
 """
 type Demand implements Thing & OrderableThing & Node{

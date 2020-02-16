@@ -1,6 +1,7 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
 import java.util.Collection;
+import io.github.conanchen.intangible.graphql.model.ReviewGQO;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
@@ -19,13 +20,16 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     private ProductGQO isVariantOf;
     private ProductGQO predecessorOf;
     private ProductGQO successorOf;
+    private Collection<OfferGQO> offers;
+    private Collection<DemandGQO> demands;
+    private Collection<ReviewGQO> review;
     @javax.validation.constraints.NotNull
     private String id;
 
     public GeneralProductGQO() {
     }
 
-    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, ProductGQO isVariantOf, ProductGQO predecessorOf, ProductGQO successorOf, String id) {
+    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, ProductGQO isVariantOf, ProductGQO predecessorOf, ProductGQO successorOf, Collection<OfferGQO> offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;
@@ -38,6 +42,9 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
         this.isVariantOf = isVariantOf;
         this.predecessorOf = predecessorOf;
         this.successorOf = successorOf;
+        this.offers = offers;
+        this.demands = demands;
+        this.review = review;
         this.id = id;
     }
 
@@ -123,6 +130,27 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     }
     public void setSuccessorOf(ProductGQO successorOf) {
         this.successorOf = successorOf;
+    }
+
+    public Collection<OfferGQO> getOffers() {
+        return offers;
+    }
+    public void setOffers(Collection<OfferGQO> offers) {
+        this.offers = offers;
+    }
+
+    public Collection<DemandGQO> getDemands() {
+        return demands;
+    }
+    public void setDemands(Collection<DemandGQO> demands) {
+        this.demands = demands;
+    }
+
+    public Collection<ReviewGQO> getReview() {
+        return review;
+    }
+    public void setReview(Collection<ReviewGQO> review) {
+        this.review = review;
     }
 
     public String getId() {

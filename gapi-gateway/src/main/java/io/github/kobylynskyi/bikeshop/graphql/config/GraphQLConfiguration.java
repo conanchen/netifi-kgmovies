@@ -100,11 +100,37 @@ public class GraphQLConfiguration {
                     }
                 }).build();
     }
-    
+
     @Bean
-    public GraphQLScalarType textGraphQLScalarType() {
+    public GraphQLScalarType mardownGraphQLScalarType() {
         return GraphQLScalarType.newScalar()
-                .name("Text")
+                .name("Markdown")
+                .coercing(new Coercing() {
+                    @Override
+                    public Object serialize(final Object o) throws CoercingSerializeException {
+                        return DATE_FORMAT.format((Date) o);
+                    }
+
+                    @Override
+                    public Object parseValue(final Object o) throws CoercingParseValueException {
+                        return serialize(o);
+                    }
+
+                    @Override
+                    public Object parseLiteral(final Object o) throws CoercingParseLiteralException {
+                        try {
+                            return DATE_FORMAT.parse(((StringValue) o).getValue());
+                        } catch (final ParseException e) {
+                            return null;
+                        }
+                    }
+                }).build();
+    }
+
+    @Bean
+    public GraphQLScalarType bigDecimalGraphQLScalarType() {
+        return GraphQLScalarType.newScalar()
+                .name("BigDecimal")
                 .coercing(new Coercing() {
                     @Override
                     public Object serialize(final Object o) throws CoercingSerializeException {

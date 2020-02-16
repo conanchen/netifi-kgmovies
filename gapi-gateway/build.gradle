@@ -90,7 +90,7 @@ task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     outputDir = new File("$buildDir/generated/graphql/zommon")
     apiPackageName = "io.github.conanchen.zommon.graphql.api"
     modelPackageName = "io.github.conanchen.zommon.graphql.model"
-    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String", BigDecimal: "java.math.BigDecimal" ]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -195,6 +195,18 @@ task graphqlCodegenSoftwareApplication(type: GraphqlCodegenGradleTask,dependsOn:
     outputDir = new File("$buildDir/generated/graphql/softwareapplication")
     apiPackageName = "io.github.conanchen.softwareapplication.graphql.api"
     modelPackageName = "io.github.conanchen.softwareapplication.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
+task graphqlCodegenTaskproject(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/taskproject-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/taskproject")
+    apiPackageName = "io.github.conanchen.taskproject.graphql.api"
+    modelPackageName = "io.github.conanchen.taskproject.graphql.model"
     customTypesMapping = [
             DateTime: "java.util.Date"
     ]

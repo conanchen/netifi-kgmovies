@@ -580,7 +580,7 @@ enum CheckoutErrorCode{
   """Input value is not present."""
   PRESENT
 
-  """Input value should be less than maximum allowed value.""""
+  """Input value should be less than maximum allowed value."""
   LESS_THAN
 
   """Input value should be greater than or equal to minimum allowed value."""

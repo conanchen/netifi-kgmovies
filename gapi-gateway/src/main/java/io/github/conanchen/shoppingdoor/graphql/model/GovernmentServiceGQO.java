@@ -1,6 +1,7 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
 import java.util.Collection;
+import io.github.conanchen.intangible.graphql.model.ReviewGQO;
 import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
@@ -19,13 +20,16 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
     private ServiceGQO isSimilarTo;
     private Collection<ActionGQO> potentialAction;
     private Collection<ItemCategoryGQO> itemCategory;
+    private Collection<OfferGQO> offers;
+    private Collection<DemandGQO> demands;
+    private Collection<ReviewGQO> review;
     @javax.validation.constraints.NotNull
     private String id;
 
     public GovernmentServiceGQO() {
     }
 
-    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, String id) {
+    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, Collection<OfferGQO> offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
         this.serviceOperator = serviceOperator;
         this.name = name;
         this.alternateName = alternateName;
@@ -36,6 +40,9 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
         this.isSimilarTo = isSimilarTo;
         this.potentialAction = potentialAction;
         this.itemCategory = itemCategory;
+        this.offers = offers;
+        this.demands = demands;
+        this.review = review;
         this.id = id;
     }
 
@@ -107,6 +114,27 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
     }
     public void setItemCategory(Collection<ItemCategoryGQO> itemCategory) {
         this.itemCategory = itemCategory;
+    }
+
+    public Collection<OfferGQO> getOffers() {
+        return offers;
+    }
+    public void setOffers(Collection<OfferGQO> offers) {
+        this.offers = offers;
+    }
+
+    public Collection<DemandGQO> getDemands() {
+        return demands;
+    }
+    public void setDemands(Collection<DemandGQO> demands) {
+        this.demands = demands;
+    }
+
+    public Collection<ReviewGQO> getReview() {
+        return review;
+    }
+    public void setReview(Collection<ReviewGQO> review) {
+        this.review = review;
     }
 
     public String getId() {

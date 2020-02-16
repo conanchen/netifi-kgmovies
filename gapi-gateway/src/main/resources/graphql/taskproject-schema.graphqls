@@ -1,0 +1,190 @@
+extend type Query {
+    project(id: ID, projectID: ID): Project
+    task(id: ID, taskID: ID): Task
+    psaTimeline(id: ID, patlID: ID): PersonActivityTimeline
+}
+
+"""an individual or collaborative enterprise that is carefully planned to achieve a particular aim."""
+type Project implements Node{
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """参照(组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。)"""
+    hasPart: [Task]
+
+    """项目业主赞助人"""
+    sponsor: Party
+
+    """项目管理员"""
+    manager: Person
+
+    """项目成员"""
+    members: [Person]
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""任务计划在某段时间内完成"""
+type Task implements Node{
+    
+    """参照(组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。)"""
+    isPartOf: Project
+
+    """任务WBS编号"""
+    wbsNO: String
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+    
+    """任务优先级"""
+    priority: TaskPriority	
+
+    """任务创建人"""
+    creator: Person
+
+    """任务关注人"""
+    watcher: [Person]
+
+    """任务计划开始时间"""
+    planStart: DateTime	
+
+    """任务计划结束时间"""
+    planFinish: DateTime	
+
+    """任务持续时间"""
+    duration: Duration	
+
+    """任务完成百分比"""
+    percentComplete: Int
+
+    """任务创建时间"""
+    createdAt: DateTime!
+
+    """任务修改时间"""
+    updatedAt: DateTime!
+
+    """任务上级"""
+    parentTask: Task
+
+    """任务前一条"""
+    previousTask: Task
+
+    """任务下级"""
+    subTasks: [Task]
+
+    """任务依赖"""
+    dependsOn: [Task]
+
+    """任务分配历史"""
+    assignmentHistory: [TaskAssignment]
+
+    """任务分配最近"""
+    latestAssignment: TaskAssignment
+
+    """任务状态"""
+    status: TaskStatus
+
+    """The id of the object."""
+    id: ID!
+}
+
+enum TaskPriority{
+    HIGHEST
+    HIGH
+    MEDIUM
+    LOW
+    LOWEST
+}
+
+type TaskAssignment implements Node{
+    about: Task
+
+    """任务本次分配说明"""
+    comment: Comment
+
+    """任务执行人"""
+    assignee: Party
+
+    """任务分配人"""
+    assigner: Party
+
+    """任务执行人阅读时间"""
+    readAt: DateTime!
+
+    """任务执行人接收时间"""
+    acceptedAt: DateTime!
+
+    """任务分配时间"""
+    assignedAt: DateTime!
+
+    """The id of the object."""
+    id: ID!
+}
+
+type TaskStatus implements Node{
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""Timeline is a rich task view that takes advantage of Person Activities to show a chronological view of what you’ve been working on. """
+type PersonActivityTimeline implements Node{
+
+    about: Person
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """用户的行为 https://docs.microsoft.com/en-us/windows/uwp/launch-resume/personactivities Think of a PersonActivity as something specific the person was working on within your app. For example, if you are using a RSS reader, a PersonActivity could be the feed that you are reading. If you are playing a game, the PersonActivity could be the level that you are playing. If you are listening to a music app, the PersonActivity could be the playlist that you are listening to. If you are working on a document, the PersonActivity could be where you left off working on it, and so on. In short, a PersonActivity represents a destination within your app so that enables the person to resume what they were doing.
+    Person Activities can also contain content metadata, In the following example, the content metadata JSON, following the standards of Schema.org, represents the scenario: "John played Angry Birds with Steve."
+    // John played angry birds with Steve.
+    {
+        "@context": "http://schema.org",
+        "@type": "PlayAction",
+        "agent": {
+            "@type": "Person",
+            "name": "John"
+        },
+        "object": {
+            "@type": "MobileApplication",
+            "name": "Angry Birds."
+        },
+        "participant": {
+            "@type": "Person",
+            "name": "Steve"
+        }
+    }
+    """
+    personActivities: [Action]
+
+    """The id of the object."""
+    id: ID!
+}
+

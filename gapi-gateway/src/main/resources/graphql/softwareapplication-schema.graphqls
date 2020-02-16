@@ -36,7 +36,7 @@ type SoftwareApplication implements Node {
     operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
     permissions	Text 	Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
     processorRequirements	Text 	Processor architecture required to run the application (e.g. IA64).
-    releaseNotes	Text  or URL 	Description of what changed in this version.""""
+    releaseNotes	Text  or URL 	Description of what changed in this version."""
     releaseNotes: String
 
     """screenshot	ImageObject  or URL 	A link to a screenshot image of the app."""

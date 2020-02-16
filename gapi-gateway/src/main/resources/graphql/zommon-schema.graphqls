@@ -287,4 +287,4 @@ enum CurrencyCode {
 scalar DateTime
 scalar BigDecimal
 scalar URL
-scalar Text
+scalar Markdown

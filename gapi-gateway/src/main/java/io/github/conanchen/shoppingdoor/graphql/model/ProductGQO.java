@@ -1,6 +1,7 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
 import java.util.Collection;
+import io.github.conanchen.intangible.graphql.model.ReviewGQO;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
 
 public interface ProductGQO {
@@ -28,5 +29,11 @@ public interface ProductGQO {
     ProductGQO getPredecessorOf();
 
     ProductGQO getSuccessorOf();
+
+    Collection<OfferGQO> getOffers();
+
+    Collection<DemandGQO> getDemands();
+
+    Collection<ReviewGQO> getReview();
 
 }
