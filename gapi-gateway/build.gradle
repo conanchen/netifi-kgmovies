@@ -95,6 +95,18 @@ task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     generateApis = true
 }
 
+task graphqlCodegenAction(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/action-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/action")
+    apiPackageName = "io.github.conanchen.action.graphql.api"
+    modelPackageName = "io.github.conanchen.action.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/bikeshop-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/bikeshop")

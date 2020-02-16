@@ -1,7 +1,5 @@
 extend type Query {
     organization(id: ID, organizationID: ID): Organization
-    createAction(id: ID, createActionID: ID): CreateAction
-    updateAction(id: ID, updateActionID: ID): UpdateAction
     allConversations(after: String, first: Int, before: String, last: Int): ConversationsConnection
 
     defaultPlace(id: ID, defID: ID): DefaultPlace
@@ -269,73 +267,6 @@ type Comment implements Node{
 
     """【创建日期】 创作出CreativeWork的日期。 """
     dateCreated: DateTime
-
-    """The id of the object."""
-    id: ID!
-}
-
-"""
-Canonical URL: http://cnschema.org/Action
-【动作】由直接代理人和间接参与者在一个直接对象上执行的操作。 有时可以在一个有无生命仪器帮助的地点发生。 该动作的执行可能会产生一个结果。 具体操作子类型文档指定每个参数/角色的准确期望值。 
-[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)
-MoveAction, TransferAction, TradeAction, ControlAction, AchieveAction, OrganizeAction
-AssessAction, InteractAction, ConsumeAction, CreateAction, PlayAction, SearchAction, FindAction, UpdateAction
-"""
-interface Action{
-    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
-    agent: Person
-
-    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
-    startTime: DateTime
-
-    """【结束时刻】 事件的结束时间 The endTime of something. """
-    endTime: DateTime
-
-    """location of action"""
-    location: Place
-
-    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""    
-    object: Message
-    """【描述】 该项的一个简单描述。 A description of the item."""
-    description: String
-}
-
-
-type CreateAction implements Action & Node{
-    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
-    agent: Person
-    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
-    startTime: DateTime
-    """【结束时刻】 事件的结束时间 The endTime of something. """
-    endTime: DateTime
-
-    """location of action"""
-    location: Place
-
-    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""    
-    object: Message
-    """【描述】 该项的一个简单描述。 A description of the item."""
-    description: String
-
-    """The id of the object."""
-    id: ID!
-}
-
-type UpdateAction implements Action & Node{
-    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
-    agent: Person
-    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
-    startTime: DateTime
-    """【结束时刻】 事件的结束时间 The endTime of something. """
-    endTime: DateTime
-
-    """location of action"""
-    location: Place
-
-    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""    
-    object: Message
-    """【描述】 该项的一个简单描述。 A description of the item."""
-    description: String
 
     """The id of the object."""
     id: ID!

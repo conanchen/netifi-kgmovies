@@ -1,7 +1,7 @@
-package io.github.conanchen.message.graphql.api;
+package io.github.conanchen.action.graphql.api;
 
 import java.util.*;
-import io.github.conanchen.message.graphql.model.*;
+import io.github.conanchen.action.graphql.model.*;
 
 public interface UpdateActionQuery {
 
