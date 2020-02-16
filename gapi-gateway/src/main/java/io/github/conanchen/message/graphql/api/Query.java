@@ -15,4 +15,6 @@ public interface Query {
 
     DefaultPlaceGQO defaultPlace(String id, String defID) throws Exception;
 
+    AdministrativeAreaGQO administrativeArea(String id, String defID) throws Exception;
+
 }

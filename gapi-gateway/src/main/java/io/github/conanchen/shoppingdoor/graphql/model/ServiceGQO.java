@@ -1,6 +1,7 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
 import java.util.Collection;
+import io.github.conanchen.intangible.graphql.model.AggregateRatingGQO;
 import io.github.conanchen.intangible.graphql.model.ReviewGQO;
 import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.zommon.graphql.model.PlaceGQO;
@@ -12,6 +13,8 @@ public interface ServiceGQO {
     String getAlternateName();
 
     String getDescription();
+
+    AggregateRatingGQO getAggregateRating();
 
     PlaceGQO getAreaServed();
 

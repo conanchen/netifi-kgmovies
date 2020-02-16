@@ -181,13 +181,10 @@ interface Service {
     """description	Text 	A description of the item."""
     description: String
 
-    """
-    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
-
-    areaServed	AdministrativeArea  or
-    GeoShape  or
-    Place  or
-    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:	AggregateRating
+    
+    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
     """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
@@ -238,13 +235,10 @@ type GeneralService implements Thing & OrderableThing & Service & Node{
     """description	Text 	A description of the item."""
     description: String
 
-    """
-    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
-
-    areaServed	AdministrativeArea  or
-    GeoShape  or
-    Place  or
-    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:	AggregateRating
+    
+    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
     """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
@@ -299,13 +293,10 @@ type FoodService implements Thing & OrderableThing & Service & Node{
     """description	Text 	A description of the item."""
     description: String
 
-    """
-    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
-
-    areaServed	AdministrativeArea  or
-    GeoShape  or
-    Place  or
-    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:	AggregateRating
+    
+    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
     """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
@@ -360,13 +351,10 @@ type HousekeepingService implements Thing & OrderableThing & Service & Node{
     """description	Text 	A description of the item."""
     description: String
 
-    """
-    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
-
-    areaServed	AdministrativeArea  or
-    GeoShape  or
-    Place  or
-    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:	AggregateRating
+    
+    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
     """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
@@ -422,13 +410,10 @@ type GovernmentService implements Thing & Service & Node{
     """description	Text 	A description of the item."""
     description: String
 
-    """
-    aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item.
-
-    areaServed	AdministrativeArea  or
-    GeoShape  or
-    Place  or
-    Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:	AggregateRating
+    
+    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
     """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.

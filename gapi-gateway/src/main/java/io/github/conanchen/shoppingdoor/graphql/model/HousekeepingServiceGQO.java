@@ -1,6 +1,7 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
 import java.util.Collection;
+import io.github.conanchen.intangible.graphql.model.AggregateRatingGQO;
 import io.github.conanchen.intangible.graphql.model.ReviewGQO;
 import io.github.conanchen.message.graphql.model.ActionGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
@@ -13,6 +14,7 @@ public class HousekeepingServiceGQO implements ThingGQO, OrderableThingGQO, Serv
     private String name;
     private String alternateName;
     private String description;
+    private AggregateRatingGQO aggregateRating;
     private PlaceGQO areaServed;
     private OpeningHoursSpecificationGQO hoursAvailable;
     private ProductGQO isRelatedTo;
@@ -28,11 +30,12 @@ public class HousekeepingServiceGQO implements ThingGQO, OrderableThingGQO, Serv
     public HousekeepingServiceGQO() {
     }
 
-    public HousekeepingServiceGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, Collection<OfferGQO> offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public HousekeepingServiceGQO(Boolean isOrderable, String name, String alternateName, String description, AggregateRatingGQO aggregateRating, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, Collection<OfferGQO> offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
+        this.aggregateRating = aggregateRating;
         this.areaServed = areaServed;
         this.hoursAvailable = hoursAvailable;
         this.isRelatedTo = isRelatedTo;
@@ -71,6 +74,13 @@ public class HousekeepingServiceGQO implements ThingGQO, OrderableThingGQO, Serv
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public AggregateRatingGQO getAggregateRating() {
+        return aggregateRating;
+    }
+    public void setAggregateRating(AggregateRatingGQO aggregateRating) {
+        this.aggregateRating = aggregateRating;
     }
 
     public PlaceGQO getAreaServed() {

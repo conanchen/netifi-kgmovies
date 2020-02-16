@@ -5,6 +5,8 @@ extend type Query {
     allConversations(after: String, first: Int, before: String, last: Int): ConversationsConnection
 
     defaultPlace(id: ID, defID: ID): DefaultPlace
+    administrativeArea(id: ID, defID: ID): AdministrativeArea
+    
 }
 
 """Party 代表有行动能力的人或组织"""
@@ -355,6 +357,23 @@ type DefaultPlace implements Place & Node{
     """The id of the object."""
     id: ID!
 }
+
+"""http://cnschema.org/AdministrativeArea【行政区】一个地理区域，一般由特定政府管辖。 A geographical region, typically under the jurisdiction of a particular government."""
+type AdministrativeArea implements Place & Node{
+    """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
+    【地址】 该项的物理地址。 Physical address of the item."""
+    address: String
+    """【包含在】 地点的包含关系 The basic containment relation between a place and one that contains it."""
+    containedInPlace: Place
+    """【包含】 地点的包含关系 The basic containment relation between a place and another that it contains."""
+    containsPlaces:	[Place]	
+    """【经纬度】 地理位置的坐标。 The geo coordinates of the place."""
+    geo: GeoCoordinates
+
+    """The id of the object."""
+    id: ID!
+}
+
 
 """【经纬度】一个地点或事件的经纬坐标 The geographic coordinates of a place or event."""
 type GeoCoordinates implements Node{
