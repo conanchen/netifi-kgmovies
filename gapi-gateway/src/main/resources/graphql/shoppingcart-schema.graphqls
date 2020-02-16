@@ -3,6 +3,8 @@ extend type Query {
   """https://api.cartql.com/ Use this to get a cart by a custom ID. If a cart doesn't exist with this ID, it will be created for you."""
   cart(id: ID! currency: CurrencyInput): Cart
   order(id: ID, orderID: ID): Order
+  checkout(id: ID, checkoutID: ID): Checkout
+  
 }
 
 extend type Mutation {
@@ -83,7 +85,7 @@ extend type Mutation {
 }
 
 
-type Address {
+type MailingAddress {
   company: String
   name: String!
   line1: String!
@@ -94,7 +96,7 @@ type Address {
   country: String!
 }
 
-input AddressInput {
+input MailingAddressInput {
   company: String
   name: String!
   line1: String!
@@ -160,8 +162,8 @@ enum CartItemType {
 input CheckoutInput {
   cartId: ID!
   email: String
-  shipping: AddressInput!
-  billing: AddressInput
+  shipping: MailingAddressInput!
+  billing: MailingAddressInput
 }
 
 type Currency {
@@ -191,9 +193,7 @@ input CheckoutCreateInput {
 input CheckoutCreatePlusOrderInput {
   id: ID!
 }
-input MailingAddressInput {
-  id: ID!
-}
+
 input CheckoutAttributesUpdateInput {
   id: ID!
 }
@@ -768,8 +768,8 @@ type Order implements Node{
 
   cartId: ID!
   email: String!
-  shipping: Address!
-  billing: Address!
+  shipping: MailingAddress!
+  billing: MailingAddress!
   subTotal: Money!
   shippingTotal: Money!
   taxTotal: Money!
@@ -835,9 +835,7 @@ enum OrderStatus{
   OrderProcessing
   OrderReturned
 }
-type MailingAddress{
-  id: ID
-}
+
 
 type ShippingRate{
   id: ID

@@ -24,9 +24,9 @@ public class OrderGQO implements NodeGQO{
     @javax.validation.constraints.NotNull
     private String email;
     @javax.validation.constraints.NotNull
-    private AddressGQO shipping;
+    private MailingAddressGQO shipping;
     @javax.validation.constraints.NotNull
-    private AddressGQO billing;
+    private MailingAddressGQO billing;
     @javax.validation.constraints.NotNull
     private MoneyGQO subTotal;
     @javax.validation.constraints.NotNull
@@ -52,7 +52,7 @@ public class OrderGQO implements NodeGQO{
     public OrderGQO() {
     }
 
-    public OrderGQO(PartyGQO broker, PartyGQO customer, Boolean isGift, java.util.Date orderDate, ParcelDeliveryGQO orderDelivery, String orderNumber, OrderStatusGQO orderStatus, Collection<OrderItemGQO> orderedItem, OrganizationGQO seller, Collection<ActionGQO> potentialActions, String cartId, String email, AddressGQO shipping, AddressGQO billing, MoneyGQO subTotal, MoneyGQO shippingTotal, MoneyGQO taxTotal, MoneyGQO grandTotal, Integer totalItems, Integer totalUniqueItems, String notes, Collection<CustomAttributeGQO> attributes, java.util.Date createdAt, java.util.Date updatedAt, String id) {
+    public OrderGQO(PartyGQO broker, PartyGQO customer, Boolean isGift, java.util.Date orderDate, ParcelDeliveryGQO orderDelivery, String orderNumber, OrderStatusGQO orderStatus, Collection<OrderItemGQO> orderedItem, OrganizationGQO seller, Collection<ActionGQO> potentialActions, String cartId, String email, MailingAddressGQO shipping, MailingAddressGQO billing, MoneyGQO subTotal, MoneyGQO shippingTotal, MoneyGQO taxTotal, MoneyGQO grandTotal, Integer totalItems, Integer totalUniqueItems, String notes, Collection<CustomAttributeGQO> attributes, java.util.Date createdAt, java.util.Date updatedAt, String id) {
         this.broker = broker;
         this.customer = customer;
         this.isGift = isGift;
@@ -164,17 +164,17 @@ public class OrderGQO implements NodeGQO{
         this.email = email;
     }
 
-    public AddressGQO getShipping() {
+    public MailingAddressGQO getShipping() {
         return shipping;
     }
-    public void setShipping(AddressGQO shipping) {
+    public void setShipping(MailingAddressGQO shipping) {
         this.shipping = shipping;
     }
 
-    public AddressGQO getBilling() {
+    public MailingAddressGQO getBilling() {
         return billing;
     }
-    public void setBilling(AddressGQO billing) {
+    public void setBilling(MailingAddressGQO billing) {
         this.billing = billing;
     }
 

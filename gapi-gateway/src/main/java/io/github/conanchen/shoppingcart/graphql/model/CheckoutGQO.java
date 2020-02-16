@@ -276,4 +276,14 @@ public class CheckoutGQO implements NodeGQO{
         this.id = id;
     }
 
+
+    public DiscountApplicationConnectionGQO discountApplications(Integer first, String after, Integer last, String before, Boolean reverse) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+    public CheckoutLineItemConnectionGQO lineItems(Integer first, String after, Integer last, String before, Boolean reverse) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
