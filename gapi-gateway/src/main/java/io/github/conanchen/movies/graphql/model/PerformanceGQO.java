@@ -1,6 +1,6 @@
 package io.github.conanchen.movies.graphql.model;
 
-import io.github.conanchen.message.graphql.model.PersonGQO;
+import io.github.conanchen.personorg.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class PerformanceGQO implements NodeGQO{

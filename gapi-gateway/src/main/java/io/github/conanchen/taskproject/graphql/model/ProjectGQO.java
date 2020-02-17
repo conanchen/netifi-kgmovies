@@ -1,8 +1,8 @@
 package io.github.conanchen.taskproject.graphql.model;
 
 import java.util.Collection;
-import io.github.conanchen.message.graphql.model.PartyGQO;
-import io.github.conanchen.message.graphql.model.PersonGQO;
+import io.github.conanchen.personorg.graphql.model.PartyGQO;
+import io.github.conanchen.personorg.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class ProjectGQO implements NodeGQO{

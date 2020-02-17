@@ -2,6 +2,7 @@ package io.github.conanchen.message.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.action.graphql.model.ActionGQO;
+import io.github.conanchen.personorg.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class MessageGQO implements NodeGQO{

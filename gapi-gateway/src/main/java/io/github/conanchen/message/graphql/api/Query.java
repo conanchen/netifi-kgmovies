@@ -5,10 +5,6 @@ import io.github.conanchen.message.graphql.model.*;
 
 public interface Query {
 
-    OrganizationGQO organization(String id, String organizationID) throws Exception;
-
     ConversationsConnectionGQO allConversations(String after, Integer first, String before, Integer last) throws Exception;
 
-
-    
 }

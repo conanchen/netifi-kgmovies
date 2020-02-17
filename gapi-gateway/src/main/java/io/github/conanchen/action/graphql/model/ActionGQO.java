@@ -1,7 +1,7 @@
 package io.github.conanchen.action.graphql.model;
 
 import io.github.conanchen.message.graphql.model.MessageGQO;
-import io.github.conanchen.message.graphql.model.PersonGQO;
+import io.github.conanchen.personorg.graphql.model.PersonGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 
 public interface ActionGQO {

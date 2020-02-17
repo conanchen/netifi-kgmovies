@@ -1,7 +1,8 @@
-package io.github.conanchen.message.graphql.model;
+package io.github.conanchen.personorg.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.action.graphql.model.ActionGQO;
+import io.github.conanchen.message.graphql.model.ConversationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 

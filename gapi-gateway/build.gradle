@@ -180,6 +180,18 @@ task graphqlCodegenMovie(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     generateApis = true
 }
 
+task graphqlCodegenPersonorg(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/personorg-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/personorg")
+    apiPackageName = "io.github.conanchen.personorg.graphql.api"
+    modelPackageName = "io.github.conanchen.personorg.graphql.model"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenShoppingcart(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingcart-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/shoppingcart")

@@ -1,4 +1,4 @@
-package io.github.conanchen.message.graphql.model;
+package io.github.conanchen.personorg.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.movies.graphql.model.MovieGQO;
