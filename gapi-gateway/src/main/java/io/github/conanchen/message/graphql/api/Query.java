@@ -9,8 +9,6 @@ public interface Query {
 
     ConversationsConnectionGQO allConversations(String after, Integer first, String before, Integer last) throws Exception;
 
-    DefaultPlaceGQO defaultPlace(String id, String defID) throws Exception;
 
-    AdministrativeAreaGQO administrativeArea(String id, String defID) throws Exception;
-
+    
 }

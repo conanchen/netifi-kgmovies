@@ -143,11 +143,11 @@ task graphqlCodegenIntangible(type: GraphqlCodegenGradleTask,dependsOn: graphqlC
     generateApis = true
 }
 
-task graphqlCodegenLocalBusiness(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
-    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/localbusiness-schema.graphqls".toString()]
-    outputDir = new File("$buildDir/generated/graphql/localbusiness")
-    apiPackageName = "io.github.conanchen.localbusiness.graphql.api"
-    modelPackageName = "io.github.conanchen.localbusiness.graphql.model"
+task graphqlCodegenPlace(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/place-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/place")
+    apiPackageName = "io.github.conanchen.place.graphql.api"
+    modelPackageName = "io.github.conanchen.place.graphql.model"
     customTypesMapping = [
             DateTime: "java.util.Date"
     ]

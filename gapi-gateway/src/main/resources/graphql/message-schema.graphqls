@@ -1,9 +1,6 @@
 extend type Query {
     organization(id: ID, organizationID: ID): Organization
     allConversations(after: String, first: Int, before: String, last: Int): ConversationsConnection
-
-    defaultPlace(id: ID, defID: ID): DefaultPlace
-    administrativeArea(id: ID, defID: ID): AdministrativeArea
     
 }
 
@@ -267,63 +264,6 @@ type Comment implements Node{
 
     """【创建日期】 创作出CreativeWork的日期。 """
     dateCreated: DateTime
-
-    """The id of the object."""
-    id: ID!
-}
-
-
-"""【地方】广泛意义上的一个地方 Entities that have a somewhat fixed, physical extension."""
-type DefaultPlace implements Place & Node{
-    """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
-    【地址】 该项的物理地址。 Physical address of the item."""
-    address: String
-    """【包含在】 地点的包含关系 The basic containment relation between a place and one that contains it."""
-    containedInPlace: Place
-    """【包含】 地点的包含关系 The basic containment relation between a place and another that it contains."""
-    containsPlaces:	[Place]	
-    """【经纬度】 地理位置的坐标。 The geo coordinates of the place."""
-    geo: GeoCoordinates
-
-    """The id of the object."""
-    id: ID!
-}
-
-"""http://cnschema.org/AdministrativeArea【行政区】一个地理区域，一般由特定政府管辖。 A geographical region, typically under the jurisdiction of a particular government."""
-type AdministrativeArea implements Place & Node{
-    """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
-    【地址】 该项的物理地址。 Physical address of the item."""
-    address: String
-    """【包含在】 地点的包含关系 The basic containment relation between a place and one that contains it."""
-    containedInPlace: Place
-    """【包含】 地点的包含关系 The basic containment relation between a place and another that it contains."""
-    containsPlaces:	[Place]	
-    """【经纬度】 地理位置的坐标。 The geo coordinates of the place."""
-    geo: GeoCoordinates
-
-    """The id of the object."""
-    id: ID!
-}
-
-
-"""【经纬度】一个地点或事件的经纬坐标 The geographic coordinates of a place or event."""
-type GeoCoordinates implements Node{
-
-    """elevation	Text or Number or GeoCoordinates or GeoShape	
-    【海拔高度】 该地的高程。 The elevation of a location (WGS 84)."""
-    elevation: Int
-
-    """latitude	Text or Number or GeoCoordinates	
-    【纬度】 一个位置的纬度 The latitude of a location. For example 37.42242 (WGS 84)."""
-    latitude: Int
-
-    """longitude	Text or Number or GeoCoordinates	
-    【经度】 位置的经度 The longitude of a location. For example -122.08585 (WGS 84)."""
-    longitude: Int
-
-    """postalCode	Text or GeoShape or PostalAddress or GeoCoordinates	
-    【邮政编码】 邮政编码，例如94043 The postal code. For example, 94043."""
-    postalCode: String
 
     """The id of the object."""
     id: ID!

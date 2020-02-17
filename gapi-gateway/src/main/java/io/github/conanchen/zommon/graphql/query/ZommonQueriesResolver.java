@@ -2,10 +2,6 @@ package io.github.conanchen.zommon.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Service;
-import io.github.conanchen.localbusiness.graphql.model.ChildcareGQO;
-import io.github.conanchen.localbusiness.graphql.model.EldercareGQO;
-import io.github.conanchen.localbusiness.graphql.model.StoreGQO;
-import io.github.conanchen.localbusiness.graphql.model.StoresConnectionGQO;
 import io.github.conanchen.zommon.graphql.api.Query;
 import io.github.conanchen.zommon.graphql.model.LocalBusinessConnectionGQO;
 import io.github.conanchen.zommon.graphql.model.LocalBusinessGQO;
