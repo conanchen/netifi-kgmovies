@@ -10,7 +10,6 @@ extend type Query {
   governmentService(id: ID, serviceID: ID): GovernmentService
   housekeepingService(id: ID, serviceID: ID): HousekeepingService  
   itemCategory(id: ID, itcgID: ID): ItemCategory
-  postalAddress(id: ID, paID: ID): PostalAddress
   
   offer(id: ID, offerID: ID): Offer
   demand(id: ID, demandID: ID): Demand
@@ -528,36 +527,6 @@ type OpeningHoursSpecification implements Node{
 
     """The id of the object."""
     id: ID!
-}
-
-
-
-"""https://schema.org/PostalAddress The mailing address."""
-type PostalAddress implements Node{
-    """addressCountry	Country  or Text 	The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code."""
-    addressCountry: String
-
-    """addressRegion	Text 	The region in which the locality is, and which is in the country. For example, California or another appropriate first-level Administrative division"""
-    addressRegion: String
-
-    """addressLocality	Text 	The locality in which the street address is, and which is in the region. For example, Mountain View."""
-    addressLocality: String
-    
-    """streetAddress line1	Text 	The street address. For example, 1600 Amphitheatre Pkwy."""
-    streetAddress1: String
-    
-    """streetAddress line2	Text 	The street address. For example, 1600 Amphitheatre Pkwy."""
-    streetAddress2: String
-
-    """postOfficeBoxNumber	Text 	The post office box number for PO box addresses."""
-    postOfficeBoxNumber: String
-
-    """postalCode	Text 	The postal code. For example, 94043."""
-    postalCode: String
-
-    """The id of the object."""
-    id: ID!
-
 }
 
 

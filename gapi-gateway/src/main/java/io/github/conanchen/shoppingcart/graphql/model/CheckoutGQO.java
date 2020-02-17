@@ -33,7 +33,7 @@ public class CheckoutGQO implements NodeGQO{
     private Boolean ready;
     @javax.validation.constraints.NotNull
     private Boolean requiresShipping;
-    private MailingAddressGQO shippingAddress;
+    private PostalAddressGQO shippingAddress;
     @javax.validation.constraints.NotNull
     private Collection<DiscountAllocationGQO> shippingDiscountAllocations;
     private ShippingRateGQO shippingLine;
@@ -57,7 +57,7 @@ public class CheckoutGQO implements NodeGQO{
     public CheckoutGQO() {
     }
 
-    public CheckoutGQO(Collection<AppliedGiftCardGQO> appliedGiftCards, AvailableShippingRatesGQO availableShippingRates, java.util.Date completedAt, java.util.Date createdAt, CurrencyCodeGQO currencyCode, Collection<CustomAttributeGQO> customAttributes, DiscountApplicationConnectionGQO discountApplications, String email, CheckoutLineItemConnectionGQO lineItems, MoneyGQO lineItemsSubtotalPrice, String note, OrderGQO order, java.lang.String orderStatusUrl, MoneyGQO paymentDueV2, Boolean ready, Boolean requiresShipping, MailingAddressGQO shippingAddress, Collection<DiscountAllocationGQO> shippingDiscountAllocations, ShippingRateGQO shippingLine, MoneyGQO subtotalPriceV2, Boolean taxExempt, Boolean taxesIncluded, MoneyGQO totalPriceV2, MoneyGQO totalTaxV2, java.util.Date updatedAt, java.lang.String webUrl, String id) {
+    public CheckoutGQO(Collection<AppliedGiftCardGQO> appliedGiftCards, AvailableShippingRatesGQO availableShippingRates, java.util.Date completedAt, java.util.Date createdAt, CurrencyCodeGQO currencyCode, Collection<CustomAttributeGQO> customAttributes, DiscountApplicationConnectionGQO discountApplications, String email, CheckoutLineItemConnectionGQO lineItems, MoneyGQO lineItemsSubtotalPrice, String note, OrderGQO order, java.lang.String orderStatusUrl, MoneyGQO paymentDueV2, Boolean ready, Boolean requiresShipping, PostalAddressGQO shippingAddress, Collection<DiscountAllocationGQO> shippingDiscountAllocations, ShippingRateGQO shippingLine, MoneyGQO subtotalPriceV2, Boolean taxExempt, Boolean taxesIncluded, MoneyGQO totalPriceV2, MoneyGQO totalTaxV2, java.util.Date updatedAt, java.lang.String webUrl, String id) {
         this.appliedGiftCards = appliedGiftCards;
         this.availableShippingRates = availableShippingRates;
         this.completedAt = completedAt;
@@ -199,10 +199,10 @@ public class CheckoutGQO implements NodeGQO{
         this.requiresShipping = requiresShipping;
     }
 
-    public MailingAddressGQO getShippingAddress() {
+    public PostalAddressGQO getShippingAddress() {
         return shippingAddress;
     }
-    public void setShippingAddress(MailingAddressGQO shippingAddress) {
+    public void setShippingAddress(PostalAddressGQO shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 

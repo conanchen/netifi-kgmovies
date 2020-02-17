@@ -2,7 +2,6 @@ package io.github.conanchen.shoppingcart.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.message.graphql.model.OrganizationGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.PostalAddressGQO;
 import io.github.conanchen.shoppingdoor.graphql.model.ProductGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 

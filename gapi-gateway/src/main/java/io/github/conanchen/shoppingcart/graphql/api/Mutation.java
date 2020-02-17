@@ -34,7 +34,7 @@ public interface Mutation {
 
     CheckoutPayloadGQO checkoutDiscountCodeRemove(String checkoutId) throws Exception;
 
-    CheckoutPayloadGQO checkoutShippingAddressUpdate(MailingAddressInputGQO shippingAddress, String checkoutId) throws Exception;
+    CheckoutPayloadGQO checkoutShippingAddressUpdate(PostalAddressInputGQO shippingAddress, String checkoutId) throws Exception;
 
     CheckoutPayloadGQO checkoutEmailUpdate(String checkoutId, String email) throws Exception;
 

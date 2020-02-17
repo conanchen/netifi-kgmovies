@@ -9,13 +9,13 @@ public class CheckoutInputGQO {
     private String cartId;
     private String email;
     @javax.validation.constraints.NotNull
-    private AddressInputGQO shipping;
-    private AddressInputGQO billing;
+    private PostalAddressInputGQO shipping;
+    private PostalAddressInputGQO billing;
 
     public CheckoutInputGQO() {
     }
 
-    public CheckoutInputGQO(String cartId, String email, AddressInputGQO shipping, AddressInputGQO billing) {
+    public CheckoutInputGQO(String cartId, String email, PostalAddressInputGQO shipping, PostalAddressInputGQO billing) {
         this.cartId = cartId;
         this.email = email;
         this.shipping = shipping;
@@ -36,17 +36,17 @@ public class CheckoutInputGQO {
         this.email = email;
     }
 
-    public AddressInputGQO getShipping() {
+    public PostalAddressInputGQO getShipping() {
         return shipping;
     }
-    public void setShipping(AddressInputGQO shipping) {
+    public void setShipping(PostalAddressInputGQO shipping) {
         this.shipping = shipping;
     }
 
-    public AddressInputGQO getBilling() {
+    public PostalAddressInputGQO getBilling() {
         return billing;
     }
-    public void setBilling(AddressInputGQO billing) {
+    public void setBilling(PostalAddressInputGQO billing) {
         this.billing = billing;
     }
 

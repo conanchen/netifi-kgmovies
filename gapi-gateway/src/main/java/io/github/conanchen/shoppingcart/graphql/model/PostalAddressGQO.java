@@ -1,9 +1,13 @@
-package io.github.conanchen.shoppingdoor.graphql.model;
+package io.github.conanchen.shoppingcart.graphql.model;
 
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class PostalAddressGQO implements NodeGQO{
 
+    @javax.validation.constraints.NotNull
+    private String name;
+    private String alternateName;
+    private String description;
     private String addressCountry;
     private String addressRegion;
     private String addressLocality;
@@ -17,7 +21,10 @@ public class PostalAddressGQO implements NodeGQO{
     public PostalAddressGQO() {
     }
 
-    public PostalAddressGQO(String addressCountry, String addressRegion, String addressLocality, String streetAddress1, String streetAddress2, String postOfficeBoxNumber, String postalCode, String id) {
+    public PostalAddressGQO(String name, String alternateName, String description, String addressCountry, String addressRegion, String addressLocality, String streetAddress1, String streetAddress2, String postOfficeBoxNumber, String postalCode, String id) {
+        this.name = name;
+        this.alternateName = alternateName;
+        this.description = description;
         this.addressCountry = addressCountry;
         this.addressRegion = addressRegion;
         this.addressLocality = addressLocality;
@@ -26,6 +33,27 @@ public class PostalAddressGQO implements NodeGQO{
         this.postOfficeBoxNumber = postOfficeBoxNumber;
         this.postalCode = postalCode;
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAlternateName() {
+        return alternateName;
+    }
+    public void setAlternateName(String alternateName) {
+        this.alternateName = alternateName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddressCountry() {

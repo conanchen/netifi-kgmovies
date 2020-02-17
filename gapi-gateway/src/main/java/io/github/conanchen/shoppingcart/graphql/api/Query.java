@@ -11,4 +11,6 @@ public interface Query {
 
     CheckoutGQO checkout(String id, String checkoutID) throws Exception;
 
+    PostalAddressGQO postalAddress(String id, String paID) throws Exception;
+
 }

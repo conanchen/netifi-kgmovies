@@ -5,6 +5,6 @@ import io.github.conanchen.shoppingcart.graphql.model.*;
 
 public interface CheckoutShippingAddressUpdateMutation {
 
-    CheckoutPayloadGQO checkoutShippingAddressUpdate(MailingAddressInputGQO shippingAddress, String checkoutId) throws Exception;
+    CheckoutPayloadGQO checkoutShippingAddressUpdate(PostalAddressInputGQO shippingAddress, String checkoutId) throws Exception;
 
 }

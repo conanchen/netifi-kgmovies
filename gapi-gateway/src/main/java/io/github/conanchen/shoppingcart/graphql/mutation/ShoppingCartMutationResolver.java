@@ -17,8 +17,8 @@ import io.github.conanchen.shoppingcart.graphql.model.CheckoutCreatePlusOrderInp
 import io.github.conanchen.shoppingcart.graphql.model.CheckoutPayloadGQO;
 import io.github.conanchen.shoppingcart.graphql.model.CreditCardPaymentInputGQO;
 import io.github.conanchen.shoppingcart.graphql.model.EmptyCartInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.MailingAddressInputGQO;
 import io.github.conanchen.shoppingcart.graphql.model.PaymentCompletePayloadGQO;
+import io.github.conanchen.shoppingcart.graphql.model.PostalAddressInputGQO;
 import io.github.conanchen.shoppingcart.graphql.model.RemoveCartItemInputGQO;
 import io.github.conanchen.shoppingcart.graphql.model.SetCartItemsInputGQO;
 import io.github.conanchen.shoppingcart.graphql.model.TokenizedPaymentInputGQO;
@@ -100,12 +100,7 @@ public class ShoppingCartMutationResolver implements Mutation,GraphQLMutationRes
     return null;
   }
 
-  @Override
-  public CheckoutPayloadGQO checkoutShippingAddressUpdate(MailingAddressInputGQO shippingAddress,
-      String checkoutId) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  
 
   @Override
   public CheckoutPayloadGQO checkoutEmailUpdate(String checkoutId, String email) throws Exception {
@@ -191,6 +186,13 @@ public class ShoppingCartMutationResolver implements Mutation,GraphQLMutationRes
   @Override
   public PaymentCompletePayloadGQO paymentCompleteCheckoutWithTokenizedPayment(
       TokenizedPaymentInputGQO input) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public CheckoutPayloadGQO checkoutShippingAddressUpdate(PostalAddressInputGQO shippingAddress,
+      String checkoutId) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }

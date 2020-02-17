@@ -4,7 +4,7 @@ extend type Query {
   cart(id: ID! currency: CurrencyInput): Cart
   order(id: ID, orderID: ID): Order
   checkout(id: ID, checkoutID: ID): Checkout
-  
+  postalAddress(id: ID, paID: ID): PostalAddress
 }
 
 extend type Mutation {
@@ -43,7 +43,7 @@ extend type Mutation {
   checkoutDiscountCodeRemove(checkoutId: ID!): CheckoutPayload
 
   """结算单送货地址Updates the shipping address of an existing checkout."""
-  checkoutShippingAddressUpdate(shippingAddress: MailingAddressInput!checkoutId: ID!): CheckoutPayload
+  checkoutShippingAddressUpdate(shippingAddress: PostalAddressInput!checkoutId: ID!): CheckoutPayload
 
   """结算单电子邮件Updates the email on an existing checkout."""
   checkoutEmailUpdate(checkoutId: ID!email: String!): CheckoutPayload
@@ -85,27 +85,76 @@ extend type Mutation {
 }
 
 
-type MailingAddress {
-  company: String
-  name: String!
-  line1: String!
-  line2: String
-  city: String!
-  state: String
-  postalCode: String!
-  country: String!
+input PostalAddressInput {
+    """【名称】 条目的名称 The name of the item."""
+    name: String!
+
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """addressCountry	Country  or Text 	The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code."""
+    addressCountry: String
+
+    """addressRegion	Text 	The region in which the locality is, and which is in the country. For example, California or another appropriate first-level Administrative division"""
+    addressRegion: String
+
+    """addressLocality	Text 	The locality in which the street address is, and which is in the region. For example, Mountain View."""
+    addressLocality: String
+    
+    """streetAddress line1	Text 	The street address. For example, 1600 Amphitheatre Pkwy."""
+    streetAddress1: String
+    
+    """streetAddress line2	Text 	The street address. For example, 1600 Amphitheatre Pkwy."""
+    streetAddress2: String
+
+    """postOfficeBoxNumber	Text 	The post office box number for PO box addresses."""
+    postOfficeBoxNumber: String
+
+    """postalCode	Text 	The postal code. For example, 94043."""
+    postalCode: String
 }
 
-input MailingAddressInput {
-  company: String
-  name: String!
-  line1: String!
-  line2: String
-  city: String!
-  state: String
-  postalCode: String!
-  country: String!
+
+"""https://schema.org/PostalAddress The mailing address."""
+type PostalAddress implements Node{
+    """【名称】 条目的名称 The name of the item."""
+    name: String!
+
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """addressCountry	Country  or Text 	The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code."""
+    addressCountry: String
+
+    """addressRegion	Text 	The region in which the locality is, and which is in the country. For example, California or another appropriate first-level Administrative division"""
+    addressRegion: String
+
+    """addressLocality	Text 	The locality in which the street address is, and which is in the region. For example, Mountain View."""
+    addressLocality: String
+    
+    """streetAddress line1	Text 	The street address. For example, 1600 Amphitheatre Pkwy."""
+    streetAddress1: String
+    
+    """streetAddress line2	Text 	The street address. For example, 1600 Amphitheatre Pkwy."""
+    streetAddress2: String
+
+    """postOfficeBoxNumber	Text 	The post office box number for PO box addresses."""
+    postOfficeBoxNumber: String
+
+    """postalCode	Text 	The postal code. For example, 94043."""
+    postalCode: String
+
+    """The id of the object."""
+    id: ID!
+
 }
+
 
 input AddToCartInput {
   cartId: ID!
@@ -162,8 +211,8 @@ enum CartItemType {
 input CheckoutInput {
   cartId: ID!
   email: String
-  shipping: MailingAddressInput!
-  billing: MailingAddressInput
+  shipping: PostalAddressInput!
+  billing: PostalAddressInput
 }
 
 type Currency {
@@ -354,7 +403,7 @@ type Checkout implements Node{
   requiresShipping: Boolean!
   
   """The shipping address to where the line items will be shipped."""
-  shippingAddress: MailingAddress
+  shippingAddress: PostalAddress
   
   """The discounts that have been allocated onto the shipping line by discount applications."""
   shippingDiscountAllocations: [DiscountAllocation!]!
@@ -768,8 +817,8 @@ type Order implements Node{
 
   cartId: ID!
   email: String!
-  shipping: MailingAddress!
-  billing: MailingAddress!
+  shipping: PostalAddress!
+  billing: PostalAddress!
   subTotal: Money!
   shippingTotal: Money!
   taxTotal: Money!

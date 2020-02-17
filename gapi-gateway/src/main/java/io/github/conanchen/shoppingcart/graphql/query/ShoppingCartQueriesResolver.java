@@ -7,6 +7,7 @@ import io.github.conanchen.shoppingcart.graphql.model.CartGQO;
 import io.github.conanchen.shoppingcart.graphql.model.CheckoutGQO;
 import io.github.conanchen.shoppingcart.graphql.model.CurrencyInputGQO;
 import io.github.conanchen.shoppingcart.graphql.model.OrderGQO;
+import io.github.conanchen.shoppingcart.graphql.model.PostalAddressGQO;
 
 
 
@@ -27,6 +28,12 @@ public class ShoppingCartQueriesResolver implements Query, GraphQLQueryResolver 
 
   @Override
   public CheckoutGQO checkout(String id, String checkoutID) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public PostalAddressGQO postalAddress(String id, String paID) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }
