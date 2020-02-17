@@ -7,14 +7,14 @@ public class LocalBusinessConnectionGQO {
 
     @javax.validation.constraints.NotNull
     private PageInfoGQO pageInfo;
-    private Collection<LocalBusinessGQO> edges;
+    private Collection<LocalBusinessEdgeGQO> edges;
     private Integer totalCount;
     private Collection<LocalBusinessGQO> localBusiness;
 
     public LocalBusinessConnectionGQO() {
     }
 
-    public LocalBusinessConnectionGQO(PageInfoGQO pageInfo, Collection<LocalBusinessGQO> edges, Integer totalCount, Collection<LocalBusinessGQO> localBusiness) {
+    public LocalBusinessConnectionGQO(PageInfoGQO pageInfo, Collection<LocalBusinessEdgeGQO> edges, Integer totalCount, Collection<LocalBusinessGQO> localBusiness) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
@@ -28,10 +28,10 @@ public class LocalBusinessConnectionGQO {
         this.pageInfo = pageInfo;
     }
 
-    public Collection<LocalBusinessGQO> getEdges() {
+    public Collection<LocalBusinessEdgeGQO> getEdges() {
         return edges;
     }
-    public void setEdges(Collection<LocalBusinessGQO> edges) {
+    public void setEdges(Collection<LocalBusinessEdgeGQO> edges) {
         this.edges = edges;
     }
 

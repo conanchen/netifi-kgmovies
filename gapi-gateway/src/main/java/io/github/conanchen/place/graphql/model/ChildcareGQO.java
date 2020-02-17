@@ -1,6 +1,5 @@
 package io.github.conanchen.place.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.LocalBusinessGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class ChildcareGQO implements LocalBusinessGQO, NodeGQO{

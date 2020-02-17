@@ -1,8 +1,5 @@
 package io.github.conanchen.zommon.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.zommon.graphql.api.*;
-
 public class CustomAttributeInputGQO {
 
     @javax.validation.constraints.NotNull

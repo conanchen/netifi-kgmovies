@@ -2,7 +2,6 @@ package io.github.conanchen.place.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
-import io.github.conanchen.zommon.graphql.model.PlaceGQO;
 
 public class AdministrativeAreaGQO implements PlaceGQO, NodeGQO{
 

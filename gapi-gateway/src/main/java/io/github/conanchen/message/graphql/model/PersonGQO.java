@@ -2,8 +2,8 @@ package io.github.conanchen.message.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.movies.graphql.model.MovieGQO;
+import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
-import io.github.conanchen.zommon.graphql.model.PlaceGQO;
 
 public class PersonGQO implements PartyGQO, NodeGQO{
 

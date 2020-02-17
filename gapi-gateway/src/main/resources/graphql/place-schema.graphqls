@@ -8,12 +8,8 @@ extend type Query {
   childcare(id: ID, lbsID: ID): Childcare
   eldercare(id: ID, lbsID: ID): Eldercare
 
-#   """返回interface的http://localhost:8888/voyager会报错：
-#   react-dom.min.js:117 TypeError: Cannot read property 'type' of undefined
-#   所以想在voyager看关系图就屏蔽掉如下api，http://localhost:8888/graphiql就没有问题
-#   """
-#   allLocalBusiness(after: String, first: Int, before: String, last: Int): LocalBusinessConnection
-#   localBusiness(id: ID, lbsID: ID): LocalBusiness
+  allLocalBusiness(after: String, first: Int, before: String, last: Int): LocalBusinessConnection
+  localBusiness(id: ID, lbsID: ID): LocalBusiness
 }
 
 
@@ -191,7 +187,7 @@ type LocalBusinessConnection {
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [LocalBusiness]
+  edges: [LocalBusinessEdge]
 
   """
   A count of the total number of objects in this connection, ignoring pagination.
