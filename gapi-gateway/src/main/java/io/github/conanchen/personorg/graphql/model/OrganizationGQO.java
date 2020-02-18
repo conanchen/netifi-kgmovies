@@ -16,18 +16,19 @@ public class OrganizationGQO implements ThingGQO, PartyGQO, NodeGQO{
     private Collection<OrganizationGQO> subOrganizations;
     private Collection<OrganizationGQO> departments;
     private Collection<PersonGQO> employees;
-    private Collection<PersonGQO> members;
     private Collection<PersonGQO> followees;
     private Collection<ConversationGQO> availableConversations;
     private ConversationGQO defaultConversation;
     private Collection<ActionGQO> potentialActions;
+    private Collection<MembershipGQO> members;
+    private MembershipConnectionGQO membersPage;
     @javax.validation.constraints.NotNull
     private String id;
 
     public OrganizationGQO() {
     }
 
-    public OrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> members, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionGQO> potentialActions, String id) {
+    public OrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -35,11 +36,12 @@ public class OrganizationGQO implements ThingGQO, PartyGQO, NodeGQO{
         this.subOrganizations = subOrganizations;
         this.departments = departments;
         this.employees = employees;
-        this.members = members;
         this.followees = followees;
         this.availableConversations = availableConversations;
         this.defaultConversation = defaultConversation;
         this.potentialActions = potentialActions;
+        this.members = members;
+        this.membersPage = membersPage;
         this.id = id;
     }
 
@@ -92,13 +94,6 @@ public class OrganizationGQO implements ThingGQO, PartyGQO, NodeGQO{
         this.employees = employees;
     }
 
-    public Collection<PersonGQO> getMembers() {
-        return members;
-    }
-    public void setMembers(Collection<PersonGQO> members) {
-        this.members = members;
-    }
-
     public Collection<PersonGQO> getFollowees() {
         return followees;
     }
@@ -127,6 +122,14 @@ public class OrganizationGQO implements ThingGQO, PartyGQO, NodeGQO{
         this.potentialActions = potentialActions;
     }
 
+    public Collection<MembershipGQO> getMembers() {
+        return members;
+    }
+    public void setMembers(Collection<MembershipGQO> members) {
+        this.members = members;
+    }
+
+    
     public String getId() {
         return id;
     }
@@ -134,4 +137,8 @@ public class OrganizationGQO implements ThingGQO, PartyGQO, NodeGQO{
         this.id = id;
     }
 
+    public MembershipConnectionGQO membersPage(String after, Integer first, String last, Integer before, String personId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

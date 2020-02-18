@@ -61,6 +61,10 @@ type Person implements Party & Node{
     """Define Types, copied from https://tour.dgraph.io/moredata/2/"""
     directoredFilms: [Movie]
 
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
+    membersOf: [Membership]
+    membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MembershipConnection
+
     """The id of the object."""
     id: ID!
 }
@@ -83,15 +87,15 @@ type Organization  implements Thing & Party & Node{
 
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
     parentOrganization: [Organization]
+
     """【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。"""
     subOrganizations: [Organization]
+
     """【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe."""
     departments: [Organization]
-    """【雇员】 组织的雇员"""
-    employees:[Person]
 
-    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership."""
-    members: [Person]
+    """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
+    employees:[Person]
 
     """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
     followees: [Person]
@@ -105,6 +109,90 @@ type Organization  implements Thing & Party & Node{
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]
 
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
+    members: [Membership]
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MembershipConnection
+
     """The id of the object."""
     id: ID!
 }
+
+"""组织定义的角色，全局统筹定义"""
+type Role implements Node{
+
+    """【角色名称】 由个人或组织发挥，扮演或担任的角色。例如例如，漫画书的创作者团队可能会创作“蜘蛛侠”，“钢铁侠”的角色; 或运动队的运动员可能会在运动场上担任“四分卫”的角色 A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'."""
+    roleName: String
+
+    """【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork."""
+    alternativeHeadline: String
+
+    """【描述】 该项的一个简单描述。 A description of the item. description	Text or Thing	"""
+    description: String
+
+    createdAt: DateTime
+    creator: Person
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""个人在组织承担的角色有时间限制"""
+type Membership implements Node{
+    """在组织承担角色的个人"""
+    person: Person
+
+    """个人在组织承担的角色"""
+    role: Role
+
+    """个人担任角色所在的组织"""
+    organization: Organization
+
+    """【开始日期】 某事的开始日期和时间（按照ＩＳＯ ８６０１日期标准） The start date and time of the item (in ISO 8601 date format)."""
+    startDate: DateTime
+
+    """【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format)."""
+    endDate: DateTime
+
+    createdAt: DateTime
+    creator: Person
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""A connection to a list of items."""
+type MembershipConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [MembershipEdge]
+
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+  This allows a client to fetch the first five objects by passing "5" as the
+  argument to "first", then fetch the total count so it could display "5 of 83",
+  for example.
+  """
+  totalCount: Int
+
+  """
+  A list of all of the objects returned in the connection. This is a convenience
+  field provided for quickly exploring the API; rather than querying for
+  "{ edges { node } }" when no edge data is needed, this field can be be used
+  instead. Note that when clients like Relay need to fetch the "cursor" field on
+  the edge to enable efficient pagination, this shortcut cannot be used, and the
+  full "{ edges { node } }" version should be used instead.
+  """
+  roles: [Membership]
+}
+
+"""An edge in a connection."""
+type MembershipEdge {
+  """The item at the end of the edge"""
+  node: Membership
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+

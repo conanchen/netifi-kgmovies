@@ -20,13 +20,15 @@ public class PersonGQO implements PartyGQO, NodeGQO{
     private Collection<PersonGQO> follows;
     private Collection<PersonGQO> followees;
     private Collection<MovieGQO> directoredFilms;
+    private Collection<MembershipGQO> membersOf;
+    private MembershipConnectionGQO membersOfPage;
     @javax.validation.constraints.NotNull
     private String id;
 
     public PersonGQO() {
     }
 
-    public PersonGQO(String name, String alternateName, String description, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, String id) {
+    public PersonGQO(String name, String alternateName, String description, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MembershipGQO> membersOf, MembershipConnectionGQO membersOfPage, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -39,6 +41,8 @@ public class PersonGQO implements PartyGQO, NodeGQO{
         this.follows = follows;
         this.followees = followees;
         this.directoredFilms = directoredFilms;
+        this.membersOf = membersOf;
+        this.membersOfPage = membersOfPage;
         this.id = id;
     }
 
@@ -126,6 +130,20 @@ public class PersonGQO implements PartyGQO, NodeGQO{
         this.directoredFilms = directoredFilms;
     }
 
+    public Collection<MembershipGQO> getMembersOf() {
+        return membersOf;
+    }
+    public void setMembersOf(Collection<MembershipGQO> membersOf) {
+        this.membersOf = membersOf;
+    }
+
+    public MembershipConnectionGQO getMembersOfPage() {
+        return membersOfPage;
+    }
+    public void setMembersOfPage(MembershipConnectionGQO membersOfPage) {
+        this.membersOfPage = membersOfPage;
+    }
+
     public String getId() {
         return id;
     }
@@ -133,4 +151,8 @@ public class PersonGQO implements PartyGQO, NodeGQO{
         this.id = id;
     }
 
+    public MembershipConnectionGQO membersOfPage(String after, Integer first, String last, Integer before, String orgId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
