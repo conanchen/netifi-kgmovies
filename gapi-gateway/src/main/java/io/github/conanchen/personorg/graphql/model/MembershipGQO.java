@@ -4,9 +4,10 @@ import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class MembershipGQO implements NodeGQO{
 
-    private PersonGQO person;
+    private PersonGQO member;
     private RoleGQO role;
-    private OrganizationGQO organization;
+    private OrganizationGQO hostingOrganization;
+    private String membershipNumber;
     private java.util.Date startDate;
     private java.util.Date endDate;
     private java.util.Date createdAt;
@@ -17,10 +18,11 @@ public class MembershipGQO implements NodeGQO{
     public MembershipGQO() {
     }
 
-    public MembershipGQO(PersonGQO person, RoleGQO role, OrganizationGQO organization, java.util.Date startDate, java.util.Date endDate, java.util.Date createdAt, PersonGQO creator, String id) {
-        this.person = person;
+    public MembershipGQO(PersonGQO member, RoleGQO role, OrganizationGQO hostingOrganization, String membershipNumber, java.util.Date startDate, java.util.Date endDate, java.util.Date createdAt, PersonGQO creator, String id) {
+        this.member = member;
         this.role = role;
-        this.organization = organization;
+        this.hostingOrganization = hostingOrganization;
+        this.membershipNumber = membershipNumber;
         this.startDate = startDate;
         this.endDate = endDate;
         this.createdAt = createdAt;
@@ -28,11 +30,11 @@ public class MembershipGQO implements NodeGQO{
         this.id = id;
     }
 
-    public PersonGQO getPerson() {
-        return person;
+    public PersonGQO getMember() {
+        return member;
     }
-    public void setPerson(PersonGQO person) {
-        this.person = person;
+    public void setMember(PersonGQO member) {
+        this.member = member;
     }
 
     public RoleGQO getRole() {
@@ -42,11 +44,18 @@ public class MembershipGQO implements NodeGQO{
         this.role = role;
     }
 
-    public OrganizationGQO getOrganization() {
-        return organization;
+    public OrganizationGQO getHostingOrganization() {
+        return hostingOrganization;
     }
-    public void setOrganization(OrganizationGQO organization) {
-        this.organization = organization;
+    public void setHostingOrganization(OrganizationGQO hostingOrganization) {
+        this.hostingOrganization = hostingOrganization;
+    }
+
+    public String getMembershipNumber() {
+        return membershipNumber;
+    }
+    public void setMembershipNumber(String membershipNumber) {
+        this.membershipNumber = membershipNumber;
     }
 
     public java.util.Date getStartDate() {

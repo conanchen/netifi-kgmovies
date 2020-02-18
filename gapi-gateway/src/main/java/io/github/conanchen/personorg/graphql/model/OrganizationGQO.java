@@ -137,7 +137,7 @@ public class OrganizationGQO implements ThingGQO, PartyGQO, NodeGQO{
         this.id = id;
     }
 
-    public MembershipConnectionGQO membersPage(String after, Integer first, String last, Integer before, String personId) throws Exception {
+    public MembershipConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

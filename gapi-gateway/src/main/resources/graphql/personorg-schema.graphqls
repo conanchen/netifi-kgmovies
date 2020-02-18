@@ -138,14 +138,17 @@ type Role implements Node{
 
 """个人在组织承担的角色有时间限制"""
 type Membership implements Node{
-    """在组织承担角色的个人"""
-    person: Person
+    """在组织承担角色的个人,【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership."""
+    member: Person
 
     """个人在组织承担的角色"""
     role: Role
 
-    """个人担任角色所在的组织"""
-    organization: Organization
+    """个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with."""
+    hostingOrganization: Organization
+
+    """【会员编号】 成员身份的唯一标识符 A unique identifier for the membership."""
+    membershipNumber: String
 
     """【开始日期】 某事的开始日期和时间（按照ＩＳＯ ８６０１日期标准） The start date and time of the item (in ISO 8601 date format)."""
     startDate: DateTime
