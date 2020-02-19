@@ -35,6 +35,7 @@ public class HelloSTDgraphQueryResolver implements GraphQLQueryResolver {
         Optional.ofNullable(who).orElse("GraphQL"),resJson);
     }
 
+    // Refer to https://github.com/antlr/stringtemplate4/blob/94967dd4be3f21f36ecf17224180bd2b2ae97241/benchmark/org/stringtemplate/v4/benchmark/OliverTest.java
     private String queryWithStringTemplate(){
         
         // Query
