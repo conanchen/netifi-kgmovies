@@ -25,3 +25,12 @@ find_michael() ::= <<
   }
 }
 >>
+
+queryall() ::= <<
+    query all($a: string){
+      all(func: eq(name, $a)) {
+        name
+      }
+    }
+
+>>

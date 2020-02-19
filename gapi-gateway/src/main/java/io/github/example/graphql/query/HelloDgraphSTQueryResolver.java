@@ -19,7 +19,7 @@ import io.dgraph.DgraphClient;
 import io.dgraph.DgraphProto.Response;
 
 @Service
-public class HelloSTDgraphQueryResolver implements GraphQLQueryResolver {
+public class HelloDgraphSTQueryResolver implements GraphQLQueryResolver {
     private static final Logger LOG = LoggerFactory.getLogger(HelloDgraphQueryResolver.class);
 
     
@@ -30,6 +30,8 @@ public class HelloSTDgraphQueryResolver implements GraphQLQueryResolver {
     public String  helloSTDgraph(final String who) throws InterruptedException, ExecutionException {
 
         String resJson = queryWithStringTemplate();
+        
+        queryAllWithStringTemplate();
 
         return String.format("Hello, %s! 【最简模式Graphql Resolver 直接调用Dgraph获取数据(查询语句模板化ST)】 resJson=%s", 
         Optional.ofNullable(who).orElse("GraphQL"),resJson);
@@ -49,6 +51,22 @@ public class HelloSTDgraphQueryResolver implements GraphQLQueryResolver {
 
     }
 
+    private void queryAllWithStringTemplate(){
+        Gson gson = new Gson(); // For JSON encode/decode
+        
+        // Query
+        Map<String, String> vars = Collections.singletonMap("$a", "Michael");
+        Response res = dgraphClient.newTransaction().queryWithVars(queryAll(), vars);
+        String resJsonStr = res.getJson().toStringUtf8();
+
+        // Deserialize
+        People ppl = gson.fromJson(res.getJson().toStringUtf8(), People.class);
+
+        // Print results
+        LOG.info(String.format("people found: %d resJsonStr=%s\n", ppl.all.size(),resJsonStr));
+        ppl.all.forEach(person -> LOG.info(String.format("person.name=%s",person.name)));
+    }
+
     interface QueryTemplate {
         String query(String tplname);
     }
@@ -57,6 +75,12 @@ public class HelloSTDgraphQueryResolver implements GraphQLQueryResolver {
     
     static String queryFind_michael(){
         ST find_michael =test.getInstanceOf("find_michael");
+        String result =  find_michael.render();
+        return result;
+    }
+
+    static String queryAll(){
+        ST find_michael =test.getInstanceOf("queryall");
         String result =  find_michael.render();
         return result;
     }
