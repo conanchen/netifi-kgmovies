@@ -68,6 +68,7 @@ dependencies {
     compile ('io.dgraph:dgraph4j'){
                 exclude group: 'ch.qos.logback'
     }
+    compile 'org.antlr:ST4'
 }
 
 mainClassName = 'io.github.GraphqlApplication'

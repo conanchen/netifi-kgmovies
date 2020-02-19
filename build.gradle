@@ -78,6 +78,7 @@ subprojects {
             dependency "com.graphql-java-kickstart:graphql-spring-boot-starter-test:${graphqlStarterVersion}"
             dependency "org.springframework.boot:spring-boot-configuration-processor:$LIB_SPRING_BOOT_VER"
             dependency 'io.dgraph:dgraph4j:2.0.1'
+            dependency 'org.antlr:ST4:4.3'
         }
     }
 }
