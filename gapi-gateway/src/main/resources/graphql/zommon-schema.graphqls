@@ -222,5 +222,6 @@ enum CurrencyCode {
 # Format: "yyyy-MM-dd HH:mm:ss Z"
 scalar DateTime
 scalar BigDecimal
+scalar Text
 scalar URL
 scalar Markdown

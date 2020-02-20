@@ -120,6 +120,16 @@ task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask,dependsOn: graphqlCod
     generateApis = true
 }
 
+task graphqlCodegenCreativework(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/creativework-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/creativework")
+    apiPackageName = "io.github.conanchen.creativework.graphql.api"
+    modelPackageName = "io.github.conanchen.creativework.graphql.model"
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenEvent(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/event-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/event")

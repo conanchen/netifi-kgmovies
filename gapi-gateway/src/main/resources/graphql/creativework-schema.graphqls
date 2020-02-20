@@ -1,0 +1,119 @@
+extend type Query {
+  blog(id: ID, blogId: ID): Blog
+}
+
+
+interface CreativeWork{
+    """【关于】 事物的关于信息 The subject matter of the content."""
+    about: Thing
+
+    """【编辑者】 指定编辑CreativeWork的人。 Specifies the Person who edited the CreativeWork."""
+    editor:	Person
+
+    """【文章标题】 文章标题 Headline of the article."""
+    headline: Text
+
+    """ 【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork."""
+    alternativeHeadline:	Text
+
+    """【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.Inverse property: hasPart"""
+    isPartOf:	CreativeWork
+
+    """【作品组件】 表示某个作品是该作品的一部分 Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).Inverse property: isPartOf"""
+    hasPart:    [CreativeWork]
+
+}
+
+"""http://cnschema.org/Article"""
+interface Article{
+    """articleBody	Text or Article	【文章正文】 文章的主体部分。 The actual body of the article."""
+    articleBody:	Text
+
+    """articleSection	Text or Article	【文章所在栏目】 在杂志或报纸中文章可能属于一个或多个‘章节’, 比如体育章节, 生活章节, 等等。 Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc."""
+    articleSection:	Text
+
+    """pageEnd	Integer or Text or PublicationVolume or Article or PublicationIssue	【结束页码】 结束页码。例如，“138”或“xvi” The page on which the work ends; for example "138" or "xvi"."""
+    pageEnd:	Int
+
+    """pageStart	Text or Integer or PublicationVolume or PublicationIssue or Article	【开始页码】 开始页码。例如，“135”或“xiii” The page on which the work starts; for example "135" or "xiii"."""
+    pageStart: Int
+
+    """pagination	Text or Article or PublicationVolume or PublicationIssue	【起止页码】 多段页码范围。例如“1-6,9,55”或“10-12,46-49” Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49"."""
+    pagination:	Text
+
+    """wordCount	Integer or Article	【字数】 文章的文本中包含的单词数 The number of words in the text of the Article."""
+    wordCount:	Int
+}
+
+"""http://cnschema.org/Blog 【博客】博客（大陆）；部落格（台湾） A blog."""
+type Blog implements CreativeWork & Node{
+    """【ISSN号】 期刊的国际标准序列号 The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication."""
+    issn:	Text
+
+    """【博客文章】 该博客的帖子之一。 A posting that is part of this blog."""
+    blogPost:	[BlogPosting]
+
+    """【关于】 事物的关于信息 The subject matter of the content."""
+    about: Thing
+
+    """【编辑者】 指定编辑CreativeWork的人。 Specifies the Person who edited the CreativeWork."""
+    editor:	Person
+
+    """【文章标题】 文章标题 Headline of the article."""
+    headline: Text
+
+    """ 【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork."""
+    alternativeHeadline:	Text
+
+    """【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.Inverse property: hasPart"""
+    isPartOf:	CreativeWork
+
+    """【作品组件】 表示某个作品是该作品的一部分 Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).Inverse property: isPartOf"""
+    hasPart:    [CreativeWork]
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""【博客文章】博客文章（大陆）；部落格贴文（台湾） A blog post."""
+type BlogPosting implements CreativeWork &Article & Node{
+
+    """【关于】 事物的关于信息 The subject matter of the content."""
+    about: Thing
+
+    """【编辑者】 指定编辑CreativeWork的人。 Specifies the Person who edited the CreativeWork."""
+    editor:	Person
+
+    """【文章标题】 文章标题 Headline of the article."""
+    headline: Text
+
+    """ 【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork."""
+    alternativeHeadline:	Text
+
+    """【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.Inverse property: hasPart"""
+    isPartOf:	CreativeWork
+
+    """【作品组件】 表示某个作品是该作品的一部分 Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).Inverse property: isPartOf"""
+    hasPart:    [CreativeWork]
+
+    """articleBody	Text or Article	【文章正文】 文章的主体部分。 The actual body of the article."""
+    articleBody:	Text
+
+    """articleSection	Text or Article	【文章所在栏目】 在杂志或报纸中文章可能属于一个或多个‘章节’, 比如体育章节, 生活章节, 等等。 Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc."""
+    articleSection:	Text
+
+    """pageEnd	Integer or Text or PublicationVolume or Article or PublicationIssue	【结束页码】 结束页码。例如，“138”或“xvi” The page on which the work ends; for example "138" or "xvi"."""
+    pageEnd:	Int
+
+    """pageStart	Text or Integer or PublicationVolume or PublicationIssue or Article	【开始页码】 开始页码。例如，“135”或“xiii” The page on which the work starts; for example "135" or "xiii"."""
+    pageStart: Int
+
+    """pagination	Text or Article or PublicationVolume or PublicationIssue	【起止页码】 多段页码范围。例如“1-6,9,55”或“10-12,46-49” Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49"."""
+    pagination:	Text
+
+    """wordCount	Integer or Article	【字数】 文章的文本中包含的单词数 The number of words in the text of the Article."""
+    wordCount:	Int
+
+    """The id of the object."""
+    id: ID!
+}
