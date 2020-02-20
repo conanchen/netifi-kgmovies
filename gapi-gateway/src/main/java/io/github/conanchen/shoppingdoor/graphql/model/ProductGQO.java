@@ -30,7 +30,7 @@ public interface ProductGQO {
 
     ProductGQO getSuccessorOf();
 
-    Collection<OfferGQO> getOffers();
+    AggregateOfferGQO getOffers();
 
     Collection<DemandGQO> getDemands();
 

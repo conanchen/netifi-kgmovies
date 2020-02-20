@@ -28,7 +28,7 @@ public interface ServiceGQO {
 
     Collection<ItemCategoryGQO> getItemCategory();
 
-    Collection<OfferGQO> getOffers();
+    AggregateOfferGQO getOffers();
 
     Collection<DemandGQO> getDemands();
 

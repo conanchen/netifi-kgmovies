@@ -20,7 +20,7 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     private ProductGQO isVariantOf;
     private ProductGQO predecessorOf;
     private ProductGQO successorOf;
-    private Collection<OfferGQO> offers;
+    private AggregateOfferGQO offers;
     private Collection<DemandGQO> demands;
     private Collection<ReviewGQO> review;
     @javax.validation.constraints.NotNull
@@ -29,7 +29,7 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     public GeneralProductGQO() {
     }
 
-    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, ProductGQO isVariantOf, ProductGQO predecessorOf, ProductGQO successorOf, Collection<OfferGQO> offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, ProductGQO isVariantOf, ProductGQO predecessorOf, ProductGQO successorOf, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;
@@ -132,10 +132,10 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
         this.successorOf = successorOf;
     }
 
-    public Collection<OfferGQO> getOffers() {
+    public AggregateOfferGQO getOffers() {
         return offers;
     }
-    public void setOffers(Collection<OfferGQO> offers) {
+    public void setOffers(AggregateOfferGQO offers) {
         this.offers = offers;
     }
 

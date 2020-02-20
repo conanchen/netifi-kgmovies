@@ -63,7 +63,7 @@ interface Product {
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
-    offers: [Offer]
+    offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -118,7 +118,7 @@ type GeneralProduct implements Thing & Product & OrderableThing & Node{
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
-    offers: [Offer]
+    offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -211,7 +211,7 @@ interface Service {
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
-    offers: [Offer]
+    offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -265,7 +265,7 @@ type GeneralService implements Thing & OrderableThing & Service & Node{
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
-    offers: [Offer]
+    offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -323,7 +323,7 @@ type FoodService implements Thing & OrderableThing & Service & Node{
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
-    offers: [Offer]
+    offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -381,7 +381,7 @@ type HousekeepingService implements Thing & OrderableThing & Service & Node{
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
-    offers: [Offer]
+    offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -440,7 +440,7 @@ type GovernmentService implements Thing & Service & Node{
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
-    offers: [Offer]
+    offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -561,7 +561,21 @@ type ItemCategory implements Node{
 
 }
 
+"""http://cnschema.org/AggregateOffer 【总体报价】当单个产品与多个报价相关联（例如，同一双鞋子由不同商家提供）时，可以使用AggregateOffer。 When a single product is associated with multiple offers (for example, the same pair of shoes is offered by different merchants), then AggregateOffer can be used.
+"""
+type AggregateOffer {
+  """highPrice	Text or Number or AggregateOffer	【最高价】 最高价格 The highest price of all offers available."""
+  highPrice: Int
 
+  """lowPrice	Text or Number or AggregateOffer	【最低价格】 所有价格中的最低价 The lowest price of all offers available."""
+  lowPrice: Int
+
+  """offerCount	Integer or AggregateOffer	【商品的报价总数】 产品的报价数量 The number of offers for the product."""
+  offerCount: Int
+
+  """offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event."""
+  offers: [Offer]
+}
 
 """https://schema.org/Offer
 An offer to transfer some rights to an item or to provide a service — for example, an offer to sell tickets to an event, to rent the DVD of a movie, to stream a TV show over the internet, to repair a motorcycle, or to loan a book.

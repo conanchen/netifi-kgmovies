@@ -22,7 +22,7 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
     private ServiceGQO isSimilarTo;
     private Collection<ActionGQO> potentialAction;
     private Collection<ItemCategoryGQO> itemCategory;
-    private Collection<OfferGQO> offers;
+    private AggregateOfferGQO offers;
     private Collection<DemandGQO> demands;
     private Collection<ReviewGQO> review;
     @javax.validation.constraints.NotNull
@@ -31,7 +31,7 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
     public GovernmentServiceGQO() {
     }
 
-    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, AggregateRatingGQO aggregateRating, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, Collection<OfferGQO> offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, AggregateRatingGQO aggregateRating, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
         this.serviceOperator = serviceOperator;
         this.name = name;
         this.alternateName = alternateName;
@@ -126,10 +126,10 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
         this.itemCategory = itemCategory;
     }
 
-    public Collection<OfferGQO> getOffers() {
+    public AggregateOfferGQO getOffers() {
         return offers;
     }
-    public void setOffers(Collection<OfferGQO> offers) {
+    public void setOffers(AggregateOfferGQO offers) {
         this.offers = offers;
     }
 
