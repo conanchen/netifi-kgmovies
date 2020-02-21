@@ -40,6 +40,11 @@ dependencies {
     compile ("org.springframework.data:spring-data-commons"){
                 exclude group: 'ch.qos.logback'
     }
+    compile ("org.springframework.boot:spring-boot-starter-data-redis"){
+                exclude group: 'ch.qos.logback'
+    }
+    compile 'com.github.kstyrc:embedded-redis'
+
     compile ("io.projectreactor:reactor-core"){
                 exclude group: 'ch.qos.logback'
     }
@@ -62,6 +67,9 @@ dependencies {
     
     // testing facilities
     testCompile ('com.graphql-java-kickstart:graphql-spring-boot-starter-test:6.0.1'){
+                exclude group: 'ch.qos.logback'
+    }
+    testCompile ('io.projectreactor:reactor-test'){
                 exclude group: 'ch.qos.logback'
     }
 
@@ -283,6 +291,14 @@ sourceSets {
         }
         resources {
             srcDirs = ['src/main/resources']
+        }
+    }
+    test{
+        java{
+            srcDirs = ['src/test/java']
+        }
+        resources {
+            srcDirs = ['src/test/resources']
         }
     }
 }

@@ -1,0 +1,17 @@
+type Film {
+  id: ID!
+  name: String! @search(by: [hash])
+  initial_release_date: DateTime
+  featured_locations: [Location]
+  Directed_by: [Director] @hasInverse(field: films)
+}
+type Location {
+  id: ID!
+  name: String @search(by: [hash])
+  featured_in_films: [Film] @hasInverse(field: featured_locations)
+}
+type Director {
+  id: ID!
+  name: String @search(by: [term, fulltext])
+  films: [Film]
+}

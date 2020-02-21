@@ -1,4 +1,4 @@
-package io.github.kobylynskyi.bikeshop.graphql.config;
+package io.github.config;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
