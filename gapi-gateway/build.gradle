@@ -46,8 +46,13 @@ dependencies {
     compile 'com.github.kstyrc:embedded-redis'
 
     compile ("io.projectreactor:reactor-core"){
-                exclude group: 'ch.qos.logback'
+        exclude group: 'ch.qos.logback'
     }
+    compile ("org.springframework.data:spring-data-redis:2.2.4.RELEASE"){
+        exclude group: 'ch.qos.logback'
+    }
+
+
 
     compile ("com.graphql-java-kickstart:graphql-spring-boot-starter:6.0.1"){
                 exclude group: 'ch.qos.logback'
