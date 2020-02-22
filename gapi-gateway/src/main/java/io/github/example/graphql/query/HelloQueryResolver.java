@@ -1,12 +1,10 @@
 package io.github.example.graphql.query;
 
-import java.time.Duration;
 import java.util.Optional;
-
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 // import io.github.acmeshoes.store.service.PdpService;
 // import io.github.acmeshoes.store.service.model.PdpData;
@@ -28,4 +26,11 @@ public class HelloQueryResolver implements GraphQLQueryResolver {
         // return String.format("Hello, %s! pdpData.getDescription()=%s", 
         // Optional.ofNullable(who).orElse("GraphQL"),pdpData.getDescription());
     }
+
+    public Publisher<String> helloWorldReactive(final String who) {
+        //TODO: https://spring.io/guides/gs/spring-data-reactive-redis/
+        return  Flux.just("Hello", "World Reactive!");
+      }
+    
+    
 }
