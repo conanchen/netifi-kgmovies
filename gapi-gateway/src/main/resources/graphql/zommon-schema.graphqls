@@ -43,6 +43,15 @@ interface Thing{
   
 }
 
+"""可以被谈论来建立会话的物体"""
+interface ConversationalThing{
+    """关于本物的所有会话"""
+    availableConversations: [Conversation]
+
+    """ 关于本物的默认会话 """
+    defaultConversation: Conversation
+}
+
 input CustomAttributeInput {
   key: String!
   value: String

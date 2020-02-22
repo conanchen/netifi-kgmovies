@@ -3,10 +3,11 @@ package io.github.conanchen.personorg.graphql.model;
 import java.util.Collection;
 import io.github.conanchen.action.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.ConversationGQO;
+import io.github.conanchen.zommon.graphql.model.ConversationalThingGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class DefaultOrganizationGQO implements ThingGQO, OrganizationGQO, PartyGQO, NodeGQO{
+public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, ConversationalThingGQO, PartyGQO, NodeGQO{
 
     @javax.validation.constraints.NotNull
     private String name;
@@ -25,10 +26,10 @@ public class DefaultOrganizationGQO implements ThingGQO, OrganizationGQO, PartyG
     @javax.validation.constraints.NotNull
     private String id;
 
-    public DefaultOrganizationGQO() {
+    public GeneralOrganizationGQO() {
     }
 
-    public DefaultOrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
+    public GeneralOrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;

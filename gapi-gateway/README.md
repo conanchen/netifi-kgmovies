@@ -9,7 +9,7 @@
 
 # [Shopify GraphQL Design Tutorial: It's based on lessons learned from creating and evolving production schemas at Shopify over almost 3 years. The tutorial has evolved and will continue to change in the future so nothing is set in stone.](https://github.com/Shopify/graphql-design-tutorial)
 
-# graphq subscription testing steps:
+# graphql subscription testing steps:
 1. set subscription url on Altar: ws://localhost:8888/subscriptions
 ![set subscription url on Altar](document/set-subscription-url-onAltar.jpg)
 2. add values to redis stream "my-stream"

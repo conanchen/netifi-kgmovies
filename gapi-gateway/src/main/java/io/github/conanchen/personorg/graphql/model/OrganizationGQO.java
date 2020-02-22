@@ -16,10 +16,6 @@ public interface OrganizationGQO {
 
     Collection<PersonGQO> getFollowees();
 
-    Collection<ConversationGQO> getAvailableConversations();
-
-    ConversationGQO getDefaultConversation();
-
     Collection<ActionGQO> getPotentialActions();
 
     Collection<MembershipGQO> getMembers();

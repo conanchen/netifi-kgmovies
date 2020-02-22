@@ -2,11 +2,13 @@ package io.github.conanchen.shoppingdoor.graphql.model;
 
 import java.util.Collection;
 import io.github.conanchen.intangible.graphql.model.ReviewGQO;
+import io.github.conanchen.message.graphql.model.ConversationGQO;
 import io.github.conanchen.personorg.graphql.model.OrganizationGQO;
+import io.github.conanchen.zommon.graphql.model.ConversationalThingGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQO, NodeGQO{
+public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQO, ConversationalThingGQO, NodeGQO{
 
     private Boolean isOrderable;
     private String name;
@@ -21,13 +23,15 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     private AggregateOfferGQO offers;
     private Collection<DemandGQO> demands;
     private Collection<ReviewGQO> review;
+    private Collection<ConversationGQO> availableConversations;
+    private ConversationGQO defaultConversation;
     @javax.validation.constraints.NotNull
     private String id;
 
     public GeneralProductGQO() {
     }
 
-    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, Collection<ProductModelGQO> models, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, Collection<ProductModelGQO> models, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, String id) {
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;
@@ -41,6 +45,8 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
         this.offers = offers;
         this.demands = demands;
         this.review = review;
+        this.availableConversations = availableConversations;
+        this.defaultConversation = defaultConversation;
         this.id = id;
     }
 
@@ -133,6 +139,20 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     }
     public void setReview(Collection<ReviewGQO> review) {
         this.review = review;
+    }
+
+    public Collection<ConversationGQO> getAvailableConversations() {
+        return availableConversations;
+    }
+    public void setAvailableConversations(Collection<ConversationGQO> availableConversations) {
+        this.availableConversations = availableConversations;
+    }
+
+    public ConversationGQO getDefaultConversation() {
+        return defaultConversation;
+    }
+    public void setDefaultConversation(ConversationGQO defaultConversation) {
+        this.defaultConversation = defaultConversation;
     }
 
     public String getId() {

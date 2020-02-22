@@ -1,6 +1,6 @@
 extend type Query {
     organization(id: ID, organizationID: ID): Organization
-    defaultOrganization(id: ID, organizationID: ID): DefaultOrganization
+    generalOrganization(id: ID, organizationID: ID): GeneralOrganization
     
 }
 
@@ -91,12 +91,6 @@ interface Organization {
 
     """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
     followees: [Person]
-
-    """可以访问的会话"""
-    availableConversations: [Conversation]
-
-    """ 本组织默认可访问的会话 """
-    defaultConversation: Conversation
     
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]
@@ -111,7 +105,7 @@ interface Organization {
 也用于临时几个人组成的聊天小组，房间
 http://cnschema.org/Organization
 """
-type DefaultOrganization  implements Thing & Organization & Party & Node{
+type GeneralOrganization  implements Thing & Organization & ConversationalThing & Party & Node{
 
     """【名称】 条目的名称 The name of the item."""
     name: String!

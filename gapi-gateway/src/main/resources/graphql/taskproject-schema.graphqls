@@ -5,7 +5,7 @@ extend type Query {
 }
 
 """an individual or collaborative enterprise that is carefully planned to achieve a particular aim."""
-type Project implements Thing & Organization &  Node{
+type Project implements Thing & Organization & ConversationalThing &  Node{
 # Properties from Thing    
     """name	Text 	The name of the item."""
     name: String
