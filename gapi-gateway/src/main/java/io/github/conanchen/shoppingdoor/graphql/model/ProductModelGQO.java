@@ -6,8 +6,11 @@ import io.github.conanchen.personorg.graphql.model.OrganizationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQO, NodeGQO{
+public class ProductModelGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
 
+    private ProductModelGQO isVariantOf;
+    private ProductModelGQO predecessorOf;
+    private ProductModelGQO successorOf;
     private Boolean isOrderable;
     private String name;
     private String alternateName;
@@ -16,18 +19,19 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     private Collection<ProductGQO> isRelatedTo;
     private Collection<ProductGQO> isSimilarTo;
     private OrganizationGQO manufacturer;
-    private Collection<ItemCategoryGQO> itemCategory;
-    private Collection<ProductModelGQO> models;
     private AggregateOfferGQO offers;
     private Collection<DemandGQO> demands;
     private Collection<ReviewGQO> review;
     @javax.validation.constraints.NotNull
     private String id;
 
-    public GeneralProductGQO() {
+    public ProductModelGQO() {
     }
 
-    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, Collection<ProductModelGQO> models, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public ProductModelGQO(ProductModelGQO isVariantOf, ProductModelGQO predecessorOf, ProductModelGQO successorOf, Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+        this.isVariantOf = isVariantOf;
+        this.predecessorOf = predecessorOf;
+        this.successorOf = successorOf;
         this.isOrderable = isOrderable;
         this.name = name;
         this.alternateName = alternateName;
@@ -36,12 +40,31 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
         this.isRelatedTo = isRelatedTo;
         this.isSimilarTo = isSimilarTo;
         this.manufacturer = manufacturer;
-        this.itemCategory = itemCategory;
-        this.models = models;
         this.offers = offers;
         this.demands = demands;
         this.review = review;
         this.id = id;
+    }
+
+    public ProductModelGQO getIsVariantOf() {
+        return isVariantOf;
+    }
+    public void setIsVariantOf(ProductModelGQO isVariantOf) {
+        this.isVariantOf = isVariantOf;
+    }
+
+    public ProductModelGQO getPredecessorOf() {
+        return predecessorOf;
+    }
+    public void setPredecessorOf(ProductModelGQO predecessorOf) {
+        this.predecessorOf = predecessorOf;
+    }
+
+    public ProductModelGQO getSuccessorOf() {
+        return successorOf;
+    }
+    public void setSuccessorOf(ProductModelGQO successorOf) {
+        this.successorOf = successorOf;
     }
 
     public Boolean getIsOrderable() {
@@ -98,20 +121,6 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     }
     public void setManufacturer(OrganizationGQO manufacturer) {
         this.manufacturer = manufacturer;
-    }
-
-    public Collection<ItemCategoryGQO> getItemCategory() {
-        return itemCategory;
-    }
-    public void setItemCategory(Collection<ItemCategoryGQO> itemCategory) {
-        this.itemCategory = itemCategory;
-    }
-
-    public Collection<ProductModelGQO> getModels() {
-        return models;
-    }
-    public void setModels(Collection<ProductModelGQO> models) {
-        this.models = models;
     }
 
     public AggregateOfferGQO getOffers() {

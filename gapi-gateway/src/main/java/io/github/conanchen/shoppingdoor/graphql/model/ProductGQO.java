@@ -24,11 +24,7 @@ public interface ProductGQO {
 
     Collection<ItemCategoryGQO> getItemCategory();
 
-    ProductGQO getIsVariantOf();
-
-    ProductGQO getPredecessorOf();
-
-    ProductGQO getSuccessorOf();
+    Collection<ProductModelGQO> getModels();
 
     AggregateOfferGQO getOffers();
 

@@ -52,14 +52,8 @@ interface Product {
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """isVariantOf	ProductModel 	A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive."""
-    isVariantOf:	Product
-
-    """predecessorOf	ProductModel 	A pointer from a previous, often discontinued variant of the product to its newer variant."""
-    predecessorOf:	Product
-
-    """successorOf	ProductModel 	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
-    successorOf:	Product
+    """【型号】 产品的型号。可以是ProductModel类型的URL或者是型号标识的文本表示。ProductModel类型实体的URL可以来自外部来源。建议通过属性gtin8/gtin13/gtin14和mpn额外提供强产品标识。 The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties."""
+    models: [ProductModel]
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
@@ -74,9 +68,18 @@ interface Product {
 
 }
 
-"""https://schema.org/Product
-Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."""
-type GeneralProduct implements Thing & Product & OrderableThing & Node{
+"""http://cnschema.org/ProductModel (相当与ProductVariant产品变形)【产品型号】制造厂商用来提供每一个特殊类别产品的标识。 A datasheet or vendor specification of a product (in the sense of a prototypical description)."""
+type ProductModel implements Thing & OrderableThing & Node{
+    """【变形】 是他的一种变形 	A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive."""
+    isVariantOf:	ProductModel
+
+    """【上一代型号】 产品的上一代型号 	A pointer from a previous, often discontinued variant of the product to its newer variant."""
+    predecessorOf:	ProductModel
+
+    """【上一代型号】 新一代的产品之前的产品，通常是已经停产的产品  	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
+    successorOf:	ProductModel
+
+    # Properties from OrderableThing etc.
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
@@ -103,25 +106,59 @@ type GeneralProduct implements Thing & Product & OrderableThing & Node{
     """ 	The manufacturer of the product."""
     manufacturer:	Organization
 
-    """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
-    itemCategory: [ItemCategory]
-
-    """isVariantOf	ProductModel 	A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive."""
-    isVariantOf:	Product
-
-    """predecessorOf	ProductModel 	A pointer from a previous, often discontinued variant of the product to its newer variant."""
-    predecessorOf:	Product
-
-    """successorOf	ProductModel 	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
-    successorOf:	Product
-
-
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    demands: [Demand]
+
+    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
+    review: [Review]
+
+    """The id of the object."""
+    id: ID!
+
+}
+
+"""https://schema.org/Product
+Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."""
+type GeneralProduct implements Thing & Product & OrderableThing & Node{
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
+
+    """name	Text 	The name of the item."""
+    name: String
+
+    """alternateName	Text 	An alias for the item."""
+    alternateName: String
+
+    """description	Text 	A description of the item."""
+    description: String
+
+    """productID	Text 	The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
+    productID: String
+
+    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo: [Product]
+    
+    """isSimilarTo	Product  or Service 	A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo: [Product]
+
+    """ 	The manufacturer of the product."""
+    manufacturer:	Organization
+
+    """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
+    itemCategory: [ItemCategory]
+
+    """【型号】 产品的型号。可以是ProductModel类型的URL或者是型号标识的文本表示。ProductModel类型实体的URL可以来自外部来源。建议通过属性gtin8/gtin13/gtin14和mpn额外提供强产品标识。 The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties."""
+    models: [ProductModel]
+
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers: AggregateOffer
+
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -195,12 +232,10 @@ interface Service {
     The hours during which this service or contact is available."""
     hoursAvailable:	OpeningHoursSpecification
 
-    """isRelatedTo	Product  or
-    Service 	A pointer to another, somehow related product (or multiple products)."""
+    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
     isRelatedTo:	Product
 
-    """isSimilarTo	Product  or
-    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    """isSimilarTo	Product  or Service 	A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
@@ -209,12 +244,10 @@ interface Service {
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -249,12 +282,10 @@ type GeneralService implements Thing & OrderableThing & Service & Node{
     The hours during which this service or contact is available."""
     hoursAvailable:	OpeningHoursSpecification
 
-    """isRelatedTo	Product  or
-    Service 	A pointer to another, somehow related product (or multiple products)."""
+    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
     isRelatedTo:	Product
 
-    """isSimilarTo	Product  or
-    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    """isSimilarTo	Product  or Service 	A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
@@ -263,12 +294,10 @@ type GeneralService implements Thing & OrderableThing & Service & Node{
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -307,12 +336,10 @@ type FoodService implements Thing & OrderableThing & Service & Node{
     The hours during which this service or contact is available."""
     hoursAvailable:	OpeningHoursSpecification
 
-    """isRelatedTo	Product  or
-    Service 	A pointer to another, somehow related product (or multiple products)."""
+    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
     isRelatedTo:	Product
 
-    """isSimilarTo	Product  or
-    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    """isSimilarTo	Product  or  Service 	A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
@@ -321,12 +348,10 @@ type FoodService implements Thing & OrderableThing & Service & Node{
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -365,12 +390,10 @@ type HousekeepingService implements Thing & OrderableThing & Service & Node{
     The hours during which this service or contact is available."""
     hoursAvailable:	OpeningHoursSpecification
 
-    """isRelatedTo	Product  or
-    Service 	A pointer to another, somehow related product (or multiple products)."""
+    """isRelatedTo	Product  or  Service 	A pointer to another, somehow related product (or multiple products)."""
     isRelatedTo:	Product
 
-    """isSimilarTo	Product  or
-    Service 	A pointer to another, functionally similar product (or multiple products)."""
+    """isSimilarTo	Product  or  Service 	A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:	Service
 
     """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
@@ -379,12 +402,10 @@ type HousekeepingService implements Thing & OrderableThing & Service & Node{
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
