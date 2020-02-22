@@ -3,6 +3,7 @@ package io.github.example.graphql.subscription;
 import java.util.Map;
 
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
+import io.github.example.graphql.model.MapRecordGQO;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,23 @@ public class HelloSubscriptionResolver implements GraphQLSubscriptionResolver {
 
         Flux<Map<String, String>> vs = messages.map(MapRecord::getValue);
 
-        return vs.switchMap(v -> new Publisher<String>(){
+        return vs.switchMap(v -> new Publisher<String>() {
             @Override
             public void subscribe(Subscriber<? super String> s) {
                 s.onNext(v.values().toString());
             }
-        } );
+        });
+    }
+
+    public Publisher<MapRecordGQO> helloRedisMapRecord() {
+        final Flux<MapRecord<String, String, String>> messages = streamReceiver.receive(StreamOffset.fromStart(SensorData.KEY));
+
+        return messages.switchMap(v-> new Publisher<MapRecordGQO>() {
+            @Override
+            public void subscribe(Subscriber<? super MapRecordGQO> s) {
+                s.onNext(new MapRecordGQO(v.getStream(),v.getId().getValue(),v.getValue().toString()));
+            }
+        });
     }
 
 }

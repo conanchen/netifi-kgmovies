@@ -14,7 +14,8 @@ extend type Mutation {
 type Subscription {
     helloWorld : String!
     helloRedis : String!    
-    helloRedis2 : String!    
+    helloRedis2 : String!
+    helloRedisMapRecord : MapRecordGQO!
 }
 
 type HelloPerson {
@@ -22,4 +23,13 @@ type HelloPerson {
     firstName: String!
     lastName: String!
     fullName: String!
+}
+
+type MapRecordGQO{
+    """ stream key"""
+    stream: String
+    """ redis stream value id"""
+    id:String
+    """ value map"""
+    v:String
 }
