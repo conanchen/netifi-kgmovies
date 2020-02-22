@@ -27,9 +27,9 @@ public class HelloQueryResolver implements GraphQLQueryResolver {
         // Optional.ofNullable(who).orElse("GraphQL"),pdpData.getDescription());
     }
 
-    public Publisher<String> helloWorldReactive(final String who) {
+    public  String helloWorldReactive(final String who) {
         //TODO: https://spring.io/guides/gs/spring-data-reactive-redis/
-        return  Flux.just("Hello", "World Reactive!");
+        return  Flux.just("Hello", "World Reactive!").blockLast();
       }
     
     
