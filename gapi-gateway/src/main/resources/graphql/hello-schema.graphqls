@@ -12,6 +12,7 @@ extend type Mutation {
 
 type Subscription {
     helloWorld : String!
+    helloRedis : String!    
 }
 
 type HelloPerson {
