@@ -4,14 +4,18 @@ import io.github.conanchen.message.graphql.model.MessageGQO;
 import io.github.conanchen.personorg.graphql.model.PersonGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
+
+import java.util.Collection;
 
 public class UpdateActionGQO implements ActionGQO, NodeGQO{
 
-    private PersonGQO agent;
+    private Collection<PersonGQO> agent;
+    private Collection<PersonGQO> participant;
+    private ThingGQO object;
     private java.util.Date startTime;
     private java.util.Date endTime;
     private PlaceGQO location;
-    private MessageGQO object;
     private String description;
     @javax.validation.constraints.NotNull
     private String id;
@@ -19,21 +23,36 @@ public class UpdateActionGQO implements ActionGQO, NodeGQO{
     public UpdateActionGQO() {
     }
 
-    public UpdateActionGQO(PersonGQO agent, java.util.Date startTime, java.util.Date endTime, PlaceGQO location, MessageGQO object, String description, String id) {
+    public UpdateActionGQO(Collection<PersonGQO> agent, Collection<PersonGQO> participant, ThingGQO object, java.util.Date startTime, java.util.Date endTime, PlaceGQO location, String description, String id) {
         this.agent = agent;
+        this.participant = participant;
+        this.object = object;
         this.startTime = startTime;
         this.endTime = endTime;
         this.location = location;
-        this.object = object;
         this.description = description;
         this.id = id;
     }
 
-    public PersonGQO getAgent() {
+    public Collection<PersonGQO> getAgent() {
         return agent;
     }
-    public void setAgent(PersonGQO agent) {
+    public void setAgent(Collection<PersonGQO> agent) {
         this.agent = agent;
+    }
+
+    public Collection<PersonGQO> getParticipant() {
+        return participant;
+    }
+    public void setParticipant(Collection<PersonGQO> participant) {
+        this.participant = participant;
+    }
+
+    public ThingGQO getObject() {
+        return object;
+    }
+    public void setObject(ThingGQO object) {
+        this.object = object;
     }
 
     public java.util.Date getStartTime() {
@@ -55,13 +74,6 @@ public class UpdateActionGQO implements ActionGQO, NodeGQO{
     }
     public void setLocation(PlaceGQO location) {
         this.location = location;
-    }
-
-    public MessageGQO getObject() {
-        return object;
-    }
-    public void setObject(MessageGQO object) {
-        this.object = object;
     }
 
     public String getDescription() {
