@@ -4,12 +4,14 @@ import java.util.*;
 import io.github.conanchen.gobject.graphql.api.*;
 import io.github.conanchen.personorg.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class GxcellGQO implements NodeGQO {
+public class GxcellGQO implements NodeGQO{
 
     private Integer rowNo;
     private Integer colNo;
     private String value;
+    private ThingGQO valueFrom;
     private String formula;
     private PersonGQO editingBy;
     private java.util.Date editingStarted;
@@ -22,10 +24,11 @@ public class GxcellGQO implements NodeGQO {
     public GxcellGQO() {
     }
 
-    public GxcellGQO(Integer rowNo, Integer colNo, String value, String formula, PersonGQO editingBy, java.util.Date editingStarted, PersonGQO creator, java.util.Date dateCreated, java.util.Date dateModified, String id) {
+    public GxcellGQO(Integer rowNo, Integer colNo, String value, ThingGQO valueFrom, String formula, PersonGQO editingBy, java.util.Date editingStarted, PersonGQO creator, java.util.Date dateCreated, java.util.Date dateModified, String id) {
         this.rowNo = rowNo;
         this.colNo = colNo;
         this.value = value;
+        this.valueFrom = valueFrom;
         this.formula = formula;
         this.editingBy = editingBy;
         this.editingStarted = editingStarted;
@@ -54,6 +57,13 @@ public class GxcellGQO implements NodeGQO {
     }
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public ThingGQO getValueFrom() {
+        return valueFrom;
+    }
+    public void setValueFrom(ThingGQO valueFrom) {
+        this.valueFrom = valueFrom;
     }
 
     public String getFormula() {

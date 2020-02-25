@@ -198,6 +198,9 @@ type Gxcell implements Node{
     """单元格值"""
     value: String
 
+    """单元格值可从引用Thing的某个属性"""
+    valueFrom: Thing
+
     """单元格值公式"""
     formula: String
 
