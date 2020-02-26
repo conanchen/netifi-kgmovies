@@ -3,12 +3,18 @@ extend type Query {
     readAction(id: ID, actionId: ID): ReadAction
     updateAction(id: ID, actionId: ID): UpdateAction
     deleteAction(id: ID, actionId: ID): DeleteAction
+    transferAction(id: ID, actionId: ID): TransferAction
+    authorizeAction(id: ID, actionId: ID): AuthorizeAction
+    assignAction(id: ID, actionId: ID): AssignAction
+    rejectAction(id: ID, actionId: ID): RejectAction
+    acceptAction(id: ID, actionId: ID): AcceptAction
+
 }
 
 
 """
 Canonical URL: http://cnschema.org/Action
-【动作】由直接代理人和间接参与者在一个直接对象上执行的操作。 有时可以在一个有无生命仪器帮助的地点发生。 该动作的执行可能会产生一个结果。 具体操作子类型文档指定每个参数/角色的准确期望值。 
+【动作】由直接代理人和间接参与者在一个直接对象上执行的操作。 有时可以在一个有无生命仪器帮助的地点发生。 该动作的执行可能会产生一个结果。 具体操作子类型文档指定每个参数/角色的准确期望值。
 [Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)
 MoveAction, TransferAction, TradeAction, ControlAction, AchieveAction, OrganizeAction
 AssessAction, InteractAction, ConsumeAction, CreateAction, PlayAction, SearchAction, FindAction, UpdateAction
@@ -24,7 +30,7 @@ interface Action{
     object: Thing
 
     """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
-    target:	EntryPoint
+    target:    EntryPoint
 
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
@@ -39,7 +45,7 @@ interface Action{
     description: String
 }
 
-
+"""【动作：新建】创造/生产/生成/构建结果的行为。 The act of deliberately creating/producing/generating/building a result out of the agent."""
 type CreateAction implements Action & Node{
     """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
     agent: [Person]
@@ -51,7 +57,38 @@ type CreateAction implements Action & Node{
     object: Thing
 
     """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
-    target:	EntryPoint
+    target:    EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+
+"""【动作：转移】将有生命体或无生命物体从一个地方转移/移动（抽象或具体）的行为到另一个地方。 """
+type TransferAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:    EntryPoint
 
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
@@ -80,7 +117,7 @@ type ReadAction implements Action & Node{
     object: Thing
 
     """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
-    target:	EntryPoint
+    target:    EntryPoint
 
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
@@ -98,6 +135,7 @@ type ReadAction implements Action & Node{
     id: ID!
 }
 
+"""【动作：更新】通过更改/编辑对象的状态来管理的行为。 The act of managing by changing/editing the state of the object."""
 type UpdateAction implements Action & Node{
     """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
     agent: [Person]
@@ -109,7 +147,7 @@ type UpdateAction implements Action & Node{
     object: Thing
 
     """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
-    target:	EntryPoint
+    target:    EntryPoint
 
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
@@ -138,7 +176,7 @@ type DeleteAction implements Action & Node{
     object: Thing
 
     """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
-    target:	EntryPoint
+    target:    EntryPoint
 
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
@@ -156,11 +194,136 @@ type DeleteAction implements Action & Node{
     id: ID!
 }
 
+"""http://cnschema.org/AuthorizeAction 动作：【批准】向对象授予权限的行为。 The act of granting permission to an object."""
+type AuthorizeAction implements Action & Node{
+    """【接收者】 参与者的子属性。 在行动接收端的参与者。 A sub property of participant. The participant who is at the receiving end of the action."""
+    recipient: [Person]
+
+    #    Properties from Action
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:    EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""【动作：指派】将动作/事件/任务分配给某个目的地（某人或某事）的行为 The act of allocating an action/event/task to some destination (someone or something)."""
+type AssignAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:    EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""【动作：拒绝】拒绝接受某事物的行为。 The act of rejecting to/adopting an object."""
+type RejectAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:    EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""【动作：接受】提交或接受一个事物的动作。 相关动作: 拒绝动作: 接受动作的反义词 The act of committing to/adopting an object."""
+type AcceptAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:    EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+
 """http://cnschema.org/EntryPoint 入口】一个入口，包含一些基于web的协议 An entry point, within some Web-based protocol."""
 type EntryPoint implements  Node{
 
-    """【链接模版】 一个URL的模版，可以利用变化参数形成完整的URL。 An url template (RFC6570) that will be used to construct the target of the execution of the action.""""
-    urlTemplate:	Text
+    """【链接模版】 一个URL的模版，可以利用变化参数形成完整的URL。 An url template (RFC6570) that will be used to construct the target of the execution of the action."""
+    urlTemplate:    Text
 
     """The id of the object."""
     id: ID!

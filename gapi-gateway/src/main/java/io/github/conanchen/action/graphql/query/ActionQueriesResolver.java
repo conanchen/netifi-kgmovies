@@ -2,10 +2,7 @@ package io.github.conanchen.action.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import io.github.conanchen.action.graphql.api.Query;
-import io.github.conanchen.action.graphql.model.CreateActionGQO;
-import io.github.conanchen.action.graphql.model.DeleteActionGQO;
-import io.github.conanchen.action.graphql.model.ReadActionGQO;
-import io.github.conanchen.action.graphql.model.UpdateActionGQO;
+import io.github.conanchen.action.graphql.model.*;
 import org.springframework.stereotype.Service;
 
 
@@ -32,6 +29,31 @@ public class ActionQueriesResolver implements Query , GraphQLQueryResolver {
 
   @Override
   public DeleteActionGQO deleteAction(String id, String actionId) throws Exception {
+    return null;
+  }
+
+  @Override
+  public TransferActionGQO transferAction(String id, String actionId) throws Exception {
+    return null;
+  }
+
+  @Override
+  public AuthorizeActionGQO authorizeAction(String id, String actionId) throws Exception {
+    return null;
+  }
+
+  @Override
+  public AssignActionGQO assignAction(String id, String actionId) throws Exception {
+    return null;
+  }
+
+  @Override
+  public RejectActionGQO rejectAction(String id, String actionId) throws Exception {
+    return null;
+  }
+
+  @Override
+  public AcceptActionGQO acceptAction(String id, String actionId) throws Exception {
     return null;
   }
 

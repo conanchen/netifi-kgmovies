@@ -6,14 +6,18 @@ import io.github.conanchen.organization.graphql.model.MembershipGQO;
 import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
 import java.util.Collection;
 
-public class StoreGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO{
+public class StoreGQO implements ThingGQO, OrganizationGQO, LocalBusinessGQO, NodeGQO{
 
     private String openingHours;
     private String paymentAccepted;
     private String priceRange;
+    private String name;
+    private String alternateName;
+    private String description;
     private Collection<OrganizationGQO> parentOrganization;
     private Collection<OrganizationGQO> subOrganizations;
     private Collection<OrganizationGQO> departments;
@@ -28,10 +32,13 @@ public class StoreGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO{
     public StoreGQO() {
     }
 
-    public StoreGQO(String openingHours, String paymentAccepted, String priceRange, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
+    public StoreGQO(String openingHours, String paymentAccepted, String priceRange, String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
         this.openingHours = openingHours;
         this.paymentAccepted = paymentAccepted;
         this.priceRange = priceRange;
+        this.name = name;
+        this.alternateName = alternateName;
+        this.description = description;
         this.parentOrganization = parentOrganization;
         this.subOrganizations = subOrganizations;
         this.departments = departments;
@@ -62,6 +69,27 @@ public class StoreGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO{
     }
     public void setPriceRange(String priceRange) {
         this.priceRange = priceRange;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAlternateName() {
+        return alternateName;
+    }
+    public void setAlternateName(String alternateName) {
+        this.alternateName = alternateName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Collection<OrganizationGQO> getParentOrganization() {

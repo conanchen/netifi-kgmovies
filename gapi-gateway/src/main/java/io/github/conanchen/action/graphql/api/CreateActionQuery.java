@@ -1,6 +1,7 @@
 package io.github.conanchen.action.graphql.api;
 
-import io.github.conanchen.action.graphql.model.CreateActionGQO;
+import java.util.*;
+import io.github.conanchen.action.graphql.model.*;
 
 public interface CreateActionQuery {
 
