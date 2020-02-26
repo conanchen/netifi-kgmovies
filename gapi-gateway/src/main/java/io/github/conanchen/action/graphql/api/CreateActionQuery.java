@@ -5,6 +5,6 @@ import io.github.conanchen.action.graphql.model.*;
 
 public interface CreateActionQuery {
 
-    CreateActionGQO createAction(String id, String createActionID) throws Exception;
+    CreateActionGQO createAction(String id, String actionId) throws Exception;
 
 }

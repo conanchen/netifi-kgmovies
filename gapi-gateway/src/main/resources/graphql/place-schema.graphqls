@@ -14,7 +14,7 @@ extend type Query {
 
 
 """https://schema.org/Store A retail good store."""
-type Store implements LocalBusiness & Node{
+type Store implements Organization & LocalBusiness & Node{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
     openingHours: String
 
@@ -23,6 +23,29 @@ type Store implements LocalBusiness & Node{
 
     """priceRange	Text 	The price range of the business, for example $$$."""
     priceRange: String
+
+    #    Properties from Organization
+    """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
+    parentOrganization: [Organization]
+
+    """【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。"""
+    subOrganizations: [Organization]
+
+    """【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe."""
+    departments: [Organization]
+
+    """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
+    employees:[Person]
+
+    """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
+    followees: [Person]
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [Action]
+
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
+    members: [Membership]
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MembershipConnection
 
     """The id of the object."""
     id: ID!
@@ -66,7 +89,7 @@ type StoresEdge {
 }
 
 """https://schema.org/ChildCare A Childcare center.托儿所"""
-type Childcare implements LocalBusiness & Node{
+type Childcare implements Organization & LocalBusiness & Node{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
     openingHours: String
 
@@ -75,13 +98,36 @@ type Childcare implements LocalBusiness & Node{
 
     """priceRange	Text 	The price range of the business, for example $$$."""
     priceRange: String
+
+    #    Properties from Organization
+    """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
+    parentOrganization: [Organization]
+
+    """【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。"""
+    subOrganizations: [Organization]
+
+    """【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe."""
+    departments: [Organization]
+
+    """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
+    employees:[Person]
+
+    """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
+    followees: [Person]
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [Action]
+
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
+    members: [Membership]
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MembershipConnection
 
     """The id of the object."""
     id: ID!
 }
 
 """https://schema.org/ChildCare A Childcare center.托老所"""
-type Eldercare implements LocalBusiness & Node{
+type Eldercare implements Organization & LocalBusiness & Node{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
     openingHours: String
 
@@ -90,6 +136,29 @@ type Eldercare implements LocalBusiness & Node{
 
     """priceRange	Text 	The price range of the business, for example $$$."""
     priceRange: String
+
+    #    Properties from Organization
+    """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
+    parentOrganization: [Organization]
+
+    """【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。"""
+    subOrganizations: [Organization]
+
+    """【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe."""
+    departments: [Organization]
+
+    """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
+    employees:[Person]
+
+    """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
+    followees: [Person]
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [Action]
+
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
+    members: [Membership]
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MembershipConnection
 
     """The id of the object."""
     id: ID!

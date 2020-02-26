@@ -1,6 +1,8 @@
 extend type Query {
-    createAction(id: ID, createActionID: ID): CreateAction
-    updateAction(id: ID, updateActionID: ID): UpdateAction
+    createAction(id: ID, actionId: ID): CreateAction
+    readAction(id: ID, actionId: ID): ReadAction
+    updateAction(id: ID, actionId: ID): UpdateAction
+    deleteAction(id: ID, actionId: ID): DeleteAction
 }
 
 
@@ -67,7 +69,65 @@ type CreateAction implements Action & Node{
     id: ID!
 }
 
+type ReadAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
 type UpdateAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+type DeleteAction implements Action & Node{
     """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
     agent: [Person]
 
