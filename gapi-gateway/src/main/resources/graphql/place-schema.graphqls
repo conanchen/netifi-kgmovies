@@ -1,28 +1,39 @@
 extend type Query {
-  defaultPlace(id: ID, defID: ID): DefaultPlace
-  administrativeArea(id: ID, defID: ID): AdministrativeArea
+    defaultPlaceFind(id: ID, defID: ID): DefaultPlace
+    administrativeAreaFind(id: ID, defID: ID): AdministrativeArea
 
-  allStores(after: String, first: Int, before: String, last: Int): StoresConnection
-  store(id: ID, storeID: ID): Store
+    storeSearch(filter: StoreFilter, order: StoreOrder, first: Int, offset: Int): StoresConnection
+    storeFind(id: ID, storeID: ID): Store
 
-  childcare(id: ID, lbsID: ID): Childcare
-  eldercare(id: ID, lbsID: ID): Eldercare
+    childcareFind(id: ID, lbsID: ID): Childcare
+    eldercareFind(id: ID, lbsID: ID): Eldercare
 
-  allLocalBusiness(after: String, first: Int, before: String, last: Int): LocalBusinessConnection
-  localBusiness(id: ID, lbsID: ID): LocalBusiness
+    localBusinessSearch(filter: LocalBusinessFilter, order: LocalBusinessOrder, first: Int, offset: Int): LocalBusinessConnection
+    localBusinessFind(id: ID, lbsID: ID): LocalBusiness
 }
 
 
 """https://schema.org/Store A retail good store."""
-type Store implements Organization & LocalBusiness & Node{
+type Store implements Thing & Organization & LocalBusiness & Node{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
     openingHours: String
 
-    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    """paymentAccepted    Text    Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
     paymentAccepted: String
 
-    """priceRange	Text 	The price range of the business, for example $$$."""
+    """priceRange    Text    The price range of the business, for example $$$."""
     priceRange: String
+
+    #    Prperties from Thing
+    """name    Text    The name of the item."""
+    name: String
+
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
 
     #    Properties from Organization
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
@@ -54,38 +65,38 @@ type Store implements Organization & LocalBusiness & Node{
 
 """A connection to a list of items."""
 type StoresConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [StoresEdge]
+    """A list of edges."""
+    edges: [StoresEdge]
 
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
 
-  """
-  A list of all of the objects returned in the connection. This is a convenience
-  field provided for quickly exploring the API; rather than querying for
-  "{ edges { node } }" when no edge data is needed, this field can be be used
-  instead. Note that when clients like Relay need to fetch the "cursor" field on
-  the edge to enable efficient pagination, this shortcut cannot be used, and the
-  full "{ edges { node } }" version should be used instead.
-  """
-  films: [Store]
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    films: [Store]
 }
 
 """An edge in a connection."""
 type StoresEdge {
-  """The item at the end of the edge"""
-  node: Store
+    """The item at the end of the edge"""
+    node: Store
 
-  """A cursor for use in pagination"""
-  cursor: String!
+    """A cursor for use in pagination"""
+    cursor: String!
 }
 
 """https://schema.org/ChildCare A Childcare center.托儿所"""
@@ -93,10 +104,10 @@ type Childcare implements Organization & LocalBusiness & Node{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
     openingHours: String
 
-    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    """paymentAccepted    Text    Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
     paymentAccepted: String
 
-    """priceRange	Text 	The price range of the business, for example $$$."""
+    """priceRange    Text    The price range of the business, for example $$$."""
     priceRange: String
 
     #    Properties from Organization
@@ -131,10 +142,10 @@ type Eldercare implements Organization & LocalBusiness & Node{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
     openingHours: String
 
-    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    """paymentAccepted    Text    Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
     paymentAccepted: String
 
-    """priceRange	Text 	The price range of the business, for example $$$."""
+    """priceRange    Text    The price range of the business, for example $$$."""
     priceRange: String
 
     #    Properties from Organization
@@ -167,13 +178,13 @@ type Eldercare implements Organization & LocalBusiness & Node{
 
 """【地方】广泛意义上的一个地方 Entities that have a somewhat fixed, physical extension."""
 type DefaultPlace implements Place & Node{
-    """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
+    """address    PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place
     【地址】 该项的物理地址。 Physical address of the item."""
     address: String
     """【包含在】 地点的包含关系 The basic containment relation between a place and one that contains it."""
     containedInPlace: Place
     """【包含】 地点的包含关系 The basic containment relation between a place and another that it contains."""
-    containsPlaces:	[Place]	
+    containsPlaces:    [Place]
     """【经纬度】 地理位置的坐标。 The geo coordinates of the place."""
     geo: GeoCoordinates
 
@@ -183,13 +194,13 @@ type DefaultPlace implements Place & Node{
 
 """http://cnschema.org/AdministrativeArea【行政区】一个地理区域，一般由特定政府管辖。 A geographical region, typically under the jurisdiction of a particular government."""
 type AdministrativeArea implements Place & Node{
-    """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
+    """address    PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place
     【地址】 该项的物理地址。 Physical address of the item."""
     address: String
     """【包含在】 地点的包含关系 The basic containment relation between a place and one that contains it."""
     containedInPlace: Place
     """【包含】 地点的包含关系 The basic containment relation between a place and another that it contains."""
-    containsPlaces:	[Place]	
+    containsPlaces:    [Place]
     """【经纬度】 地理位置的坐标。 The geo coordinates of the place."""
     geo: GeoCoordinates
 
@@ -201,19 +212,19 @@ type AdministrativeArea implements Place & Node{
 """【经纬度】一个地点或事件的经纬坐标 The geographic coordinates of a place or event."""
 type GeoCoordinates implements Node{
 
-    """elevation	Text or Number or GeoCoordinates or GeoShape	
+    """elevation    Text or Number or GeoCoordinates or GeoShape
     【海拔高度】 该地的高程。 The elevation of a location (WGS 84)."""
     elevation: Int
 
-    """latitude	Text or Number or GeoCoordinates	
+    """latitude    Text or Number or GeoCoordinates
     【纬度】 一个位置的纬度 The latitude of a location. For example 37.42242 (WGS 84)."""
     latitude: Int
 
-    """longitude	Text or Number or GeoCoordinates	
+    """longitude    Text or Number or GeoCoordinates
     【经度】 位置的经度 The longitude of a location. For example -122.08585 (WGS 84)."""
     longitude: Int
 
-    """postalCode	Text or GeoShape or PostalAddress or GeoCoordinates	
+    """postalCode    Text or GeoShape or PostalAddress or GeoCoordinates
     【邮政编码】 邮政编码，例如94043 The postal code. For example, 94043."""
     postalCode: String
 
@@ -225,13 +236,13 @@ type GeoCoordinates implements Node{
 
 """【地方】广泛意义上的一个地方 Entities that have a somewhat fixed, physical extension."""
 interface Place {
-    """address	PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place	
+    """address    PostalAddress or Text or GeoShape or Organization or GeoCoordinates or Person or Place
     【地址】 该项的物理地址。 Physical address of the item."""
     address: String
     """【包含在】 地点的包含关系 The basic containment relation between a place and one that contains it."""
     containedInPlace: Place
     """【包含】 地点的包含关系 The basic containment relation between a place and another that it contains."""
-    containsPlaces:	[Place]	
+    containsPlaces:    [Place]
     """【经纬度】 地理位置的坐标。 The geo coordinates of the place."""
     geo: GeoCoordinates
 }
@@ -241,10 +252,10 @@ interface LocalBusiness{
     """openingHours The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. """
     openingHours: String
 
-    """paymentAccepted	Text 	Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
+    """paymentAccepted    Text    Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc."""
     paymentAccepted: String
 
-    """priceRange	Text 	The price range of the business, for example $$$."""
+    """priceRange    Text    The price range of the business, for example $$$."""
     priceRange: String
 
 }
@@ -252,37 +263,53 @@ interface LocalBusiness{
 
 """A connection to a list of items."""
 type LocalBusinessConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [LocalBusinessEdge]
+    """A list of edges."""
+    edges: [LocalBusinessEdge]
 
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
 
-  """
-  A list of all of the objects returned in the connection. This is a convenience
-  field provided for quickly exploring the API; rather than querying for
-  "{ edges { node } }" when no edge data is needed, this field can be be used
-  instead. Note that when clients like Relay need to fetch the "cursor" field on
-  the edge to enable efficient pagination, this shortcut cannot be used, and the
-  full "{ edges { node } }" version should be used instead.
-  """
-  localBusiness: [LocalBusiness]
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    localBusiness: [LocalBusiness]
 }
 
 """An edge in a connection."""
 type LocalBusinessEdge {
-  """The item at the end of the edge"""
-  node: LocalBusiness
+    """The item at the end of the edge"""
+    node: LocalBusiness
 
-  """A cursor for use in pagination"""
-  cursor: String!
+    """A cursor for use in pagination"""
+    cursor: String!
+}
+
+input LocalBusinessOrder {
+    name: String
+}
+
+input LocalBusinessFilter {
+    name: String
+}
+
+input StoreOrder {
+    name: String
+}
+
+input StoreFilter {
+    name: String
 }
 
