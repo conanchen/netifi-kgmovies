@@ -11,44 +11,44 @@ public class ConversationsConnectionGQO {
     private PageInfoGQO pageInfo;
     private Collection<ConversationsEdgeGQO> edges;
     private Integer totalCount;
-    private Collection<ConversationGQO> films;
+    private Collection<ConversationGQO> items;
 
     public ConversationsConnectionGQO() {
     }
 
-    public ConversationsConnectionGQO(final PageInfoGQO pageInfo, final Collection<ConversationsEdgeGQO> edges, final Integer totalCount, final Collection<ConversationGQO> films) {
+    public ConversationsConnectionGQO(PageInfoGQO pageInfo, Collection<ConversationsEdgeGQO> edges, Integer totalCount, Collection<ConversationGQO> items) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
-        this.films = films;
+        this.items = items;
     }
 
     public PageInfoGQO getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(final PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfoGQO pageInfo) {
         this.pageInfo = pageInfo;
     }
 
     public Collection<ConversationsEdgeGQO> getEdges() {
         return edges;
     }
-    public void setEdges(final Collection<ConversationsEdgeGQO> edges) {
+    public void setEdges(Collection<ConversationsEdgeGQO> edges) {
         this.edges = edges;
     }
 
     public Integer getTotalCount() {
         return totalCount;
     }
-    public void setTotalCount(final Integer totalCount) {
+    public void setTotalCount(Integer totalCount) {
         this.totalCount = totalCount;
     }
 
-    public Collection<ConversationGQO> getFilms() {
-        return films;
+    public Collection<ConversationGQO> getItems() {
+        return items;
     }
-    public void setFilms(final Collection<ConversationGQO> films) {
-        this.films = films;
+    public void setItems(Collection<ConversationGQO> items) {
+        this.items = items;
     }
 
 }

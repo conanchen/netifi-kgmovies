@@ -1,7 +1,57 @@
 extend type Query {
     allConversations(after: String, first: Int, before: String, last: Int): ConversationsConnection
-    
+    conversation(id: ID, csID: ID): Conversation
+    message(id: ID, msgID: ID): Message
+    messageSendAction(id: ID, msgID: ID): MessageSendAction
+    messageCommentAction(id: ID, msgID: ID): MessageCommentAction
+    conversationCreateAction(id: ID, msgID: ID): ConversationCreateAction
+    conversationJoinRequestAction(id: ID, msgID: ID): ConversationJoinRequestAction
+    conversationJoinApproveAction(id: ID, msgID: ID): ConversationJoinApproveAction
+    conversationInvitationRequestAction(id: ID, msgID: ID): ConversationInvitationRequestAction
+    conversationInvitationAcceptAction(id: ID, msgID: ID): ConversationInvitationAcceptAction
+    conversationMemberRemoveAction(id: ID, msgID: ID): ConversationMemberRemoveAction
+    conversationWebhookCreateAction(id: ID, msgID: ID): ConversationWebhookCreateAction
 }
+
+extend type Mutation {
+
+    """创建会话，受限于是否在所在会话中拥有【ConversationCreateAction】. create a conversation."""
+    conversationCreate(input: ConversationCreateInput!): ConversationPayload
+
+    """申请加入会话，受限于是否在所在会话中拥有【ConversationJoinRequestAction】.request to join a conversation."""
+    conversationJoinRequest(input: ConversationJoinRequestInput!): ConversationPayload
+
+    """批准加入会话，受限于是否在所在会话中拥有【ConversationJoinApproveAction】.approve to join a conversation."""
+    conversationJoinApprove(input: ConversationJoinApproveInput!): ConversationPayload
+
+    """发送邀请加入会话，受限于是否在所在会话中拥有【ConversationInvitationRequestAction】.send invitation to join a conversation."""
+    conversationInvitationRequest(input: ConversationInvitationRequestInput!): ConversationPayload
+
+    """接受邀请加入会话，accept invitation to join a conversation."""
+    conversationInvitationAccept(input: ConversationInvitationAcceptInput!): ConversationPayload
+
+    """踢出会话成员，受限于是否在所在会话中拥有【ConversationMemberRemoveAction】. remove members from a conversation."""
+    conversationMemberRemove(input: ConversationMemberRemoveInput!): ConversationPayload
+
+    """会话本身的webhook，以便第三方应用向会话发送消息通知，受限于是否在所在会话中拥有【ConversationWebhookCreateAction】. webhook of the conversation."""
+    conversationWebhookCreate(input: ConversationWebhookCreateInput!): ConversationPayload
+
+    """向会话发送消息，受限于是否在所在会话中拥有【MessageSendAction】. Sends a message to a conversation."""
+    messgeSend(conversationId: String, input: MessageSendInput!): MessagePayload
+
+    """撤回消息，受限于是否对该消息拥有【MessageWithdrawAction】.withdraw  a message."""
+    messgeWithdraw(messageId: String): MessagePayload
+
+    """消息补充备注，受限于是否对该消息拥有【MessageCommentAction】.post a comment to a message."""
+    messgeComment(messageId: String, input: MessageCommentInput!): MessagePayload
+
+    """消息备注修改，受限于是否对该消息拥有【MessageEditAction】.edit a comment to a message."""
+    messgeCommentUpdate(messageId: String, input: MessageCommentInput!): MessagePayload
+
+    """消息备注删除，受限于是否对该消息拥有【MessageAction】.delete a comment to a message."""
+    messgeCommentDelete(messageId: String, input: MessageCommentInput!): MessagePayload
+}
+
 
 
 """Canonical URL: http://cnschema.org/DataCatalog
@@ -16,15 +66,15 @@ type DataCatalog implements Node{
     """【包含子数据集目录】包含子的数据集目录"""
     subDataCatalogs: [DataCatalog]
 
-    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator	Organization or Person or CreativeWork or UserComments	"""
+    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    """
     creator: Person
 
-    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem or CreativeWork"""
+    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork"""
     dateCreated: DateTime
 
-    """Organization or Person or FollowAction	
+    """Organization or Person or FollowAction
     【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
-    followees:	[Person]
+    followees:    [Person]
 
     """The id of the object."""
     id: ID!
@@ -45,13 +95,13 @@ type Conversation implements Node{
     """【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork."""
     alternativeHeadline: String
 
-    """【描述】 该项的一个简单描述。 A description of the item. description	Text or Thing	"""
+    """【描述】 该项的一个简单描述。 A description of the item. description    Text or Thing    """
     description: String
 
-    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator	Organization or Person or CreativeWork or UserComments	"""
+    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    """
     creator: Person
 
-    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem or CreativeWork"""
+    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork"""
     dateCreated: DateTime
 
     """【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset."""
@@ -72,38 +122,38 @@ type Conversation implements Node{
 
 """A connection to a list of items."""
 type ConversationsConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [ConversationsEdge]
+    """A list of edges."""
+    edges: [ConversationsEdge]
 
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
 
-  """
-  A list of all of the objects returned in the connection. This is a convenience
-  field provided for quickly exploring the API; rather than querying for
-  "{ edges { node } }" when no edge data is needed, this field can be be used
-  instead. Note that when clients like Relay need to fetch the "cursor" field on
-  the edge to enable efficient pagination, this shortcut cannot be used, and the
-  full "{ edges { node } }" version should be used instead.
-  """
-  films: [Conversation]
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    items: [Conversation]
 }
 
 """An edge in a connection."""
 type ConversationsEdge {
-  """The item at the end of the edge"""
-  node: Conversation
+    """The item at the end of the edge"""
+    node: Conversation
 
-  """A cursor for use in pagination"""
-  cursor: String!
+    """A cursor for use in pagination"""
+    cursor: String!
 }
 
 """【消息】由发送者发给一个或多个组织或个人的信息 A single message from a sender to one or more organizations or people."""
@@ -137,7 +187,7 @@ type Message implements Node{
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]
-    
+
     """The id of the object."""
     id: ID!
 }
@@ -151,7 +201,7 @@ type Comment implements Node{
     parentItem: Message
 
     """【作者】 此内容或评分的作者。"""
-    author:	Person 
+    author:    Person
 
     """【文本】 作品的文字内容 The textual content of this CreativeWork."""
     text: String!
@@ -162,3 +212,382 @@ type Comment implements Node{
     """The id of the object."""
     id: ID!
 }
+
+
+input MessageSendInput {
+    actionId: ID!
+}
+input MessageCommentInput {
+    actionId: ID!
+}
+input ConversationCreateInput {
+    actionId: ID!
+}
+input ConversationJoinRequestInput {
+    actionId: ID!
+}
+input ConversationJoinApproveInput {
+    actionId: ID!
+}
+input ConversationInvitationRequestInput {
+    actionId: ID!
+}
+input ConversationInvitationAcceptInput {
+    actionId: ID!
+}
+input ConversationMemberRemoveInput {
+    actionId: ID!
+}
+
+input ConversationWebhookCreateInput {
+    actionId: ID!
+}
+
+
+
+"""Conversation mutation api response payload"""
+type ConversationPayload{
+    """The conversation object ."""
+    conversation: Conversation
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    conversationErrors: [ConversationError!]!
+}
+
+"""Represents an error that happens during execution of a conversation mutation."""
+type  ConversationError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: ConversationErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a conversation mutation."""
+enum ConversationErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+
+"""Message mutation api response payload"""
+type MessagePayload{
+    """The message object ."""
+    message: Message
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    messageErrors: [MessageError!]!
+}
+
+"""Represents an error that happens during execution of a message mutation."""
+type  MessageError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: MessageErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error message."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a message mutation."""
+enum MessageErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+
+type MessageSendAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+    }
+
+type MessageCommentAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+type ConversationCreateAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+    }
+
+type ConversationJoinRequestAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+    }
+
+type ConversationJoinApproveAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+type ConversationInvitationRequestAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+type ConversationInvitationAcceptAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+type ConversationMemberRemoveAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+
+type ConversationWebhookCreateAction implements Action & Node{
+    """【行为的发起者】 发起作用（或产生某种结果）的人或物person or organization performing the action"""
+    agent: [Person]
+
+    """【参与者】 间接参与行动的其他人。 例如 约翰与史蒂夫写了一本书 Other co-agents that participated in the action indirectly. e.g. John wrote a book with Steve."""
+    participant: [Person]
+
+    """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
+    object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
+    """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
+    startTime: DateTime
+
+    """【结束时刻】 事件的结束时间 The endTime of something. """
+    endTime: DateTime
+
+    """location of action"""
+    location: Place
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """The id of the object."""
+    id: ID!
+}
+

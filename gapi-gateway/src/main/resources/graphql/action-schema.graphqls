@@ -21,6 +21,9 @@ interface Action{
     """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
     object: Thing
 
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
 
@@ -44,6 +47,9 @@ type CreateAction implements Action & Node{
 
     """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
     object: Thing
+
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
 
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
@@ -71,6 +77,9 @@ type UpdateAction implements Action & Node{
     """【行动操作的对象】 动作在其上执行的对象，其状态保持完整或更改 The object upon which the action is carried out, whose state is kept intact or changed."""
     object: Thing
 
+    """【目标】 表示行动的目标入口点 Indicates a target EntryPoint for an Action."""
+    target:	EntryPoint
+
     """【开始时刻】 某事的预期开始时间。对于跨越一段时间的动作。例如，约翰从１月到１２月写了一本书。"""
     startTime: DateTime
 
@@ -82,6 +91,16 @@ type UpdateAction implements Action & Node{
 
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""http://cnschema.org/EntryPoint 入口】一个入口，包含一些基于web的协议 An entry point, within some Web-based protocol."""
+type EntryPoint implements  Node{
+
+    """【链接模版】 一个URL的模版，可以利用变化参数形成完整的URL。 An url template (RFC6570) that will be used to construct the target of the execution of the action.""""
+    urlTemplate:	Text
 
     """The id of the object."""
     id: ID!
