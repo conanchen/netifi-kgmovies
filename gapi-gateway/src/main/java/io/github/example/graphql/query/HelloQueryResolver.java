@@ -1,10 +1,10 @@
 package io.github.example.graphql.query;
 
-import java.util.Optional;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+
+import java.util.Optional;
 
 // import io.github.acmeshoes.store.service.PdpService;
 // import io.github.acmeshoes.store.service.model.PdpData;

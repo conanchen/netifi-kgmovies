@@ -1,7 +1,7 @@
 package io.github.conanchen.message.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.message.graphql.model.*;
+import io.github.conanchen.message.graphql.model.ConversationCreateInputGQO;
+import io.github.conanchen.message.graphql.model.ConversationPayloadGQO;
 
 public interface ConversationCreateMutation {
 

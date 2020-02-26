@@ -1,7 +1,8 @@
 package io.github.conanchen.event.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+
+import java.util.Collection;
 
 public class EventsConnectionGQO {
 

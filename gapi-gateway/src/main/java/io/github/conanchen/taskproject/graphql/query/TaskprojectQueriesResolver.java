@@ -1,11 +1,11 @@
 package io.github.conanchen.taskproject.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import org.springframework.stereotype.Service;
 import io.github.conanchen.taskproject.graphql.api.Query;
 import io.github.conanchen.taskproject.graphql.model.PersonActivityTimelineGQO;
 import io.github.conanchen.taskproject.graphql.model.ProjectGQO;
 import io.github.conanchen.taskproject.graphql.model.TaskGQO;
+import org.springframework.stereotype.Service;
 
 
 

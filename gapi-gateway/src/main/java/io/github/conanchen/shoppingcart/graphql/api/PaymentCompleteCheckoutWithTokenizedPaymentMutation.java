@@ -1,7 +1,7 @@
 package io.github.conanchen.shoppingcart.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.PaymentCompletePayloadGQO;
+import io.github.conanchen.shoppingcart.graphql.model.TokenizedPaymentInputGQO;
 
 public interface PaymentCompleteCheckoutWithTokenizedPaymentMutation {
 

@@ -1,10 +1,10 @@
 package io.github.conanchen.event.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import org.springframework.stereotype.Service;
 import io.github.conanchen.event.graphql.api.Query;
 import io.github.conanchen.event.graphql.model.EventGQO;
 import io.github.conanchen.event.graphql.model.EventsConnectionGQO;
+import org.springframework.stereotype.Service;
 
 @Service
 public class EventQueryResolver implements Query, GraphQLQueryResolver {

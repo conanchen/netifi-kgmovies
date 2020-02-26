@@ -1,8 +1,8 @@
 package io.github.conanchen.movies.graphql.model;
 
-import java.util.Collection;
-
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+
+import java.util.Collection;
 
 public class MovieGQO implements NodeGQO{
 

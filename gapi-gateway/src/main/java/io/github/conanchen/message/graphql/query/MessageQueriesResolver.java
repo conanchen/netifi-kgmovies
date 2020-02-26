@@ -1,9 +1,9 @@
 package io.github.conanchen.message.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import io.github.conanchen.message.graphql.api.Query;
 import io.github.conanchen.message.graphql.model.*;
 import org.springframework.stereotype.Service;
-import io.github.conanchen.message.graphql.api.Query;
 
 
 @Service

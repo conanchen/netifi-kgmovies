@@ -1,7 +1,8 @@
 package io.github.conanchen.zommon.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.message.graphql.model.ConversationGQO;
+
+import java.util.Collection;
 
 public interface ConversationalThingGQO {
 

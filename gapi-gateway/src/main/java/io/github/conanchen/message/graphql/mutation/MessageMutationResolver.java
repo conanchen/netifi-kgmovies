@@ -1,6 +1,5 @@
 package io.github.conanchen.message.graphql.mutation;
 
-import javax.validation.constraints.NotNull;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import io.github.conanchen.message.graphql.api.Mutation;
 import io.github.conanchen.message.graphql.model.*;

@@ -1,7 +1,8 @@
 package io.github.conanchen.taskproject.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.taskproject.graphql.model.*;
+import io.github.conanchen.taskproject.graphql.model.PersonActivityTimelineGQO;
+import io.github.conanchen.taskproject.graphql.model.ProjectGQO;
+import io.github.conanchen.taskproject.graphql.model.TaskGQO;
 
 public interface Query {
 

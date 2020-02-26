@@ -1,7 +1,5 @@
 package io.github.conanchen.action.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.action.graphql.api.*;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class EntryPointGQO implements NodeGQO {

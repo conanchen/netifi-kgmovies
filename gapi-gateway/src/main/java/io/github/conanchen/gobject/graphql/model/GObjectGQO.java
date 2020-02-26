@@ -1,6 +1,7 @@
 package io.github.conanchen.gobject.graphql.model;
 
-import io.github.conanchen.personorg.graphql.model.PersonGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
 
 public interface GObjectGQO {
 

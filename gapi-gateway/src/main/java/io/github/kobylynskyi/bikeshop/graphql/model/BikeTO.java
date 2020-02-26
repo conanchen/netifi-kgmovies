@@ -1,8 +1,5 @@
 package io.github.kobylynskyi.bikeshop.graphql.model;
 
-import io.github.kobylynskyi.bikeshop.graphql.api.*;
-import java.util.*;
-
 public class BikeTO {
 
     private String id;

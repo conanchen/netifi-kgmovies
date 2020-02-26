@@ -15,12 +15,12 @@
  */
 package io.github.example.springdata.redis;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.connection.stream.StringRecord;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author Christoph Strobl

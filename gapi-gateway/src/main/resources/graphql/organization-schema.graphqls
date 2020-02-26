@@ -16,59 +16,6 @@ interface Party{
     description: String
 }
 
-"""【人】单独的人类个体（可以是现实中的或者虚构的） A person (alive, dead, undead, or fictional)."""
-type Person implements Party & Node{
-
-    """【名称】 条目的名称 The name of the item."""
-    name: String!
-
-    """【别名】 该项的别名。 An alias for the item."""
-    alternateName: String
-
-    """【描述】 该项的一个简单描述。 A description of the item."""
-    description: String
-
-    """familyName	Text or Person	
-    【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
-    familyName: String
-    """givenName	Text or Person	
-    【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."""
-    givenName: String
-
-    """birthDate	Date or Person	
-    【出生日期】 出生的日期。 Date of birth."""
-    birthDate: DateTime
-
-    """birthPlace	Place or Person	
-    【出生地点】 此人出生的地方。 The place where the person was born."""
-    birthPlace: Place
-
-    """gender	GenderType or Text or Person	
-    【性别】 人的性别 Gender of the person. While http://cnschema.org/Male and http://cnschema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender."""
-    gender: String
-  
-    """email	Text or Person or ContactPoint or Organization	
-    【电子邮件】 邮箱地址。 Email address."""
-    email: String
-
-    """follows	Person or Person	
-    【关注】 社交网络上主动关注其他人或组织 The most generic uni-directional social relation."""
-    follows:	[Person]
-
-    """Organization or Person or FollowAction	
-    【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
-    followees:	[Person]
-
-    """Define Types, copied from https://tour.dgraph.io/moredata/2/"""
-    directoredFilms: [Movie]
-
-    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
-    membersOf: [Membership]
-    membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MembershipConnection
-
-    """The id of the object."""
-    id: ID!
-}
 
 """
 【机构】一个组织，例如学校、非政府组织、公司、俱乐部等 An organization such as a school, NGO, corporation, club, etc.

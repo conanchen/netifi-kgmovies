@@ -1,7 +1,7 @@
 package io.github.conanchen.event.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.event.graphql.model.*;
+import io.github.conanchen.event.graphql.model.EventGQO;
+import io.github.conanchen.event.graphql.model.EventsConnectionGQO;
 
 public interface Query {
 

@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import io.github.conanchen.personorg.graphql.model.PartyGQO;
+import io.github.conanchen.organization.graphql.model.PartyGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;

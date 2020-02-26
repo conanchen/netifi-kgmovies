@@ -1,7 +1,7 @@
 package io.github.conanchen.shoppingcart.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.CheckoutCompletePayloadGQO;
+import io.github.conanchen.shoppingcart.graphql.model.CheckoutCompleteRequestInputGQO;
 
 public interface CheckoutCompleteRequestMutation {
 

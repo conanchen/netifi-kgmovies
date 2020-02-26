@@ -1,7 +1,8 @@
-package io.github.conanchen.personorg.graphql.model;
+package io.github.conanchen.organization.graphql.model;
+
+import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
 
 import java.util.Collection;
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
 
 public class MembershipConnectionGQO {
 

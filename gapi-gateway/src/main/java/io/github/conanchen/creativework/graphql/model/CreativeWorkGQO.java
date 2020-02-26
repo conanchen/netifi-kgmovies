@@ -1,8 +1,9 @@
 package io.github.conanchen.creativework.graphql.model;
 
-import java.util.Collection;
-import io.github.conanchen.personorg.graphql.model.PersonGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
+
+import java.util.Collection;
 
 public interface CreativeWorkGQO {
 

@@ -1,9 +1,10 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.zommon.graphql.model.CurrencyCodeGQO;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+
+import java.util.Collection;
 
 public class CheckoutGQO implements NodeGQO{
 

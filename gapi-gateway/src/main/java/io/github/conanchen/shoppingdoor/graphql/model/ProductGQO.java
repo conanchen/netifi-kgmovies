@@ -1,8 +1,9 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.intangible.graphql.model.ReviewGQO;
-import io.github.conanchen.personorg.graphql.model.OrganizationGQO;
+import io.github.conanchen.organization.graphql.model.OrganizationGQO;
+
+import java.util.Collection;
 
 public interface ProductGQO {
 

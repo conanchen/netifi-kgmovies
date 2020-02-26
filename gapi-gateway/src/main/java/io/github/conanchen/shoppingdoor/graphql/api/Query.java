@@ -1,18 +1,6 @@
 package io.github.conanchen.shoppingdoor.graphql.api;
 
-import io.github.conanchen.shoppingcart.graphql.model.PostalAddressGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.DemandGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.FoodServiceGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.GeneralProductGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.GeneralServiceGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.GovernmentServiceGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.HousekeepingServiceGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.ItemCategoryGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.OfferGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.ProductGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.ProductsConnectionGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.ServiceGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.ServicesConnectionGQO;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 public interface Query {
 

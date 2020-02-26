@@ -1,8 +1,5 @@
 package io.github.conanchen.event.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.event.graphql.api.*;
-
 public class EventsEdgeGQO {
 
     private EventGQO node;

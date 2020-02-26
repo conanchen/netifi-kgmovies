@@ -1,7 +1,6 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.shoppingdoor.graphql.api.*;
+import java.util.Collection;
 
 public class AggregateOfferGQO {
 

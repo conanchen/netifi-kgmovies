@@ -1,9 +1,10 @@
 package io.github.conanchen.taskproject.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.event.graphql.model.DurationGQO;
-import io.github.conanchen.personorg.graphql.model.PersonGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+
+import java.util.Collection;
 
 public class TaskGQO implements NodeGQO{
 

@@ -1,8 +1,5 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.shoppingcart.graphql.api.*;
-
 public class AlipayPaymentStep2InputGQO {
 
     @javax.validation.constraints.NotNull

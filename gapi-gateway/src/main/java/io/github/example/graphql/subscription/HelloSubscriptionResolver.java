@@ -1,9 +1,8 @@
 package io.github.example.graphql.subscription;
 
-import java.util.Map;
-
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
 import io.github.example.graphql.model.MapRecordGQO;
+import io.github.example.springdata.redis.SensorData;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,9 @@ import org.springframework.data.redis.connection.stream.MapRecord;
 import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.stream.StreamReceiver;
 import org.springframework.stereotype.Service;
-import io.github.example.springdata.redis.SensorData;
 import reactor.core.publisher.Flux;
+
+import java.util.Map;
 
 @Service
 public class HelloSubscriptionResolver implements GraphQLSubscriptionResolver {

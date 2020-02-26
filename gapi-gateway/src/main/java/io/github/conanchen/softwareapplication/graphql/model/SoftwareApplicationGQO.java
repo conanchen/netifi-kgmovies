@@ -1,8 +1,9 @@
 package io.github.conanchen.softwareapplication.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.action.graphql.model.ActionGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+
+import java.util.Collection;
 
 public class SoftwareApplicationGQO implements NodeGQO{
 

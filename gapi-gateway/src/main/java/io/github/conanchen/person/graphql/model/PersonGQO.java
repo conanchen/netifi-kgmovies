@@ -1,11 +1,15 @@
-package io.github.conanchen.personorg.graphql.model;
+package io.github.conanchen.person.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.movies.graphql.model.MovieGQO;
+import io.github.conanchen.organization.graphql.model.MembershipConnectionGQO;
+import io.github.conanchen.organization.graphql.model.MembershipGQO;
+import io.github.conanchen.organization.graphql.model.PartyGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class PersonGQO implements PartyGQO, NodeGQO{
+import java.util.Collection;
+
+public class PersonGQO implements PartyGQO, NodeGQO {
 
     @javax.validation.constraints.NotNull
     private String name;
@@ -151,8 +155,8 @@ public class PersonGQO implements PartyGQO, NodeGQO{
         this.id = id;
     }
 
-    public MembershipConnectionGQO membersOfPage(String after, Integer first, String last, Integer before, String orgId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public MembershipConnectionGQO membersOfPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

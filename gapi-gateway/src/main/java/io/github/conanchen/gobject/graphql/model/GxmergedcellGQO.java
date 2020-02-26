@@ -1,8 +1,5 @@
 package io.github.conanchen.gobject.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.gobject.graphql.api.*;
-
 public class GxmergedcellGQO {
 
     private Integer rowNoStart;

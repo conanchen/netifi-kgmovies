@@ -1,7 +1,7 @@
 package io.github.conanchen.shoppingcart.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.AlipayPaymentStep2InputGQO;
+import io.github.conanchen.shoppingcart.graphql.model.PaymentCompletePayloadGQO;
 
 public interface PaymentCompleteCheckoutWithAlipayPaymentStep2Mutation {
 

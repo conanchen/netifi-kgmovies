@@ -1,7 +1,8 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeInputGQO;
+
+import java.util.Collection;
 
 public class SetCartItemInputGQO {
 

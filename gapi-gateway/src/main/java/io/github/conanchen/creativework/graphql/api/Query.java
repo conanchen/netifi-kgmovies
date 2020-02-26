@@ -1,7 +1,6 @@
 package io.github.conanchen.creativework.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.creativework.graphql.model.*;
+import io.github.conanchen.creativework.graphql.model.BlogGQO;
 
 public interface Query {
 

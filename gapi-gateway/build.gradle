@@ -168,9 +168,7 @@ task graphqlCodegenIntangible(type: GraphqlCodegenGradleTask,dependsOn: graphqlC
     outputDir = new File("$buildDir/generated/graphql/intangible")
     apiPackageName = "io.github.conanchen.intangible.graphql.api"
     modelPackageName = "io.github.conanchen.intangible.graphql.model"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -180,9 +178,7 @@ task graphqlCodegenPlace(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     outputDir = new File("$buildDir/generated/graphql/place")
     apiPackageName = "io.github.conanchen.place.graphql.api"
     modelPackageName = "io.github.conanchen.place.graphql.model"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -193,9 +189,7 @@ task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCode
     outputDir = new File("$buildDir/generated/graphql/message")
     apiPackageName = "io.github.conanchen.message.graphql.api"
     modelPackageName = "io.github.conanchen.message.graphql.model"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -212,14 +206,22 @@ task graphqlCodegenMovie(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     generateApis = true
 }
 
-task graphqlCodegenPersonorg(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
-    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/personorg-schema.graphqls".toString()]
-    outputDir = new File("$buildDir/generated/graphql/personorg")
-    apiPackageName = "io.github.conanchen.personorg.graphql.api"
-    modelPackageName = "io.github.conanchen.personorg.graphql.model"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
+task graphqlCodegenPerson(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/person-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/person")
+    apiPackageName = "io.github.conanchen.person.graphql.api"
+    modelPackageName = "io.github.conanchen.person.graphql.model"
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
+task graphqlCodegendOrganization(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/organization-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/organization")
+    apiPackageName = "io.github.conanchen.organization.graphql.api"
+    modelPackageName = "io.github.conanchen.organization.graphql.model"
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -239,9 +241,7 @@ task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask,dependsOn: graphq
     outputDir = new File("$buildDir/generated/graphql/shoppingdoor")
     apiPackageName = "io.github.conanchen.shoppingdoor.graphql.api"
     modelPackageName = "io.github.conanchen.shoppingdoor.graphql.model"
-    customTypesMapping = [
-            URL: "java.lang.String"
-    ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -251,9 +251,7 @@ task graphqlCodegenSoftwareApplication(type: GraphqlCodegenGradleTask,dependsOn:
     outputDir = new File("$buildDir/generated/graphql/softwareapplication")
     apiPackageName = "io.github.conanchen.softwareapplication.graphql.api"
     modelPackageName = "io.github.conanchen.softwareapplication.graphql.model"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }

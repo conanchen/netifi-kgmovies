@@ -1,10 +1,10 @@
 package io.github.conanchen.intangible.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import org.springframework.stereotype.Service;
 import io.github.conanchen.intangible.graphql.api.Query;
 import io.github.conanchen.intangible.graphql.model.BrandGQO;
 import io.github.conanchen.intangible.graphql.model.BrandsConnectionGQO;
+import org.springframework.stereotype.Service;
 
 
 @Service

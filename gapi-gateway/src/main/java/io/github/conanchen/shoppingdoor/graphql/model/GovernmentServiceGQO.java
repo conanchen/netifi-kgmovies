@@ -1,13 +1,14 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.action.graphql.model.ActionGQO;
 import io.github.conanchen.intangible.graphql.model.AggregateRatingGQO;
 import io.github.conanchen.intangible.graphql.model.ReviewGQO;
-import io.github.conanchen.personorg.graphql.model.OrganizationGQO;
+import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
+
+import java.util.Collection;
 
 public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
 

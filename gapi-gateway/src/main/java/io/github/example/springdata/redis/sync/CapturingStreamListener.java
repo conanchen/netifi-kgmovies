@@ -15,12 +15,12 @@
  */
 package io.github.example.springdata.redis.sync;
 
+import org.springframework.data.redis.connection.stream.MapRecord;
+import org.springframework.data.redis.stream.StreamListener;
+
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.springframework.data.redis.connection.stream.MapRecord;
-import org.springframework.data.redis.stream.StreamListener;
 
 /**
  * @author Christoph Strobl

@@ -1,13 +1,9 @@
 package io.github.example.graphql.query;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.google.gson.Gson;
-import com.google.protobuf.ByteString;
+import io.dgraph.DgraphClient;
+import io.dgraph.DgraphProto.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +11,12 @@ import org.springframework.stereotype.Service;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
-import io.dgraph.DgraphClient;
-import io.dgraph.DgraphProto.Response;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class HelloDgraphSTQueryResolver implements GraphQLQueryResolver {

@@ -1,8 +1,8 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.message.graphql.api.*;
 import io.github.conanchen.shoppingcart.graphql.model.DisplayableErrorGQO;
+
+import java.util.Collection;
 
 public class ConversationErrorGQO implements DisplayableErrorGQO {
 

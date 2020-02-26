@@ -1,13 +1,15 @@
-package io.github.conanchen.personorg.graphql.model;
+package io.github.conanchen.organization.graphql.model;
 
-import java.util.Collection;
 import io.github.conanchen.action.graphql.model.ActionGQO;
 import io.github.conanchen.message.graphql.model.ConversationGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.ConversationalThingGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, ConversationalThingGQO, PartyGQO, NodeGQO{
+import java.util.Collection;
+
+public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, ConversationalThingGQO, PartyGQO, NodeGQO {
 
     @javax.validation.constraints.NotNull
     private String name;
@@ -133,6 +135,7 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
     public MembershipConnectionGQO getMembersPage() {
         return membersPage;
     }
+
     public void setMembersPage(MembershipConnectionGQO membersPage) {
         this.membersPage = membersPage;
     }
@@ -144,8 +147,10 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
         this.id = id;
     }
 
+    @Override
     public MembershipConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

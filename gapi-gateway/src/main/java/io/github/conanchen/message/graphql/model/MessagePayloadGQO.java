@@ -1,9 +1,8 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.*;
-
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.message.graphql.api.*;
+
+import java.util.Collection;
 
 public class MessagePayloadGQO {
 

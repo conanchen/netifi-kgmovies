@@ -1,13 +1,9 @@
 package io.github.conanchen.shoppingcart.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import org.springframework.stereotype.Service;
 import io.github.conanchen.shoppingcart.graphql.api.Query;
-import io.github.conanchen.shoppingcart.graphql.model.CartGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CurrencyInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.OrderGQO;
-import io.github.conanchen.shoppingcart.graphql.model.PostalAddressGQO;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import org.springframework.stereotype.Service;
 
 
 

@@ -1,9 +1,8 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.Collection;
-
 import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
-import io.github.conanchen.message.graphql.model.ConversationsEdgeGQO;
+
+import java.util.Collection;
 
 public class ConversationsConnectionGQO {
 

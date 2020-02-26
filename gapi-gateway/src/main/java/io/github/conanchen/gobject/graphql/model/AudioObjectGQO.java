@@ -1,6 +1,6 @@
 package io.github.conanchen.gobject.graphql.model;
 
-import io.github.conanchen.personorg.graphql.model.PersonGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class AudioObjectGQO implements GObjectGQO, NodeGQO {

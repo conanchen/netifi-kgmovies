@@ -1,14 +1,13 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.*;
-
 import io.github.conanchen.action.graphql.model.ActionGQO;
 import io.github.conanchen.action.graphql.model.EntryPointGQO;
-import io.github.conanchen.message.graphql.api.*;
-import io.github.conanchen.personorg.graphql.model.PersonGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
+
+import java.util.Collection;
 
 public class MessageCommentActionGQO implements ActionGQO, NodeGQO{
 

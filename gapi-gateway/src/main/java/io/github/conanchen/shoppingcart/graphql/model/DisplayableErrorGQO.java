@@ -1,7 +1,6 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.shoppingcart.graphql.api.*;
+import java.util.Collection;
 
 public interface DisplayableErrorGQO {
 

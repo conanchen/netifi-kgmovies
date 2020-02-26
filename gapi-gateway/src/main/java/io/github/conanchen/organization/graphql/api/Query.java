@@ -1,7 +1,7 @@
-package io.github.conanchen.personorg.graphql.api;
+package io.github.conanchen.organization.graphql.api;
 
-import io.github.conanchen.personorg.graphql.model.*;
-import java.util.*;
+import io.github.conanchen.organization.graphql.model.GeneralOrganizationGQO;
+import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 
 public interface Query {
 

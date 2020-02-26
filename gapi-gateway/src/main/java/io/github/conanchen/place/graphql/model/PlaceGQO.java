@@ -1,7 +1,6 @@
 package io.github.conanchen.place.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.place.graphql.api.*;
+import java.util.Collection;
 
 public interface PlaceGQO {
 

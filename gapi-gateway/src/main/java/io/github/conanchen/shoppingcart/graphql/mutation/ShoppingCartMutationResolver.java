@@ -1,31 +1,11 @@
 package io.github.conanchen.shoppingcart.graphql.mutation;
 
-import javax.validation.constraints.NotNull;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import org.springframework.stereotype.Service;
 import io.github.conanchen.shoppingcart.graphql.api.Mutation;
-import io.github.conanchen.shoppingcart.graphql.model.AddToCartInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.AlipayPaymentStep1InputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.AlipayPaymentStep2InputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CartPayloadGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutAttributesUpdateInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutCompleteApproveInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutCompletePayloadGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutCompleteRequestInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutCreateInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutCreatePlusOrderInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CheckoutPayloadGQO;
-import io.github.conanchen.shoppingcart.graphql.model.CreditCardPaymentInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.EmptyCartInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.PaymentCompletePayloadGQO;
-import io.github.conanchen.shoppingcart.graphql.model.PostalAddressInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.RemoveCartItemInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.SetCartItemsInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.TokenizedPaymentInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.UpdateCartItemInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.UpdateItemQuantityInputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.WeixinPaymentStep1InputGQO;
-import io.github.conanchen.shoppingcart.graphql.model.WeixinPaymentStep2InputGQO;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.NotNull;
 
 @Service
 public class ShoppingCartMutationResolver implements Mutation,GraphQLMutationResolver {

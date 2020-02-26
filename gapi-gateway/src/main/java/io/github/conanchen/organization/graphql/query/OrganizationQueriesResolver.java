@@ -1,14 +1,14 @@
-package io.github.conanchen.personorg.graphql.query;
+package io.github.conanchen.organization.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import io.github.conanchen.organization.graphql.api.Query;
+import io.github.conanchen.organization.graphql.model.GeneralOrganizationGQO;
+import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import org.springframework.stereotype.Service;
-import io.github.conanchen.personorg.graphql.api.Query;
-import io.github.conanchen.personorg.graphql.model.GeneralOrganizationGQO;
-import io.github.conanchen.personorg.graphql.model.OrganizationGQO;
 
 
 @Service
-public class PersonorgQueriesResolver implements Query , GraphQLQueryResolver {
+public class OrganizationQueriesResolver implements Query , GraphQLQueryResolver {
 
 	@Override
 	public OrganizationGQO organization(final String id, final String organizationID) throws Exception {

@@ -1,7 +1,6 @@
 package io.github.conanchen.gobject.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.gobject.graphql.model.*;
+import io.github.conanchen.gobject.graphql.model.GeneralObjectGQO;
 
 public interface GeneralObjectQuery {
 

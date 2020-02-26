@@ -1,13 +1,11 @@
 package io.github.conanchen.movies.graphql.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-
-import org.springframework.stereotype.Service;
-
 import io.github.conanchen.movies.graphql.api.Query;
 import io.github.conanchen.movies.graphql.model.MovieGQO;
 import io.github.conanchen.movies.graphql.model.MoviesConnectionGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MovieQueriesResolver implements Query, GraphQLQueryResolver {

@@ -1,12 +1,11 @@
 package io.github.example.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-
-import java.util.Collection;
-
 import io.github.example.graphql.model.HelloPerson;
 import io.github.example.graphql.service.HelloPersonService;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 @Service
 public class HelloPersonQueryResolver implements GraphQLQueryResolver {

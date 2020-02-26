@@ -1,9 +1,10 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import java.util.Collection;
-import io.github.conanchen.personorg.graphql.model.OrganizationGQO;
+import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import io.github.conanchen.shoppingdoor.graphql.model.ProductGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+
+import java.util.Collection;
 
 public class ParcelDeliveryGQO implements NodeGQO{
 

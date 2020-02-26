@@ -1,8 +1,8 @@
 package io.github.conanchen.gobject.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.gobject.graphql.api.*;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+
+import java.util.Collection;
 
 public class AggregateGxcellGQO implements NodeGQO {
 

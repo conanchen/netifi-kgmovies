@@ -1,8 +1,8 @@
 package io.github.conanchen.movies.graphql.model;
 
-import java.util.Collection;
-
 import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+
+import java.util.Collection;
 
 public class MovieGenreConnectionGQO {
 

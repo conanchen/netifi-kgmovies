@@ -1,13 +1,6 @@
 package io.github.conanchen.place.graphql.api;
 
-import io.github.conanchen.place.graphql.model.AdministrativeAreaGQO;
-import io.github.conanchen.place.graphql.model.ChildcareGQO;
-import io.github.conanchen.place.graphql.model.DefaultPlaceGQO;
-import io.github.conanchen.place.graphql.model.EldercareGQO;
-import io.github.conanchen.place.graphql.model.LocalBusinessConnectionGQO;
-import io.github.conanchen.place.graphql.model.LocalBusinessGQO;
-import io.github.conanchen.place.graphql.model.StoreGQO;
-import io.github.conanchen.place.graphql.model.StoresConnectionGQO;
+import io.github.conanchen.place.graphql.model.*;
 
 public interface Query {
 

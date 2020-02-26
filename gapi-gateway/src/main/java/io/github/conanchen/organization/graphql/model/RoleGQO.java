@@ -1,8 +1,9 @@
-package io.github.conanchen.personorg.graphql.model;
+package io.github.conanchen.organization.graphql.model;
 
+import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class RoleGQO implements NodeGQO{
+public class RoleGQO implements NodeGQO {
 
     private String roleName;
     private String alternativeHeadline;
