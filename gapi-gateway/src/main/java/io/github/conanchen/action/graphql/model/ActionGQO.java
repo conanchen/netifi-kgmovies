@@ -15,6 +15,8 @@ public interface ActionGQO {
 
     ThingGQO getObject();
 
+    EntryPointGQO getTarget();
+
     java.util.Date getStartTime();
 
     java.util.Date getEndTime();

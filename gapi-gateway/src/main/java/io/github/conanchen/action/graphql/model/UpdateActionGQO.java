@@ -13,6 +13,7 @@ public class UpdateActionGQO implements ActionGQO, NodeGQO{
     private Collection<PersonGQO> agent;
     private Collection<PersonGQO> participant;
     private ThingGQO object;
+    private EntryPointGQO target;
     private java.util.Date startTime;
     private java.util.Date endTime;
     private PlaceGQO location;
@@ -23,10 +24,11 @@ public class UpdateActionGQO implements ActionGQO, NodeGQO{
     public UpdateActionGQO() {
     }
 
-    public UpdateActionGQO(Collection<PersonGQO> agent, Collection<PersonGQO> participant, ThingGQO object, java.util.Date startTime, java.util.Date endTime, PlaceGQO location, String description, String id) {
+    public UpdateActionGQO(Collection<PersonGQO> agent, Collection<PersonGQO> participant, ThingGQO object, EntryPointGQO target, java.util.Date startTime, java.util.Date endTime, PlaceGQO location, String description, String id) {
         this.agent = agent;
         this.participant = participant;
         this.object = object;
+        this.target = target;
         this.startTime = startTime;
         this.endTime = endTime;
         this.location = location;
@@ -53,6 +55,13 @@ public class UpdateActionGQO implements ActionGQO, NodeGQO{
     }
     public void setObject(ThingGQO object) {
         this.object = object;
+    }
+
+    public EntryPointGQO getTarget() {
+        return target;
+    }
+    public void setTarget(EntryPointGQO target) {
+        this.target = target;
     }
 
     public java.util.Date getStartTime() {

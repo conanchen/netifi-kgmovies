@@ -3,17 +3,19 @@ package io.github.conanchen.message.graphql.model;
 import java.util.*;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
+import io.github.conanchen.action.graphql.model.EntryPointGQO;
 import io.github.conanchen.message.graphql.api.*;
 import io.github.conanchen.personorg.graphql.model.PersonGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class ConversationInvitationRequestActionGQO implements ActionGQO, NodeGQO {
+public class ConversationInvitationRequestActionGQO implements ActionGQO, NodeGQO{
 
     private Collection<PersonGQO> agent;
     private Collection<PersonGQO> participant;
     private ThingGQO object;
+    private EntryPointGQO target;
     private java.util.Date startTime;
     private java.util.Date endTime;
     private PlaceGQO location;
@@ -24,10 +26,11 @@ public class ConversationInvitationRequestActionGQO implements ActionGQO, NodeGQ
     public ConversationInvitationRequestActionGQO() {
     }
 
-    public ConversationInvitationRequestActionGQO(Collection<PersonGQO> agent, Collection<PersonGQO> participant, ThingGQO object, java.util.Date startTime, java.util.Date endTime, PlaceGQO location, String description, String id) {
+    public ConversationInvitationRequestActionGQO(Collection<PersonGQO> agent, Collection<PersonGQO> participant, ThingGQO object, EntryPointGQO target, java.util.Date startTime, java.util.Date endTime, PlaceGQO location, String description, String id) {
         this.agent = agent;
         this.participant = participant;
         this.object = object;
+        this.target = target;
         this.startTime = startTime;
         this.endTime = endTime;
         this.location = location;
@@ -54,6 +57,13 @@ public class ConversationInvitationRequestActionGQO implements ActionGQO, NodeGQ
     }
     public void setObject(ThingGQO object) {
         this.object = object;
+    }
+
+    public EntryPointGQO getTarget() {
+        return target;
+    }
+    public void setTarget(EntryPointGQO target) {
+        this.target = target;
     }
 
     public java.util.Date getStartTime() {

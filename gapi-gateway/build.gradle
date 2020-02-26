@@ -104,7 +104,7 @@ task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     outputDir = new File("$buildDir/generated/graphql/zommon")
     apiPackageName = "io.github.conanchen.zommon.graphql.api"
     modelPackageName = "io.github.conanchen.zommon.graphql.model"
-    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String", BigDecimal: "java.math.BigDecimal" ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }
@@ -114,9 +114,7 @@ task graphqlCodegenAction(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodeg
     outputDir = new File("$buildDir/generated/graphql/action")
     apiPackageName = "io.github.conanchen.action.graphql.api"
     modelPackageName = "io.github.conanchen.action.graphql.model"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }
