@@ -26,13 +26,14 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     private Collection<MovieGQO> directoredFilms;
     private Collection<MembershipGQO> membersOf;
     private MembershipConnectionGQO membersOfPage;
+    private UserGQO hasUser;
     @javax.validation.constraints.NotNull
     private String id;
 
     public PersonGQO() {
     }
 
-    public PersonGQO(String name, String alternateName, String description, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MembershipGQO> membersOf, MembershipConnectionGQO membersOfPage, String id) {
+    public PersonGQO(String name, String alternateName, String description, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MembershipGQO> membersOf, MembershipConnectionGQO membersOfPage, UserGQO hasUser, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -47,6 +48,7 @@ public class PersonGQO implements PartyGQO, NodeGQO {
         this.directoredFilms = directoredFilms;
         this.membersOf = membersOf;
         this.membersOfPage = membersOfPage;
+        this.hasUser = hasUser;
         this.id = id;
     }
 
@@ -146,6 +148,13 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     }
     public void setMembersOfPage(MembershipConnectionGQO membersOfPage) {
         this.membersOfPage = membersOfPage;
+    }
+
+    public UserGQO getHasUser() {
+        return hasUser;
+    }
+    public void setHasUser(UserGQO hasUser) {
+        this.hasUser = hasUser;
     }
 
     public String getId() {

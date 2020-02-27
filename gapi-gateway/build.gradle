@@ -211,7 +211,7 @@ task graphqlCodegenPerson(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodeg
     outputDir = new File("$buildDir/generated/graphql/person")
     apiPackageName = "io.github.conanchen.person.graphql.api"
     modelPackageName = "io.github.conanchen.person.graphql.model"
-    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,Markdown: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
 }

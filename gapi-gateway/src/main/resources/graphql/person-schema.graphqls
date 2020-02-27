@@ -1,5 +1,6 @@
 extend type Query {
     person(id: ID, pId: ID): Person
+    user(id: ID, uId: ID): User
 }
 
 """【人】单独的人类个体（可以是现实中的或者虚构的） A person (alive, dead, undead, or fictional)."""
@@ -52,6 +53,79 @@ type Person implements Party & Node{
     membersOf: [Membership]
     membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MembershipConnection
 
+    """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
+    hasUser: User
+
     """The id of the object."""
     id: ID!
+}
+
+
+"""
+用户账号 A user is an individual's account on Shurui platform.
+"""
+type User implements Node{
+
+    """
+    The username used to login.
+    """
+    login: String!
+
+    """
+    The user's public profile name.
+    """
+    name: String
+
+    """
+    The user's public profile bio.
+    """
+    bio: String
+
+    """
+    The user's public profile bio as HTML.
+    """
+    bioHTML: Markdown!
+
+    """用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart"""
+    isUserOf: Person!
+
+    """The id of the object."""
+    id: ID!
+}
+
+
+"""A connection to a list of items."""
+type UserConnection {
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """A list of edges."""
+    edges: [UserEdge]
+
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
+
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    nodes: [User]
+}
+
+"""An edge in a connection."""
+type UserEdge {
+    """The item at the end of the edge"""
+    node: User
+
+    """A cursor for use in pagination"""
+    cursor: String!
 }
