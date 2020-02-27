@@ -1,4 +1,11 @@
 extend type Query {
+    """relay是facebook推出的在React中易于使用GraphQL的框架，其中有一套完整的分页解决方案。
+    查询参数：
+    first: 指定取游标后的多少个数据，与after搭配使用；
+    after: 开始游标，与first搭配使用；
+    last: 指定取游标前的多少个数据，与before搭配使用；
+    before: 结束游标，与last搭配使用；
+    relay风格的分页格式定义细节见：https://facebook.github.io/relay/graphql/connections.htm#"""
     allConversations(after: String, first: Int, before: String, last: Int): ConversationsConnection
     conversation(id: ID, csID: ID): Conversation
     message(id: ID, msgID: ID): Message
@@ -215,31 +222,75 @@ type Comment implements Node{
 
 
 input MessageSendInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 input MessageCommentInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 input ConversationCreateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 input ConversationJoinRequestInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 input ConversationJoinApproveInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 input ConversationInvitationRequestInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 input ConversationInvitationAcceptInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 input ConversationMemberRemoveInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
-
 input ConversationWebhookCreateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
     actionId: ID!
 }
 
