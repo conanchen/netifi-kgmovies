@@ -3,11 +3,13 @@ package io.github.conanchen.taskproject.graphql.model;
 import io.github.conanchen.event.graphql.model.DurationGQO;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
 import java.util.Collection;
 
-public class TaskGQO implements NodeGQO{
+public class TaskGQO implements ThingGQO, NodeGQO{
 
+    private IssueGQO about;
     private ProjectGQO isPartOf;
     private String wbsNO;
     private String name;
@@ -37,7 +39,8 @@ public class TaskGQO implements NodeGQO{
     public TaskGQO() {
     }
 
-    public TaskGQO(ProjectGQO isPartOf, String wbsNO, String name, String alternateName, String description, TaskPriorityGQO priority, PersonGQO creator, Collection<PersonGQO> watcher, java.util.Date planStart, java.util.Date planFinish, DurationGQO duration, Integer percentComplete, java.util.Date createdAt, java.util.Date updatedAt, TaskGQO parentTask, TaskGQO previousTask, Collection<TaskGQO> subTasks, Collection<TaskGQO> dependsOn, Collection<TaskAssignmentGQO> assignmentHistory, TaskAssignmentGQO latestAssignment, TaskStatusGQO status, String id) {
+    public TaskGQO(IssueGQO about, ProjectGQO isPartOf, String wbsNO, String name, String alternateName, String description, TaskPriorityGQO priority, PersonGQO creator, Collection<PersonGQO> watcher, java.util.Date planStart, java.util.Date planFinish, DurationGQO duration, Integer percentComplete, java.util.Date createdAt, java.util.Date updatedAt, TaskGQO parentTask, TaskGQO previousTask, Collection<TaskGQO> subTasks, Collection<TaskGQO> dependsOn, Collection<TaskAssignmentGQO> assignmentHistory, TaskAssignmentGQO latestAssignment, TaskStatusGQO status, String id) {
+        this.about = about;
         this.isPartOf = isPartOf;
         this.wbsNO = wbsNO;
         this.name = name;
@@ -60,6 +63,13 @@ public class TaskGQO implements NodeGQO{
         this.latestAssignment = latestAssignment;
         this.status = status;
         this.id = id;
+    }
+
+    public IssueGQO getAbout() {
+        return about;
+    }
+    public void setAbout(IssueGQO about) {
+        this.about = about;
     }
 
     public ProjectGQO getIsPartOf() {
