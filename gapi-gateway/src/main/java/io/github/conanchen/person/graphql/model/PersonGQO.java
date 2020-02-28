@@ -3,6 +3,7 @@ package io.github.conanchen.person.graphql.model;
 import io.github.conanchen.movies.graphql.model.MovieGQO;
 import io.github.conanchen.organization.graphql.model.MembershipConnectionGQO;
 import io.github.conanchen.organization.graphql.model.MembershipGQO;
+import io.github.conanchen.organization.graphql.model.OwnershipGQO;
 import io.github.conanchen.organization.graphql.model.PartyGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
@@ -15,6 +16,7 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     private String name;
     private String alternateName;
     private String description;
+    private Collection<OwnershipGQO> owns;
     private String familyName;
     private String givenName;
     private java.util.Date birthDate;
@@ -33,10 +35,11 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     public PersonGQO() {
     }
 
-    public PersonGQO(String name, String alternateName, String description, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MembershipGQO> membersOf, MembershipConnectionGQO membersOfPage, UserGQO hasUser, String id) {
+    public PersonGQO(String name, String alternateName, String description, Collection<OwnershipGQO> owns, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MembershipGQO> membersOf, MembershipConnectionGQO membersOfPage, UserGQO hasUser, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
+        this.owns = owns;
         this.familyName = familyName;
         this.givenName = givenName;
         this.birthDate = birthDate;
@@ -71,6 +74,13 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Collection<OwnershipGQO> getOwns() {
+        return owns;
+    }
+    public void setOwns(Collection<OwnershipGQO> owns) {
+        this.owns = owns;
     }
 
     public String getFamilyName() {

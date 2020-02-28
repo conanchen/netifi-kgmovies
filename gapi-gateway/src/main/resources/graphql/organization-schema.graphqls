@@ -14,8 +14,29 @@ interface Party{
 
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
+
+    """【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person."""
+    owns: [Ownership]
 }
 
+"""描述产品的所有者或所属机构的信息"""
+type Ownership{
+
+    """【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired."""
+    acquiredFrom: Party
+
+    """【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product."""
+    ownedFrom:	DateTime
+
+    """【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product."""
+    ownedThrough:	DateTime
+
+    """【东西类型】 拥有的东西Thing。"""
+    owned: Ownable
+
+    """【个人或组织】拥有者"""
+    owner: Party
+}
 
 """
 【机构】一个组织，例如学校、非政府组织、公司、俱乐部等 An organization such as a school, NGO, corporation, club, etc.
@@ -62,6 +83,9 @@ type GeneralOrganization  implements Thing & Organization & ConversationalThing 
 
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
+
+    """【拥有】 组织或个人拥有的产品 逆属性 Thing.ownedBy，Products owned by the organization or person."""
+    owns: [Ownership]
 
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
     parentOrganization: [Organization]
@@ -177,3 +201,9 @@ type MembershipEdge {
   cursor: String!
 }
 
+"""可被拥有的物体：产品、人、组织等"""
+interface Ownable{
+
+    """【可被拥有】 拥有本物体的组织或个人 逆属性 Party.owns"""
+    ownedBy: [Ownership]
+}

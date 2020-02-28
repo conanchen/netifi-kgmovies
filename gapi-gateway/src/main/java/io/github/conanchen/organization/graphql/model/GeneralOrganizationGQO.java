@@ -15,6 +15,7 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
     private String name;
     private String alternateName;
     private String description;
+    private Collection<OwnershipGQO> owns;
     private Collection<OrganizationGQO> parentOrganization;
     private Collection<OrganizationGQO> subOrganizations;
     private Collection<OrganizationGQO> departments;
@@ -31,10 +32,11 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
     public GeneralOrganizationGQO() {
     }
 
-    public GeneralOrganizationGQO(String name, String alternateName, String description, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
+    public GeneralOrganizationGQO(String name, String alternateName, String description, Collection<OwnershipGQO> owns, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
+        this.owns = owns;
         this.parentOrganization = parentOrganization;
         this.subOrganizations = subOrganizations;
         this.departments = departments;
@@ -67,6 +69,13 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Collection<OwnershipGQO> getOwns() {
+        return owns;
+    }
+    public void setOwns(Collection<OwnershipGQO> owns) {
+        this.owns = owns;
     }
 
     public Collection<OrganizationGQO> getParentOrganization() {
@@ -135,7 +144,6 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
     public MembershipConnectionGQO getMembersPage() {
         return membersPage;
     }
-
     public void setMembersPage(MembershipConnectionGQO membersPage) {
         this.membersPage = membersPage;
     }

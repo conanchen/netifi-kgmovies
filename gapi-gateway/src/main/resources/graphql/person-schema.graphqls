@@ -15,9 +15,13 @@ type Person implements Party & Node{
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
 
-    """familyName	Text or Person	
+    """【拥有】 组织或个人拥有的产品 逆属性 Thing.ownedBy，Products owned by the organization or person."""
+    owns: [Ownership]
+
+    """familyName	Text or Person
     【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
     familyName: String
+
     """givenName	Text or Person	
     【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."""
     givenName: String
