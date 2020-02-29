@@ -119,6 +119,16 @@ task graphqlCodegenAction(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodeg
     generateApis = true
 }
 
+task graphqlCodegenAcl(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/acl-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/acl")
+    apiPackageName = "io.github.conanchen.acl.graphql.api"
+    modelPackageName = "io.github.conanchen.acl.graphql.model"
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/bikeshop-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/bikeshop")
