@@ -7,6 +7,8 @@ import java.util.Collection;
 
 public class ACLGroupGQO implements ACLSubjectGQO, ThingGQO, NodeGQO {
 
+    @javax.validation.constraints.NotNull
+    private ACLPartyGQO isAclgOf;
     private String name;
     private String alternateName;
     private String description;
@@ -17,12 +19,21 @@ public class ACLGroupGQO implements ACLSubjectGQO, ThingGQO, NodeGQO {
     public ACLGroupGQO() {
     }
 
-    public ACLGroupGQO(String name, String alternateName, String description, Collection<ACLUserGQO> member, String id) {
+    public ACLGroupGQO(ACLPartyGQO isAclgOf, String name, String alternateName, String description, Collection<ACLUserGQO> member, String id) {
+        this.isAclgOf = isAclgOf;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
         this.member = member;
         this.id = id;
+    }
+
+    public ACLPartyGQO getIsAclgOf() {
+        return isAclgOf;
+    }
+
+    public void setIsAclgOf(ACLPartyGQO isAclgOf) {
+        this.isAclgOf = isAclgOf;
     }
 
     public String getName() {
@@ -36,7 +47,6 @@ public class ACLGroupGQO implements ACLSubjectGQO, ThingGQO, NodeGQO {
     public String getAlternateName() {
         return alternateName;
     }
-
     public void setAlternateName(String alternateName) {
         this.alternateName = alternateName;
     }
@@ -44,7 +54,6 @@ public class ACLGroupGQO implements ACLSubjectGQO, ThingGQO, NodeGQO {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -52,7 +61,6 @@ public class ACLGroupGQO implements ACLSubjectGQO, ThingGQO, NodeGQO {
     public Collection<ACLUserGQO> getMember() {
         return member;
     }
-
     public void setMember(Collection<ACLUserGQO> member) {
         this.member = member;
     }
@@ -60,7 +68,6 @@ public class ACLGroupGQO implements ACLSubjectGQO, ThingGQO, NodeGQO {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }

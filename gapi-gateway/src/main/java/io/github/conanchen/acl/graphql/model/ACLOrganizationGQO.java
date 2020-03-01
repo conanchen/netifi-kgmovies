@@ -7,14 +7,16 @@ import java.util.Collection;
 public class ACLOrganizationGQO implements ACLPartyGQO {
 
     private OrganizationGQO organization;
-    private Collection<ACLRoleGQO> hasAclr;
+    private Collection<ACLNamespaceGQO> hasNamespace;
+    private Collection<ACLGroupGQO> hasAclg;
 
     public ACLOrganizationGQO() {
     }
 
-    public ACLOrganizationGQO(OrganizationGQO organization, Collection<ACLRoleGQO> hasAclr) {
+    public ACLOrganizationGQO(OrganizationGQO organization, Collection<ACLNamespaceGQO> hasNamespace, Collection<ACLGroupGQO> hasAclg) {
         this.organization = organization;
-        this.hasAclr = hasAclr;
+        this.hasNamespace = hasNamespace;
+        this.hasAclg = hasAclg;
     }
 
     public OrganizationGQO getOrganization() {
@@ -25,12 +27,20 @@ public class ACLOrganizationGQO implements ACLPartyGQO {
         this.organization = organization;
     }
 
-    public Collection<ACLRoleGQO> getHasAclr() {
-        return hasAclr;
+    public Collection<ACLNamespaceGQO> getHasNamespace() {
+        return hasNamespace;
     }
 
-    public void setHasAclr(Collection<ACLRoleGQO> hasAclr) {
-        this.hasAclr = hasAclr;
+    public void setHasNamespace(Collection<ACLNamespaceGQO> hasNamespace) {
+        this.hasNamespace = hasNamespace;
+    }
+
+    public Collection<ACLGroupGQO> getHasAclg() {
+        return hasAclg;
+    }
+
+    public void setHasAclg(Collection<ACLGroupGQO> hasAclg) {
+        this.hasAclg = hasAclg;
     }
 
 }

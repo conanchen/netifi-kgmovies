@@ -12,8 +12,8 @@ public interface Query {
 
     ACLUserGQO aclUserFind(String id, String ugId) throws Exception;
 
-    ACLActionGQO aclActionFind(String id, String ugId) throws Exception;
-
     ACLResourcePropertyGQO aclResourcePropertyFind(String id, String ugId) throws Exception;
+
+    ACLMetadataGQO aclMetadata(String id, String ugId) throws Exception;
 
 }

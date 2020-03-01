@@ -4,6 +4,8 @@ import java.util.Collection;
 
 public interface ACLPartyGQO {
 
-    Collection<ACLRoleGQO> getHasAclr();
+    Collection<ACLNamespaceGQO> getHasNamespace();
+
+    Collection<ACLGroupGQO> getHasAclg();
 
 }

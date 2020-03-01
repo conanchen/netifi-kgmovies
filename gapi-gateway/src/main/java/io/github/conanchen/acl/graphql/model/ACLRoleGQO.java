@@ -7,15 +7,14 @@ import java.util.Collection;
 public class ACLRoleGQO implements NodeGQO {
 
     @javax.validation.constraints.NotNull
-    private ACLPartyGQO isAclrOf;
-    @javax.validation.constraints.NotNull
     private String name;
+    @javax.validation.constraints.NotNull
+    private Collection<ACLVerbGQO> verbs;
+    @javax.validation.constraints.NotNull
+    private Collection<ACLResourceGQO> objects;
     private String alternateName;
     private String description;
-    @javax.validation.constraints.NotNull
-    private Collection<ACLActionGQO> action;
-    @javax.validation.constraints.NotNull
-    private ACLResourceGQO isAclroleOf;
+    private ACLNamespaceGQO isRoleOf;
     private Collection<ACLRoleBindingGQO> hasBinding;
     @javax.validation.constraints.NotNull
     private String id;
@@ -23,23 +22,15 @@ public class ACLRoleGQO implements NodeGQO {
     public ACLRoleGQO() {
     }
 
-    public ACLRoleGQO(ACLPartyGQO isAclrOf, String name, String alternateName, String description, Collection<ACLActionGQO> action, ACLResourceGQO isAclroleOf, Collection<ACLRoleBindingGQO> hasBinding, String id) {
-        this.isAclrOf = isAclrOf;
+    public ACLRoleGQO(String name, Collection<ACLVerbGQO> verbs, Collection<ACLResourceGQO> objects, String alternateName, String description, ACLNamespaceGQO isRoleOf, Collection<ACLRoleBindingGQO> hasBinding, String id) {
         this.name = name;
+        this.verbs = verbs;
+        this.objects = objects;
         this.alternateName = alternateName;
         this.description = description;
-        this.action = action;
-        this.isAclroleOf = isAclroleOf;
+        this.isRoleOf = isRoleOf;
         this.hasBinding = hasBinding;
         this.id = id;
-    }
-
-    public ACLPartyGQO getIsAclrOf() {
-        return isAclrOf;
-    }
-
-    public void setIsAclrOf(ACLPartyGQO isAclrOf) {
-        this.isAclrOf = isAclrOf;
     }
 
     public String getName() {
@@ -48,6 +39,22 @@ public class ACLRoleGQO implements NodeGQO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Collection<ACLVerbGQO> getVerbs() {
+        return verbs;
+    }
+
+    public void setVerbs(Collection<ACLVerbGQO> verbs) {
+        this.verbs = verbs;
+    }
+
+    public Collection<ACLResourceGQO> getObjects() {
+        return objects;
+    }
+
+    public void setObjects(Collection<ACLResourceGQO> objects) {
+        this.objects = objects;
     }
 
     public String getAlternateName() {
@@ -66,20 +73,12 @@ public class ACLRoleGQO implements NodeGQO {
         this.description = description;
     }
 
-    public Collection<ACLActionGQO> getAction() {
-        return action;
+    public ACLNamespaceGQO getIsRoleOf() {
+        return isRoleOf;
     }
 
-    public void setAction(Collection<ACLActionGQO> action) {
-        this.action = action;
-    }
-
-    public ACLResourceGQO getIsAclroleOf() {
-        return isAclroleOf;
-    }
-
-    public void setIsAclroleOf(ACLResourceGQO isAclroleOf) {
-        this.isAclroleOf = isAclroleOf;
+    public void setIsRoleOf(ACLNamespaceGQO isRoleOf) {
+        this.isRoleOf = isRoleOf;
     }
 
     public Collection<ACLRoleBindingGQO> getHasBinding() {
@@ -93,7 +92,6 @@ public class ACLRoleGQO implements NodeGQO {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }

@@ -21,7 +21,6 @@ public class ACLResourcePropertyGQO {
     public ACLPermitTypeGQO getPermit() {
         return permit;
     }
-
     public void setPermit(ACLPermitTypeGQO permit) {
         this.permit = permit;
     }
@@ -29,7 +28,6 @@ public class ACLResourcePropertyGQO {
     public ACLAccessTypeGQO getAct() {
         return act;
     }
-
     public void setAct(ACLAccessTypeGQO act) {
         this.act = act;
     }
@@ -37,7 +35,6 @@ public class ACLResourcePropertyGQO {
     public String getPropertyName() {
         return propertyName;
     }
-
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
     }

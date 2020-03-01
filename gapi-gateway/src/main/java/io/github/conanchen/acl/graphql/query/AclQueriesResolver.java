@@ -31,12 +31,12 @@ public class AclQueriesResolver implements Query, GraphQLQueryResolver {
     }
 
     @Override
-    public ACLActionGQO aclActionFind(String id, String ugId) throws Exception {
+    public ACLResourcePropertyGQO aclResourcePropertyFind(String id, String ugId) throws Exception {
         return null;
     }
 
     @Override
-    public ACLResourcePropertyGQO aclResourcePropertyFind(String id, String ugId) throws Exception {
+    public ACLMetadataGQO aclMetadata(String id, String ugId) throws Exception {
         return null;
     }
 }

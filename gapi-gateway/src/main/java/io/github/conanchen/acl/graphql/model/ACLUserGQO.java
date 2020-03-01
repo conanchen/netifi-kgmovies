@@ -7,14 +7,16 @@ import java.util.Collection;
 public class ACLUserGQO implements ACLSubjectGQO, ACLPartyGQO {
 
     private UserGQO user;
-    private Collection<ACLRoleGQO> hasAclr;
+    private Collection<ACLNamespaceGQO> hasNamespace;
+    private Collection<ACLGroupGQO> hasAclg;
 
     public ACLUserGQO() {
     }
 
-    public ACLUserGQO(UserGQO user, Collection<ACLRoleGQO> hasAclr) {
+    public ACLUserGQO(UserGQO user, Collection<ACLNamespaceGQO> hasNamespace, Collection<ACLGroupGQO> hasAclg) {
         this.user = user;
-        this.hasAclr = hasAclr;
+        this.hasNamespace = hasNamespace;
+        this.hasAclg = hasAclg;
     }
 
     public UserGQO getUser() {
@@ -25,12 +27,20 @@ public class ACLUserGQO implements ACLSubjectGQO, ACLPartyGQO {
         this.user = user;
     }
 
-    public Collection<ACLRoleGQO> getHasAclr() {
-        return hasAclr;
+    public Collection<ACLNamespaceGQO> getHasNamespace() {
+        return hasNamespace;
     }
 
-    public void setHasAclr(Collection<ACLRoleGQO> hasAclr) {
-        this.hasAclr = hasAclr;
+    public void setHasNamespace(Collection<ACLNamespaceGQO> hasNamespace) {
+        this.hasNamespace = hasNamespace;
+    }
+
+    public Collection<ACLGroupGQO> getHasAclg() {
+        return hasAclg;
+    }
+
+    public void setHasAclg(Collection<ACLGroupGQO> hasAclg) {
+        this.hasAclg = hasAclg;
     }
 
 }

@@ -3,22 +3,60 @@ extend type Query {
     aclGroupFind(id: ID, ugId: ID): ACLGroup
     aclOrganizationFind(id: ID, ugId: ID): ACLOrganization
     aclUserFind(id: ID, ugId: ID): ACLUser
-    aclActionFind(id: ID, ugId: ID): ACLAction
     aclResourcePropertyFind(id: ID, ugId: ID): ACLResourceProperty
+    aclMetadata(id: ID, ugId: ID): ACLMetadata
+
 }
 
-"""拥有访控角色的组织Organization或单个用户User"""
+"""ACLNamespace 拥有访控角色的组织Organization或单个用户User"""
 interface ACLParty {
-    hasAclr: [ACLRole]
+    hasNamespace: [ACLNamespace]
+    hasAclg: [ACLGroup]
+}
+type ACLOrganization implements ACLParty{
+    organization: Organization
+    hasNamespace: [ACLNamespace]
+    hasAclg: [ACLGroup]
 }
 
-"""访控角色：访问控制角色 e.g. 1-管理员 2-可以创建 3-产品"""
-type ACLRole implements Node{
-    """【组织或个人】 本ACLRole所属组织或个人，逆属性 ACLParty.hasAclr"""
-    isAclrOf: ACLParty!
+type ACLUser implements ACLParty{
+    user: User
+    hasNamespace: [ACLNamespace]
+    hasAclg: [ACLGroup]
+}
 
-    """1. 角色名称,如管理员 name    Text    The name of the item."""
+"""资源对象所属的namespace,根据一定规则由平台生成或配置定义e.g. order.store001.shurui.io, 默认值是default"""
+type ACLNamespace implements Node{
+
+    """拥有namespace的组织或用户"""
+    isNamespaceOf: [ACLParty]
+
+    """资源对象所属的namespace,根据一定规则由平台生成或配置定义e.g. order.store001.shurui.io, 默认值是default"""
+    namespace: String
+
+    """属于namespace下的角色"""
+    hasRole: [ACLRole]
+
+    """属于namespace下的角色绑定"""
+    hasRoleBinding: [ACLRoleBinding]
+
+    """属于namespace下的具体资源对象"""
+    hasBelongings: [Thing]
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""访控角色：访问控制角色 e.g. 1.管理员 2.可以[创建、上架、下架] 3.[产品、服务]"""
+type ACLRole implements Node{
+    """1. 角色名称,如管理员manager."""
     name: String!
+
+    """2. 被授权的操作动词，如Create、Read、Update、Delete相对CreateAction、ReadAction、UpdateAction、DeleteAction"""
+    verbs: [ACLVerb!]!
+
+    """3. 授权访问的资源对象"""
+    objects: [ACLResource!]!
 
     """【别名】 该项的别名。 An alias for the item."""
     alternateName: String
@@ -26,11 +64,8 @@ type ACLRole implements Node{
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
 
-    """2. 被授权的Action，如Create、Read、Update、Delete"""
-    action: [ACLAction!]!
-
-    """3. 授权访问的资源对象,逆属性 ACLResource.hasAclrole"""
-    isAclroleOf: ACLResource!
+    """角色从属于的namespace"""
+    isRoleOf: ACLNamespace
 
     """访控角色绑定的用户组或用户e.g. 管理员角色有: 1.超级运营组、2.用户陈朵拉，逆属性 ACLRoleBinding.isBindingOf"""
     hasBinding: [ACLRoleBinding]
@@ -41,6 +76,9 @@ type ACLRole implements Node{
 
 """访控角色绑定的用户组或用户e.g. 管理员角色有: 1.超级运营组、2.用户陈朵拉"""
 type ACLRoleBinding implements Node{
+
+    """角色绑定从属于的namespace,与ACLRole.belongsTo一致,逆属性ACLNamespace.hasBelongings"""
+    isRolebindingOf: ACLNamespace
 
     """访问权限所属访控角色"""
     isBindingOf: ACLRole
@@ -57,6 +95,9 @@ union ACLSubject = ACLUser | ACLGroup
 
 """访控组,e.g.超级运营组有用户: 陈朵拉、安静的角落"""
 type ACLGroup implements Thing & Node{
+    """【组织或个人】 本ACLGroup所属组织或个人，逆属性 ACLParty.hasAclg"""
+    isAclgOf: ACLParty!
+
     """name    Text    The name of the item."""
     name: String
 
@@ -73,34 +114,48 @@ type ACLGroup implements Thing & Node{
     id: ID!
 }
 
-"""需要进行访问控制的资源"""
+"""每次引入新功能，都会引入新的动词Verb及其对应的Action，从而使得管理和使用更容易扩展和重用。"""
+enum ACLVerb {
+    """创建"""
+    CREATE
+    """阅读"""
+    READ
+    """修改"""
+    UPDATE
+    """删除"""
+    DELETE
+    """邀请"""
+    INVITE
+    """申请"""
+    REQUEST
+    """批准"""
+    APPROVE
+    """接受"""
+    ACCEPT
+    """拒绝"""
+    DENY
+
+}
+
+"""需要进行访问控制的资源,可以控制namespace范围内的资源对象,或更进一步控制到指定资源对象及其属性"""
 type ACLResource implements Node{
-    """授权访问的资源对象,逆属性 ACLRole.isAclroleOf"""
-    hasAclrole: ACLRole
 
-    """访问角色可以读写的资源"""
-    resource: Thing!
+    """资源对象所属的namespace"""
+    namespace: ACLNamespace!
 
-    """访问角色可以读写的资源属性,默认所有属性可读"""
-    resourceProperties: [ACLResourceProperty]
+    """资源唯一标识UID,可选"""
+    uid:ID
+
+    """资源可读性名称如用订单编号,可选"""
+    name:String
+
+    """访问角色可以读写的资源属性,默认所有属性可读,可选"""
+    properties: [ACLResourceProperty]
 
     """The id of the object."""
     id: ID!
 }
 
-type ACLOrganization implements ACLParty{
-    organization: Organization
-    hasAclr: [ACLRole]
-}
-
-type ACLUser implements ACLParty{
-    user: User
-    hasAclr: [ACLRole]
-}
-
-type ACLAction {
-    action: Action
-}
 
 """资源属性访问权限 e.g. allow read name, deny write salary"""
 type ACLResourceProperty {
@@ -125,4 +180,21 @@ enum ACLPermitType{
 enum ACLAccessType{
     READ
     WRITE
+}
+
+
+""" 帮助识别资源对象唯一性的数据，包括一个 name 字符串、UID 和可选的 namespace。所有Thing都有ACLMetadata属性"""
+type ACLMetadata{
+
+    """本aclmetadata所属的资源对象，逆属性Thing.hasAclmetadata"""
+    isAclmetadataOf : Thing
+
+    """资源名称,name是相对uid来说可读性相对更好的，有一定意义的 “名称” 。在创建对象时可以给对象指定名称,也可能平台按照规则生成,如订单可用订单编号20200202T1314520N123456"""
+    name: String!
+
+    """资源对象全局唯一ID,每个对象都有 uid ，uid 是kgis平台自动为对象生成的，可以唯一标识该对象的字符串"""
+    uid: ID!
+
+    """资源对象所属的namespace,资源对象可能属于多个namespace? 如订单属于下单用户User的namespace,也属于下单店铺Store的namespace"""
+    namespace: [ACLNamespace]
 }
