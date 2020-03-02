@@ -20,9 +20,10 @@ public class PlaceQueriesResolver implements Query, GraphQLQueryResolver {
   }
 
   @Override
-  public StoresConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, Integer first, Integer offset) throws Exception {
+  public StoreConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, String after, Integer first, String before, Integer last) throws Exception {
     return null;
   }
+
 
   @Override
   public StoreGQO storeFind(String id, String storeID) throws Exception {

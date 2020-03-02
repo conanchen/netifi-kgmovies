@@ -8,7 +8,7 @@ public interface Query {
 
     AdministrativeAreaGQO administrativeAreaFind(String id, String defID) throws Exception;
 
-    StoresConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, Integer first, Integer offset) throws Exception;
+    StoreConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, String after, Integer first, String before, Integer last) throws Exception;
 
     StoreGQO storeFind(String id, String storeID) throws Exception;
 

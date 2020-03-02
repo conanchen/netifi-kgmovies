@@ -4,8 +4,13 @@ extend type Query {
 
     """
     [Get storeSearch Sample Query](https://github.com/conanchen/netifi-kgmovies/blob/master/gapi-gateway/readme/storeSearch.md)
+    分页查询参数：
+    - after: 开始游标，与first搭配使用；
+    - first: 指定取游标后的多少个数据，与after搭配使用；
+    - before: 结束游标，与last搭配使用；
+    - last: 指定取游标前的多少个数据，与before搭配使用；
     """
-    storeSearch(filter: StoreFilter, order: StoreOrder, first: Int, offset: Int): StoresConnection
+    storeSearch(filter: StoreFilter, order: StoreOrder, after: String, first: Int, before: String, last: Int): StoreConnection
     storeFind(id: ID, storeID: ID): Store
 
     childcareFind(id: ID, lbsID: ID): Childcare
@@ -74,12 +79,12 @@ type Store implements Thing & Organization & LocalBusiness & Node{
 
 
 """A connection to a list of items."""
-type StoresConnection {
+type StoreConnection {
     """Information to aid in pagination."""
     pageInfo: PageInfo!
 
     """A list of edges."""
-    edges: [StoresEdge]
+    edges: [StoreEdge]
 
     """
     A count of the total number of objects in this connection, ignoring pagination.
@@ -101,7 +106,7 @@ type StoresConnection {
 }
 
 """An edge in a connection."""
-type StoresEdge {
+type StoreEdge {
     """The item at the end of the edge"""
     node: Store
 

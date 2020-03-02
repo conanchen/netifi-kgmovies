@@ -2,6 +2,7 @@ package io.github.conanchen.place.graphql.model;
 
 import java.util.*;
 import io.github.conanchen.place.graphql.api.*;
+import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
 
 public class StoreConnectionGQO {
 

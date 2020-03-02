@@ -5,6 +5,6 @@ import io.github.conanchen.place.graphql.model.*;
 
 public interface StoreSearchQuery {
 
-    StoresConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, Integer first, Integer offset) throws Exception;
+    StoreConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, String after, Integer first, String before, Integer last) throws Exception;
 
 }
