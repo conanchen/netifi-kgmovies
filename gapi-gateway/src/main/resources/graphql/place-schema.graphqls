@@ -3,7 +3,7 @@ extend type Query {
     administrativeAreaFind(id: ID, defID: ID): AdministrativeArea
 
     """
-    [Get storeSearch Sample Query](https://github.com/conanchen/netifi-kgmovies/blob/master/readme/storeSearch.md)
+    [Get storeSearch Sample Query](https://github.com/conanchen/netifi-kgmovies/blob/master/gapi-gateway/readme/storeSearch.md)
     """
     storeSearch(filter: StoreFilter, order: StoreOrder, first: Int, offset: Int): StoresConnection
     storeFind(id: ID, storeID: ID): Store
