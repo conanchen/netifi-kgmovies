@@ -178,8 +178,7 @@ input AddToCartInput {
     attributes: [CustomAttributeInput]
 }
 
-type Cart {
-    id: ID!
+type Cart implements ACLable & Node{
     currency: Currency!
     email: String
     totalItems: Int
@@ -195,6 +194,12 @@ type Cart {
     notes: String
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    """受访问控制的Thing资源对象都有ACLMetadata，逆属性 ACLMetadata.isAclmetadataOf"""
+    hasAclmetadata: ACLMetadata
+
+    """The id of the object."""
+    id: ID!
 }
 
 type CartItem {

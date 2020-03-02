@@ -1,13 +1,14 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
+import io.github.conanchen.acl.graphql.model.ACLMetadataGQO;
+import io.github.conanchen.acl.graphql.model.ACLableGQO;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeGQO;
+import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 import java.util.Collection;
 
-public class CartGQO {
+public class CartGQO implements ACLableGQO, NodeGQO {
 
-    @javax.validation.constraints.NotNull
-    private String id;
     @javax.validation.constraints.NotNull
     private CurrencyGQO currency;
     private String email;
@@ -32,12 +33,14 @@ public class CartGQO {
     private java.util.Date createdAt;
     @javax.validation.constraints.NotNull
     private java.util.Date updatedAt;
+    private ACLMetadataGQO hasAclmetadata;
+    @javax.validation.constraints.NotNull
+    private String id;
 
     public CartGQO() {
     }
 
-    public CartGQO(String id, CurrencyGQO currency, String email, Integer totalItems, Integer totalUniqueItems, Collection<CartItemGQO> items, MoneyGQO subTotal, MoneyGQO shippingTotal, MoneyGQO taxTotal, MoneyGQO grandTotal, Boolean isEmpty, Boolean abandoned, Collection<CustomAttributeGQO> attributes, String notes, java.util.Date createdAt, java.util.Date updatedAt) {
-        this.id = id;
+    public CartGQO(CurrencyGQO currency, String email, Integer totalItems, Integer totalUniqueItems, Collection<CartItemGQO> items, MoneyGQO subTotal, MoneyGQO shippingTotal, MoneyGQO taxTotal, MoneyGQO grandTotal, Boolean isEmpty, Boolean abandoned, Collection<CustomAttributeGQO> attributes, String notes, java.util.Date createdAt, java.util.Date updatedAt, ACLMetadataGQO hasAclmetadata, String id) {
         this.currency = currency;
         this.email = email;
         this.totalItems = totalItems;
@@ -53,12 +56,7 @@ public class CartGQO {
         this.notes = notes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
+        this.hasAclmetadata = hasAclmetadata;
         this.id = id;
     }
 
@@ -163,8 +161,25 @@ public class CartGQO {
     public java.util.Date getUpdatedAt() {
         return updatedAt;
     }
+
     public void setUpdatedAt(java.util.Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public ACLMetadataGQO getHasAclmetadata() {
+        return hasAclmetadata;
+    }
+
+    public void setHasAclmetadata(ACLMetadataGQO hasAclmetadata) {
+        this.hasAclmetadata = hasAclmetadata;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }

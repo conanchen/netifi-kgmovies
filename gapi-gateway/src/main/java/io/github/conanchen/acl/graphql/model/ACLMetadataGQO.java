@@ -1,12 +1,10 @@
 package io.github.conanchen.acl.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.ThingGQO;
-
 import java.util.Collection;
 
 public class ACLMetadataGQO {
 
-    private ThingGQO isAclmetadataOf;
+    private ACLableGQO isAclmetadataOf;
     @javax.validation.constraints.NotNull
     private String name;
     @javax.validation.constraints.NotNull
@@ -16,25 +14,24 @@ public class ACLMetadataGQO {
     public ACLMetadataGQO() {
     }
 
-    public ACLMetadataGQO(ThingGQO isAclmetadataOf, String name, String uid, Collection<ACLNamespaceGQO> namespace) {
+    public ACLMetadataGQO(ACLableGQO isAclmetadataOf, String name, String uid, Collection<ACLNamespaceGQO> namespace) {
         this.isAclmetadataOf = isAclmetadataOf;
         this.name = name;
         this.uid = uid;
         this.namespace = namespace;
     }
 
-    public ThingGQO getIsAclmetadataOf() {
+    public ACLableGQO getIsAclmetadataOf() {
         return isAclmetadataOf;
     }
 
-    public void setIsAclmetadataOf(ThingGQO isAclmetadataOf) {
+    public void setIsAclmetadataOf(ACLableGQO isAclmetadataOf) {
         this.isAclmetadataOf = isAclmetadataOf;
     }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -42,7 +39,6 @@ public class ACLMetadataGQO {
     public String getUid() {
         return uid;
     }
-
     public void setUid(String uid) {
         this.uid = uid;
     }
@@ -50,7 +46,6 @@ public class ACLMetadataGQO {
     public Collection<ACLNamespaceGQO> getNamespace() {
         return namespace;
     }
-
     public void setNamespace(Collection<ACLNamespaceGQO> namespace) {
         this.namespace = namespace;
     }

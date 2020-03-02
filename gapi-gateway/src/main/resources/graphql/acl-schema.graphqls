@@ -183,11 +183,11 @@ enum ACLAccessType{
 }
 
 
-""" 帮助识别资源对象唯一性的数据，包括一个 name 字符串、UID 和可选的 namespace。所有Thing都有ACLMetadata属性"""
+""" 帮助识别资源对象唯一性的数据，包括一个 name 字符串、UID 和可选的 namespace。所有ACLable的资源都有ACLMetadata属性"""
 type ACLMetadata{
 
-    """本aclmetadata所属的资源对象，逆属性Thing.hasAclmetadata"""
-    isAclmetadataOf : Thing
+    """本aclmetadata所属的资源对象，逆属性ACLable.hasAclmetadata"""
+    isAclmetadataOf : ACLable
 
     """资源名称,name是相对uid来说可读性相对更好的，有一定意义的 “名称” 。在创建对象时可以给对象指定名称,也可能平台按照规则生成,如订单可用订单编号20200202T1314520N123456"""
     name: String!
@@ -197,4 +197,10 @@ type ACLMetadata{
 
     """资源对象所属的namespace,资源对象可能属于多个namespace? 如订单属于下单用户User的namespace,也属于下单店铺Store的namespace"""
     namespace: [ACLNamespace]
+}
+
+"""任何受访问控制的Thing如产品、服务、组织、人员、订单等都有ACLMetadata"""
+interface ACLable{
+    """受访问控制的Thing资源对象都有ACLMetadata，逆属性 ACLMetadata.isAclmetadataOf"""
+    hasAclmetadata: ACLMetadata
 }
