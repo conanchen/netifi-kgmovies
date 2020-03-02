@@ -1,24 +1,42 @@
 package io.github.conanchen.place.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.place.graphql.api.*;
-
 public class StoreOrderGQO {
 
-    private String name;
+    private StoreOrderableGQO asc;
+    private StoreOrderableGQO desc;
+    private StoreOrderGQO then;
 
     public StoreOrderGQO() {
     }
 
-    public StoreOrderGQO(String name) {
-        this.name = name;
+    public StoreOrderGQO(StoreOrderableGQO asc, StoreOrderableGQO desc, StoreOrderGQO then) {
+        this.asc = asc;
+        this.desc = desc;
+        this.then = then;
     }
 
-    public String getName() {
-        return name;
+    public StoreOrderableGQO getAsc() {
+        return asc;
     }
-    public void setName(String name) {
-        this.name = name;
+
+    public void setAsc(StoreOrderableGQO asc) {
+        this.asc = asc;
+    }
+
+    public StoreOrderableGQO getDesc() {
+        return desc;
+    }
+
+    public void setDesc(StoreOrderableGQO desc) {
+        this.desc = desc;
+    }
+
+    public StoreOrderGQO getThen() {
+        return then;
+    }
+
+    public void setThen(StoreOrderGQO then) {
+        this.then = then;
     }
 
 }

@@ -2,6 +2,9 @@ extend type Query {
     defaultPlaceFind(id: ID, defID: ID): DefaultPlace
     administrativeAreaFind(id: ID, defID: ID): AdministrativeArea
 
+    """
+    [Get storeSearch Sample Query](https://github.com/conanchen/netifi-kgmovies/blob/master/readme/storeSearch.md)
+    """
     storeSearch(filter: StoreFilter, order: StoreOrder, first: Int, offset: Int): StoresConnection
     storeFind(id: ID, storeID: ID): Store
 
@@ -34,6 +37,11 @@ type Store implements Thing & Organization & LocalBusiness & Node{
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
 
+    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed."""
+    dateCreated:    DateTime
+
+    """【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed."""
+    dateModified: DateTime
 
     #    Properties from Organization
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
@@ -50,6 +58,8 @@ type Store implements Thing & Organization & LocalBusiness & Node{
 
     """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
     followees: [Person]
+    """本店关注的人数"""
+    followeenum: Int
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]
@@ -306,10 +316,22 @@ input LocalBusinessFilter {
 }
 
 input StoreOrder {
-    name: String
+    asc: StoreOrderable
+    desc: StoreOrderable
+    then: StoreOrder
+}
+enum StoreOrderable {
+    name
+    dateCreated
+    dateModified
+    followeenum
 }
 
 input StoreFilter {
-    name: String
+    id: [ID!]
+    name: StringHashFilter_StringRegExpFilter
+    and: StoreFilter
+    or: StoreFilter
+    not: StoreFilter
 }
 
