@@ -1,29 +1,31 @@
 package io.github.conanchen.organization.graphql.model;
 
-public class MembershipEdgeGQO {
+public class MemberRoleEdgeGQO {
 
-    private MembershipGQO node;
+    private MemberRoleGQO node;
     @javax.validation.constraints.NotNull
     private String cursor;
 
-    public MembershipEdgeGQO() {
+    public MemberRoleEdgeGQO() {
     }
 
-    public MembershipEdgeGQO(MembershipGQO node, String cursor) {
+    public MemberRoleEdgeGQO(MemberRoleGQO node, String cursor) {
         this.node = node;
         this.cursor = cursor;
     }
 
-    public MembershipGQO getNode() {
+    public MemberRoleGQO getNode() {
         return node;
     }
-    public void setNode(MembershipGQO node) {
+
+    public void setNode(MemberRoleGQO node) {
         this.node = node;
     }
 
     public String getCursor() {
         return cursor;
     }
+
     public void setCursor(String cursor) {
         this.cursor = cursor;
     }

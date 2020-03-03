@@ -1,8 +1,8 @@
 package io.github.conanchen.person.graphql.model;
 
 import io.github.conanchen.movies.graphql.model.MovieGQO;
-import io.github.conanchen.organization.graphql.model.MembershipConnectionGQO;
-import io.github.conanchen.organization.graphql.model.MembershipGQO;
+import io.github.conanchen.organization.graphql.model.MemberRoleConnectionGQO;
+import io.github.conanchen.organization.graphql.model.MemberRoleGQO;
 import io.github.conanchen.organization.graphql.model.OwnershipGQO;
 import io.github.conanchen.organization.graphql.model.PartyGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
@@ -26,8 +26,8 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     private Collection<PersonGQO> follows;
     private Collection<PersonGQO> followees;
     private Collection<MovieGQO> directoredFilms;
-    private Collection<MembershipGQO> membersOf;
-    private MembershipConnectionGQO membersOfPage;
+    private Collection<MemberRoleGQO> membersOf;
+    private MemberRoleConnectionGQO membersOfPage;
     private UserGQO hasUser;
     @javax.validation.constraints.NotNull
     private String id;
@@ -35,7 +35,7 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     public PersonGQO() {
     }
 
-    public PersonGQO(String name, String alternateName, String description, Collection<OwnershipGQO> owns, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MembershipGQO> membersOf, MembershipConnectionGQO membersOfPage, UserGQO hasUser, String id) {
+    public PersonGQO(String name, String alternateName, String description, Collection<OwnershipGQO> owns, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MemberRoleGQO> membersOf, MemberRoleConnectionGQO membersOfPage, UserGQO hasUser, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -146,17 +146,19 @@ public class PersonGQO implements PartyGQO, NodeGQO {
         this.directoredFilms = directoredFilms;
     }
 
-    public Collection<MembershipGQO> getMembersOf() {
+    public Collection<MemberRoleGQO> getMembersOf() {
         return membersOf;
     }
-    public void setMembersOf(Collection<MembershipGQO> membersOf) {
+
+    public void setMembersOf(Collection<MemberRoleGQO> membersOf) {
         this.membersOf = membersOf;
     }
 
-    public MembershipConnectionGQO getMembersOfPage() {
+    public MemberRoleConnectionGQO getMembersOfPage() {
         return membersOfPage;
     }
-    public void setMembersOfPage(MembershipConnectionGQO membersOfPage) {
+
+    public void setMembersOfPage(MemberRoleConnectionGQO membersOfPage) {
         this.membersOfPage = membersOfPage;
     }
 
@@ -174,7 +176,7 @@ public class PersonGQO implements PartyGQO, NodeGQO {
         this.id = id;
     }
 
-    public MembershipConnectionGQO membersOfPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
+    public MemberRoleConnectionGQO membersOfPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
         // TODO Auto-generated method stub
         return null;
     }

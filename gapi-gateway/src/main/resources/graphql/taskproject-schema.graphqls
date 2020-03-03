@@ -7,17 +7,18 @@ extend type Query {
 """an individual or collaborative enterprise that is carefully planned to achieve a particular aim."""
 type Project implements Thing & Organization & ConversationalThing &  Node{
 # Properties from Thing    
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
-# /Properties from Thing    
+    # /Properties from Thing
 
-# Properties from Oraganization
+
+    #    Properties from Organization
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
     parentOrganization: [Organization]
 
@@ -28,24 +29,29 @@ type Project implements Thing & Organization & ConversationalThing &  Node{
     departments: [Organization]
 
     """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
-    employees:[Person]
+    employees: [EmployeeRole]
+    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection
 
-    """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
-    followees: [Person]
+    """【关注组织的人】 社交网络上本组织被别人关注 """
+    followers: [Person]
+
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole.在组织承担角色的个人有时间限制"""
+    members: [MemberRole]
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
+
+    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    potentialActions: [Action]
+
+    """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""
+    hasOrgRoleName: [OrgRoleName]
+    #    /Properties from Organization
+
 
     """可以访问的会话"""
     availableConversations: [Conversation]
 
     """ 本组织默认可访问的会话 """
     defaultConversation: Conversation
-    
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
-    potentialActions: [Action]
-
-    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
-    members: [Membership]
-    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MembershipConnection
-# /Properties from Oraganization
 
     """参照(组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。)"""
     hasPart: [Task]

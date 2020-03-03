@@ -1,7 +1,7 @@
 extend type Query {
     organization(id: ID, organizationID: ID): Organization
     generalOrganization(id: ID, organizationID: ID): GeneralOrganization
-    
+
 }
 
 """Party 代表有行动能力的人或组织"""
@@ -26,10 +26,10 @@ type Ownership{
     acquiredFrom: Party
 
     """【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product."""
-    ownedFrom:	DateTime
+    ownedFrom:    DateTime
 
     """【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product."""
-    ownedThrough:	DateTime
+    ownedThrough:    DateTime
 
     """【东西类型】 拥有的东西Thing。"""
     owned: Ownable
@@ -55,17 +55,22 @@ interface Organization {
     departments: [Organization]
 
     """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
-    employees:[Person]
+    employees: [EmployeeRole]
+    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection
 
-    """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
-    followees: [Person]
-    
+    """【关注组织的人】 社交网络上本组织被别人关注 """
+    followers: [Person]
+
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole.在组织承担角色的个人有时间限制"""
+    members: [MemberRole]
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
+
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]
 
-    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
-    members: [Membership]
-    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MembershipConnection
+    """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""
+    hasOrgRoleName: [OrgRoleName]
+
 }
 
 """
@@ -87,6 +92,14 @@ type GeneralOrganization  implements Thing & Organization & ConversationalThing 
     """【拥有】 组织或个人拥有的产品 逆属性 Thing.ownedBy，Products owned by the organization or person."""
     owns: [Ownership]
 
+    """可以访问的会话"""
+    availableConversations: [Conversation]
+
+    """ 本组织默认可访问的会话 """
+    defaultConversation: Conversation
+
+
+    #    Properties from Organization
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
     parentOrganization: [Organization]
 
@@ -97,38 +110,42 @@ type GeneralOrganization  implements Thing & Organization & ConversationalThing 
     departments: [Organization]
 
     """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
-    employees:[Person]
+    employees: [EmployeeRole]
+    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection
 
-    """【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
-    followees: [Person]
+    """【关注组织的人】 社交网络上本组织被别人关注 """
+    followers: [Person]
 
-    """可以访问的会话"""
-    availableConversations: [Conversation]
+    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole.在组织承担角色的个人有时间限制"""
+    members: [MemberRole]
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
 
-    """ 本组织默认可访问的会话 """
-    defaultConversation: Conversation
-    
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]
 
-    """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
-    members: [Membership]
-    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MembershipConnection
+    """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""
+    hasOrgRoleName: [OrgRoleName]
 
     """The id of the object."""
     id: ID!
 }
 
 """组织定义的角色，全局统筹定义"""
-type Role implements Node{
+type OrgRoleName implements Node{
+
+    """isOrgRoleNameOf,逆属性 Organization.hasOrgRoleName"""
+    isRoleNameOf: Organization
+
+    """角色分组,如员工角色组、会员角色组"""
+    group: String
 
     """【角色名称】 由个人或组织发挥，扮演或担任的角色。例如例如，漫画书的创作者团队可能会创作“蜘蛛侠”，“钢铁侠”的角色; 或运动队的运动员可能会在运动场上担任“四分卫”的角色 A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'."""
-    roleName: String
+    name: String
 
     """【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork."""
     alternativeHeadline: String
 
-    """【描述】 该项的一个简单描述。 A description of the item. description	Text or Thing	"""
+    """【描述】 该项的一个简单描述。 A description of the item. description    Text or Thing    """
     description: String
 
     createdAt: DateTime
@@ -138,13 +155,13 @@ type Role implements Node{
     id: ID!
 }
 
-"""个人在组织承担的角色有时间限制"""
-type Membership implements Node{
-    """在组织承担角色的个人,【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership."""
+"""个人在组织承担的会员角色有时间限制"""
+type MemberRole implements Node{
+    """在组织承担角色的个人,【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole."""
     member: Person
 
     """个人在组织承担的角色"""
-    role: Role
+    roleName: OrgRoleName
 
     """个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with."""
     hostingOrganization: Organization
@@ -166,39 +183,39 @@ type Membership implements Node{
 }
 
 """A connection to a list of items."""
-type MembershipConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+type MemberRoleConnection {
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [MembershipEdge]
+    """A list of edges."""
+    edges: [MemberRoleEdge]
 
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
 
-  """
-  A list of all of the objects returned in the connection. This is a convenience
-  field provided for quickly exploring the API; rather than querying for
-  "{ edges { node } }" when no edge data is needed, this field can be be used
-  instead. Note that when clients like Relay need to fetch the "cursor" field on
-  the edge to enable efficient pagination, this shortcut cannot be used, and the
-  full "{ edges { node } }" version should be used instead.
-  """
-  roles: [Membership]
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    roles: [MemberRole]
 }
 
 """An edge in a connection."""
-type MembershipEdge {
-  """The item at the end of the edge"""
-  node: Membership
+type MemberRoleEdge {
+    """The item at the end of the edge"""
+    node: MemberRole
 
-  """A cursor for use in pagination"""
-  cursor: String!
+    """A cursor for use in pagination"""
+    cursor: String!
 }
 
 """可被拥有的物体：产品、人、组织等"""
@@ -206,4 +223,70 @@ interface Ownable{
 
     """【可被拥有】 拥有本物体的组织或个人 逆属性 Party.owns"""
     ownedBy: [Ownership]
+}
+
+
+"""
+[【雇员角色】OrganizationRole的子类，描述雇员关系,有时间限制](http://cnschema.org/EmployeeRole)
+"""
+type EmployeeRole implements Node{
+    """在组织承担角色的个人,【会员】 组织或项目的成员 A member of an Organization or a ProgramEmployeeRole."""
+    member: Person
+
+    """个人在组织承担的角色"""
+    roleName: OrgRoleName
+
+    """个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with."""
+    hostingOrganization: Organization
+
+    """【会员编号】 成员身份的唯一标识符 A unique identifier for the membership."""
+    membershipNumber: String
+
+    """【开始日期】 某事的开始日期和时间（按照ＩＳＯ ８６０１日期标准） The start date and time of the item (in ISO 8601 date format)."""
+    startDate: DateTime
+
+    """【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format)."""
+    endDate: DateTime
+
+    createdAt: DateTime
+    creator: Person
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""A connection to a list of items."""
+type EmployeeRoleConnection {
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """A list of edges."""
+    edges: [EmployeeRoleEdge]
+
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
+
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    roles: [EmployeeRole]
+}
+
+"""An edge in a connection."""
+type EmployeeRoleEdge {
+    """The item at the end of the edge"""
+    node: EmployeeRole
+
+    """A cursor for use in pagination"""
+    cursor: String!
 }

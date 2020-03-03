@@ -1,9 +1,7 @@
 package io.github.conanchen.place.graphql.model;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.organization.graphql.model.MembershipConnectionGQO;
-import io.github.conanchen.organization.graphql.model.MembershipGQO;
-import io.github.conanchen.organization.graphql.model.OrganizationGQO;
+import io.github.conanchen.organization.graphql.model.*;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
@@ -23,19 +21,21 @@ public class StoreGQO implements ThingGQO, OrganizationGQO, LocalBusinessGQO, No
     private Collection<OrganizationGQO> parentOrganization;
     private Collection<OrganizationGQO> subOrganizations;
     private Collection<OrganizationGQO> departments;
-    private Collection<PersonGQO> employees;
-    private Collection<PersonGQO> followees;
-    private Integer followeenum;
+    private Collection<EmployeeRoleGQO> employees;
+    private EmployeeRoleConnectionGQO employeesPage;
+    private Collection<PersonGQO> followers;
+    private Collection<MemberRoleGQO> members;
+    private MemberRoleConnectionGQO membersPage;
     private Collection<ActionGQO> potentialActions;
-    private Collection<MembershipGQO> members;
-    private MembershipConnectionGQO membersPage;
+    private Collection<OrgRoleNameGQO> hasOrgRoleName;
+    private Integer followernum;
     @javax.validation.constraints.NotNull
     private String id;
 
     public StoreGQO() {
     }
 
-    public StoreGQO(String openingHours, String paymentAccepted, String priceRange, String name, String alternateName, String description, java.util.Date dateCreated, java.util.Date dateModified, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Integer followeenum, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
+    public StoreGQO(String openingHours, String paymentAccepted, String priceRange, String name, String alternateName, String description, java.util.Date dateCreated, java.util.Date dateModified, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<EmployeeRoleGQO> employees, EmployeeRoleConnectionGQO employeesPage, Collection<PersonGQO> followers, Collection<MemberRoleGQO> members, MemberRoleConnectionGQO membersPage, Collection<ActionGQO> potentialActions, Collection<OrgRoleNameGQO> hasOrgRoleName, Integer followernum, String id) {
         this.openingHours = openingHours;
         this.paymentAccepted = paymentAccepted;
         this.priceRange = priceRange;
@@ -48,11 +48,13 @@ public class StoreGQO implements ThingGQO, OrganizationGQO, LocalBusinessGQO, No
         this.subOrganizations = subOrganizations;
         this.departments = departments;
         this.employees = employees;
-        this.followees = followees;
-        this.followeenum = followeenum;
-        this.potentialActions = potentialActions;
+        this.employeesPage = employeesPage;
+        this.followers = followers;
         this.members = members;
         this.membersPage = membersPage;
+        this.potentialActions = potentialActions;
+        this.hasOrgRoleName = hasOrgRoleName;
+        this.followernum = followernum;
         this.id = id;
     }
 
@@ -133,31 +135,54 @@ public class StoreGQO implements ThingGQO, OrganizationGQO, LocalBusinessGQO, No
     public Collection<OrganizationGQO> getDepartments() {
         return departments;
     }
+
     public void setDepartments(Collection<OrganizationGQO> departments) {
         this.departments = departments;
     }
 
-    public Collection<PersonGQO> getEmployees() {
+    public Collection<EmployeeRoleGQO> getEmployees() {
         return employees;
     }
-    public void setEmployees(Collection<PersonGQO> employees) {
+
+    @Override
+    public EmployeeRoleConnectionGQO employeesPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
+        return null;
+    }
+
+    public void setEmployees(Collection<EmployeeRoleGQO> employees) {
         this.employees = employees;
     }
 
-    public Collection<PersonGQO> getFollowees() {
-        return followees;
+    public EmployeeRoleConnectionGQO getEmployeesPage() {
+        return employeesPage;
     }
 
-    public void setFollowees(Collection<PersonGQO> followees) {
-        this.followees = followees;
+    public void setEmployeesPage(EmployeeRoleConnectionGQO employeesPage) {
+        this.employeesPage = employeesPage;
     }
 
-    public Integer getFolloweenum() {
-        return followeenum;
+    public Collection<PersonGQO> getFollowers() {
+        return followers;
     }
 
-    public void setFolloweenum(Integer followeenum) {
-        this.followeenum = followeenum;
+    public void setFollowers(Collection<PersonGQO> followers) {
+        this.followers = followers;
+    }
+
+    public Collection<MemberRoleGQO> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Collection<MemberRoleGQO> members) {
+        this.members = members;
+    }
+
+    public MemberRoleConnectionGQO getMembersPage() {
+        return membersPage;
+    }
+
+    public void setMembersPage(MemberRoleConnectionGQO membersPage) {
+        this.membersPage = membersPage;
     }
 
     public Collection<ActionGQO> getPotentialActions() {
@@ -168,29 +193,32 @@ public class StoreGQO implements ThingGQO, OrganizationGQO, LocalBusinessGQO, No
         this.potentialActions = potentialActions;
     }
 
-    public Collection<MembershipGQO> getMembers() {
-        return members;
-    }
-    public void setMembers(Collection<MembershipGQO> members) {
-        this.members = members;
+    public Collection<OrgRoleNameGQO> getHasOrgRoleName() {
+        return hasOrgRoleName;
     }
 
-    public MembershipConnectionGQO getMembersPage() {
-        return membersPage;
+    public void setHasOrgRoleName(Collection<OrgRoleNameGQO> hasOrgRoleName) {
+        this.hasOrgRoleName = hasOrgRoleName;
     }
-    public void setMembersPage(MembershipConnectionGQO membersPage) {
-        this.membersPage = membersPage;
+
+    public Integer getFollowernum() {
+        return followernum;
+    }
+
+    public void setFollowernum(Integer followernum) {
+        this.followernum = followernum;
     }
 
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
 
     @Override
-    public MembershipConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
+    public MemberRoleConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
         // TODO Auto-generated method stub
         return null;
     }

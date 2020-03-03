@@ -49,18 +49,18 @@ type Person implements Party & Node{
 
     """follows	Person or Person	
     【关注】 社交网络上主动关注其他人或组织 The most generic uni-directional social relation."""
-    follows:	[Person]
+    follows:    [Person]
 
-    """Organization or Person or FollowAction	
+    """Organization or Person or FollowAction
     【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
-    followees:	[Person]
+    followees:    [Person]
 
     """Define Types, copied from https://tour.dgraph.io/moredata/2/"""
     directoredFilms: [Movie]
 
     """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
-    membersOf: [Membership]
-    membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MembershipConnection
+    membersOf: [MemberRole]
+    membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MemberRoleConnection
 
     """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
     hasUser: User

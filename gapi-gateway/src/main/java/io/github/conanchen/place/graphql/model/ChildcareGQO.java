@@ -1,15 +1,13 @@
 package io.github.conanchen.place.graphql.model;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.organization.graphql.model.MembershipConnectionGQO;
-import io.github.conanchen.organization.graphql.model.MembershipGQO;
-import io.github.conanchen.organization.graphql.model.OrganizationGQO;
+import io.github.conanchen.organization.graphql.model.*;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 import java.util.Collection;
 
-public class ChildcareGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO{
+public class ChildcareGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO {
 
     private String openingHours;
     private String paymentAccepted;
@@ -17,18 +15,20 @@ public class ChildcareGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO{
     private Collection<OrganizationGQO> parentOrganization;
     private Collection<OrganizationGQO> subOrganizations;
     private Collection<OrganizationGQO> departments;
-    private Collection<PersonGQO> employees;
-    private Collection<PersonGQO> followees;
+    private Collection<EmployeeRoleGQO> employees;
+    private EmployeeRoleConnectionGQO employeesPage;
+    private Collection<PersonGQO> followers;
+    private Collection<MemberRoleGQO> members;
+    private MemberRoleConnectionGQO membersPage;
     private Collection<ActionGQO> potentialActions;
-    private Collection<MembershipGQO> members;
-    private MembershipConnectionGQO membersPage;
+    private Collection<OrgRoleNameGQO> hasOrgRoleName;
     @javax.validation.constraints.NotNull
     private String id;
 
     public ChildcareGQO() {
     }
 
-    public ChildcareGQO(String openingHours, String paymentAccepted, String priceRange, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<PersonGQO> employees, Collection<PersonGQO> followees, Collection<ActionGQO> potentialActions, Collection<MembershipGQO> members, MembershipConnectionGQO membersPage, String id) {
+    public ChildcareGQO(String openingHours, String paymentAccepted, String priceRange, Collection<OrganizationGQO> parentOrganization, Collection<OrganizationGQO> subOrganizations, Collection<OrganizationGQO> departments, Collection<EmployeeRoleGQO> employees, EmployeeRoleConnectionGQO employeesPage, Collection<PersonGQO> followers, Collection<MemberRoleGQO> members, MemberRoleConnectionGQO membersPage, Collection<ActionGQO> potentialActions, Collection<OrgRoleNameGQO> hasOrgRoleName, String id) {
         this.openingHours = openingHours;
         this.paymentAccepted = paymentAccepted;
         this.priceRange = priceRange;
@@ -36,10 +36,12 @@ public class ChildcareGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO{
         this.subOrganizations = subOrganizations;
         this.departments = departments;
         this.employees = employees;
-        this.followees = followees;
-        this.potentialActions = potentialActions;
+        this.employeesPage = employeesPage;
+        this.followers = followers;
         this.members = members;
         this.membersPage = membersPage;
+        this.potentialActions = potentialActions;
+        this.hasOrgRoleName = hasOrgRoleName;
         this.id = id;
     }
 
@@ -81,55 +83,83 @@ public class ChildcareGQO implements OrganizationGQO, LocalBusinessGQO, NodeGQO{
     public Collection<OrganizationGQO> getDepartments() {
         return departments;
     }
+
     public void setDepartments(Collection<OrganizationGQO> departments) {
         this.departments = departments;
     }
 
-    public Collection<PersonGQO> getEmployees() {
+    public Collection<EmployeeRoleGQO> getEmployees() {
         return employees;
     }
-    public void setEmployees(Collection<PersonGQO> employees) {
+
+    @Override
+    public EmployeeRoleConnectionGQO employeesPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
+        return null;
+    }
+
+    public void setEmployees(Collection<EmployeeRoleGQO> employees) {
         this.employees = employees;
     }
 
-    public Collection<PersonGQO> getFollowees() {
-        return followees;
+    public EmployeeRoleConnectionGQO getEmployeesPage() {
+        return employeesPage;
     }
-    public void setFollowees(Collection<PersonGQO> followees) {
-        this.followees = followees;
+
+    public void setEmployeesPage(EmployeeRoleConnectionGQO employeesPage) {
+        this.employeesPage = employeesPage;
+    }
+
+    public Collection<PersonGQO> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Collection<PersonGQO> followers) {
+        this.followers = followers;
+    }
+
+    public Collection<MemberRoleGQO> getMembers() {
+        return members;
+    }
+
+    @Override
+    public MemberRoleConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
+        return null;
+    }
+
+    public void setMembers(Collection<MemberRoleGQO> members) {
+        this.members = members;
+    }
+
+    public MemberRoleConnectionGQO getMembersPage() {
+        return membersPage;
+    }
+
+    public void setMembersPage(MemberRoleConnectionGQO membersPage) {
+        this.membersPage = membersPage;
     }
 
     public Collection<ActionGQO> getPotentialActions() {
         return potentialActions;
     }
+
     public void setPotentialActions(Collection<ActionGQO> potentialActions) {
         this.potentialActions = potentialActions;
     }
 
-    public Collection<MembershipGQO> getMembers() {
-        return members;
-    }
-    public void setMembers(Collection<MembershipGQO> members) {
-        this.members = members;
+    public Collection<OrgRoleNameGQO> getHasOrgRoleName() {
+        return hasOrgRoleName;
     }
 
-    public MembershipConnectionGQO getMembersPage() {
-        return membersPage;
-    }
-    public void setMembersPage(MembershipConnectionGQO membersPage) {
-        this.membersPage = membersPage;
+    public void setHasOrgRoleName(Collection<OrgRoleNameGQO> hasOrgRoleName) {
+        this.hasOrgRoleName = hasOrgRoleName;
     }
 
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
 
-    @Override
-    public MembershipConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }
