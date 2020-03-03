@@ -1,0 +1,20 @@
+{
+  "name": "KGIS GraphQL Schema",
+  "schemaPath": "kgis-schema.graphql",
+  "excludes": [
+    "bin/**",
+    "build/**"
+  ],
+  "extensions": {
+    "endpoints": {
+      "Shurui KGIS GraphQL Endpoint": {
+        "url": "http://localhost:8888/graphql",
+        "headers": {
+          "Authorization": "Bearer ${env:KGIS-ACCESS-TOKEN}",
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      }
+    }
+  }
+}
