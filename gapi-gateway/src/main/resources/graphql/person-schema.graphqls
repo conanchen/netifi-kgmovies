@@ -2,6 +2,11 @@ extend type Query {
     person(id: ID, pId: ID): Person
     user(id: ID, uId: ID): User
 }
+extend type Mutation{
+    userSignin(auth: AuthData): UserSigninPayload
+    userSMSCode(auth: AuthData):UserSMSCodePayload
+    userRegister(auth: AuthWithSMSCodeData): UserRegisterPayload
+}
 
 """【人】单独的人类个体（可以是现实中的或者虚构的） A person (alive, dead, undead, or fictional)."""
 type Person implements Party & Node{
@@ -133,3 +138,115 @@ type UserEdge {
     """A cursor for use in pagination"""
     cursor: String!
 }
+
+input AuthData {
+    email: String!
+    password: String!
+}
+
+input AuthWithSMSCodeData {
+    smscode: String!
+    email: String!
+    password: String!
+}
+
+
+type UserSigninPayload {
+    token: String
+    user: User
+
+    """List of errors that occurred executing the mutation."""
+    signinErrors: [UserSigninError!]!
+}
+
+"""Represents an error that happens during execution of a signin mutation."""
+type  UserSigninError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: UserSigninErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error message."""
+    message: String!
+}
+
+"""Possible error codes that could be returned by a signin mutation."""
+enum UserSigninErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+}
+
+type UserRegisterPayload {
+    token: String
+    user: User
+
+    """List of errors that occurred executing the mutation."""
+    registerErrors: [UserRegisterError!]!
+}
+
+"""Represents an error that happens during execution of a register mutation."""
+type  UserRegisterError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: UserRegisterErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error message."""
+    message: String!
+}
+
+"""Possible error codes that could be returned by a register mutation."""
+enum UserRegisterErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+}
+
+type UserSMSCodePayload {
+    token: String
+    user: User
+
+    """List of errors that occurred executing the mutation."""
+    smsCodeErrors: [UserSMSCodeError!]!
+}
+
+"""Represents an error that happens during execution of a smsCode mutation."""
+type  UserSMSCodeError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: UserSMSCodeErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error message."""
+    message: String!
+}
+
+"""Possible error codes that could be returned by a smsCode mutation."""
+enum UserSMSCodeErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+}
+

@@ -1,8 +1,10 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
+import io.github.conanchen.zommon.graphql.model.DisplayableErrorGQO;
+
 import java.util.Collection;
 
-public class PaymentErrorGQO implements DisplayableErrorGQO{
+public class PaymentErrorGQO implements DisplayableErrorGQO {
 
     private PaymentErrorCodeGQO code;
     @javax.validation.constraints.NotNull

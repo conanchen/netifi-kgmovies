@@ -1,6 +1,6 @@
 package io.github.conanchen.message.graphql.model;
 
-import io.github.conanchen.shoppingcart.graphql.model.DisplayableErrorGQO;
+import io.github.conanchen.zommon.graphql.model.DisplayableErrorGQO;
 
 import java.util.Collection;
 

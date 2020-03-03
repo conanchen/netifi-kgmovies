@@ -5,6 +5,8 @@ import io.github.conanchen.place.graphql.api.Query;
 import io.github.conanchen.place.graphql.model.*;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+
 @Service
 public class PlaceQueriesResolver implements Query, GraphQLQueryResolver {
 
@@ -21,6 +23,11 @@ public class PlaceQueriesResolver implements Query, GraphQLQueryResolver {
 
   @Override
   public StoreConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, String after, Integer first, String before, Integer last) throws Exception {
+    return null;
+  }
+
+  @Override
+  public Collection<StoreGQO> storeSearch1(StoreFilterGQO filter, StoreOrderGQO order, Integer first, Integer offset) throws Exception {
     return null;
   }
 
@@ -49,4 +56,5 @@ public class PlaceQueriesResolver implements Query, GraphQLQueryResolver {
   public LocalBusinessGQO localBusinessFind(String id, String lbsID) throws Exception {
     return null;
   }
+
 }

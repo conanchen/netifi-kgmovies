@@ -2,6 +2,8 @@ package io.github.conanchen.place.graphql.api;
 
 import io.github.conanchen.place.graphql.model.*;
 
+import java.util.Collection;
+
 public interface Query {
 
     DefaultPlaceGQO defaultPlaceFind(String id, String defID) throws Exception;
@@ -9,6 +11,8 @@ public interface Query {
     AdministrativeAreaGQO administrativeAreaFind(String id, String defID) throws Exception;
 
     StoreConnectionGQO storeSearch(StoreFilterGQO filter, StoreOrderGQO order, String after, Integer first, String before, Integer last) throws Exception;
+
+    Collection<StoreGQO> storeSearch1(StoreFilterGQO filter, StoreOrderGQO order, Integer first, Integer offset) throws Exception;
 
     StoreGQO storeFind(String id, String storeID) throws Exception;
 
