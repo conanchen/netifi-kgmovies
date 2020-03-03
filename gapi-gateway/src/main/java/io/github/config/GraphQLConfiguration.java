@@ -1,5 +1,6 @@
 package io.github.config;
 
+import com.coxautodev.graphql.tools.SchemaParserOptions;
 import graphql.GraphQL;
 import graphql.execution.AsyncExecutionStrategy;
 import graphql.language.StringValue;
@@ -12,7 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author bogdankobylinsky
+ * @author Conan Chen
+ * [schema-parser-options](https://www.graphql-java-kickstart.com/tools/schema-parser-options/)
  */
 @Configuration
 public class GraphQLConfiguration {
@@ -27,20 +29,31 @@ public class GraphQLConfiguration {
                 .build();
     }
 
-    // PotentialAction = CreateAction | UpdateAction
-    @Bean 
-    public GraphQLUnionType potentialActionType(){
-		return GraphQLUnionType
-        .newUnionType()
-        .name("ActionUnion")
-        .possibleType(GraphQLObjectType.newObject().name("CreateAction").build())
-        .possibleType(GraphQLObjectType.newObject().name("UpdateAction").build())
-        .name("ConversationAboutUnion")
-        .possibleType(GraphQLObjectType.newObject().name("Organization").build())
-        .possibleType(GraphQLObjectType.newObject().name("Bike").build())
-        .build();        
+    @Bean
+    public SchemaParserOptions schemaParserOptions() {
+        // allowUnimplementedResolvers: Defaults to false. Allows a schema to be created even if not all GraphQL fields have resolvers. Intended only for development, it will log a warning to remind you to turn it off for production. Any unimplemented resolvers will throw errors when queried.
+        // TODO: https://github.com/graphql-java-kickstart/graphql-java-servlet#context-and-dataloader-settings
+        return SchemaParserOptions.newOptions()
+                .allowUnimplementedResolvers(true)
+                .preferGraphQLResolver(true)
+                .build();
     }
-    
+
+    //    SchemaParserOptions.newBuilder()
+    // PotentialAction = CreateAction | UpdateAction
+    @Bean
+    public GraphQLUnionType potentialActionType() {
+        return GraphQLUnionType
+                .newUnionType()
+                .name("ActionUnion")
+                .possibleType(GraphQLObjectType.newObject().name("CreateAction").build())
+                .possibleType(GraphQLObjectType.newObject().name("UpdateAction").build())
+                .name("ConversationAboutUnion")
+                .possibleType(GraphQLObjectType.newObject().name("Organization").build())
+                .possibleType(GraphQLObjectType.newObject().name("Bike").build())
+                .build();
+    }
+
     @Bean
     public GraphQLScalarType dateGraphQLScalarType() {
         return GraphQLScalarType.newScalar()

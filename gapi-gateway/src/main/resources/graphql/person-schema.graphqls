@@ -217,9 +217,10 @@ enum UserRegisterErrorCode{
     TOO_LONG
 }
 
+"""短信验证码"""
 type UserSMSCodePayload {
-    token: String
-    user: User
+    """短信验证码, 主要用于end2end测试的时候返回,产品环境不应该返回因为直接发送到验证手机去了"""
+    smscode: String @preview(toggledBy: "smscode-verification-preview", desc: "主要用于end2end测试的时候返回,产品环境不应该返回因为直接发送到验证手机去了")
 
     """List of errors that occurred executing the mutation."""
     smsCodeErrors: [UserSMSCodeError!]!

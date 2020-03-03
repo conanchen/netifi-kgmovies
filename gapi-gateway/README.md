@@ -56,3 +56,12 @@ K8s中所有的配置都是通过API对象的spec去设置的，也就是用户�
 
 ### RBAC访问授权
 K8s在1.3版本中发布了alpha版的基于角色的访问控制（Role-based Access Control，RBAC）的授权模式。相对于基于属性的访问控制（Attribute-based Access Control，ABAC），RBAC主要是引入了角色（Role）和角色绑定（RoleBinding）的抽象概念。在ABAC中，K8s集群中的访问策略只能跟用户直接关联；而在RBAC中，访问策略可以跟某个角色关联，具体的用户在跟一个或多个角色相关联。显然，RBAC像其他新功能一样，每次引入新功能，都会引入新的API对象，从而引入新的概念抽象，而这一新的概念抽象一定会使集群服务管理和使用更容易扩展和重用。
+
+## Schema previews
+[Schema previews](https://developer.github.com/v4/previews/) let you try out new features and changes to our GraphQL schema before they become part of the official GitHub API.
+
+During the preview period, we may change some features based on developer feedback. If we do make changes, we'll announce them on the developer blog without advance notice.
+
+To access a schema preview, you'll need to provide a custom media type in the Accept header for your requests. Feature documentation for each preview specifies which custom media type to provide.
+
+## [Writing end-to-end tests for GraphQL servers using Jest](https://blog.logrocket.com/writing-end-to-end-tests-for-graphql-servers-using-jest/)

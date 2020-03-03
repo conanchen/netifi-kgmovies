@@ -1,12 +1,20 @@
-#   """返回interface的http://localhost:8888/voyager会报错：
-#   react-dom.min.js:117 TypeError: Cannot read property 'type' of undefined
-#   所以想在voyager看关系图就屏蔽掉如下api，http://localhost:8888/graphiql就没有问题
-#   """
-# extend type Query {
-#   allLocalBusiness(after: String, first: Int, before: String, last: Int): LocalBusinessConnection
-#   localBusiness(id: ID, lbsID: ID): LocalBusiness
+"""
+[Schema Preview](https://developer.github.com/v4/previews/)
+Marks an element of a GraphQL schema as only available via a preview header
+"""
+directive @preview(
+  """
+  The identifier of the API preview that toggles this field.
+  """
+  toggledBy: String!
 
-# }
+  """
+  The description for the toggledBy.
+  """
+  desc: String!
+
+) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INTERFACE | UNION | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+
 
 """An object with an ID"""
 interface Node {
