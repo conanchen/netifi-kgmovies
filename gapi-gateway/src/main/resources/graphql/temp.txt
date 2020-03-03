@@ -1,0 +1,33 @@
+type UserSMSCodePayload {
+    token: String
+    user: User
+
+    """List of errors that occurred executing the mutation."""
+    smsCodeErrors: [UserSMSCodeError!]!
+}
+
+"""Represents an error that happens during execution of a smsCode mutation."""
+type  UserSMSCodeError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: UserSMSCodeErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error message."""
+    message: String!
+}
+
+"""Possible error codes that could be returned by a smsCode mutation."""
+enum UserSMSCodeErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+}
+
