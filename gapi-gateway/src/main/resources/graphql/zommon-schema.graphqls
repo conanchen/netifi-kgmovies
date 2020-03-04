@@ -3,52 +3,65 @@
 Marks an element of a GraphQL schema as only available via a preview header
 """
 directive @preview(
-  """
-  The identifier of the API preview that toggles this field.
-  """
-  toggledBy: String!
+    """
+    The identifier of the API preview that toggles this field.
+    """
+    toggledBy: String!
 
-  """
-  The description for the toggledBy.
-  """
-  desc: String!
+    """
+    The description for the toggledBy.
+    """
+    desc: String!
+
+) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INTERFACE | UNION | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+
+
+"""
+[Schema Preview](https://developer.github.com/v4/previews/)
+标记需要授权访问的单元,操作者需要在资源的namespace上有权限,即有ACLRole/ACLRoleBinding
+"""
+directive @authz(
+    """
+    The description.
+    """
+    desc: String!
 
 ) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INTERFACE | UNION | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
 
 
 """An object with an ID"""
 interface Node {
-  """The id of the object."""
-  id: ID!
+    """The id of the object."""
+    id: ID!
 }
 
 """Information about pagination in a connection."""
 type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
+    """When paginating forwards, are there more items?"""
+    hasNextPage: Boolean!
 
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
+    """When paginating backwards, are there more items?"""
+    hasPreviousPage: Boolean!
 
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
+    """When paginating backwards, the cursor to continue."""
+    startCursor: String
 
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
+    """When paginating forwards, the cursor to continue."""
+    endCursor: String
 }
 
 """https://schema.org/Thing The most generic type of item."""
 interface Thing{
-  """name	Text 	The name of the item."""
-  name: String
+    """name    Text    The name of the item."""
+    name: String
 
-  """【别名】 该项的别名。 An alias for the item."""
-  alternateName: String
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
 
-  """【描述】 该项的一个简单描述。 A description of the item."""
-  description: String
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
 
-  
+
 }
 
 """可以被谈论来建立会话的物体"""
@@ -61,233 +74,233 @@ interface ConversationalThing{
 }
 
 input CustomAttributeInput {
-  key: String!
-  value: String
+    key: String!
+    value: String
 }
 
 type CustomAttribute {
-  key: String!
-  value: String
+    key: String!
+    value: String
 }
 
 enum CurrencyCode {
-  AED
-  AFN
-  ALL
-  AMD
-  ANG
-  AOA
-  ARS
-  AUD
-  AWG
-  AZN
-  BAM
-  BBD
-  BDT
-  BGN
-  BHD
-  BIF
-  BMD
-  BND
-  BOB
-  BRL
-  BSD
-  BTC
-  BTN
-  BWP
-  BYR
-  BZD
-  CAD
-  CDF
-  CHF
-  CLP
-  CNY
-  COP
-  CRC
-  CUC
-  CUP
-  CVE
-  CZK
-  DJF
-  DKK
-  DOP
-  DZD
-  EGP
-  ERN
-  ETB
-  EUR
-  FJD
-  FKP
-  GBP
-  GEL
-  GHS
-  GIP
-  GMD
-  GNF
-  GTQ
-  GYD
-  HKD
-  HNL
-  HRK
-  HTG
-  HUF
-  IDR
-  ILS
-  INR
-  IQD
-  IRR
-  ISK
-  JMD
-  JOD
-  JPY
-  KES
-  KGS
-  KHR
-  KMF
-  KPW
-  KRW
-  KWD
-  KYD
-  KZT
-  LAK
-  LBP
-  LKR
-  LRD
-  LSL
-  LYD
-  MAD
-  MDL
-  MGA
-  MKD
-  MMK
-  MNT
-  MOP
-  MRO
-  MTL
-  MUR
-  MVR
-  MWK
-  MXN
-  MYR
-  MZN
-  NAD
-  NGN
-  NIO
-  NOK
-  NPR
-  NZD
-  OMR
-  PAB
-  PEN
-  PGK
-  PHP
-  PKR
-  PLN
-  PYG
-  QAR
-  RON
-  RSD
-  RUB
-  RWF
-  SAR
-  SBD
-  SCR
-  SDD
-  SDG
-  SEK
-  SGD
-  SHP
-  SLL
-  SOS
-  SRD
-  STD
-  SVC
-  SYP
-  SZL
-  THB
-  TJS
-  TMT
-  TND
-  TOP
-  TRY
-  TTD
-  TVD
-  TWD
-  TZS
-  UAH
-  UGX
-  USD
-  UYU
-  UZS
-  VEB
-  VEF
-  VND
-  VUV
-  WST
-  XAF
-  XCD
-  XBT
-  XOF
-  XPF
-  YER
-  ZAR
-  ZMW
-  WON
+    AED
+    AFN
+    ALL
+    AMD
+    ANG
+    AOA
+    ARS
+    AUD
+    AWG
+    AZN
+    BAM
+    BBD
+    BDT
+    BGN
+    BHD
+    BIF
+    BMD
+    BND
+    BOB
+    BRL
+    BSD
+    BTC
+    BTN
+    BWP
+    BYR
+    BZD
+    CAD
+    CDF
+    CHF
+    CLP
+    CNY
+    COP
+    CRC
+    CUC
+    CUP
+    CVE
+    CZK
+    DJF
+    DKK
+    DOP
+    DZD
+    EGP
+    ERN
+    ETB
+    EUR
+    FJD
+    FKP
+    GBP
+    GEL
+    GHS
+    GIP
+    GMD
+    GNF
+    GTQ
+    GYD
+    HKD
+    HNL
+    HRK
+    HTG
+    HUF
+    IDR
+    ILS
+    INR
+    IQD
+    IRR
+    ISK
+    JMD
+    JOD
+    JPY
+    KES
+    KGS
+    KHR
+    KMF
+    KPW
+    KRW
+    KWD
+    KYD
+    KZT
+    LAK
+    LBP
+    LKR
+    LRD
+    LSL
+    LYD
+    MAD
+    MDL
+    MGA
+    MKD
+    MMK
+    MNT
+    MOP
+    MRO
+    MTL
+    MUR
+    MVR
+    MWK
+    MXN
+    MYR
+    MZN
+    NAD
+    NGN
+    NIO
+    NOK
+    NPR
+    NZD
+    OMR
+    PAB
+    PEN
+    PGK
+    PHP
+    PKR
+    PLN
+    PYG
+    QAR
+    RON
+    RSD
+    RUB
+    RWF
+    SAR
+    SBD
+    SCR
+    SDD
+    SDG
+    SEK
+    SGD
+    SHP
+    SLL
+    SOS
+    SRD
+    STD
+    SVC
+    SYP
+    SZL
+    THB
+    TJS
+    TMT
+    TND
+    TOP
+    TRY
+    TTD
+    TVD
+    TWD
+    TZS
+    UAH
+    UGX
+    USD
+    UYU
+    UZS
+    VEB
+    VEF
+    VND
+    VUV
+    WST
+    XAF
+    XCD
+    XBT
+    XOF
+    XPF
+    YER
+    ZAR
+    ZMW
+    WON
 }
 
 input IntFilter {
-  eq: Int
-  le: Int
-  lt: Int
-  ge: Int
-  gt: Int
+    eq: Int
+    le: Int
+    lt: Int
+    ge: Int
+    gt: Int
 }
 
 input FloatFilter {
-  eq: Float
-  le: Float
-  lt: Float
-  ge: Float
-  gt: Float
+    eq: Float
+    le: Float
+    lt: Float
+    ge: Float
+    gt: Float
 }
 
 input DateTimeFilter {
-  eq: DateTime
-  le: DateTime
-  lt: DateTime
-  ge: DateTime
-  gt: DateTime
+    eq: DateTime
+    le: DateTime
+    lt: DateTime
+    ge: DateTime
+    gt: DateTime
 }
 
 input StringTermFilter {
-  allofterms: String
-  anyofterms: String
+    allofterms: String
+    anyofterms: String
 }
 
 input StringRegExpFilter {
-  regexp: String
+    regexp: String
 }
 
 input StringFullTextFilter {
-  alloftext: String
-  anyoftext: String
+    alloftext: String
+    anyoftext: String
 }
 
 input StringExactFilter {
-  eq: String
-  le: String
-  lt: String
-  ge: String
-  gt: String
+    eq: String
+    le: String
+    lt: String
+    ge: String
+    gt: String
 }
 
 input StringHashFilter {
-  eq: String
+    eq: String
 }
 
 input StringHashFilter_StringRegExpFilter {
-  eq: String
-  regexp: String
+    eq: String
+    regexp: String
 }
 
 """Represents an error in the input of a mutation."""

@@ -7,7 +7,7 @@
   ],
   "extensions": {
     "endpoints": {
-      "Shurui KGIS GraphQL Endpoint": {
+      "KGIS GraphQL Endpoint": {
         "url": "http://localhost:8888/graphql",
         "headers": {
           "Authorization": "Bearer ${env:KGIS-ACCESS-TOKEN}",

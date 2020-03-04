@@ -1,3 +1,47 @@
+# 快速开发参考
+[https://graphql.dgraph.io/docs/quick-start/](https://graphql.dgraph.io/docs/quick-start/)
+
+1. 提前创建好mount的目录: /mnt/dgraph
+    ```
+    $ sudo mkdir /mnt/dgraph
+    ```
+1. 启动All in One开发模式的dgraph服务
+    ```
+    docker run -p 8080:8080 -it -v /mnt/dgraph:/dgraph dgraph/standalone:v2.0.0-rc1
+    ```
+1. 准备schema保存到文件schema.graphql
+    ```graphql
+    type Product {
+        productID: ID!
+        name: String @search(by: [term])
+        reviews: [Review] @hasInverse(field: about)
+    }
+
+    type Customer {
+        username: String! @id @search(by: [hash, regexp])
+        reviews: [Review] @hasInverse(field: by)
+    }
+
+    type Review {
+        id: ID!
+        about: Product!
+        by: Customer!
+        comment: String @search(by: [fulltext])
+        rating: Int @search
+    }
+    ```
+1. 把上述schema创建到Dgraph服务上
+    ```
+    curl -X POST localhost:8080/admin/schema -d '@schema.graphql'
+    ```
+1. 在Chrome右上角打开Altair,在Altair请求地址: http://localhost:8080/graphql .
+    ![Dgraph快速上手](document/DgraphQuickStart.png)
+1. 按照[https://graphql.dgraph.io/docs/quick-start/](https://graphql.dgraph.io/docs/quick-start/)练习吧
+
+************************************************************************
+************************************************************************
+************************************************************************
+
 # kgis-datalake 知图初源数据湖 Knowledge Graph Initial Source - Data Lake
 1. [Run Dgraph](https://tour.dgraph.io/intro/2/)
 
@@ -53,3 +97,7 @@ Dgraph Alpha will now be running and listening for HTTP requests on port 8080 an
 1. Dgraph is at version 1.1.x and is production ready. Apart from the vast open source community, it is being used in production at multiple Fortune 500 companies, and by [Intuit Katlas](https://github.com/intuit/katlas) and [VMware Purser](https://github.com/vmware/purser).
 
 [![Movie Schema](document/movies-schema.png)](https://blog.dgraph.io/post/client0.8.0/)
+
+
+
+
