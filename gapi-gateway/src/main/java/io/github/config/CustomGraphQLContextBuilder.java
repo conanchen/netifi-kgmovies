@@ -36,6 +36,7 @@ public class CustomGraphQLContextBuilder implements GraphQLServletContextBuilder
         // https://github.com/rundeck/rundeck/blob/master/core/src/main/java/com/dtolabs/rundeck/core/cli/acl/AclTool.java
         // TODO: 参看 kafka的 https://github.com/open-policy-agent/contrib/tree/master/kafka_authorizer
         // TODO: 参看 https://www.openpolicyagent.org/docs/latest/http-api-authorization/
+        // https://github.com/howtographql/graphql-java/blob/master/src/main/java/com/howtographql/hackernews/GraphQLEndpoint.java
         LOG.info("public GraphQLContext build(HttpServletRequest req, HttpServletResponse response)");
         return DefaultGraphQLServletContext.createServletContext(buildDataLoaderRegistry(), null).with(req).with(response)
                 .with(Subject.getSubject(new AccessControlContext(new ProtectionDomain[]{})))

@@ -17,8 +17,18 @@ directive @preview(
 
 
 """
-[Schema Preview](https://developer.github.com/v4/previews/)
-标记需要授权访问的单元,操作者需要在资源的namespace上有权限,即有ACLRole/ACLRoleBinding
+标记需要认证访问的单元,如
+"""
+directive @authn(
+    """
+    是否需要认证身份后才可以访问该单元如api,signin就不需要认证
+    """
+    authenticated: Boolean = true
+
+) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INTERFACE | UNION | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+
+"""
+标记需要授权访问的单元,操作者一定是通过认证后才会有授权信息,需要在资源的namespace上有权限,即有ACLRole/ACLRoleBinding
 """
 directive @authz(
     """
