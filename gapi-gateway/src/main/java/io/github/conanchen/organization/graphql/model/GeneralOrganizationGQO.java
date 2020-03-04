@@ -125,12 +125,6 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
     public Collection<EmployeeRoleGQO> getEmployees() {
         return employees;
     }
-
-    @Override
-    public EmployeeRoleConnectionGQO employeesPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        return null;
-    }
-
     public void setEmployees(Collection<EmployeeRoleGQO> employees) {
         this.employees = employees;
     }
@@ -154,12 +148,6 @@ public class GeneralOrganizationGQO implements ThingGQO, OrganizationGQO, Conver
     public Collection<MemberRoleGQO> getMembers() {
         return members;
     }
-
-    @Override
-    public MemberRoleConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        return null;
-    }
-
     public void setMembers(Collection<MemberRoleGQO> members) {
         this.members = members;
     }

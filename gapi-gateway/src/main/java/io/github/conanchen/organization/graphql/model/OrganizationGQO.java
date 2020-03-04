@@ -15,13 +15,13 @@ public interface OrganizationGQO {
 
     Collection<EmployeeRoleGQO> getEmployees();
 
-    EmployeeRoleConnectionGQO employeesPage(String after, Integer first, Integer before, String last, String personId) throws Exception;
+    EmployeeRoleConnectionGQO getEmployeesPage();
 
     Collection<PersonGQO> getFollowers();
 
     Collection<MemberRoleGQO> getMembers();
 
-    MemberRoleConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception;
+    MemberRoleConnectionGQO getMembersPage();
 
     Collection<ActionGQO> getPotentialActions();
 

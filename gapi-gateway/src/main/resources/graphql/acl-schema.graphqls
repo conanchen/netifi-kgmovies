@@ -67,8 +67,8 @@ type ACLRole implements Node{
     """角色从属于的namespace"""
     isRoleOf: ACLNamespace
 
-    """访控角色绑定的用户组或用户e.g. 管理员角色有: 1.超级运营组、2.用户陈朵拉，逆属性 ACLRoleBinding.isBindingOf"""
-    hasBinding: [ACLRoleBinding]
+    """访控角色绑定的用户组或用户e.g. 管理员角色有: 1.超级运营组、2.用户陈朵拉，逆属性 ACLRoleBinding.isRolebindingOf"""
+    hasRolebinding: [ACLRoleBinding]
 
     """The id of the object."""
     id: ID!
@@ -77,7 +77,7 @@ type ACLRole implements Node{
 """访控角色绑定的用户组或用户e.g. 管理员角色有: 1.超级运营组、2.用户陈朵拉"""
 type ACLRoleBinding implements Node{
 
-    """角色绑定从属于的namespace,与ACLRole.belongsTo一致,逆属性ACLNamespace.hasBelongings"""
+    """角色绑定从属于的namespace,与ACLRole.belongsTo一致,逆属性ACLNamespace.hasRolebinding"""
     isRolebindingOf: ACLNamespace
 
     """访问权限所属访控角色"""

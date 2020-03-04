@@ -144,11 +144,6 @@ public class StoreGQO implements ThingGQO, OrganizationGQO, LocalBusinessGQO, No
         return employees;
     }
 
-    @Override
-    public EmployeeRoleConnectionGQO employeesPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        return null;
-    }
-
     public void setEmployees(Collection<EmployeeRoleGQO> employees) {
         this.employees = employees;
     }
@@ -215,11 +210,5 @@ public class StoreGQO implements ThingGQO, OrganizationGQO, LocalBusinessGQO, No
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    @Override
-    public MemberRoleConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

@@ -105,11 +105,6 @@ public class ProjectGQO implements ThingGQO, OrganizationGQO, ConversationalThin
         return employees;
     }
 
-    @Override
-    public EmployeeRoleConnectionGQO employeesPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        return null;
-    }
-
     public void setEmployees(Collection<EmployeeRoleGQO> employees) {
         this.employees = employees;
     }
@@ -203,11 +198,6 @@ public class ProjectGQO implements ThingGQO, OrganizationGQO, ConversationalThin
     }
     public void setId(String id) {
         this.id = id;
-    }
-
-    public MemberRoleConnectionGQO membersPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }
