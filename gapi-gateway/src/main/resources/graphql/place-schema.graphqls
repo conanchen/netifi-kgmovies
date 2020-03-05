@@ -28,6 +28,8 @@ extend type Query {
 extend type Mutation {
     """店铺创建,操作人员必须认证登录后才可操作"""
     storeCreate(input: StoreCreateInput!): StoreCreatePayload! @authn(authenticated: true)
+    """店铺资料修改,支持单项修改,操作人员必须认证登录后才可操作"""
+    storeUpdate(input: StoreUpdateInput!): StoreUpdatePayload! @authn(authenticated: true)
 }
 
 """https://schema.org/Store A retail good store."""
@@ -399,6 +401,56 @@ type  StoreCreateError implements DisplayableError{
 
 """Possible error codes that could be returned by a store mutation."""
 enum StoreCreateErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+input StoreUpdateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
+    actionId: ID!
+}
+
+"""Store mutation api response payload"""
+type StoreUpdatePayload{
+    """The store object ."""
+    store: Store
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    storeUpdateErrors: [StoreUpdateError!]!
+}
+
+"""Represents an error that happens during execution of a store mutation."""
+type  StoreUpdateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: StoreUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error store."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a store mutation."""
+enum StoreUpdateErrorCode{
     """Input value is blank."""
     BLANK
 
