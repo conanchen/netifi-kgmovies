@@ -60,3 +60,4 @@ type EmployeeRoleEdge {
   """A cursor for use in pagination"""
   cursor: String!
 }
+

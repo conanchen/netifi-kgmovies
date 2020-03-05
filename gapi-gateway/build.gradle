@@ -262,6 +262,16 @@ task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask,dependsOn: graphq
     generateApis = true
 }
 
+task graphqlCodegenShoppingman(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingman-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shoppingman")
+    apiPackageName = "io.github.conanchen.shoppingman.graphql.api"
+    modelPackageName = "io.github.conanchen.shoppingman.graphql.model"
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
 task graphqlCodegenSoftwareApplication(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/softwareapplication-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/softwareapplication")

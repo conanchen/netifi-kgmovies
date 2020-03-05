@@ -1,0 +1,109 @@
+
+extend type Mutation {
+    """产品资料创建,操作人员必须登录授权后才可操作"""
+    productCreate(input: ProductCreateInput!): ProductCreatePayload! @authn(authenticated: true) @authz(desc: "必须在对应的namespace有角色权限")
+
+    """产品资料修改,支持单项修改,操作人员必须登录授权后才可操作"""
+    productUpdate(input: ProductUpdateInput!): ProductUpdatePayload! @authn(authenticated: true) @authz(desc: "必须在对应的namespace有角色权限")
+}
+
+input ProductCreateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
+    actionId: ID!
+}
+
+"""Product mutation api response payload"""
+type ProductCreatePayload{
+    """The product object ."""
+    product: Product
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    productCreateErrors: [ProductCreateError!]!
+}
+
+"""Represents an error that happens during execution of a product mutation."""
+type  ProductCreateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: ProductCreateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error product."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a product mutation."""
+enum ProductCreateErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+input ProductUpdateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
+    actionId: ID!
+}
+
+"""Product mutation api response payload"""
+type ProductUpdatePayload{
+    """The product object ."""
+    product: Product
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    productUpdateErrors: [ProductUpdateError!]!
+}
+
+"""Represents an error that happens during execution of a product mutation."""
+type  ProductUpdateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: ProductUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error product."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a product mutation."""
+enum ProductUpdateErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
