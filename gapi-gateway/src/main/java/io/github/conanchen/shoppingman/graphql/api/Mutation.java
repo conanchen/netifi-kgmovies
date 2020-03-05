@@ -1,7 +1,6 @@
 package io.github.conanchen.shoppingman.graphql.api;
 
 import io.github.conanchen.shoppingman.graphql.model.*;
-import java.util.*;
 
 public interface Mutation {
 
@@ -10,6 +9,12 @@ public interface Mutation {
 
     @javax.validation.constraints.NotNull
     ProductUpdatePayloadGQO productUpdate(ProductUpdateInputGQO input) throws Exception;
+
+    @javax.validation.constraints.NotNull
+    ProductModelCreatePayloadGQO productModelCreate(ProductModelCreateInputGQO input) throws Exception;
+
+    @javax.validation.constraints.NotNull
+    ProductModelUpdatePayloadGQO productModelUpdate(ProductModelUpdateInputGQO input) throws Exception;
 
     @javax.validation.constraints.NotNull
     ProductOfferCreatePayloadGQO productOfferCreate(ProductOfferCreateInputGQO input) throws Exception;

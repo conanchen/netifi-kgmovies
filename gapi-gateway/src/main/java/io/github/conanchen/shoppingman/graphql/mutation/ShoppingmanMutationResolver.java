@@ -22,6 +22,16 @@ public class ShoppingmanMutationResolver implements Mutation,GraphQLMutationReso
   }
 
   @Override
+  public @NotNull ProductModelCreatePayloadGQO productModelCreate(ProductModelCreateInputGQO input) throws Exception {
+    return null;
+  }
+
+  @Override
+  public @NotNull ProductModelUpdatePayloadGQO productModelUpdate(ProductModelUpdateInputGQO input) throws Exception {
+    return null;
+  }
+
+  @Override
   public @NotNull ProductOfferCreatePayloadGQO productOfferCreate(ProductOfferCreateInputGQO input) throws Exception {
     return null;
   }

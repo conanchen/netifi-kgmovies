@@ -6,6 +6,12 @@ extend type Mutation {
     """产品资料修改,支持单项修改,操作人员必须登录授权后才可操作"""
     productUpdate(input: ProductUpdateInput!): ProductUpdatePayload! @authn(authenticated: true) @authz(desc: "必须在对应的namespace有角色权限")
 
+    """产品型号创建,操作人员必须登录授权后才可操作"""
+    productModelCreate(input: ProductModelCreateInput!): ProductModelCreatePayload! @authn(authenticated: true) @authz(desc: "必须在对应的namespace有角色权限")
+
+    """产品型号修改,支持单项修改,操作人员必须登录授权后才可操作"""
+    productModelUpdate(input: ProductModelUpdateInput!): ProductModelUpdatePayload! @authn(authenticated: true) @authz(desc: "必须在对应的namespace有角色权限")
+
     """商品供应创建,操作人员必须登录授权后才可操作"""
     productOfferCreate(input: ProductOfferCreateInput!): ProductOfferCreatePayload! @authn(authenticated: true) @authz(desc: "必须在对应的namespace有角色权限")
 
@@ -308,6 +314,107 @@ type  ProductOfferOfflineError implements DisplayableError{
 
 """Possible error codes that could be returned by a productOffer mutation."""
 enum ProductOfferOfflineErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+
+input ProductModelCreateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
+    actionId: ID!
+}
+
+"""ProductModel mutation api response payload"""
+type ProductModelCreatePayload{
+    """The productModel object ."""
+    productModel: ProductModel
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    productModelCreateErrors: [ProductModelCreateError!]!
+}
+
+"""Represents an error that happens during execution of a productModel mutation."""
+type  ProductModelCreateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: ProductModelCreateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error productModel."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a productModel mutation."""
+enum ProductModelCreateErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+input ProductModelUpdateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
+    actionId: ID!
+}
+
+"""ProductModel mutation api response payload"""
+type ProductModelUpdatePayload{
+    """The productModel object ."""
+    productModel: ProductModel
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    productModelUpdateErrors: [ProductModelUpdateError!]!
+}
+
+"""Represents an error that happens during execution of a productModel mutation."""
+type  ProductModelUpdateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: ProductModelUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error productModel."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a productModel mutation."""
+enum ProductModelUpdateErrorCode{
     """Input value is blank."""
     BLANK
 
