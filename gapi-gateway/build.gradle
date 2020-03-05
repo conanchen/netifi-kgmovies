@@ -159,16 +159,6 @@ task graphqlCodegenEvent(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodege
     generateApis = true
 }
 
-task graphqlCodegenFulfill(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
-    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/fulfill-schema.graphqls".toString()]
-    outputDir = new File("$buildDir/generated/graphql/fulfill")
-    apiPackageName = "io.github.conanchen.fulfill.graphql.api"
-    modelPackageName = "io.github.conanchen.fulfill.graphql.model"
-    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
-    modelNameSuffix = "GQO"
-    generateApis = true
-}
-
 task graphqlCodegenGobject(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/gobject-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/gobject")
@@ -257,6 +247,16 @@ task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask,dependsOn: graphq
     outputDir = new File("$buildDir/generated/graphql/shoppingdoor")
     apiPackageName = "io.github.conanchen.shoppingdoor.graphql.api"
     modelPackageName = "io.github.conanchen.shoppingdoor.graphql.model"
+    customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+}
+
+task graphqlCodegenShoppingfulfill(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingfulfill-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shoppingfulfill")
+    apiPackageName = "io.github.conanchen.shoppingfulfill.graphql.api"
+    modelPackageName = "io.github.conanchen.shoppingfulfill.graphql.model"
     customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true

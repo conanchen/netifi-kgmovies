@@ -1,10 +1,10 @@
-package io.github.conanchen.fulfill.graphql.model;
+package io.github.conanchen.shoppingfulfill.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.fulfill.graphql.api.*;
 import io.github.conanchen.shoppingcart.graphql.model.PostalAddressGQO;
 
-public interface PSDeliveryGQO {
+import java.util.Collection;
+
+public interface FulfillDeliveryGQO {
 
     PostalAddressGQO getDeliveryAddress();
 

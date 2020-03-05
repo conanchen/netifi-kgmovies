@@ -1,7 +1,5 @@
-package io.github.conanchen.fulfill.graphql.model;
+package io.github.conanchen.shoppingfulfill.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.fulfill.graphql.api.*;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class DeliveryEventGQO implements NodeGQO {

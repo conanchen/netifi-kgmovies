@@ -1,4 +1,4 @@
-package io.github.conanchen.fulfill.graphql.model;
+package io.github.conanchen.shoppingfulfill.graphql.model;
 
 public enum DeliveryMethodGQO {
 

@@ -1,9 +1,9 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.fulfill.graphql.model.FulfillDeliveryGQO;
 import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import io.github.conanchen.organization.graphql.model.PartyGQO;
+import io.github.conanchen.shoppingfulfill.graphql.model.FulfillDeliveryGQO;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 

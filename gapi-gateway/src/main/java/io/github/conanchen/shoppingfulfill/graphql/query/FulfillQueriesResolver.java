@@ -1,9 +1,9 @@
-package io.github.conanchen.fulfill.graphql.query;
+package io.github.conanchen.shoppingfulfill.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import io.github.conanchen.fulfill.graphql.api.Query;
-import io.github.conanchen.fulfill.graphql.model.HomeserviceDeliveryGQO;
-import io.github.conanchen.fulfill.graphql.model.ParcelDeliveryGQO;
+import io.github.conanchen.shoppingfulfill.graphql.api.Query;
+import io.github.conanchen.shoppingfulfill.graphql.model.HomeserviceDeliveryGQO;
+import io.github.conanchen.shoppingfulfill.graphql.model.ParcelDeliveryGQO;
 import org.springframework.stereotype.Service;
 
 

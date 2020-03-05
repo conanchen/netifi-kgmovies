@@ -1,7 +1,6 @@
-package io.github.conanchen.fulfill.graphql.api;
+package io.github.conanchen.shoppingfulfill.graphql.api;
 
-import io.github.conanchen.fulfill.graphql.model.*;
-import java.util.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.HomeserviceDeliveryGQO;
 
 public interface HomeserviceDeliveryQuery {
 
