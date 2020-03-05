@@ -45,6 +45,16 @@ public class CustomGraphQLContextBuilder implements GraphQLServletContextBuilder
 
     }
 
+    // @Override
+    // protected GraphQLContext createContext(Optional<HttpServletRequest> request, Optional<HttpServletResponse> response) {
+    //     User user = request
+    //             .map(req -> req.getHeader("Authorization"))
+    //             .filter(id -> !id.isEmpty())
+    //             .map(id -> id.replace("Bearer ", ""))
+    //             .map(userRepository::findById)
+    //             .orElse(null);
+    //     return new AuthContext(user, request, response);
+    // }
     @Override
     public GraphQLContext build() {
         return new DefaultGraphQLContext(buildDataLoaderRegistry(), null);

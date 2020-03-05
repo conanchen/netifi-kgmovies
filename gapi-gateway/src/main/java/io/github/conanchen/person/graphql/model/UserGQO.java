@@ -1,13 +1,11 @@
 package io.github.conanchen.person.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.person.graphql.api.*;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class UserGQO implements NodeGQO{
 
     @javax.validation.constraints.NotNull
-    private String login;
+    private String username;
     private String name;
     private String bio;
     @javax.validation.constraints.NotNull
@@ -20,8 +18,8 @@ public class UserGQO implements NodeGQO{
     public UserGQO() {
     }
 
-    public UserGQO(String login, String name, String bio, java.lang.String bioHTML, PersonGQO isUserOf, String id) {
-        this.login = login;
+    public UserGQO(String username, String name, String bio, java.lang.String bioHTML, PersonGQO isUserOf, String id) {
+        this.username = username;
         this.name = name;
         this.bio = bio;
         this.bioHTML = bioHTML;
@@ -29,16 +27,18 @@ public class UserGQO implements NodeGQO{
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
-    public void setLogin(String login) {
-        this.login = login;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }

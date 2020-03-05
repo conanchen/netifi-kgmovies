@@ -17,6 +17,12 @@ directive @preview(
 
 
 """
+标记全网唯一单元字段值
+"""
+directive @unique on SCALAR | FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+
+
+"""
 标记需要认证访问的单元,如
 """
 directive @authn(

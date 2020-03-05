@@ -13,6 +13,8 @@ import java.util.Collection;
 public class PersonGQO implements PartyGQO, NodeGQO {
 
     @javax.validation.constraints.NotNull
+    private String personalID;
+    @javax.validation.constraints.NotNull
     private String name;
     private String alternateName;
     private String description;
@@ -29,13 +31,15 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     private Collection<MemberRoleGQO> membersOf;
     private MemberRoleConnectionGQO membersOfPage;
     private UserGQO hasUser;
+    private Collection<ContactPointGQO> hasContactPoint;
     @javax.validation.constraints.NotNull
     private String id;
 
     public PersonGQO() {
     }
 
-    public PersonGQO(String name, String alternateName, String description, Collection<OwnershipGQO> owns, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MemberRoleGQO> membersOf, MemberRoleConnectionGQO membersOfPage, UserGQO hasUser, String id) {
+    public PersonGQO(String personalID, String name, String alternateName, String description, Collection<OwnershipGQO> owns, String familyName, String givenName, java.util.Date birthDate, PlaceGQO birthPlace, String gender, String email, Collection<PersonGQO> follows, Collection<PersonGQO> followees, Collection<MovieGQO> directoredFilms, Collection<MemberRoleGQO> membersOf, MemberRoleConnectionGQO membersOfPage, UserGQO hasUser, Collection<ContactPointGQO> hasContactPoint, String id) {
+        this.personalID = personalID;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -52,12 +56,22 @@ public class PersonGQO implements PartyGQO, NodeGQO {
         this.membersOf = membersOf;
         this.membersOfPage = membersOfPage;
         this.hasUser = hasUser;
+        this.hasContactPoint = hasContactPoint;
         this.id = id;
+    }
+
+    public String getPersonalID() {
+        return personalID;
+    }
+
+    public void setPersonalID(String personalID) {
+        this.personalID = personalID;
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -165,19 +179,25 @@ public class PersonGQO implements PartyGQO, NodeGQO {
     public UserGQO getHasUser() {
         return hasUser;
     }
+
     public void setHasUser(UserGQO hasUser) {
         this.hasUser = hasUser;
+    }
+
+    public Collection<ContactPointGQO> getHasContactPoint() {
+        return hasContactPoint;
+    }
+
+    public void setHasContactPoint(Collection<ContactPointGQO> hasContactPoint) {
+        this.hasContactPoint = hasContactPoint;
     }
 
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
 
-    public MemberRoleConnectionGQO membersOfPage(String after, Integer first, Integer before, String last, String personId) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

@@ -10,6 +10,10 @@ extend type Mutation{
 
 """【人】单独的人类个体（可以是现实中的或者虚构的） A person (alive, dead, undead, or fictional)."""
 type Person implements Party & Node{
+    """
+    个人身份证ID
+    """
+    personalID: String! @unique
 
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -45,7 +49,7 @@ type Person implements Party & Node{
 
     """email    Text or Person or ContactPoint or Organization
     【电子邮件】 邮箱地址。 Email address."""
-    email: String
+    email: String @unique
 
     """follows    Person or Person
     【关注】 社交网络上主动关注其他人或组织 The most generic uni-directional social relation."""
@@ -65,6 +69,9 @@ type Person implements Party & Node{
     """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
     hasUser: User
 
+    """拥有的联系方式"""
+    hasContactPoint:[ContactPoint]
+
     """The id of the object."""
     id: ID!
 }
@@ -78,7 +85,7 @@ type User implements Node{
     """
     The username used to login.
     """
-    login: String!
+    username: String! @unique
 
     """
     The user's public profile name.
@@ -251,3 +258,24 @@ enum UserSMSCodeErrorCode{
     TOO_LONG
 }
 
+"""【联系方式】联系方式 - 例如客户投诉部门"""
+type ContactPoint implements Node{
+
+    """服务覆盖区域】 服务或产品所覆盖的区域。 """
+    areaServed: Text
+
+    """【电子邮件】 邮箱地址。 Email address."""
+    email: String @unique
+
+    """【传真号】 传真号。 The fax number."""
+    faxNumber: String
+
+    """【服务时间】 该服务或联系人可用的时间。 """
+    hoursAvailable:    OpeningHoursSpecification
+
+    """【电话号码】 电话号码 The telephone number."""
+    telephone:String
+
+    """The id of the object."""
+    id: ID!
+}
