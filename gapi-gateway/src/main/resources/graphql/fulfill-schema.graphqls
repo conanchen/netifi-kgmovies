@@ -1,0 +1,51 @@
+# Fulfill 履行执行订单而进行派送包裹、上门服务
+extend type Query {
+    hello(who: String): String!
+    helloWorldReactive(who: String): String!
+    """最简模式Graphql Resolver 直接调用Dgraph获取数据"""
+    helloDgraph(who: String): String!
+    helloSTDgraph(who: String): String!
+    people: [HelloPerson!]!
+}
+
+
+"""【快递服务】通过邮政服务或商业服务进行的包裹快递 """
+type ParcelDelivery implements Node{
+
+"""【物流送货地址】 目的地址。 """
+deliveryAddress:	PostalAddress
+
+"""【物流送货状态】 物流中，每一个递送环节形成一个送货状态记录。"""
+deliveryStatus:	DeliveryEvent 
+
+
+"""【预计最早送达时间】 包裹可能到达的最早日期。 """
+expectedArrivalFrom:	DateTime
+
+"""【预计最晚送达时间】 包裹可能到达的最晚日期。"""
+expectedArrivalUntil:	DateTime
+
+"""【物流送货方式】 送货方式"""
+hasDeliveryMethod:	DeliveryMethod
+
+"""【运送物品】 正在被运送的物品"""
+itemShipped:	Product
+
+"""【发货者的地址】 发货者的地址 Shipper's address."""
+originAddress:	PostalAddress
+
+"""【所属订单】 包含此交货中物品的整体订单"""
+partOfOrder:	Order
+
+"""【提供方】 服务提供商，服务运营商或服务执行者; 货物生产者。 另一方（卖方）可以代表提供者提供这些服务或商品。 提供商也可以作为卖方。 The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller."""
+provider:	Party
+
+"""【运单号】 运单跟踪号码 Shipper tracking number."""
+trackingNumber:	Text
+
+"""【物流状态跟踪链接】 跟踪包裹递送状态的网址 """
+trackingUrl:	URL
+
+    """The id of the object."""
+    id: ID!
+}
