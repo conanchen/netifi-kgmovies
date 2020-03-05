@@ -886,8 +886,8 @@ type Order implements Node{
     """orderDate    DateTime  or DateTime    DateTime order was placed."""
     orderDate: DateTime
 
-    """orderDelivery    ParcelDelivery    The delivery of the parcel related to this order or order item."""
-    orderDelivery:    ParcelDelivery
+    """orderDelivery    FulfillDelivery    The delivery of the parcel related to this order or order item."""
+    orderDelivery:    FulfillDelivery
 
     """orderNumber    Text    The identifier of the transaction."""
     orderNumber: String
@@ -936,8 +936,8 @@ type OrderItem implements Node{
     """partOfOrder    Order    The overall order the items in this delivery were included in."""
     partOfOrder:    Order
 
-    """orderDelivery    ParcelDelivery    The delivery of the parcel related to this order or order item."""
-    orderDelivery:    ParcelDelivery
+    """orderDelivery    FulfillDelivery    The delivery of the parcel related to this order or order item."""
+    orderDelivery:    FulfillDelivery
 
     """orderItemNumber    Text    The identifier of the order item."""
     orderItemNumber: String
@@ -985,38 +985,3 @@ type ShippingRate{
     id: ID
 }
 
-"""https://schema.org/ParcelDelivery The delivery of a parcel either via the postal service or a commercial service."""
-type ParcelDelivery implements Node{
-
-    """deliveryAddress    PostalAddress    Destination address."""
-    deliveryAddress:    PostalAddress
-
-    """deliveryStatus    DeliveryEvent    New entry added as the package passes through each leg of its journey (from shipment to final delivery).
-    expectedArrivalFrom    DateTime  or DateTime    The earliest date the package may arrive."""
-    expectedArrivalFrom: DateTime
-
-    """expectedArrivalUntil    DateTime  or DateTime    The latest date the package may arrive."""
-    expectedArrivalUntil: DateTime
-
-    """hasDeliveryMethod    DeliveryMethod    Method used for delivery or shipping.
-    itemShipped    Product    Item(s) being shipped."""
-    itemShipped:    [Product]
-
-    """originAddress    PostalAddress    Shipper's address."""
-    originAddress:    PostalAddress
-
-    """partOfOrder    Order    The overall order the items in this delivery were included in."""
-    partOfOrder:    Order
-
-    """provider    Organization  or Person    The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. Supersedes carrier."""
-    provider:    Organization
-
-    """trackingNumber    Text    Shipper tracking number."""
-    trackingNumber: String
-
-    """trackingUrl    URL    Tracking url for the parcel delivery."""
-    trackingUrl:    String
-
-    """The id of the object."""
-    id: ID!
-}

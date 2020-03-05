@@ -1,23 +1,23 @@
-package io.github.conanchen.person.graphql.query;
+package io.github.conanchen.fulfill.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import io.github.conanchen.person.graphql.api.Query;
-import io.github.conanchen.person.graphql.model.PersonGQO;
-import io.github.conanchen.person.graphql.model.UserGQO;
+import io.github.conanchen.fulfill.graphql.api.Query;
+import io.github.conanchen.fulfill.graphql.model.HomeserviceDeliveryGQO;
+import io.github.conanchen.fulfill.graphql.model.ParcelDeliveryGQO;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class PersonQueriesResolver implements Query , GraphQLQueryResolver {
+public class FulfillQueriesResolver implements Query , GraphQLQueryResolver {
 
 
     @Override
-    public PersonGQO person(String id, String pId) throws Exception {
+    public ParcelDeliveryGQO parcelDelivery(String id, String parelId) throws Exception {
         return null;
     }
 
     @Override
-    public UserGQO user(String id, String uId) throws Exception {
+    public HomeserviceDeliveryGQO homeserviceDelivery(String id, String srvId) throws Exception {
         return null;
     }
 }

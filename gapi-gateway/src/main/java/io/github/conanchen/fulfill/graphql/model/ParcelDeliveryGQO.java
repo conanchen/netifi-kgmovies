@@ -2,15 +2,21 @@ package io.github.conanchen.fulfill.graphql.model;
 
 import java.util.*;
 import io.github.conanchen.fulfill.graphql.api.*;
+import io.github.conanchen.organization.graphql.model.PartyGQO;
+import io.github.conanchen.shoppingcart.graphql.model.OrderGQO;
+import io.github.conanchen.shoppingcart.graphql.model.PostalAddressGQO;
+import io.github.conanchen.shoppingdoor.graphql.model.GeneralProductGQO;
+import io.github.conanchen.shoppingdoor.graphql.model.ProductGQO;
+import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class ParcelDeliveryGQO implements PSDeliveryGQO, NodeGQO{
+public class ParcelDeliveryGQO implements FulfillDeliveryGQO, NodeGQO{
 
     private PostalAddressGQO deliveryAddress;
     private Collection<DeliveryEventGQO> deliveryStatus;
     private java.util.Date expectedArrivalFrom;
     private java.util.Date expectedArrivalUntil;
     private DeliveryMethodGQO hasDeliveryMethod;
-    private ProductGQO itemShipped;
+    private Collection<ProductGQO> itemShipped;
     private PostalAddressGQO originAddress;
     private OrderGQO partOfOrder;
     private PartyGQO provider;
@@ -22,7 +28,7 @@ public class ParcelDeliveryGQO implements PSDeliveryGQO, NodeGQO{
     public ParcelDeliveryGQO() {
     }
 
-    public ParcelDeliveryGQO(PostalAddressGQO deliveryAddress, Collection<DeliveryEventGQO> deliveryStatus, java.util.Date expectedArrivalFrom, java.util.Date expectedArrivalUntil, DeliveryMethodGQO hasDeliveryMethod, ProductGQO itemShipped, PostalAddressGQO originAddress, OrderGQO partOfOrder, PartyGQO provider, java.lang.String trackingNumber, java.lang.String trackingUrl, String id) {
+    public ParcelDeliveryGQO(PostalAddressGQO deliveryAddress, Collection<DeliveryEventGQO> deliveryStatus, java.util.Date expectedArrivalFrom, java.util.Date expectedArrivalUntil, DeliveryMethodGQO hasDeliveryMethod, Collection<ProductGQO> itemShipped, PostalAddressGQO originAddress, OrderGQO partOfOrder, PartyGQO provider, java.lang.String trackingNumber, java.lang.String trackingUrl, String id) {
         this.deliveryAddress = deliveryAddress;
         this.deliveryStatus = deliveryStatus;
         this.expectedArrivalFrom = expectedArrivalFrom;
@@ -72,10 +78,10 @@ public class ParcelDeliveryGQO implements PSDeliveryGQO, NodeGQO{
         this.hasDeliveryMethod = hasDeliveryMethod;
     }
 
-    public ProductGQO getItemShipped() {
+    public Collection<ProductGQO> getItemShipped() {
         return itemShipped;
     }
-    public void setItemShipped(ProductGQO itemShipped) {
+    public void setItemShipped(Collection<ProductGQO> itemShipped) {
         this.itemShipped = itemShipped;
     }
 

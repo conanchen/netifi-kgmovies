@@ -1,6 +1,7 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
+import io.github.conanchen.fulfill.graphql.model.FulfillDeliveryGQO;
 import io.github.conanchen.shoppingdoor.graphql.model.OrderableThingGQO;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
@@ -10,7 +11,7 @@ import java.util.Collection;
 public class OrderItemGQO implements NodeGQO{
 
     private OrderGQO partOfOrder;
-    private ParcelDeliveryGQO orderDelivery;
+    private FulfillDeliveryGQO orderDelivery;
     private String orderItemNumber;
     private OrderStatusGQO orderItemStatus;
     private Integer orderQuantity;
@@ -37,7 +38,7 @@ public class OrderItemGQO implements NodeGQO{
     public OrderItemGQO() {
     }
 
-    public OrderItemGQO(OrderGQO partOfOrder, ParcelDeliveryGQO orderDelivery, String orderItemNumber, OrderStatusGQO orderItemStatus, Integer orderQuantity, OrderableThingGQO orderedItem, Collection<ActionGQO> potentialActions, CartItemTypeGQO type, Collection<String> images, MoneyGQO unitTotal, MoneyGQO lineTotal, Integer quantity, java.util.Date createdAt, java.util.Date updatedAt, Collection<CustomAttributeGQO> attributes, String id) {
+    public OrderItemGQO(OrderGQO partOfOrder, FulfillDeliveryGQO orderDelivery, String orderItemNumber, OrderStatusGQO orderItemStatus, Integer orderQuantity, OrderableThingGQO orderedItem, Collection<ActionGQO> potentialActions, CartItemTypeGQO type, Collection<String> images, MoneyGQO unitTotal, MoneyGQO lineTotal, Integer quantity, java.util.Date createdAt, java.util.Date updatedAt, Collection<CustomAttributeGQO> attributes, String id) {
         this.partOfOrder = partOfOrder;
         this.orderDelivery = orderDelivery;
         this.orderItemNumber = orderItemNumber;
@@ -63,10 +64,10 @@ public class OrderItemGQO implements NodeGQO{
         this.partOfOrder = partOfOrder;
     }
 
-    public ParcelDeliveryGQO getOrderDelivery() {
+    public FulfillDeliveryGQO getOrderDelivery() {
         return orderDelivery;
     }
-    public void setOrderDelivery(ParcelDeliveryGQO orderDelivery) {
+    public void setOrderDelivery(FulfillDeliveryGQO orderDelivery) {
         this.orderDelivery = orderDelivery;
     }
 

@@ -1,6 +1,7 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
+import io.github.conanchen.fulfill.graphql.model.FulfillDeliveryGQO;
 import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import io.github.conanchen.organization.graphql.model.PartyGQO;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeGQO;
@@ -14,7 +15,7 @@ public class OrderGQO implements NodeGQO{
     private PartyGQO customer;
     private Boolean isGift;
     private java.util.Date orderDate;
-    private ParcelDeliveryGQO orderDelivery;
+    private FulfillDeliveryGQO orderDelivery;
     private String orderNumber;
     private OrderStatusGQO orderStatus;
     private Collection<OrderItemGQO> orderedItem;
@@ -53,7 +54,7 @@ public class OrderGQO implements NodeGQO{
     public OrderGQO() {
     }
 
-    public OrderGQO(PartyGQO broker, PartyGQO customer, Boolean isGift, java.util.Date orderDate, ParcelDeliveryGQO orderDelivery, String orderNumber, OrderStatusGQO orderStatus, Collection<OrderItemGQO> orderedItem, OrganizationGQO seller, Collection<ActionGQO> potentialActions, String cartId, String email, PostalAddressGQO shipping, PostalAddressGQO billing, MoneyGQO subTotal, MoneyGQO shippingTotal, MoneyGQO taxTotal, MoneyGQO grandTotal, Integer totalItems, Integer totalUniqueItems, String notes, Collection<CustomAttributeGQO> attributes, java.util.Date createdAt, java.util.Date updatedAt, String id) {
+    public OrderGQO(PartyGQO broker, PartyGQO customer, Boolean isGift, java.util.Date orderDate, FulfillDeliveryGQO orderDelivery, String orderNumber, OrderStatusGQO orderStatus, Collection<OrderItemGQO> orderedItem, OrganizationGQO seller, Collection<ActionGQO> potentialActions, String cartId, String email, PostalAddressGQO shipping, PostalAddressGQO billing, MoneyGQO subTotal, MoneyGQO shippingTotal, MoneyGQO taxTotal, MoneyGQO grandTotal, Integer totalItems, Integer totalUniqueItems, String notes, Collection<CustomAttributeGQO> attributes, java.util.Date createdAt, java.util.Date updatedAt, String id) {
         this.broker = broker;
         this.customer = customer;
         this.isGift = isGift;
@@ -109,10 +110,10 @@ public class OrderGQO implements NodeGQO{
         this.orderDate = orderDate;
     }
 
-    public ParcelDeliveryGQO getOrderDelivery() {
+    public FulfillDeliveryGQO getOrderDelivery() {
         return orderDelivery;
     }
-    public void setOrderDelivery(ParcelDeliveryGQO orderDelivery) {
+    public void setOrderDelivery(FulfillDeliveryGQO orderDelivery) {
         this.orderDelivery = orderDelivery;
     }
 

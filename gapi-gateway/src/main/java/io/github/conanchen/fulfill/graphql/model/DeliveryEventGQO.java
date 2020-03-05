@@ -2,8 +2,9 @@ package io.github.conanchen.fulfill.graphql.model;
 
 import java.util.*;
 import io.github.conanchen.fulfill.graphql.api.*;
+import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class DeliveryEventGQO implements NodeGQO{
+public class DeliveryEventGQO implements NodeGQO {
 
     @javax.validation.constraints.NotNull
     private String id;

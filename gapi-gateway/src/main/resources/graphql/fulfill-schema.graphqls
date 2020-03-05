@@ -1,50 +1,121 @@
 # Fulfill 履行执行订单而进行派送包裹、上门服务
 extend type Query {
-    hello(who: String): String!
-    helloWorldReactive(who: String): String!
-    """最简模式Graphql Resolver 直接调用Dgraph获取数据"""
-    helloDgraph(who: String): String!
-    helloSTDgraph(who: String): String!
-    people: [HelloPerson!]!
+    parcelDelivery(id: ID, parelId: ID): ParcelDelivery
+    homeserviceDelivery(id: ID, srvId: ID): HomeserviceDelivery
+}
+
+"""【配送履行】包裹、上门服务履行订单 """
+interface FulfillDelivery{
+    """【物流送货地址】 目的地址。 """
+    deliveryAddress:    PostalAddress
+
+    """【物流送货状态】 物流中，每一个递送环节形成一个送货状态记录。"""
+    deliveryStatus:    [DeliveryEvent]
+
+    """【预计最早送达时间】 包裹可能到达的最早日期。 """
+    expectedArrivalFrom:    DateTime
+
+    """【预计最晚送达时间】 包裹可能到达的最晚日期。"""
+    expectedArrivalUntil:    DateTime
 }
 
 
-"""【快递服务】通过邮政服务或商业服务进行的包裹快递 """
-type ParcelDelivery implements Node{
 
-"""【物流送货地址】 目的地址。 """
-deliveryAddress:	PostalAddress
+"""【包裹快递服务】通过邮政服务或商业服务进行的包裹快递 """
+type ParcelDelivery implements FulfillDelivery & Node{
 
-"""【物流送货状态】 物流中，每一个递送环节形成一个送货状态记录。"""
-deliveryStatus:	DeliveryEvent 
+    """【物流送货地址】 目的地址。 """
+    deliveryAddress:    PostalAddress
 
+    """【物流送货状态】 物流中，每一个递送环节形成一个送货状态记录。"""
+    deliveryStatus:    [DeliveryEvent]
 
-"""【预计最早送达时间】 包裹可能到达的最早日期。 """
-expectedArrivalFrom:	DateTime
+    """【预计最早送达时间】 包裹可能到达的最早日期。 """
+    expectedArrivalFrom:    DateTime
 
-"""【预计最晚送达时间】 包裹可能到达的最晚日期。"""
-expectedArrivalUntil:	DateTime
+    """【预计最晚送达时间】 包裹可能到达的最晚日期。"""
+    expectedArrivalUntil:    DateTime
 
-"""【物流送货方式】 送货方式"""
-hasDeliveryMethod:	DeliveryMethod
+    """【物流送货方式】 送货方式"""
+    hasDeliveryMethod:    DeliveryMethod
 
-"""【运送物品】 正在被运送的物品"""
-itemShipped:	Product
+    """【运送物品】 正在被运送的物品"""
+    itemShipped:    [Product]
 
-"""【发货者的地址】 发货者的地址 Shipper's address."""
-originAddress:	PostalAddress
+    """【发货者的地址】 发货者的地址 Shipper's address."""
+    originAddress:    PostalAddress
 
-"""【所属订单】 包含此交货中物品的整体订单"""
-partOfOrder:	Order
+    """【所属订单】 包含此交货中物品的整体订单"""
+    partOfOrder:    Order
 
-"""【提供方】 服务提供商，服务运营商或服务执行者; 货物生产者。 另一方（卖方）可以代表提供者提供这些服务或商品。 提供商也可以作为卖方。 The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller."""
-provider:	Party
+    """【提供方】 服务提供商，服务运营商或服务执行者; 货物生产者。 另一方（卖方）可以代表提供者提供这些服务或商品。 提供商也可以作为卖方。 The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller."""
+    provider:    Party
 
-"""【运单号】 运单跟踪号码 Shipper tracking number."""
-trackingNumber:	Text
+    """【运单号】 运单跟踪号码 Shipper tracking number."""
+    trackingNumber:    Text
 
-"""【物流状态跟踪链接】 跟踪包裹递送状态的网址 """
-trackingUrl:	URL
+    """【物流状态跟踪链接】 跟踪包裹递送状态的网址 """
+    trackingUrl:    URL
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""【履行上门服务】通过上门服务进行的家政服务等 """
+type HomeserviceDelivery implements FulfillDelivery & Node{
+
+    """【物流送货地址】 目的地址。 """
+    deliveryAddress:    PostalAddress
+
+    """【物流送货状态】 物流中，每一个递送环节形成一个送货状态记录。"""
+    deliveryStatus:    [DeliveryEvent]
+
+    """【预计最早送达时间】 包裹可能到达的最早日期。 """
+    expectedArrivalFrom:    DateTime
+
+    """【预计最晚送达时间】 包裹可能到达的最晚日期。"""
+    expectedArrivalUntil:    DateTime
+
+    """【物流送货方式】 送货方式"""
+    hasDeliveryMethod:    DeliveryMethod
+
+    """【运送物品】 正在被运送的物品"""
+    itemShipped:    [Product]
+
+    """【发货者的地址】 发货者的地址 Shipper's address."""
+    originAddress:    PostalAddress
+
+    """【所属订单】 包含此交货中物品的整体订单"""
+    partOfOrder:    Order
+
+    """【提供方】 服务提供商，服务运营商或服务执行者; 货物生产者。 另一方（卖方）可以代表提供者提供这些服务或商品。 提供商也可以作为卖方。 The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller."""
+    provider:    Party
+
+    """【运单号】 运单跟踪号码 Shipper tracking number."""
+    trackingNumber:    Text
+
+    """【物流状态跟踪链接】 跟踪包裹递送状态的网址 """
+    trackingUrl:    URL
+
+    """The id of the object."""
+    id: ID!
+}
+
+"""【送货方式】送货方式指的是顾客选择的完成一个货物或服务到一个目的地的运输的标准化流程。送货方式由使用的交通工具决定，以及与寄出的组织或个人签订合同的对象组织或个人"""
+enum DeliveryMethod {
+    DeliveryModeDirectDownload
+    DeliveryModeFreight
+    DeliveryModeMail
+    DeliveryModeOwnFleet
+    DeliveryModePickUp
+    DHL
+    FederalExpress
+    UPS
+    """顺丰"""
+    ShunFeng
+}
+
+type DeliveryEvent implements Node{
 
     """The id of the object."""
     id: ID!
