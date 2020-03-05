@@ -1,18 +1,18 @@
 extend type Query {
-  allProducts(after: String, first: Int, before: String, last: Int): ProductsConnection
-  product(id: ID, productID: ID): Product
-  generalProduct(id: ID, productID: ID): GeneralProduct
+    allProducts(after: String, first: Int, before: String, last: Int): ProductsConnection
+    product(id: ID, productID: ID): Product
+    generalProduct(id: ID, productID: ID): GeneralProduct
 
-  allServices(after: String, first: Int, before: String, last: Int): ServicesConnection
-  service(id: ID, serviceID: ID): Service
-  foodService(id: ID, serviceID: ID): FoodService
-  generalService(id: ID, serviceID: ID): GeneralService
-  governmentService(id: ID, serviceID: ID): GovernmentService
-  housekeepingService(id: ID, serviceID: ID): HousekeepingService  
-  itemCategory(id: ID, itcgID: ID): ItemCategory
-  
-  offer(id: ID, offerID: ID): Offer
-  demand(id: ID, demandID: ID): Demand
+    allServices(after: String, first: Int, before: String, last: Int): ServicesConnection
+    service(id: ID, serviceID: ID): Service
+    foodService(id: ID, serviceID: ID): FoodService
+    generalService(id: ID, serviceID: ID): GeneralService
+    governmentService(id: ID, serviceID: ID): GovernmentService
+    housekeepingService(id: ID, serviceID: ID): HousekeepingService
+    itemCategory(id: ID, itcgID: ID): ItemCategory
+
+    offer(id: ID, offerID: ID): Offer
+    demand(id: ID, demandID: ID): Demand
 
 }
 
@@ -26,28 +26,28 @@ interface Product {
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """productID	Text 	The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
+    """productID    Text    The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
     productID: String
 
-    """isRelatedTo	Product  or
-    Service 	A pointer to another, somehow related product (or multiple products)."""
+    """isRelatedTo    Product  or
+    Service    A pointer to another, somehow related product (or multiple products)."""
     isRelatedTo: [Product]
-    
-    """isSimilarTo	Product  or
-    Service 	A pointer to another, functionally similar product (or multiple products)."""
+
+    """isSimilarTo    Product  or
+    Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo: [Product]
 
-    """ 	The manufacturer of the product."""
-    manufacturer:	Organization
+    """    The manufacturer of the product."""
+    manufacturer:    Organization
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -56,11 +56,11 @@ interface Product {
     models: [ProductModel]
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -70,48 +70,48 @@ interface Product {
 
 """http://cnschema.org/ProductModel (相当与ProductVariant产品变形)【产品型号】制造厂商用来提供每一个特殊类别产品的标识。 A datasheet or vendor specification of a product (in the sense of a prototypical description)."""
 type ProductModel implements Thing & OrderableThing & Node{
-    """【变形】 是他的一种变形 	A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive."""
-    isVariantOf:	ProductModel
+    """【变形】 是他的一种变形    A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive."""
+    isVariantOf:    ProductModel
 
-    """【上一代型号】 产品的上一代型号 	A pointer from a previous, often discontinued variant of the product to its newer variant."""
-    predecessorOf:	ProductModel
+    """【上一代型号】 产品的上一代型号    A pointer from a previous, often discontinued variant of the product to its newer variant."""
+    predecessorOf:    ProductModel
 
-    """【上一代型号】 新一代的产品之前的产品，通常是已经停产的产品  	A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
-    successorOf:	ProductModel
+    """【上一代型号】 新一代的产品之前的产品，通常是已经停产的产品    A pointer from a newer variant of a product to its previous, often discontinued predecessor."""
+    successorOf:    ProductModel
 
     # Properties from OrderableThing etc.
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """productID	Text 	The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
+    """productID    Text    The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
     productID: String
 
-    """isRelatedTo	Product  or
-    Service 	A pointer to another, somehow related product (or multiple products)."""
+    """isRelatedTo    Product  or
+    Service    A pointer to another, somehow related product (or multiple products)."""
     isRelatedTo: [Product]
-    
-    """isSimilarTo	Product  or
-    Service 	A pointer to another, functionally similar product (or multiple products)."""
+
+    """isSimilarTo    Product  or
+    Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo: [Product]
 
-    """ 	The manufacturer of the product."""
-    manufacturer:	Organization
+    """    The manufacturer of the product."""
+    manufacturer:    Organization
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -128,26 +128,26 @@ type GeneralProduct implements Thing & Product & OrderableThing & Conversational
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """productID	Text 	The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
+    """productID    Text    The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789"."""
     productID: String
 
-    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
+    """isRelatedTo    Product  or Service    A pointer to another, somehow related product (or multiple products)."""
     isRelatedTo: [Product]
-    
-    """isSimilarTo	Product  or Service 	A pointer to another, functionally similar product (or multiple products)."""
+
+    """isSimilarTo    Product  or Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo: [Product]
 
-    """ 	The manufacturer of the product."""
-    manufacturer:	Organization
+    """    The manufacturer of the product."""
+    manufacturer:    Organization
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -155,10 +155,10 @@ type GeneralProduct implements Thing & Product & OrderableThing & Conversational
     """【型号】 产品的型号。可以是ProductModel类型的URL或者是型号标识的文本表示。ProductModel类型实体的URL可以来自外部来源。建议通过属性gtin8/gtin13/gtin14和mpn额外提供强产品标识。 The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties."""
     models: [ProductModel]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -176,84 +176,84 @@ type GeneralProduct implements Thing & Product & OrderableThing & Conversational
 
 """A connection to a list of items."""
 type ProductsConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [ProductsEdge]
+    """A list of edges."""
+    edges: [ProductsEdge]
 
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
 
-  """
-  A list of all of the objects returned in the connection. This is a convenience
-  field provided for quickly exploring the API; rather than querying for
-  "{ edges { node } }" when no edge data is needed, this field can be be used
-  instead. Note that when clients like Relay need to fetch the "cursor" field on
-  the edge to enable efficient pagination, this shortcut cannot be used, and the
-  full "{ edges { node } }" version should be used instead.
-  """
-  products: [Product]
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    products: [Product]
 }
 
 """An edge in a connection."""
 type ProductsEdge {
-  """The item at the end of the edge"""
-  node: Product
+    """The item at the end of the edge"""
+    node: Product
 
-  """A cursor for use in pagination"""
-  cursor: String!
+    """A cursor for use in pagination"""
+    cursor: String!
 }
 
 
 """https://schema.org/Service
 A service provided by an organization, e.g. delivery service, print services, etc."""
 interface Service {
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:	AggregateRating
-    
-    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:    AggregateRating
+
+    """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
-    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
-    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
-    award	Text 	An award won by or for this item. Supersedes awards.
-    brand	Brand  or
-    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
-    
+    """audience    Audience    An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel    ServiceChannel    A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award    Text    An award won by or for this item. Supersedes awards.
+    brand    Brand  or
+    Organization    The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+
     The hours during which this service or contact is available."""
-    hoursAvailable:	OpeningHoursSpecification
+    hoursAvailable:    OpeningHoursSpecification
 
-    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
-    isRelatedTo:	Product
+    """isRelatedTo    Product  or Service    A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:    Product
 
-    """isSimilarTo	Product  or Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Service
+    """isSimilarTo    Product  or Service    A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:    Service
 
-    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -261,49 +261,49 @@ interface Service {
 }
 
 type GeneralService implements Thing & OrderableThing & Service & Node{
-  """可以购买订购的产品或服务Product，Service"""
-  isOrderable: Boolean
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:	AggregateRating
-    
-    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:    AggregateRating
+
+    """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
-    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
-    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
-    award	Text 	An award won by or for this item. Supersedes awards.
-    brand	Brand  or
-    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
-    
+    """audience    Audience    An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel    ServiceChannel    A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award    Text    An award won by or for this item. Supersedes awards.
+    brand    Brand  or
+    Organization    The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+
     The hours during which this service or contact is available."""
-    hoursAvailable:	OpeningHoursSpecification
+    hoursAvailable:    OpeningHoursSpecification
 
-    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
-    isRelatedTo:	Product
+    """isRelatedTo    Product  or Service    A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:    Product
 
-    """isSimilarTo	Product  or Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Service
+    """isSimilarTo    Product  or Service    A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:    Service
 
-    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -318,46 +318,46 @@ type FoodService implements Thing & OrderableThing & Service & Node{
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:	AggregateRating
-    
-    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:    AggregateRating
+
+    """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
-    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
-    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
-    award	Text 	An award won by or for this item. Supersedes awards.
-    brand	Brand  or
-    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
-    
+    """audience    Audience    An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel    ServiceChannel    A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award    Text    An award won by or for this item. Supersedes awards.
+    brand    Brand  or
+    Organization    The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+
     The hours during which this service or contact is available."""
-    hoursAvailable:	OpeningHoursSpecification
+    hoursAvailable:    OpeningHoursSpecification
 
-    """isRelatedTo	Product  or Service 	A pointer to another, somehow related product (or multiple products)."""
-    isRelatedTo:	Product
+    """isRelatedTo    Product  or Service    A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:    Product
 
-    """isSimilarTo	Product  or  Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Service
+    """isSimilarTo    Product  or  Service    A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:    Service
 
-    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -372,46 +372,46 @@ type HousekeepingService implements Thing & OrderableThing & Service & Node{
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:	AggregateRating
-    
-    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:    AggregateRating
+
+    """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
-    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
-    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
-    award	Text 	An award won by or for this item. Supersedes awards.
-    brand	Brand  or
-    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
-    
+    """audience    Audience    An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel    ServiceChannel    A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award    Text    An award won by or for this item. Supersedes awards.
+    brand    Brand  or
+    Organization    The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+
     The hours during which this service or contact is available."""
-    hoursAvailable:	OpeningHoursSpecification
+    hoursAvailable:    OpeningHoursSpecification
 
-    """isRelatedTo	Product  or  Service 	A pointer to another, somehow related product (or multiple products)."""
-    isRelatedTo:	Product
+    """isRelatedTo    Product  or  Service    A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:    Product
 
-    """isSimilarTo	Product  or  Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Service
+    """isSimilarTo    Product  or  Service    A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:    Service
 
-    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
-    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
-    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -424,53 +424,53 @@ type HousekeepingService implements Thing & OrderableThing & Service & Node{
 """https://schema.org/GovernmentService A service provided by a government organization, e.g. food stamps, veterans benefits, etc.."""
 type GovernmentService implements Thing & Service & Node{
 
-    """serviceOperator	Organization 	The operating organization, if different from the provider. This enables the representation of services that are provided by an organization, but operated by another organization like a subcontractor."""
-    serviceOperator:	Organization
+    """serviceOperator    Organization    The operating organization, if different from the provider. This enables the representation of services that are provided by an organization, but operated by another organization like a subcontractor."""
+    serviceOperator:    Organization
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:	AggregateRating
-    
-    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided. Supersedes serviceArea."""
+    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateRating:    AggregateRating
+
+    """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
 
-    """audience	Audience 	An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
-    availableChannel	ServiceChannel 	A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
-    award	Text 	An award won by or for this item. Supersedes awards.
-    brand	Brand  or
-    Organization 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
-    
+    """audience    Audience    An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
+    availableChannel    ServiceChannel    A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+    award    Text    An award won by or for this item. Supersedes awards.
+    brand    Brand  or
+    Organization    The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+
     The hours during which this service or contact is available."""
-    hoursAvailable:	OpeningHoursSpecification
+    hoursAvailable:    OpeningHoursSpecification
 
-    """isRelatedTo	Product  or
-    Service 	A pointer to another, somehow related product (or multiple products)."""
-    isRelatedTo:	Product
+    """isRelatedTo    Product  or
+    Service    A pointer to another, somehow related product (or multiple products)."""
+    isRelatedTo:    Product
 
-    """isSimilarTo	Product  or
-    Service 	A pointer to another, functionally similar product (or multiple products)."""
-    isSimilarTo:	Service
+    """isSimilarTo    Product  or
+    Service    A pointer to another, functionally similar product (or multiple products)."""
+    isSimilarTo:    Service
 
-    """potentialAction	Action 	Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
+    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
     potentialAction: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
 
     """【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     offers: AggregateOffer
 
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event	"""
+    offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
     """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
@@ -483,43 +483,43 @@ type GovernmentService implements Thing & Service & Node{
 
 """A connection to a list of items."""
 type ServicesConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [ServicesEdge]
+    """A list of edges."""
+    edges: [ServicesEdge]
 
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
 
-  """
-  A list of all of the objects returned in the connection. This is a convenience
-  field provided for quickly exploring the API; rather than querying for
-  "{ edges { node } }" when no edge data is needed, this field can be be used
-  instead. Note that when clients like Relay need to fetch the "cursor" field on
-  the edge to enable efficient pagination, this shortcut cannot be used, and the
-  full "{ edges { node } }" version should be used instead.
-  """
-  services: [Service]
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    services: [Service]
 }
 
 """An edge in a connection."""
 type ServicesEdge {
-  """The item at the end of the edge"""
-  node: Service
+    """The item at the end of the edge"""
+    node: Service
 
-  """A cursor for use in pagination"""
-  cursor: String!
+    """A cursor for use in pagination"""
+    cursor: String!
 }
 
 interface OrderableThing{
-  """可以购买订购的产品或服务Product，Service"""
-  isOrderable: Boolean
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
 }
 
 """A structured value providing information about the opening hours of a place or a certain service inside a place.
@@ -529,27 +529,27 @@ The place is open if the opens property is specified, and closed otherwise.
 If the value for the closes property is less than the value for the opens property then the hour range is assumed to span over the next day.
 """
 type OpeningHoursSpecification implements Node{
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """closes	Time 	The closing hour of the place or service on the given day(s) of the week."""
+    """closes    Time    The closing hour of the place or service on the given day(s) of the week."""
     closes: DateTime
 
-    """dayOfWeek	DayOfWeek 	The day of the week for which these opening hours are valid. 
+    """dayOfWeek    DayOfWeek    The day of the week for which these opening hours are valid.
 
-    opens	Time 	The opening hour of the place or service on the given day(s) of the week."""
+    opens    Time    The opening hour of the place or service on the given day(s) of the week."""
     opens: DateTime
 
-    """validFrom	Date  or DateTime 	The date when the item becomes valid."""
+    """validFrom    Date  or DateTime    The date when the item becomes valid."""
     validFrom: DateTime
 
-    """validThrough	Date  or DateTime 	The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours."""
+    """validThrough    Date  or DateTime    The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours."""
     validThrough: DateTime
 
     """The id of the object."""
@@ -563,13 +563,13 @@ type ItemCategory implements Node{
     """Item Category ID"""
     itcgID: ID!
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
     """
@@ -591,17 +591,17 @@ type ItemCategory implements Node{
 """http://cnschema.org/AggregateOffer 【总体报价】当单个产品与多个报价相关联（例如，同一双鞋子由不同商家提供）时，可以使用AggregateOffer。 When a single product is associated with multiple offers (for example, the same pair of shoes is offered by different merchants), then AggregateOffer can be used.
 """
 type AggregateOffer {
-  """highPrice	Text or Number or AggregateOffer	【最高价】 最高价格 The highest price of all offers available."""
-  highPrice: Int
+    """highPrice    Text or Number or AggregateOffer    【最高价】 最高价格 The highest price of all offers available."""
+    highPrice: Int
 
-  """lowPrice	Text or Number or AggregateOffer	【最低价格】 所有价格中的最低价 The lowest price of all offers available."""
-  lowPrice: Int
+    """lowPrice    Text or Number or AggregateOffer    【最低价格】 所有价格中的最低价 The lowest price of all offers available."""
+    lowPrice: Int
 
-  """offerCount	Integer or AggregateOffer	【商品的报价总数】 产品的报价数量 The number of offers for the product."""
-  offerCount: Int
+    """offerCount    Integer or AggregateOffer    【商品的报价总数】 产品的报价数量 The number of offers for the product."""
+    offerCount: Int
 
-  """offers	Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event."""
-  offers: [Offer]
+    """offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event【报价】 提供此项目的报价 - 例如，出售产品的报价，出租电影DVD的价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event."""
+    offers: [Offer]
 }
 
 """https://schema.org/Offer
@@ -613,19 +613,19 @@ type Offer implements Thing & OrderableThing & Node{
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """itemOffered	AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip 	An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
+    """itemOffered    AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip    An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
     itemOffered: Product
 
-    """offeredBy	Organization  or Person 	A pointer to the organization or person making the offer. Inverse property: makesOffer."""
+    """offeredBy    Organization  or Person    A pointer to the organization or person making the offer. Inverse property: makesOffer."""
     offeredBy: Party
 
     """The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes."""
@@ -643,25 +643,25 @@ type Demand implements Thing & OrderableThing & Node{
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
 
-    """name	Text 	The name of the item."""
+    """name    Text    The name of the item."""
     name: String
 
-    """alternateName	Text 	An alias for the item."""
+    """alternateName    Text    An alias for the item."""
     alternateName: String
 
-    """description	Text 	A description of the item."""
+    """description    Text    A description of the item."""
     description: String
 
-    """areaServed	AdministrativeArea  or GeoShape  or Place  or Text 	The geographic area where a service or offered item is provided."""
+    """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided."""
     areaServed: Place
 
-    """businessFunction	BusinessFunction 	The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell."""
-    businessFunction:	BusinessFunction
+    """businessFunction    BusinessFunction    The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell."""
+    businessFunction:    BusinessFunction
 
-    """itemOffered	AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip 	An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
+    """itemOffered    AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip    An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
     itemOffered: Service
 
-    """seeks	Demand 	A pointer to products or services sought by the organization or person (demand). Inverse-property: seeker"""
+    """seeks    Demand    A pointer to products or services sought by the organization or person (demand). Inverse-property: seeker"""
     seeker: Party
 
     """The id of the object."""
@@ -669,22 +669,22 @@ type Demand implements Thing & OrderableThing & Node{
 }
 
 enum BusinessFunction{
-  """
-  http://purl.org/goodrelations/v1#ConstructionInstallation
-  http://purl.org/goodrelations/v1#Dispose
-  http://purl.org/goodrelations/v1#LeaseOut
-  http://purl.org/goodrelations/v1#Maintain
-  http://purl.org/goodrelations/v1#ProvideService
-  http://purl.org/goodrelations/v1#Repair
-  http://purl.org/goodrelations/v1#Sell
-  http://purl.org/goodrelations/v1#Buy  
-  """
-  ConstructionInstallation
-  Dispose
-  LeaseOut
-  Maintain
-  ProvideService
-  Repair
-  Sell
-  Buy
+    """
+    http://purl.org/goodrelations/v1#ConstructionInstallation
+    http://purl.org/goodrelations/v1#Dispose
+    http://purl.org/goodrelations/v1#LeaseOut
+    http://purl.org/goodrelations/v1#Maintain
+    http://purl.org/goodrelations/v1#ProvideService
+    http://purl.org/goodrelations/v1#Repair
+    http://purl.org/goodrelations/v1#Sell
+    http://purl.org/goodrelations/v1#Buy
+    """
+    ConstructionInstallation
+    Dispose
+    LeaseOut
+    Maintain
+    ProvideService
+    Repair
+    Sell
+    Buy
 }

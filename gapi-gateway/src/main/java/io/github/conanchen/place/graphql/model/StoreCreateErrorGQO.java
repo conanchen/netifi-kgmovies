@@ -2,8 +2,9 @@ package io.github.conanchen.place.graphql.model;
 
 import java.util.*;
 import io.github.conanchen.place.graphql.api.*;
+import io.github.conanchen.zommon.graphql.model.DisplayableErrorGQO;
 
-public class StoreCreateErrorGQO implements DisplayableErrorGQO{
+public class StoreCreateErrorGQO implements DisplayableErrorGQO {
 
     private StoreCreateErrorCodeGQO code;
     @javax.validation.constraints.NotNull

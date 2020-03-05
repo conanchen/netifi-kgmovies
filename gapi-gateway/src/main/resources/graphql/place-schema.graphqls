@@ -25,6 +25,10 @@ extend type Query {
     localBusinessFind(id: ID, lbsID: ID): LocalBusiness
 }
 
+extend type Mutation {
+    """店铺创建,操作人员必须认证登录后才可操作"""
+    storeCreate(input: StoreCreateInput!): StoreCreatePayload! @authn(authenticated: true)
+}
 
 """https://schema.org/Store A retail good store."""
 type Store implements Thing & Organization & LocalBusiness & Node{
@@ -356,5 +360,55 @@ input StoreFilter {
     and: StoreFilter
     or: StoreFilter
     not: StoreFilter
+}
+
+input StoreCreateInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
+    actionId: ID!
+}
+
+"""Store mutation api response payload"""
+type StoreCreatePayload{
+    """The store object ."""
+    store: Store
+
+    """所执行的操作Action"""
+    action: Action
+
+    """List of errors that occurred executing the mutation."""
+    storeCreateErrors: [StoreCreateError!]!
+}
+
+"""Represents an error that happens during execution of a store mutation."""
+type  StoreCreateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: StoreCreateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error store."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a store mutation."""
+enum StoreCreateErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
 }
 
