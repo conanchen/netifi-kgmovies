@@ -1,7 +1,7 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.shoppingdoor.graphql.model.OrderableThingGQO;
+import io.github.conanchen.shoppingdoor.graphql.model.ShoppingableGQO;
 import io.github.conanchen.shoppingfulfill.graphql.model.FulfillDeliveryGQO;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
@@ -15,7 +15,7 @@ public class OrderItemGQO implements NodeGQO{
     private String orderItemNumber;
     private OrderStatusGQO orderItemStatus;
     private Integer orderQuantity;
-    private OrderableThingGQO orderedItem;
+    private ShoppingableGQO orderedItem;
     private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private CartItemTypeGQO type;
@@ -38,7 +38,7 @@ public class OrderItemGQO implements NodeGQO{
     public OrderItemGQO() {
     }
 
-    public OrderItemGQO(OrderGQO partOfOrder, FulfillDeliveryGQO orderDelivery, String orderItemNumber, OrderStatusGQO orderItemStatus, Integer orderQuantity, OrderableThingGQO orderedItem, Collection<ActionGQO> potentialActions, CartItemTypeGQO type, Collection<String> images, MoneyGQO unitTotal, MoneyGQO lineTotal, Integer quantity, java.util.Date createdAt, java.util.Date updatedAt, Collection<CustomAttributeGQO> attributes, String id) {
+    public OrderItemGQO(OrderGQO partOfOrder, FulfillDeliveryGQO orderDelivery, String orderItemNumber, OrderStatusGQO orderItemStatus, Integer orderQuantity, ShoppingableGQO orderedItem, Collection<ActionGQO> potentialActions, CartItemTypeGQO type, Collection<String> images, MoneyGQO unitTotal, MoneyGQO lineTotal, Integer quantity, java.util.Date createdAt, java.util.Date updatedAt, Collection<CustomAttributeGQO> attributes, String id) {
         this.partOfOrder = partOfOrder;
         this.orderDelivery = orderDelivery;
         this.orderItemNumber = orderItemNumber;
@@ -92,10 +92,11 @@ public class OrderItemGQO implements NodeGQO{
         this.orderQuantity = orderQuantity;
     }
 
-    public OrderableThingGQO getOrderedItem() {
+    public ShoppingableGQO getOrderedItem() {
         return orderedItem;
     }
-    public void setOrderedItem(OrderableThingGQO orderedItem) {
+
+    public void setOrderedItem(ShoppingableGQO orderedItem) {
         this.orderedItem = orderedItem;
     }
 

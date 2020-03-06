@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import io.github.conanchen.shoppingdoor.graphql.model.OrderableThingGQO;
+import io.github.conanchen.shoppingdoor.graphql.model.ShoppingableGQO;
 import io.github.conanchen.zommon.graphql.model.CustomAttributeGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
@@ -16,14 +16,14 @@ public class CheckoutLineItemGQO implements NodeGQO{
     private Integer quantity;
     @javax.validation.constraints.NotNull
     private String title;
-    private OrderableThingGQO variant;
+    private ShoppingableGQO variant;
     @javax.validation.constraints.NotNull
     private String id;
 
     public CheckoutLineItemGQO() {
     }
 
-    public CheckoutLineItemGQO(Collection<CustomAttributeGQO> customAttributes, Collection<DiscountAllocationGQO> discountAllocations, Integer quantity, String title, OrderableThingGQO variant, String id) {
+    public CheckoutLineItemGQO(Collection<CustomAttributeGQO> customAttributes, Collection<DiscountAllocationGQO> discountAllocations, Integer quantity, String title, ShoppingableGQO variant, String id) {
         this.customAttributes = customAttributes;
         this.discountAllocations = discountAllocations;
         this.quantity = quantity;
@@ -60,10 +60,11 @@ public class CheckoutLineItemGQO implements NodeGQO{
         this.title = title;
     }
 
-    public OrderableThingGQO getVariant() {
+    public ShoppingableGQO getVariant() {
         return variant;
     }
-    public void setVariant(OrderableThingGQO variant) {
+
+    public void setVariant(ShoppingableGQO variant) {
         this.variant = variant;
     }
 

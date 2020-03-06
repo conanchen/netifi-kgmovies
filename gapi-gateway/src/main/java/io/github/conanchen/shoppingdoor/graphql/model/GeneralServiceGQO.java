@@ -9,9 +9,9 @@ import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
 import java.util.Collection;
 
-public class GeneralServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQO, NodeGQO{
+public class GeneralServiceGQO implements ThingGQO, ShoppingableGQO, ServiceGQO, NodeGQO {
 
-    private Boolean isOrderable;
+    private Boolean isShoppingable;
     private String name;
     private String alternateName;
     private String description;
@@ -31,8 +31,8 @@ public class GeneralServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQ
     public GeneralServiceGQO() {
     }
 
-    public GeneralServiceGQO(Boolean isOrderable, String name, String alternateName, String description, AggregateRatingGQO aggregateRating, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
-        this.isOrderable = isOrderable;
+    public GeneralServiceGQO(Boolean isShoppingable, String name, String alternateName, String description, AggregateRatingGQO aggregateRating, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+        this.isShoppingable = isShoppingable;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -49,16 +49,18 @@ public class GeneralServiceGQO implements ThingGQO, OrderableThingGQO, ServiceGQ
         this.id = id;
     }
 
-    public Boolean getIsOrderable() {
-        return isOrderable;
+    public Boolean getIsShoppingable() {
+        return isShoppingable;
     }
-    public void setIsOrderable(Boolean isOrderable) {
-        this.isOrderable = isOrderable;
+
+    public void setIsShoppingable(Boolean isShoppingable) {
+        this.isShoppingable = isShoppingable;
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }

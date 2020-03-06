@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface ProductGQO {
 
-    Boolean getIsOrderable();
+    Boolean getIsShoppingable();
 
     String getName();
 

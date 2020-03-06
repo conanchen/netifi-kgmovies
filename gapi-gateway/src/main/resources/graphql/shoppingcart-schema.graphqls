@@ -593,7 +593,7 @@ type CheckoutLineItem implements Node{
     title: String!
 
     """Product variant of the line item."""
-    variant: OrderableThing
+    variant: Shoppingable
 
     """The id of the object. Globally unique identifier."""
     id: ID!
@@ -949,7 +949,7 @@ type OrderItem implements Node{
     orderQuantity: Int
 
     """orderedItem    OrderItem  or Product  or Service"""
-    orderedItem: OrderableThing
+    orderedItem: Shoppingable
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]

@@ -16,10 +16,10 @@ interface Thing {
     id: ID!
 }
 
-"""可以购买订购的产品或服务Product，Service"""
-interface Orderable{
+"""可购物：可以购买订购的产品或服务Product，Service"""
+interface Shoppingable{
     """可以购买订购的产品或服务Product，Service"""
-    isOrderable: Boolean
+    isShoppingable: Boolean
 
     """【商品供应】 供应的商品。"""
     itemOffers: [Offer]  @hasInverse(field: "itemOffered")
@@ -32,14 +32,14 @@ interface Party{
     owns: [Ownership]
 }
 
-type Product implements Orderable & Thing{
+type Product implements Shoppingable & Thing{
 
     """【型号】 产品的型号。"""
     hasModels: [ProductModel]  @hasInverse(field: "isModelOf")
 
 }
 
-type ProductModel implements Orderable & Thing{
+type ProductModel implements Shoppingable & Thing{
 
     """【产品】 所属产品。"""
     isModelOf: Product @hasInverse(field: "hasModels")
@@ -47,7 +47,7 @@ type ProductModel implements Orderable & Thing{
 
 type Offer implements Thing{
     """itemOffered    AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip    An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
-    itemOffered: Orderable
+    itemOffered: Shoppingable
 
     """offeredBy    Organization  or Person    A pointer to the organization or person making the offer. Inverse property: makesOffer."""
     offeredBy: Party

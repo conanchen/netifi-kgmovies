@@ -7,12 +7,12 @@ import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
 import java.util.Collection;
 
-public class ProductModelGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
+public class ProductModelGQO implements ThingGQO, ShoppingableGQO, NodeGQO {
 
     private ProductModelGQO isVariantOf;
     private ProductModelGQO predecessorOf;
     private ProductModelGQO successorOf;
-    private Boolean isOrderable;
+    private Boolean isShoppingable;
     private String name;
     private String alternateName;
     private String description;
@@ -29,11 +29,11 @@ public class ProductModelGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
     public ProductModelGQO() {
     }
 
-    public ProductModelGQO(ProductModelGQO isVariantOf, ProductModelGQO predecessorOf, ProductModelGQO successorOf, Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public ProductModelGQO(ProductModelGQO isVariantOf, ProductModelGQO predecessorOf, ProductModelGQO successorOf, Boolean isShoppingable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
         this.isVariantOf = isVariantOf;
         this.predecessorOf = predecessorOf;
         this.successorOf = successorOf;
-        this.isOrderable = isOrderable;
+        this.isShoppingable = isShoppingable;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -64,20 +64,23 @@ public class ProductModelGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
     public ProductModelGQO getSuccessorOf() {
         return successorOf;
     }
+
     public void setSuccessorOf(ProductModelGQO successorOf) {
         this.successorOf = successorOf;
     }
 
-    public Boolean getIsOrderable() {
-        return isOrderable;
+    public Boolean getIsShoppingable() {
+        return isShoppingable;
     }
-    public void setIsOrderable(Boolean isOrderable) {
-        this.isOrderable = isOrderable;
+
+    public void setIsShoppingable(Boolean isShoppingable) {
+        this.isShoppingable = isShoppingable;
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }

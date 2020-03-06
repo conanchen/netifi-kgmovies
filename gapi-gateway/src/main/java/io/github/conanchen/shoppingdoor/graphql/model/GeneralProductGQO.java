@@ -9,9 +9,9 @@ import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
 import java.util.Collection;
 
-public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQO, ConversationalThingGQO, NodeGQO{
+public class GeneralProductGQO implements ThingGQO, ProductGQO, ShoppingableGQO, ConversationalThingGQO, NodeGQO {
 
-    private Boolean isOrderable;
+    private Boolean isShoppingable;
     private String name;
     private String alternateName;
     private String description;
@@ -32,8 +32,8 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
     public GeneralProductGQO() {
     }
 
-    public GeneralProductGQO(Boolean isOrderable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, Collection<ProductModelGQO> models, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, String id) {
-        this.isOrderable = isOrderable;
+    public GeneralProductGQO(Boolean isShoppingable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, Collection<ItemCategoryGQO> itemCategory, Collection<ProductModelGQO> models, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, Collection<ConversationGQO> availableConversations, ConversationGQO defaultConversation, String id) {
+        this.isShoppingable = isShoppingable;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -51,16 +51,18 @@ public class GeneralProductGQO implements ThingGQO, ProductGQO, OrderableThingGQ
         this.id = id;
     }
 
-    public Boolean getIsOrderable() {
-        return isOrderable;
+    public Boolean getIsShoppingable() {
+        return isShoppingable;
     }
-    public void setIsOrderable(Boolean isOrderable) {
-        this.isOrderable = isOrderable;
+
+    public void setIsShoppingable(Boolean isShoppingable) {
+        this.isShoppingable = isShoppingable;
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }

@@ -5,9 +5,9 @@ import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class DemandGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
+public class DemandGQO implements ThingGQO, ShoppingableGQO, NodeGQO {
 
-    private Boolean isOrderable;
+    private Boolean isShoppingable;
     private String name;
     private String alternateName;
     private String description;
@@ -21,8 +21,8 @@ public class DemandGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
     public DemandGQO() {
     }
 
-    public DemandGQO(Boolean isOrderable, String name, String alternateName, String description, PlaceGQO areaServed, BusinessFunctionGQO businessFunction, ServiceGQO itemOffered, PartyGQO seeker, String id) {
-        this.isOrderable = isOrderable;
+    public DemandGQO(Boolean isShoppingable, String name, String alternateName, String description, PlaceGQO areaServed, BusinessFunctionGQO businessFunction, ServiceGQO itemOffered, PartyGQO seeker, String id) {
+        this.isShoppingable = isShoppingable;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
@@ -33,16 +33,18 @@ public class DemandGQO implements ThingGQO, OrderableThingGQO, NodeGQO{
         this.id = id;
     }
 
-    public Boolean getIsOrderable() {
-        return isOrderable;
+    public Boolean getIsShoppingable() {
+        return isShoppingable;
     }
-    public void setIsOrderable(Boolean isOrderable) {
-        this.isOrderable = isOrderable;
+
+    public void setIsShoppingable(Boolean isShoppingable) {
+        this.isShoppingable = isShoppingable;
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
