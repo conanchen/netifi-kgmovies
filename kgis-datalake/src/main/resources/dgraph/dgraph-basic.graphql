@@ -1,0 +1,21 @@
+scalar DateTime
+
+directive @id on FIELD_DEFINITION
+directive @hasInverse(field: String!) on FIELD_DEFINITION
+directive @search(by: [DgraphIndex!]) on FIELD_DEFINITION
+
+enum DgraphIndex {
+    int
+    float
+    bool
+    hash
+    exact
+    term
+    fulltext
+    trigram
+    regexp
+    year
+    month
+    day
+    hour
+}

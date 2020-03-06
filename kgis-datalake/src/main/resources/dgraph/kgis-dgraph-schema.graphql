@@ -1,0 +1,140 @@
+"""A Thing with an ID"""
+interface Thing {
+    """name    Text    The name of the item."""
+    name: String! @search(by: [hash])
+
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    """
+    The id of the thing.
+    The id: ID! in Thing means that an auto-generated ID by Dgraph will be used to identify things.
+    """
+    id: ID!
+}
+
+type Product implements Orderable & Thing{
+
+    """【型号】 产品的型号。"""
+    hasModels: [ProductModel]  @hasInverse(field: "isModelOf")
+
+}
+type ProductModel implements Orderable & Thing{
+
+    """【产品】 所属产品。"""
+    isModelOf: Product @hasInverse(field: "hasModels")
+}
+
+interface Orderable{
+    """可以购买订购的产品或服务Product，Service"""
+    isOrderable: Boolean
+
+    """【商品供应】 供应的商品。"""
+    itemOffers: [Offer]  @hasInverse(field: "itemOffered")
+
+}
+
+type Offer implements Thing{
+    """itemOffered    AggregateOffer  or CreativeWork  or Event  or MenuItem  or Product  or Service  or Trip    An item being offered (or demanded). The transactional nature of the offer or demand is documented using businessFunction, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. Inverse property: offers."""
+    itemOffered: Orderable
+
+    """offeredBy    Organization  or Person    A pointer to the organization or person making the offer. Inverse property: makesOffer."""
+    offeredBy: Party
+
+    """The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes."""
+    price: Int
+
+}
+
+
+type Store implements Thing{
+    """【创建日期】"""
+    dateCreated:    DateTime
+
+    """【更新日期】"""
+    dateModified: DateTime
+
+
+    creator: User
+}
+
+type User implements Thing{
+
+    """
+    The username used to login.
+    We also want to make sure that usernames are unique. The @id directive takes care of that - it also automatically adds hash searching, so we can drop the @search(by: [hash]), though having it also causes no harm.
+    """
+    username: String! @id
+
+    """
+    The password used to login.
+    """
+    password: String!
+
+    """
+    The user's public profile bio.
+    """
+    bio: String
+
+    """用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart"""
+    isUserOf: Person! @hasInverse(field: "hasUser")
+}
+
+type Person implements Party & Thing{
+    """
+    个人身份证ID
+    """
+    personalID: String!
+
+    """familyName    Text or Person
+    【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
+    familyName: String
+
+    """givenName    Text or Person
+    【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."""
+    givenName: String
+
+    """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
+    hasUser: User @hasInverse(field: "isUserOf")
+}
+
+type Organization implements Party & Thing{
+
+    """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
+    parentOrganization: [Organization]
+
+    """【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。"""
+    subOrganizations: [Organization]
+
+    """【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe."""
+    departments: [Organization]
+
+}
+
+"""描述产品的所有者或所属机构的信息"""
+type Ownership implements Thing{
+
+    """【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired."""
+    acquiredFrom: Party
+
+    """【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product."""
+    ownedFrom:    DateTime
+
+    """【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product."""
+    ownedThrough:    DateTime
+
+    """【东西类型】 拥有的东西Thing。"""
+    owned: Thing
+
+    """【个人或组织】拥有者"""
+    owner: Party
+}
+
+"""Party 代表有行动能力的人或组织"""
+interface Party{
+    """【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person."""
+    owns: [Ownership]
+}
