@@ -32,10 +32,14 @@
     ```
 1. 把上述schema创建到Dgraph服务上
     ```
-    curl -X POST localhost:8080/admin/schema -d '@schema.graphql'
+    $ curl -X POST localhost:8080/admin/schema -d '@schema.graphql'
+
+    $ cd /Users/conanchen/git/netifi-kgmovies/kgis-datalake/src/main/resources/dgraph
+    $ curl -X POST localhost:8080/admin/schema -d '@kgis-dgraph-schema.graphql'
     ```
+1. [Ratel查看生成的dgraph schema](https://play.dgraph.io)
 1. 在Chrome右上角打开Altair,在Altair请求地址: http://localhost:8080/graphql .
-    ![Dgraph快速上手](document/DgraphQuickStart.png)
+    ![Dgraph快速上手](document/DgraphQuickStart.png)    
 1. 按照[https://graphql.dgraph.io/docs/quick-start/](https://graphql.dgraph.io/docs/quick-start/)练习吧
 
 ************************************************************************

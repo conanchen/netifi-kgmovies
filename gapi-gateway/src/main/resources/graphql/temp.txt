@@ -1,5 +1,5 @@
 
-input ProductOfferOnlineInput {
+input ProductModelCreateInput {
     """
     客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
     """
@@ -8,34 +8,34 @@ input ProductOfferOnlineInput {
     actionId: ID!
 }
 
-"""ProductOffer mutation api response payload"""
-type ProductOfferOnlinePayload{
-    """The productOffer object ."""
-    productOffer: ProductOffer
+"""ProductModel mutation api response payload"""
+type ProductModelCreatePayload{
+    """The productModel object ."""
+    productModel: ProductModel
 
     """所执行的操作Action"""
     action: Action
 
     """List of errors that occurred executing the mutation."""
-    productOfferOnlineErrors: [ProductOfferOnlineError!]!
+    productModelCreateErrors: [ProductModelCreateError!]!
 }
 
-"""Represents an error that happens during execution of a productOffer mutation."""
-type  ProductOfferOnlineError implements DisplayableError{
+"""Represents an error that happens during execution of a productModel mutation."""
+type  ProductModelCreateError implements DisplayableError{
 
     """Error code to uniquely identify the error."""
-    code: ProductOfferOnlineErrorCode
+    code: ProductModelCreateErrorCode
 
     """Path to the input field which caused the error."""
     field: [String!]
 
-    """The error productOffer."""
+    """The error productModel."""
     message: String!
 
 }
 
-"""Possible error codes that could be returned by a productOffer mutation."""
-enum ProductOfferOnlineErrorCode{
+"""Possible error codes that could be returned by a productModel mutation."""
+enum ProductModelCreateErrorCode{
     """Input value is blank."""
     BLANK
 
@@ -49,7 +49,7 @@ enum ProductOfferOnlineErrorCode{
     ACTION_NOT_PERMITTED
 }
 
-input ProductOfferOfflineInput {
+input ProductModelUpdateInput {
     """
     客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
     """
@@ -58,34 +58,34 @@ input ProductOfferOfflineInput {
     actionId: ID!
 }
 
-"""ProductOffer mutation api response payload"""
-type ProductOfferOfflinePayload{
-    """The productOffer object ."""
-    productOffer: ProductOffer
+"""ProductModel mutation api response payload"""
+type ProductModelUpdatePayload{
+    """The productModel object ."""
+    productModel: ProductModel
 
     """所执行的操作Action"""
     action: Action
 
     """List of errors that occurred executing the mutation."""
-    productOfferOfflineErrors: [ProductOfferOfflineError!]!
+    productModelUpdateErrors: [ProductModelUpdateError!]!
 }
 
-"""Represents an error that happens during execution of a productOffer mutation."""
-type  ProductOfferOfflineError implements DisplayableError{
+"""Represents an error that happens during execution of a productModel mutation."""
+type  ProductModelUpdateError implements DisplayableError{
 
     """Error code to uniquely identify the error."""
-    code: ProductOfferOfflineErrorCode
+    code: ProductModelUpdateErrorCode
 
     """Path to the input field which caused the error."""
     field: [String!]
 
-    """The error productOffer."""
+    """The error productModel."""
     message: String!
 
 }
 
-"""Possible error codes that could be returned by a productOffer mutation."""
-enum ProductOfferOfflineErrorCode{
+"""Possible error codes that could be returned by a productModel mutation."""
+enum ProductModelUpdateErrorCode{
     """Input value is blank."""
     BLANK
 
