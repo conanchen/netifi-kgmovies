@@ -1,4 +1,4 @@
-"""A Thing with an ID"""
+"""A Thing with an ID，在KGIS平台内所有内容都是东西Thing"""
 interface Thing {
     """name    Text    The name of the item."""
     name: String! @search(by: [hash])
@@ -16,18 +16,7 @@ interface Thing {
     id: ID!
 }
 
-type Product implements Orderable & Thing{
-
-    """【型号】 产品的型号。"""
-    hasModels: [ProductModel]  @hasInverse(field: "isModelOf")
-
-}
-type ProductModel implements Orderable & Thing{
-
-    """【产品】 所属产品。"""
-    isModelOf: Product @hasInverse(field: "hasModels")
-}
-
+"""可以购买订购的产品或服务Product，Service"""
 interface Orderable{
     """可以购买订购的产品或服务Product，Service"""
     isOrderable: Boolean
@@ -35,6 +24,25 @@ interface Orderable{
     """【商品供应】 供应的商品。"""
     itemOffers: [Offer]  @hasInverse(field: "itemOffered")
 
+}
+
+"""Party 代表有行动能力的人或组织"""
+interface Party{
+    """【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person."""
+    owns: [Ownership]
+}
+
+type Product implements Orderable & Thing{
+
+    """【型号】 产品的型号。"""
+    hasModels: [ProductModel]  @hasInverse(field: "isModelOf")
+
+}
+
+type ProductModel implements Orderable & Thing{
+
+    """【产品】 所属产品。"""
+    isModelOf: Product @hasInverse(field: "hasModels")
 }
 
 type Offer implements Thing{
@@ -57,7 +65,7 @@ type Store implements Thing{
     """【更新日期】"""
     dateModified: DateTime
 
-
+    """【创建人】 该物体的创作者/作者。"""
     creator: User
 }
 
@@ -131,10 +139,4 @@ type Ownership implements Thing{
 
     """【个人或组织】拥有者"""
     owner: Party
-}
-
-"""Party 代表有行动能力的人或组织"""
-interface Party{
-    """【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person."""
-    owns: [Ownership]
 }
