@@ -65,3 +65,6 @@ During the preview period, we may change some features based on developer feedba
 To access a schema preview, you'll need to provide a custom media type in the Accept header for your requests. Feature documentation for each preview specifies which custom media type to provide.
 
 ## [Writing end-to-end tests for GraphQL servers using Jest](https://blog.logrocket.com/writing-end-to-end-tests-for-graphql-servers-using-jest/)
+
+
+[Mac安装protobuf-protoc 流程](https://blog.csdn.net/qq_21383435/article/details/81035852)

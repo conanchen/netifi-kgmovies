@@ -1,5 +1,9 @@
 """A Thing with an ID，在KGIS平台内所有内容都是东西Thing"""
 interface Thing {
+    
+    """【标识符】 标识符 The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc."""
+    identifier: String
+
     """name    Text    The name of the item."""
     name: String! @search(by: [hash])
 
@@ -69,6 +73,7 @@ type Store implements Thing{
     creator: User
 }
 
+"""用户账号"""
 type User implements Thing{
 
     """
@@ -91,24 +96,24 @@ type User implements Thing{
     isUserOf: Person! @hasInverse(field: "hasUser")
 }
 
+"""个人,可能在平台里有一个且唯一的用户账号User"""
 type Person implements Party & Thing{
     """
     个人身份证ID
     """
     personalID: String!
 
-    """familyName    Text or Person
-    【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
+    """【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
     familyName: String
 
-    """givenName    Text or Person
-    【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."""
+    """【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."""
     givenName: String
 
     """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
     hasUser: User @hasInverse(field: "isUserOf")
 }
 
+"""组织"""
 type Organization implements Party & Thing{
 
     """【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织"""
@@ -139,4 +144,162 @@ type Ownership implements Thing{
 
     """【个人或组织】拥有者"""
     owner: Party
+}
+
+"""Canonical URL: http://cnschema.org/DataCatalog
+【数据目录】数据集的目录 A collection of datasets."""
+type DataCatalog implements Thing{
+
+    """【所在父数据集目录】所在的父数据集目录 A data catalog which contains this dataset."""
+    parentDataCatalog: DataCatalog
+
+    """【包含子数据集目录】包含子的数据集目录"""
+    subDataCatalogs: [DataCatalog]
+
+    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    """
+    creator: User
+
+    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork"""
+    dateCreated: DateTime
+}
+
+
+
+"""【对话】组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。 One or more messages between organizations or people on a particular topic. Individual messages can be linked to the conversation with isPartOf or hasPart properties."""
+type Conversation implements Thing{
+
+    """【关于】 事物的关于信息 The subject matter of the content."""
+    about: Thing
+
+    """【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the CreativeWork."""
+    accountablePerson: User
+
+    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    """
+    creator: User
+
+    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork"""
+    dateCreated: DateTime
+
+    """【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset."""
+    includedInDataCatalog: DataCatalog
+
+    """参照 hasPart【作品组件】 表示某个作品是该作品的一部分 """
+    hasParts: [Message]
+
+    """本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息"""
+    webhook: [Webhook]
+}
+
+"""【消息】由发送者发给一个或多个组织或个人的信息 A single message from a sender to one or more organizations or people."""
+type Message implements Thing{
+
+    """isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of."""
+    isPartOf: [Conversation]
+
+    """【发送者】 参与者的子属性。例如邮件的发送者。 A sub property of participant. The participant who is at the sending end of the action."""
+    sender: User!
+
+    """【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent."""
+    dateSent: DateTime
+
+    """【收件人】 消息的直接收件人 A sub property of recipient. The recipient who was directly sent the message."""
+    toRecipient: User
+
+    """【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has been read by the recipient if a single recipient exists."""
+    dateRead: DateTime
+
+    """【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists."""
+    dateReceived: DateTime
+
+    """【接收者】 参与者的子属性。 在行动接收端的参与者。 A sub property of participant. The participant who is at the receiving end of the action."""
+    recipient: [User]
+
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Comments, typically from users."""
+    comments: [Comment]
+}
+
+"""Comment
+Canonical URL: http://cnschema.org/Comment
+Thing > CreativeWork > Comment
+【评论】对项目的评论 - 例如对博客文章的评论。 该评论的内容是通过text属性表示的，其主题通过about，与所有CreativeWorks共享的属性来表达 A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the text property, and its topic via about, properties shared with all CreativeWorks."""
+type Comment implements Thing{
+    """【上级条目】 一个问题、答案或条目的父条目 The parent of a question, answer or item in general."""
+    parentItem: Thing
+
+    """【作者】 此内容或评分的作者。"""
+    author:    User
+
+    """【创建日期】 创作出CreativeWork的日期。 """
+    dateCreated: DateTime
+}
+
+
+
+"""http://cnschema.org/EntryPoint 入口】一个入口，包含一些基于web的协议 An entry point, within some Web-based protocol."""
+type EntryPoint implements  Thing{
+
+    """【链接模版】 一个URL的模版，可以利用变化参数形成完整的URL。 An url template (RFC6570) that will be used to construct the target of the execution of the action."""
+    urlTemplate:    String
+}
+
+
+
+"""https://schema.org/SoftwareApplication A software application."""
+type SoftwareApplication implements Thing {
+
+    """applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office)."""
+    applicationSuite: String
+
+    """availableOnDevice	Text 	Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
+    countriesNotSupported	Text 	Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    countriesSupported	Text 	Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    downloadUrl	URL 	If the file can be downloaded, URL to download the binary."""
+    downloadUrl: String
+
+    """featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications)."""
+    featureList: String
+
+    """fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
+    installUrl	URL 	URL at which the app may be installed, if different from the URL of the item."""
+    installUrl:String
+
+    """memoryRequirements	Text  or URL 	Minimum memory requirements.
+    operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
+    permissions	Text 	Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
+    processorRequirements	Text 	Processor architecture required to run the application (e.g. IA64).
+    releaseNotes	Text  or URL 	Description of what changed in this version."""
+    releaseNotes: String
+
+    """screenshot	ImageObject  or URL 	A link to a screenshot image of the app."""
+    screenshot: String
+
+    """softwareAddOn	SoftwareApplication 	Additional content for a software application.
+    softwareHelp	CreativeWork 	Software application help.
+    softwareRequirements	Text  or URL 	Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.
+    softwareVersion	Text 	Version of the software instance.
+    storageRequirements	Text  or URL 	Storage requirements (free space required).
+    supportingData	DataFeed 	Supporting data for a SoftwareApplication."""
+    softwareVersion: String
+}
+
+"""网络钩子是“用户定义的HTTP回调”。[2]网络钩子通常被某些事件激活，比如将代码推送到源[3]或评论博客。[4]当此事件发生时，原网站将向为网络钩子配置的URL发送HTTP请求。用户可配置它们引发网页上的事件以调用另一个网站的行为。Webhooks allow external services to be notified when certain events happen. """
+type Webhook implements Thing{
+    """url"""
+    payloadUrl: String
+
+    """如application/json"""
+    contentType: String
+
+    """使用payloadUrl的安全token"""
+    secret: String
+
+    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator	Organization or Person or CreativeWork or UserComments	"""
+    creator: User
+
+    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem or CreativeWork"""
+    dateCreated: DateTime
+
+    """ 调用此webhook的客户端 """
+    client: SoftwareApplication
+    
 }

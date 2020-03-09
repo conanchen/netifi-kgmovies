@@ -10,6 +10,11 @@ graphql:
     exception-handlers-enabled: true
     contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
     tracing-enabled: true
+    tools:
+      schema-location-pattern: "**/*.graphqls"
+      # Enable or disable the introspection query. Disabling it puts your server in contravention of the GraphQL
+      # specification and expectations of most clients, so use this option with caution
+      introspection-enabled: true
 
 graphiql:
   enabled: true
@@ -30,6 +35,6 @@ altair:
   enabled: true
   pageTitle: Altair
   cdn:
-    enabled: false
-    version: 2.1.7
+    enabled: true
+    version: 2.4.3
 

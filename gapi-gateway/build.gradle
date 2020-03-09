@@ -25,71 +25,32 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.8"
     annotationProcessor "org.projectlombok:lombok:1.18.8"
 
-    implementation ('org.springframework.boot:spring-boot-starter-web'){
-                exclude group: 'ch.qos.logback'
-    }
-    implementation ('org.springframework.boot:spring-boot-starter-thymeleaf'){
-                exclude group: 'ch.qos.logback'
-    }
-    compile ("com.graphql-java-kickstart:graphql-java-tools:5.7.1"){
-                exclude group: 'ch.qos.logback'
-    }
-    compile ("org.springframework.boot:spring-boot-starter-data-mongodb"){
-                exclude group: 'ch.qos.logback'
-    }
-    compile ("org.springframework.data:spring-data-commons"){
-                exclude group: 'ch.qos.logback'
-    }
-    compile ("org.springframework.boot:spring-boot-starter-data-redis"){
-                exclude group: 'ch.qos.logback'
-    }
+    implementation ('org.springframework.boot:spring-boot-starter-web'){exclude group: 'ch.qos.logback'}
+    implementation ('org.springframework.boot:spring-boot-starter-thymeleaf'){exclude group: 'ch.qos.logback'}
+    compile ("org.springframework.boot:spring-boot-starter-data-mongodb"){exclude group: 'ch.qos.logback'}
+    compile ("org.springframework.data:spring-data-commons"){exclude group: 'ch.qos.logback'}
+    compile ("org.springframework.boot:spring-boot-starter-data-redis"){exclude group: 'ch.qos.logback'}
     compile 'com.github.kstyrc:embedded-redis'
 
-    compile ("io.projectreactor:reactor-core"){
-        exclude group: 'ch.qos.logback'
-    }
-    compile ("org.springframework.data:spring-data-redis:2.2.4.RELEASE"){
-        exclude group: 'ch.qos.logback'
-    }
+    compile ("io.projectreactor:reactor-core"){exclude group: 'ch.qos.logback'}
+    compile ("org.springframework.data:spring-data-redis"){exclude group: 'ch.qos.logback'}
 
-
-
-    compile ("com.graphql-java-kickstart:graphql-spring-boot-starter:6.0.1"){
-                exclude group: 'ch.qos.logback'
-    }
-    // to embed Altair tool
-    compile ('com.graphql-java-kickstart:altair-spring-boot-starter:6.0.1'){
-                exclude group: 'ch.qos.logback'
-    }
-    // to embed GraphiQL tool
-    compile ('com.graphql-java-kickstart:graphiql-spring-boot-starter:6.0.1'){
-                exclude group: 'ch.qos.logback'
-    }
-    // to embed Voyager tool
-    implementation ('com.graphql-java-kickstart:voyager-spring-boot-starter:6.0.1') {
-                exclude group: 'ch.qos.logback'
-    }
+//    compile ("com.graphql-java-kickstart:graphql-java-tools:6.0.0"){exclude group: 'ch.qos.logback'}
+    compile ("com.graphql-java-kickstart:graphql-spring-boot-starter"){exclude group: 'ch.qos.logback'}
+    compile ('com.graphql-java-kickstart:altair-spring-boot-starter'){exclude group: 'ch.qos.logback'}
+    compile ('com.graphql-java-kickstart:graphiql-spring-boot-starter'){exclude group: 'ch.qos.logback'}
+    compile ('com.graphql-java-kickstart:voyager-spring-boot-starter') {exclude group: 'ch.qos.logback'}
     
     // testing facilities
-    testCompile ('com.graphql-java-kickstart:graphql-spring-boot-starter-test:6.0.1'){
-                exclude group: 'ch.qos.logback'
-    }
-    testCompile ('io.projectreactor:reactor-test'){
-                exclude group: 'ch.qos.logback'
-    }
+    testCompile ('com.graphql-java-kickstart:graphql-spring-boot-starter-test'){exclude group: 'ch.qos.logback'}
+    testCompile ('io.projectreactor:reactor-test'){exclude group: 'ch.qos.logback'}
 
-    compile ('io.dgraph:dgraph4j'){
-                exclude group: 'ch.qos.logback'
-    }
+    compile ('io.dgraph:dgraph4j'){exclude group: 'ch.qos.logback'}
     compile 'org.antlr:ST4'
 }
 
-mainClassName = 'io.github.GraphqlApplication'
+mainClassName = 'io.github.GapiApplication'
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
 // Packaging
 task buildImage(type: DockerBuildImage, dependsOn: build) {
     buildArgs = ['JAR_FILE': "${bootJar.archiveName}"]
@@ -332,7 +293,9 @@ sourceSets {
     }
     test{
         java{
-            srcDirs = ['src/test/java']
+            srcDirs = ['src/main/java',
+                       'src/test/java'
+            ]
         }
         resources {
             srcDirs = ['src/test/resources']

@@ -5,12 +5,17 @@ import graphql.GraphQL;
 import graphql.execution.AsyncExecutionStrategy;
 import graphql.language.StringValue;
 import graphql.schema.*;
+import graphql.schema.idl.InterfaceWiringEnvironment;
+import graphql.schema.idl.RuntimeWiring;
+import graphql.schema.idl.UnionWiringEnvironment;
+import graphql.schema.idl.WiringFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author Conan Chen
@@ -27,6 +32,7 @@ public class GraphQLConfiguration {
                 .queryExecutionStrategy(new AsyncExecutionStrategy())
                 .mutationExecutionStrategy(new AsyncExecutionStrategy())
                 .build();
+
     }
 
     @Bean
@@ -184,4 +190,21 @@ public class GraphQLConfiguration {
                 }).build();
     }
 
+    @Bean
+    public RuntimeWiring buildDynamicRuntimeWiring() {
+        WiringFactory dynamicWiringFactory = new WiringFactory() {
+
+            @Override
+            public boolean providesTypeResolver(InterfaceWiringEnvironment environment) {
+                return !Objects.isNull(environment.getInterfaceTypeDefinition().getDirective("specialMarker"));
+            }
+
+            @Override
+            public boolean providesTypeResolver(UnionWiringEnvironment environment) {
+                return !Objects.isNull(environment.getUnionTypeDefinition().getDirective("specialMarker"));
+            }
+        };
+        return RuntimeWiring.newRuntimeWiring()
+                .wiringFactory(dynamicWiringFactory).build();
+    }
 }
