@@ -3,17 +3,17 @@ package io.github.conanchen.person.graphql.model;
 import java.util.*;
 import io.github.conanchen.person.graphql.api.*;
 
-public class AuthDataGQO {
+public class UserSigninInputGQO {
 
     @javax.validation.constraints.NotNull
     private String email;
     @javax.validation.constraints.NotNull
     private String password;
 
-    public AuthDataGQO() {
+    public UserSigninInputGQO() {
     }
 
-    public AuthDataGQO(String email, String password) {
+    public UserSigninInputGQO(String email, String password) {
         this.email = email;
         this.password = password;
     }

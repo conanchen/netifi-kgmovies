@@ -3,9 +3,9 @@ extend type Query {
     user(id: ID, uId: ID): User
 }
 extend type Mutation{
-    userSignin(auth: AuthData): UserSigninPayload @authn(authenticated: false)
-    userSMSCode(auth: AuthData):UserSMSCodePayload @authn(authenticated: false)
-    userRegister(auth: AuthWithSMSCodeData): UserRegisterPayload @authn(authenticated: false)
+    userSignin(auth: UserSigninInput): UserSigninPayload @authn(authenticated: false)
+    userSMSCode(auth: UserSMSCodeInput):UserSMSCodePayload @authn(authenticated: false)
+    userRegister(auth: UserRegisterInput): UserRegisterPayload @authn(authenticated: false)
 }
 
 """【人】单独的人类个体（可以是现实中的或者虚构的） A person (alive, dead, undead, or fictional)."""
@@ -146,12 +146,18 @@ type UserEdge {
     cursor: String!
 }
 
-input AuthData {
+input UserSigninInput {
     email: String! @authn(authenticated: false)
     password: String!
 }
 
-input AuthWithSMSCodeData {
+input UserSMSCodeInput {
+    email: String! @authn(authenticated: false)
+}
+
+
+
+input UserRegisterInput {
     smscode: String!
     email: String!
     password: String!

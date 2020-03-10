@@ -5,6 +5,6 @@ import io.github.conanchen.person.graphql.model.*;
 
 public interface UserSigninMutation {
 
-    UserSigninPayloadGQO userSignin(AuthDataGQO auth) throws Exception;
+    UserSigninPayloadGQO userSignin(UserSigninInputGQO auth) throws Exception;
 
 }

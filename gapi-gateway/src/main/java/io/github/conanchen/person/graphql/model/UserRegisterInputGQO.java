@@ -3,7 +3,7 @@ package io.github.conanchen.person.graphql.model;
 import java.util.*;
 import io.github.conanchen.person.graphql.api.*;
 
-public class AuthWithSMSCodeDataGQO {
+public class UserRegisterInputGQO {
 
     @javax.validation.constraints.NotNull
     private String smscode;
@@ -12,10 +12,10 @@ public class AuthWithSMSCodeDataGQO {
     @javax.validation.constraints.NotNull
     private String password;
 
-    public AuthWithSMSCodeDataGQO() {
+    public UserRegisterInputGQO() {
     }
 
-    public AuthWithSMSCodeDataGQO(String smscode, String email, String password) {
+    public UserRegisterInputGQO(String smscode, String email, String password) {
         this.smscode = smscode;
         this.email = email;
         this.password = password;

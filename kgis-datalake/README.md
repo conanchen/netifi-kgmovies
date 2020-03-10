@@ -9,35 +9,14 @@
     ```
     docker run -p 8080:8080 -it -v /mnt/dgraph:/dgraph dgraph/standalone:v2.0.0-rc1
     ```
-1. 准备schema保存到文件schema.graphql
-    ```graphql
-    type Product {
-        productID: ID!
-        name: String @search(by: [term])
-        reviews: [Review] @hasInverse(field: about)
-    }
-
-    type Customer {
-        username: String! @id @search(by: [hash, regexp])
-        reviews: [Review] @hasInverse(field: by)
-    }
-
-    type Review {
-        id: ID!
-        about: Product!
-        by: Customer!
-        comment: String @search(by: [fulltext])
-        rating: Int @search
-    }
-    ```
 1. 把上述schema创建到Dgraph服务上
     ```
-    $ curl -X POST localhost:8080/admin/schema -d '@schema.graphql'
-
     $ cd /Users/conanchen/git/netifi-kgmovies/kgis-datalake/src/main/resources/dgraph
     $ curl -X POST localhost:8080/admin/schema -d '@kgis-dgraph-schema.graphql'
     ```
 1. [Ratel查看生成的dgraph schema](https://play.dgraph.io)
+    ![Ratel Localhost](document/ratel-localhost.png)
+    ![Ratel Schema](document/ratel-schema.png)
 1. 在Chrome右上角打开Altair,在Altair请求地址: http://localhost:8080/graphql .
     ![Dgraph快速上手](document/DgraphQuickStart.png)    
 1. 按照[https://graphql.dgraph.io/docs/quick-start/](https://graphql.dgraph.io/docs/quick-start/)练习吧

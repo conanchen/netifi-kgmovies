@@ -10,17 +10,17 @@ public class PersonMutationResolver implements Mutation,GraphQLMutationResolver 
 
 
   @Override
-  public UserSigninPayloadGQO userSignin(AuthDataGQO auth) throws Exception {
+  public UserSigninPayloadGQO userSignin(UserSigninInputGQO auth) throws Exception {
     return null;
   }
 
   @Override
-  public UserSMSCodePayloadGQO userSMSCode(AuthDataGQO auth) throws Exception {
+  public UserSMSCodePayloadGQO userSMSCode(UserSMSCodeInputGQO auth) throws Exception {
     return null;
   }
 
   @Override
-  public UserRegisterPayloadGQO userRegister(AuthWithSMSCodeDataGQO auth) throws Exception {
+  public UserRegisterPayloadGQO userRegister(UserRegisterInputGQO auth) throws Exception {
     return null;
   }
 }

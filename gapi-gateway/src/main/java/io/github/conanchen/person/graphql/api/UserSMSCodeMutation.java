@@ -5,6 +5,6 @@ import io.github.conanchen.person.graphql.model.*;
 
 public interface UserSMSCodeMutation {
 
-    UserSMSCodePayloadGQO userSMSCode(AuthDataGQO auth) throws Exception;
+    UserSMSCodePayloadGQO userSMSCode(UserSMSCodeInputGQO auth) throws Exception;
 
 }

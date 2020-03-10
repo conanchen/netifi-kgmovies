@@ -5,10 +5,10 @@ import io.github.conanchen.person.graphql.model.*;
 
 public interface Mutation {
 
-    UserSigninPayloadGQO userSignin(AuthDataGQO auth) throws Exception;
+    UserSigninPayloadGQO userSignin(UserSigninInputGQO auth) throws Exception;
 
-    UserSMSCodePayloadGQO userSMSCode(AuthDataGQO auth) throws Exception;
+    UserSMSCodePayloadGQO userSMSCode(UserSMSCodeInputGQO auth) throws Exception;
 
-    UserRegisterPayloadGQO userRegister(AuthWithSMSCodeDataGQO auth) throws Exception;
+    UserRegisterPayloadGQO userRegister(UserRegisterInputGQO auth) throws Exception;
 
 }
