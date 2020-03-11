@@ -1,4 +1,4 @@
-rootProject.name = 'netifi-acmeshoes'
+rootProject.name = 'netifi-kgmovies'
 include 'product-service'
 include 'product-service-idl'
 include 'inventory-service'
