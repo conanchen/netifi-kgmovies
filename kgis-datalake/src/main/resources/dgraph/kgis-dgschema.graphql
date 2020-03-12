@@ -34,10 +34,6 @@ interface Thing {
 interface Shoppingable{
     """可以购买订购的产品或服务Product，Service"""
     isShoppingable: Boolean
-
-    """【商品供应】 供应的商品。"""
-    itemOffers: [Offer]  @hasInverse(field: "itemOffered")
-
 }
 
 """
@@ -47,7 +43,7 @@ interface Party{
     """
     【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person.
     """
-    owns: [OwnerRole]
+    owns: [PartyRole]
 }
 
 """
@@ -71,272 +67,21 @@ interface Organization {
     departments: [Organization]
 
     """
-    【雇员】 组织的雇员.在组织承担角色的个人有时间限制
-    """
-    employees: [EmployeeRole]
-
-    """
-    【关注组织的人】 社交网络上本组织被别人关注 
-    """
-    followers: [FollowerRole]
-
-    """
-    【会员】 组织或项目的成员,在组织承担角色的个人有时间限制
-    """
-    members: [MemberRole]
-
-    """
     组织定义的角色名称,hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf
     """
     hasOrgRoleName: [OrgRoleName]
 
 }
 
-"""
-可读物
-"""
-interface Readable{
-    """
-    【阅读收条】 记录每个人阅读本条消息的时间,逆属性: ReadNote.isReadNoteOf
-    """
-    hasReadNotes: [ReadNote]
-}
 
 """
-产品
+【角色关系】
 """
-type Product implements Shoppingable & Thing{
-
-    """
-    【型号】 产品的型号。
-    """
-    hasModels: [ProductModel]  @hasInverse(field: "isModelOf")
-
-}
-
-"""
-产品型号
-"""
-type ProductModel implements Shoppingable & Thing{
-
-    """
-    【产品】 所属产品。
-    """
-    isModelOf: Product @hasInverse(field: "hasModels")
-}
-
-"""
-商品供应
-"""
-type Offer implements Thing{
-    """
-    可购物的一个商品供应
-    """
-    itemOffered: Shoppingable
-
-    """
-    供应商品的组织或个人 Inverse property: makesOffer.
-    """
-    offeredBy: Party
-
-    """
-    商品价格The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
-    """
-    price: Int
-
-    """
-    【价格有效开始日期】
-    """
-    dateFrom: DateTime
-
-    """
-    【价格有效结束日期】
-    """
-    dateThrough: DateTime
-}
-
-"""
-零售店铺
-"""
-type Store implements Thing{
-    """
-    【创建日期】
-    """
-    dateCreated:    DateTime
-
-    """
-    【更新日期】
-    """
-    dateModified: DateTime
-
-    """
-    【创建人】 该物体的创作者/作者。
-    """
-    creator: User
-}
-
-"""
-用户账号
-"""
-type User implements Thing{
-
-    """
-    The username used to login.
-    We also want to make sure that usernames are unique. The @id directive takes care of that - it also automatically adds hash searching, so we can drop the @search(by: [hash]), though having it also causes no harm.
-    """
-    username: String! @id
-
-    """
-    The password used to login.
-    """
-    password: String!
-
-    """
-    The user's public profile bio.
-    """
-    bio: String
-
-    """
-    用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart
-    """
-    isUserOf: Person! @hasInverse(field: "hasUser")
-}
-
-"""
-个人,可能在平台里有一个且唯一的用户账号User
-"""
-type Person implements Party & Thing{
-    """
-    个人身份证ID
-    """
-    personalID: String!
-
-    """【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
-    familyName: String
-
-    """【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."""
-    givenName: String
-
-    """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
-    hasUser: User @hasInverse(field: "isUserOf")
-}
-
-
-"""
-[【雇员角色】OrganizationRole的子类，描述雇员关系,有时间限制](http://cnschema.org/EmployeeRole)
-"""
-type EmployeeRole implements Thing{
-    """
-    在组织承担角色的个人
-    """
-    person: Person
-
-    """
-    【员工编号】
-    """
-    number: String
-
+interface PartyRole {
     """
     个人在组织承担的角色
     """
     roleName: OrgRoleName
-
-    """
-    个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with.
-    """
-    hostingOrganization: Organization
-
-    """
-    【开始日期】 某事的开始日期和时间
-    """
-    dateFrom: DateTime
-
-    """
-    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
-    """
-    dateThrough: DateTime
-}
-
-"""
-[【社交关注角色】FollowerRole)
-"""
-type FollowerRole implements Thing{
-    """
-    承担角色的个人
-    """
-    person: Person
-
-    """
-    个人担任角色所在的组织
-    """
-    hostingOrganization: Organization
-
-    """
-    【开始日期】 某事的开始日期和时间
-    """
-    dateFrom: DateTime
-
-    """
-    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
-    """
-    dateThrough: DateTime
-}
-
-"""
-[【会员角色】OrganizationRole的子类，描述会员关系,有时间限制](http://cnschema.org/EmployeeRole)
-"""
-type MemberRole implements Thing{
-    """
-    在组织承担角色的个人
-    """
-    person: Person
-
-    """
-    【会员编号】
-    """
-    number: String
-
-    """
-    个人在组织承担的会员角色,如金牌会员、VIP等
-    """
-    roleName: OrgRoleName
-
-    """
-    个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with.
-    """
-    hostingOrganization: Organization
-
-    """
-    【开始日期】 某事的开始日期和时间
-    """
-    dateFrom: DateTime
-
-    """
-    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
-    """
-    dateThrough: DateTime
-}
-
-
-"""
-描述产品的所有者或所属机构的信息
-"""
-type OwnerRole implements Thing{
-
-    """
-    【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.
-    """
-    acquiredFrom: Party
-
-    """
-    【东西类型】 拥有的东西Thing。
-    """
-    owned: Thing
-
-    """
-    【个人或组织】拥有者
-    """
-    owner: Party
 
     """
     【开始日期】 某事的开始日期和时间
@@ -365,14 +110,19 @@ type OrgRoleName implements Thing{
     group: String
 
     """
-    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    
-    """
-    creator: User
-
-    """
     【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
     """
     dateCreated: DateTime
+}
+
+"""
+可读物
+"""
+interface Readable{
+    """
+    【阅读收条】 记录每个人阅读本条消息的时间,逆属性: ReadNote.isReadNoteOf
+    """
+    hasReadNotes: [ReadNote]
 }
 
 """
@@ -530,6 +280,284 @@ type ReadNote implements Thing{
     dateRead: DateTime
 }
 
+"""
+【一般机构】一个组织，例如学校、非政府组织、公司、俱乐部等 An organization such as a school, NGO, corporation, club, etc.
+也用于临时几个人组成的聊天小组，房间
+http://cnschema.org/Organization
+"""
+type GeneralOrganization  implements Thing & Organization & Party {
+
+    """可以访问的会话"""
+    availableConversations: [Conversation]
+
+    """ 本组织默认可访问的会话 """
+    defaultConversation: Conversation
+
+}
+
+"""
+[【雇员角色】OrganizationRole的子类，描述雇员关系,有时间限制](http://cnschema.org/EmployeeRole)
+"""
+type EmployeeRole implements Thing{
+    """
+    在组织承担角色的个人
+    """
+    person: Person
+
+    """
+    【员工编号】
+    """
+    number: String
+
+    """
+    个人在组织承担的角色
+    """
+    roleName: OrgRoleName
+
+    """
+    个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with.
+    """
+    hostingOrganization: Organization
+
+    """
+    【开始日期】 某事的开始日期和时间
+    """
+    dateFrom: DateTime
+
+    """
+    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+    """
+    dateThrough: DateTime
+}
+
+"""
+[【社交关注角色】FollowerRole)
+"""
+type FollowerRole implements Thing{
+    """
+    承担角色的个人
+    """
+    person: Person
+
+    """
+    个人担任角色所在的组织
+    """
+    hostingOrganization: Organization
+
+    """
+    【开始日期】 某事的开始日期和时间
+    """
+    dateFrom: DateTime
+
+    """
+    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+    """
+    dateThrough: DateTime
+}
+
+"""
+[【会员角色】OrganizationRole的子类，描述会员关系,有时间限制](http://cnschema.org/EmployeeRole)
+"""
+type MemberRole implements Thing{
+    """
+    在组织承担角色的个人
+    """
+    person: Person
+
+    """
+    【会员编号】
+    """
+    number: String
+
+    """
+    个人在组织承担的会员角色,如金牌会员、VIP等
+    """
+    roleName: OrgRoleName
+
+    """
+    个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with.
+    """
+    hostingOrganization: Organization
+
+    """
+    【开始日期】 某事的开始日期和时间
+    """
+    dateFrom: DateTime
+
+    """
+    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+    """
+    dateThrough: DateTime
+}
+
+
+"""
+描述产品的所有者或所属机构的信息
+"""
+type OwnerRole implements Thing{
+
+    """
+    【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.
+    """
+    acquiredFrom: Party
+
+    """
+    【东西类型】 拥有的东西Thing。
+    """
+    owned: Thing
+
+    """
+    【个人或组织】拥有者
+    """
+    owner: Party
+
+    """
+    【开始日期】 某事的开始日期和时间
+    """
+    dateFrom: DateTime
+
+    """
+    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+    """
+    dateThrough: DateTime
+}
+
+"""
+用户账号
+"""
+type User implements Thing{
+
+    """
+    The username used to login.
+    We also want to make sure that usernames are unique. The @id directive takes care of that - it also automatically adds hash searching, so we can drop the @search(by: [hash]), though having it also causes no harm.
+    """
+    username: String! @id
+
+    """
+    The password used to login.
+    """
+    password: String!
+
+    """
+    The user's public profile bio.
+    """
+    bio: String
+
+    """
+    用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart
+    """
+    isUserOf: Person! @hasInverse(field: "hasUser")
+}
+
+"""
+个人,可能在平台里有一个且唯一的用户账号User
+"""
+type Person implements Party & Thing{
+    """
+    个人身份证ID
+    """
+    personalID: String!
+
+    """【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."""
+    familyName: String
+
+    """【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."""
+    givenName: String
+
+    """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
+    hasUser: User @hasInverse(field: "isUserOf")
+}
+
+"""
+零售店铺
+"""
+type Store implements Thing & Organization & Party {
+    """
+    【雇员】 组织的雇员.在组织承担角色的个人有时间限制
+    """
+    employees: [EmployeeRole]
+
+    """
+    【关注组织的人】 社交网络上本组织被别人关注 
+    """
+    followers: [FollowerRole]
+
+    """
+    【会员】 组织或项目的成员,在组织承担角色的个人有时间限制
+    """
+    members: [MemberRole]
+
+    """
+    【创建日期】
+    """
+    dateCreated:    DateTime
+
+    """
+    【更新日期】
+    """
+    dateModified: DateTime
+
+    """
+    【创建人】 该物体的创作者/作者。
+    """
+    creator: User
+}
+
+
+
+"""
+产品
+"""
+type Product implements Shoppingable & Thing{
+
+    """
+    【型号】 产品的型号。
+    """
+    hasModels: [ProductModel]  @hasInverse(field: "isModelOf")
+
+}
+
+"""
+产品型号
+"""
+type ProductModel implements Shoppingable & Thing{
+
+    """
+    【产品】 所属产品。
+    """
+    isModelOf: Product @hasInverse(field: "hasModels")
+}
+
+"""
+商品供应
+"""
+type Offer implements Thing{
+    """
+    可购物的一个商品供应
+    """
+    itemOffered: Shoppingable
+
+    """
+    供应商品的组织或个人 Inverse property: makesOffer.
+    """
+    offeredBy: Party
+
+    """
+    商品价格The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
+    """
+    price: Int
+
+    """
+    【价格有效开始日期】
+    """
+    dateFrom: DateTime
+
+    """
+    【价格有效结束日期】
+    """
+    dateThrough: DateTime
+}
+
 
 """
 http://cnschema.org/EntryPoint 入口】一个入口，包含一些基于web的协议 An entry point, within some Web-based protocol.
@@ -630,3 +658,4 @@ type Webhook implements Thing{
     client: SoftwareApplication
     
 }
+
