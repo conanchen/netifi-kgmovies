@@ -64,9 +64,6 @@ allprojects {
         maven { url 'http://uk.maven.org/maven2/' }
         maven { url 'http://mirrors.ibiblio.org/pub/mirrors/maven2/' }
         maven { url 'http://repository.jboss.org/nexus/content/groups/public' }
-        maven { url 'http://maven.oschina.net/content/groups/public/' }
-        maven { url 'http://maven.net.cn/content/groups/public/' }
-        maven { url 'https://repository.jboss.org/nexus/content/repositories/releases/' }
 
         maven {
             credentials {
@@ -117,9 +114,6 @@ subprojects {
         maven { url 'http://uk.maven.org/maven2/' }
         maven { url 'http://mirrors.ibiblio.org/pub/mirrors/maven2/' }
         maven { url 'http://repository.jboss.org/nexus/content/groups/public' }
-        maven { url 'http://maven.oschina.net/content/groups/public/' }
-        maven { url 'http://maven.net.cn/content/groups/public/' }
-        maven { url 'https://repository.jboss.org/nexus/content/repositories/releases/' }
 
         maven {
             credentials {
@@ -160,7 +154,7 @@ subprojects {
             dependency "com.graphql-java-kickstart:voyager-spring-boot-starter:${graphqlSpringBootStarterVersion}"
             dependency "com.graphql-java-kickstart:graphql-spring-boot-starter-test:${graphqlSpringBootStarterVersion}"
             dependency "org.springframework.boot:spring-boot-configuration-processor:$LIB_SPRING_BOOT_VER"
-            dependency 'io.dgraph:dgraph4j:2.0.1'
+            dependency "io.dgraph:dgraph4j:${dgraph4jVersion}"
             dependency 'org.antlr:ST4:4.3'
             dependency 'com.github.kstyrc:embedded-redis:0.6'
         }

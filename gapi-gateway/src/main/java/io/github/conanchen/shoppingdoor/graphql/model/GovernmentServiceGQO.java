@@ -1,14 +1,14 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
+import java.util.Collection;
+
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.intangible.graphql.model.AggregateRatingGQO;
+import io.github.conanchen.intangible.graphql.model.AggregateReviewGQO;
 import io.github.conanchen.intangible.graphql.model.ReviewGQO;
 import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
-
-import java.util.Collection;
 
 public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
 
@@ -16,7 +16,7 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
     private String name;
     private String alternateName;
     private String description;
-    private AggregateRatingGQO aggregateRating;
+    private AggregateReviewGQO aggregateReview;
     private PlaceGQO areaServed;
     private OpeningHoursSpecificationGQO hoursAvailable;
     private ProductGQO isRelatedTo;
@@ -32,12 +32,12 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
     public GovernmentServiceGQO() {
     }
 
-    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, AggregateRatingGQO aggregateRating, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public GovernmentServiceGQO(OrganizationGQO serviceOperator, String name, String alternateName, String description, AggregateReviewGQO aggregateReview, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
         this.serviceOperator = serviceOperator;
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
-        this.aggregateRating = aggregateRating;
+        this.aggregateReview = aggregateReview;
         this.areaServed = areaServed;
         this.hoursAvailable = hoursAvailable;
         this.isRelatedTo = isRelatedTo;
@@ -78,11 +78,11 @@ public class GovernmentServiceGQO implements ThingGQO, ServiceGQO, NodeGQO{
         this.description = description;
     }
 
-    public AggregateRatingGQO getAggregateRating() {
-        return aggregateRating;
+    public AggregateReviewGQO getAggregateReview() {
+        return aggregateReview;
     }
-    public void setAggregateRating(AggregateRatingGQO aggregateRating) {
-        this.aggregateRating = aggregateRating;
+    public void setAggregateReview(AggregateReviewGQO aggregateReview) {
+        this.aggregateReview = aggregateReview;
     }
 
     public PlaceGQO getAreaServed() {

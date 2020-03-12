@@ -129,6 +129,16 @@
             "mainClass": "acmeshoes.service.product.Application",
             "projectName": "product-service",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GapiApplication<gapi-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "io.github.GapiApplication",
+            "projectName": "gapi-gateway",
+            "args": ""
         }
     ]
 }

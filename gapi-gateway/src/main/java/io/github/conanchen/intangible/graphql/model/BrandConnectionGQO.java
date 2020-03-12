@@ -1,21 +1,21 @@
 package io.github.conanchen.intangible.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
-
 import java.util.Collection;
 
-public class BrandsConnectionGQO {
+import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+
+public class BrandConnectionGQO {
 
     @javax.validation.constraints.NotNull
     private PageInfoGQO pageInfo;
-    private Collection<BrandsEdgeGQO> edges;
+    private Collection<BrandEdgeGQO> edges;
     private Integer totalCount;
     private Collection<BrandGQO> films;
 
-    public BrandsConnectionGQO() {
+    public BrandConnectionGQO() {
     }
 
-    public BrandsConnectionGQO(PageInfoGQO pageInfo, Collection<BrandsEdgeGQO> edges, Integer totalCount, Collection<BrandGQO> films) {
+    public BrandConnectionGQO(PageInfoGQO pageInfo, Collection<BrandEdgeGQO> edges, Integer totalCount, Collection<BrandGQO> films) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
@@ -29,10 +29,10 @@ public class BrandsConnectionGQO {
         this.pageInfo = pageInfo;
     }
 
-    public Collection<BrandsEdgeGQO> getEdges() {
+    public Collection<BrandEdgeGQO> getEdges() {
         return edges;
     }
-    public void setEdges(Collection<BrandsEdgeGQO> edges) {
+    public void setEdges(Collection<BrandEdgeGQO> edges) {
         this.edges = edges;
     }
 

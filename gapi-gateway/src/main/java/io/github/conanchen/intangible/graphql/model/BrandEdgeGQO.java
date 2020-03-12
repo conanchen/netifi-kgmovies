@@ -1,15 +1,15 @@
 package io.github.conanchen.intangible.graphql.model;
 
-public class BrandsEdgeGQO {
+public class BrandEdgeGQO {
 
     private BrandGQO node;
     @javax.validation.constraints.NotNull
     private String cursor;
 
-    public BrandsEdgeGQO() {
+    public BrandEdgeGQO() {
     }
 
-    public BrandsEdgeGQO(BrandGQO node, String cursor) {
+    public BrandEdgeGQO(BrandGQO node, String cursor) {
         this.node = node;
         this.cursor = cursor;
     }

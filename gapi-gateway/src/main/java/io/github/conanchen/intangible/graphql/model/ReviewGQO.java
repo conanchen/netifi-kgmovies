@@ -8,18 +8,18 @@ public class ReviewGQO implements NodeGQO{
     private ThingGQO itemReviewed;
     private String reviewAspect;
     private String reviewBody;
-    private RatingGQO reviewRating;
+    private Integer ratingValue;
     @javax.validation.constraints.NotNull
     private String id;
 
     public ReviewGQO() {
     }
 
-    public ReviewGQO(ThingGQO itemReviewed, String reviewAspect, String reviewBody, RatingGQO reviewRating, String id) {
+    public ReviewGQO(ThingGQO itemReviewed, String reviewAspect, String reviewBody, Integer ratingValue, String id) {
         this.itemReviewed = itemReviewed;
         this.reviewAspect = reviewAspect;
         this.reviewBody = reviewBody;
-        this.reviewRating = reviewRating;
+        this.ratingValue = ratingValue;
         this.id = id;
     }
 
@@ -44,11 +44,11 @@ public class ReviewGQO implements NodeGQO{
         this.reviewBody = reviewBody;
     }
 
-    public RatingGQO getReviewRating() {
-        return reviewRating;
+    public Integer getRatingValue() {
+        return ratingValue;
     }
-    public void setReviewRating(RatingGQO reviewRating) {
-        this.reviewRating = reviewRating;
+    public void setRatingValue(Integer ratingValue) {
+        this.ratingValue = ratingValue;
     }
 
     public String getId() {

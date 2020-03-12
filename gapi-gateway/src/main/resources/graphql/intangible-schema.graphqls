@@ -1,5 +1,5 @@
 extend type Query {
-  allBrands(after: String, first: Int, before: String, last: Int): BrandsConnection
+  allBrand(after: String, first: Int, before: String, last: Int): BrandConnection
   brand(id: ID, brandID: ID): Brand
 }
 
@@ -15,8 +15,8 @@ type Brand implements Thing & Node{
     """description	Text 	A description of the item."""
     description: String
 
-    """aggregateRating	AggregateRating 	The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating: AggregateRating
+    """aggregateReview	AggregateReview 	The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateReview: AggregateReview
 
     """logo	ImageObject  or URL 	An associated logo."""
     logo: String
@@ -29,12 +29,12 @@ type Brand implements Thing & Node{
 }
 
 """A connection to a list of items."""
-type BrandsConnection {
+type BrandConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [BrandsEdge]
+  edges: [BrandEdge]
 
   """
   A count of the total number of objects in this connection, ignoring pagination.
@@ -56,7 +56,7 @@ type BrandsConnection {
 }
 
 """An edge in a connection."""
-type BrandsEdge {
+type BrandEdge {
   """The item at the end of the edge"""
   node: Brand
 
@@ -86,8 +86,8 @@ type Review implements Node{
 }
 
 
-"""AggregateRating The average rating based on multiple ratings or reviews."""
-type AggregateRating implements Node{
+"""AggregateReview The average rating based on multiple ratings or reviews."""
+type AggregateReview implements Node{
 
     """itemReviewed	Thing 	The item that is being reviewed/rated."""
     itemReviewed:	Thing

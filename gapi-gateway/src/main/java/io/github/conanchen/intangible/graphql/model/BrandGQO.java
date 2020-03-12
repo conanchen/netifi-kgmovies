@@ -8,9 +8,8 @@ public class BrandGQO implements ThingGQO, NodeGQO{
     private String name;
     private String alternateName;
     private String description;
-    private AggregateRatingGQO aggregateRating;
+    private AggregateReviewGQO aggregateReview;
     private String logo;
-    private ReviewGQO review;
     private String slogan;
     @javax.validation.constraints.NotNull
     private String id;
@@ -18,13 +17,12 @@ public class BrandGQO implements ThingGQO, NodeGQO{
     public BrandGQO() {
     }
 
-    public BrandGQO(String name, String alternateName, String description, AggregateRatingGQO aggregateRating, String logo, ReviewGQO review, String slogan, String id) {
+    public BrandGQO(String name, String alternateName, String description, AggregateReviewGQO aggregateReview, String logo, String slogan, String id) {
         this.name = name;
         this.alternateName = alternateName;
         this.description = description;
-        this.aggregateRating = aggregateRating;
+        this.aggregateReview = aggregateReview;
         this.logo = logo;
-        this.review = review;
         this.slogan = slogan;
         this.id = id;
     }
@@ -50,11 +48,11 @@ public class BrandGQO implements ThingGQO, NodeGQO{
         this.description = description;
     }
 
-    public AggregateRatingGQO getAggregateRating() {
-        return aggregateRating;
+    public AggregateReviewGQO getAggregateReview() {
+        return aggregateReview;
     }
-    public void setAggregateRating(AggregateRatingGQO aggregateRating) {
-        this.aggregateRating = aggregateRating;
+    public void setAggregateReview(AggregateReviewGQO aggregateReview) {
+        this.aggregateReview = aggregateReview;
     }
 
     public String getLogo() {
@@ -62,13 +60,6 @@ public class BrandGQO implements ThingGQO, NodeGQO{
     }
     public void setLogo(String logo) {
         this.logo = logo;
-    }
-
-    public ReviewGQO getReview() {
-        return review;
-    }
-    public void setReview(ReviewGQO review) {
-        this.review = review;
     }
 
     public String getSlogan() {

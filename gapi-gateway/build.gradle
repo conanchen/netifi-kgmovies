@@ -25,7 +25,7 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.8"
     annotationProcessor "org.projectlombok:lombok:1.18.8"
 
-    implementation ('org.springframework.boot:spring-boot-starter-web'){exclude group: 'ch.qos.logback'}
+    implementation ('org.springframework.boot:spring-boot-starter-web')
     implementation ('org.springframework.boot:spring-boot-starter-thymeleaf'){exclude group: 'ch.qos.logback'}
     compile ("org.springframework.boot:spring-boot-starter-data-mongodb"){exclude group: 'ch.qos.logback'}
     compile ("org.springframework.data:spring-data-commons"){exclude group: 'ch.qos.logback'}

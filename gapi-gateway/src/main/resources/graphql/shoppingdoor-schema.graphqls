@@ -219,8 +219,8 @@ interface Service {
     """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:    AggregateRating
+    """aggregateReview    AggregateReview    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateReview:    AggregateReview
 
     """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
@@ -269,8 +269,8 @@ type GeneralService implements Thing & Shoppingable & Service & Node{
     """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:    AggregateRating
+    """aggregateReview    AggregateReview    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateReview:    AggregateReview
 
     """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
@@ -323,8 +323,8 @@ type FoodService implements Thing & Shoppingable & Service & Node{
     """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:    AggregateRating
+    """aggregateReview    AggregateReview    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateReview:    AggregateReview
 
     """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
@@ -377,8 +377,8 @@ type HousekeepingService implements Thing & Shoppingable & Service & Node{
     """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:    AggregateRating
+    """aggregateReview    AggregateReview    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateReview:    AggregateReview
 
     """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
@@ -432,8 +432,8 @@ type GovernmentService implements Thing & Service & Node{
     """description    Text    A description of the item."""
     description: String
 
-    """aggregateRating    AggregateRating    The overall rating, based on a collection of reviews or ratings, of the item."""
-    aggregateRating:    AggregateRating
+    """aggregateReview    AggregateReview    The overall rating, based on a collection of reviews or ratings, of the item."""
+    aggregateReview:    AggregateReview
 
     """areaServed    AdministrativeArea  or GeoShape  or Place  or Text    The geographic area where a service or offered item is provided. Supersedes serviceArea."""
     areaServed: Place
