@@ -5,6 +5,12 @@ extend type Query {
 
 }
 
+extend type Mutation{
+    webhookAdd(input: [WebhookAddInput!]!): WebhookAddPayload
+#    webhookUpdate(input: UpdateWebhookInput!): UpdateWebhookPayload
+#    webhookDelete(filter: WebhookFilter!): DeleteWebhookPayload
+}
+
 """https://schema.org/SoftwareApplication A software application."""
 type SoftwareApplication implements Node {
     """【名称】 条目的名称 The name of the item."""
@@ -95,9 +101,6 @@ type SoftwareApplicationsEdge {
   cursor: String!
 }
 
-
-
-
 """网络钩子是“用户定义的HTTP回调”。[2]网络钩子通常被某些事件激活，比如将代码推送到源[3]或评论博客。[4]当此事件发生时，原网站将向为网络钩子配置的URL发送HTTP请求。用户可配置它们引发网页上的事件以调用另一个网站的行为。Webhooks allow external services to be notified when certain events happen. """
 type Webhook implements Node{
 
@@ -128,4 +131,232 @@ type Webhook implements Node{
 
     """The id of the object."""
     id: ID!
+}
+
+
+input WebhookAddInput {
+    identifier: String
+    name: String!
+    alternateName: String
+    description: String
+
+    """
+    url
+    """
+    payloadUrl: String
+
+    """
+    如application/json
+    """
+    contentType: String
+
+    """
+    使用payloadUrl的安全token
+    """
+    secret: String
+    creator: UserRef
+
+    """
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
+    the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem
+    or CreativeWork
+    """
+    dateCreated: DateTime
+    client: SoftwareApplicationRef
+}
+
+
+input UserRef {
+    id: ID
+    identifier: String
+    name: String
+    alternateName: String
+    description: String
+
+    """
+    The username used to login.    We also want to make sure that usernames are
+    unique. The @id directive takes care of that - it also automatically adds hash
+    searching, so we can drop the @search(by: [hash]), though having it also
+    causes no harm.
+    """
+    username: String
+
+    """
+    The password used to login.
+    """
+    password: String
+
+    """
+    The user's public profile bio.
+    """
+    bio: String
+    isUserOf: PersonRef
+}
+
+
+input PersonRef {
+    id: ID
+    identifier: String
+    name: String
+    alternateName: String
+    description: String
+    owns: [OwnershipRef]
+
+    """
+    个人身份证ID
+    """
+    personalID: String
+
+    """
+    【姓】 姓。 在美国，是一个人姓名中的最后一个字。 Family name. In the U.S., the last name of an
+    Person. This can be used along with givenName instead of the name property.
+    """
+    familyName: String
+
+    """
+    【名】 名。在美国，是一个人名字中的第一个字 Given name. In the U.S., the first name of a Person.
+    This can be used along with familyName instead of the name property.
+    """
+    givenName: String
+    hasUser: UserRef
+}
+
+
+input OwnershipRef {
+    id: ID
+    identifier: String
+    name: String
+    alternateName: String
+    description: String
+
+    """
+    【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product.
+    """
+    ownedFrom: DateTime
+
+    """
+    【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product.
+    """
+    ownedThrough: DateTime
+    owned: ThingRef
+}
+
+input ThingRef {
+    """
+    The id of the thing.    The id: ID! in Thing means that an auto-generated
+    ID by Dgraph will be used to identify things.
+    """
+    id: ID!
+}
+
+
+input SoftwareApplicationRef {
+    id: ID
+    identifier: String
+    name: String
+    alternateName: String
+    description: String
+
+    """
+    applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
+    """
+    applicationSuite: String
+
+    """
+    availableOnDevice	Text 	Device required to run the application. Used in cases
+    where a specific make/model is required to run the application. Supersedes
+    device.    countriesNotSupported	Text 	Countries for which the application is
+    not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
+    code.    countriesSupported	Text 	Countries for which the application is
+    supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
+    code.    downloadUrl	URL 	If the file can be downloaded, URL to download the binary.
+    """
+    downloadUrl: String
+
+    """
+    featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications).
+    """
+    featureList: String
+
+    """
+    fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence
+    of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at which
+    the app may be installed, if different from the URL of the item.
+    """
+    installUrl: String
+
+    """
+    memoryRequirements	Text  or URL 	Minimum memory requirements.
+    operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6,
+    Android 1.6).    permissions	Text 	Permission(s) required to run the app (for
+    example, a mobile app may require full internet access or may run only on
+    wifi).    processorRequirements	Text 	Processor architecture required to run
+    the application (e.g. IA64).    releaseNotes	Text  or URL 	Description of what
+    changed in this version.
+    """
+    releaseNotes: String
+
+    """
+    screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
+    """
+    screenshot: String
+
+    """
+    softwareAddOn	SoftwareApplication 	Additional content for a software
+    application.    softwareHelp	CreativeWork 	Software application help.
+    softwareRequirements	Text  or URL 	Component dependency requirements for
+    application. This includes runtime environments and shared libraries that are
+    not included in the application distribution package, but required to run the
+    application (Examples: DirectX, Java or .NET runtime). Supersedes
+    requirements.    softwareVersion	Text 	Version of the software instance.
+    storageRequirements	Text  or URL 	Storage requirements (free space required).
+    supportingData	DataFeed 	Supporting data for a SoftwareApplication.
+    """
+    softwareVersion: String
+}
+
+
+
+"""
+Webhook mutation api response payload
+"""
+type WebhookAddPayload{
+    """The store object ."""
+    item: Webhook
+
+    """List of errors that occurred executing the mutation."""
+    errors: [WebhookAddError!]!
+}
+
+"""
+Represents an error that happens during execution of a store mutation.
+"""
+type  WebhookAddError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: WebhookAddErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error store."""
+    message: String!
+
+}
+
+"""
+Possible error codes that could be returned by a store mutation.
+"""
+enum WebhookAddErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
 }
