@@ -37,13 +37,13 @@ interface Shoppingable{
 }
 
 """
-Party 代表有行动能力的人或组织
+Party 团体:代表有行动能力的个人或组织
 """
 interface Party{
     """
     【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person.
     """
-    owns: [PartyRole]
+    owns: [Ownership]
 }
 
 """
@@ -67,21 +67,26 @@ interface Organization {
     departments: [Organization]
 
     """
-    组织定义的角色名称,hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf
+    组织定义的角色名称,hasPartyRoleName,逆属性 PartyRoleName.isPartyRoleNameOf
     """
-    hasOrgRoleName: [OrgRoleName]
+    hasPartyRoleName: [PartyRoleName]
 
 }
 
 
 """
-【角色关系】
+【团体内部定义的角色】
 """
 interface PartyRole {
     """
-    个人在组织承担的角色
+    在组织承担角色的个人
     """
-    roleName: OrgRoleName
+    person: Person
+
+    """
+    个人在团体内承担的角色
+    """
+    roleName: PartyRoleName
 
     """
     【开始日期】 某事的开始日期和时间
@@ -97,10 +102,10 @@ interface PartyRole {
 """
 组织定义的角色，组织内统筹定义
 """
-type OrgRoleName implements Thing{
+type PartyRoleName implements Thing{
 
     """
-    isOrgRoleNameOf,逆属性 Organization.hasOrgRoleName
+    isPartyRoleNameOf,逆属性 Organization.hasPartyRoleName
     """
     isRoleNameOf: Organization
 
@@ -185,7 +190,7 @@ type Conversation implements Thing{
     """
     参照 hasPart【作品组件】 表示某个作品是该作品的一部分 
     """
-    hasParts: [Message]
+    hasMessages: [Message]
 
     """
     本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息
@@ -199,9 +204,9 @@ type Conversation implements Thing{
 type Message implements Thing & Readable{
 
     """
-    isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.
+    参照isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.
     """
-    isPartOf: [Conversation]
+    isMessageOf: [Conversation]
 
     """
     【发送者】 参与者的子属性。例如邮件的发送者。 A sub property of participant. The participant who is at the sending end of the action.
@@ -236,7 +241,7 @@ type Message implements Thing & Readable{
     """
     【评论】 评论，一般是用户对CreativeWork的评论。 Comments, typically from users.
     """
-    comments: [Comment]
+    hasComments: [Comment]
 }
 
 """
@@ -246,7 +251,7 @@ type Comment implements Thing{
     """
     【上级条目】 一个问题、答案或条目的父条目 The parent of a question, answer or item in general.
     """
-    parentItem: Thing
+    isCommentOf: Thing
 
     """
     【作者】 此内容或评分的作者。
@@ -298,103 +303,35 @@ type GeneralOrganization  implements Thing & Organization & Party {
 """
 [【雇员角色】OrganizationRole的子类，描述雇员关系,有时间限制](http://cnschema.org/EmployeeRole)
 """
-type EmployeeRole implements Thing{
-    """
-    在组织承担角色的个人
-    """
-    person: Person
-
+type EmployeeRole implements Thing & PartyRole{
     """
     【员工编号】
     """
     number: String
-
-    """
-    个人在组织承担的角色
-    """
-    roleName: OrgRoleName
-
-    """
-    个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with.
-    """
-    hostingOrganization: Organization
-
-    """
-    【开始日期】 某事的开始日期和时间
-    """
-    dateFrom: DateTime
-
-    """
-    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
-    """
-    dateThrough: DateTime
 }
 
 """
 [【社交关注角色】FollowerRole)
 """
-type FollowerRole implements Thing{
-    """
-    承担角色的个人
-    """
-    person: Person
-
-    """
-    个人担任角色所在的组织
-    """
-    hostingOrganization: Organization
-
-    """
-    【开始日期】 某事的开始日期和时间
-    """
-    dateFrom: DateTime
-
-    """
-    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
-    """
-    dateThrough: DateTime
+type FollowerRole implements Thing & PartyRole{
+    """关注设置,如关注最新产品信息"""
+    settings: String
 }
 
 """
 [【会员角色】OrganizationRole的子类，描述会员关系,有时间限制](http://cnschema.org/EmployeeRole)
 """
-type MemberRole implements Thing{
-    """
-    在组织承担角色的个人
-    """
-    person: Person
-
+type MemberRole implements Thing & PartyRole{
     """
     【会员编号】
     """
     number: String
-
-    """
-    个人在组织承担的会员角色,如金牌会员、VIP等
-    """
-    roleName: OrgRoleName
-
-    """
-    个人担任角色所在的组织,【会员服务提供者】 航空公司，旅游俱乐部等提供会员资格的组织 The organization (airline, travelers' club, etc.) the membership is made with.
-    """
-    hostingOrganization: Organization
-
-    """
-    【开始日期】 某事的开始日期和时间
-    """
-    dateFrom: DateTime
-
-    """
-    【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
-    """
-    dateThrough: DateTime
 }
-
 
 """
 描述产品的所有者或所属机构的信息
 """
-type OwnerRole implements Thing{
+type Ownership implements Thing{
 
     """
     【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.
