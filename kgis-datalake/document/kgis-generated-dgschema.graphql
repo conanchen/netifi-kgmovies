@@ -1,0 +1,2388 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+"ãæºæãä¸ä¸ªç»ç»ï¼ä¾å¦å­¦æ ¡ãéæ¿åºç»ç»ãå¬å¸ãä¿±ä¹é¨ç­,ä¹å¯ç¨äºä¸´æ¶å ä¸ªäººç»æçèå¤©å°ç»ï¼æ¿é´"
+interface Organization {
+    "    ãé¨é¨ã ç»ç»ä¸è¯¥ç»ç»æä¸ªé¨é¨ä¹é´çå³ç³»ï¼ä¹è¢«æè¿°æç»ç»ï¼åè®¸ä¸åçç½åï¼æ è¯ï¼å¼æ¾æ¶é´ï¼ã ä¾å¦ï¼ä¸å®¶æè¯åºçååºï¼æèæ¯ä¸é´å¸¦åå¡åçé¢ååºã A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe.    "
+    departments(first: Int, offset: Int): [Organization]
+    "    ç»ç»å®ä¹çè§è²åç§°,hasPartyRoleName,éå±æ§ PartyRoleName.isPartyRoleNameOf    "
+    hasPartyRoleName(filter: PartyRoleNameFilter, first: Int, offset: Int, order: PartyRoleNameOrder): [PartyRoleName]
+    "    ãä¸çº§ç»ç»ã subOrganizationçååå±æ§ï¼å³åå«è¿ä¸ªç»ç»çæ´å¤§ç»ç»    "
+    parentOrganization(first: Int, offset: Int): [Organization]
+    "    ãå­æºæã ä¸¤ä¸ªç»ç»ä¹é´çå³ç³»ãå¶ä¸­ç¬¬äºä¸ªç»ç»ï¼ä¾å¦ä»¥å­å¬å¸çåå­ï¼å±äºç¬¬ä¸ä¸ªç»ç»ã    "
+    subOrganizations(first: Int, offset: Int): [Organization]
+}
+
+"Party å¢ä½:ä»£è¡¨æè¡å¨è½åçä¸ªäººæç»ç»"
+interface Party {
+    "    ãæ¥æã ç»ç»æä¸ªäººæ¥æçäº§å éå±æ§ Ownable.ownedByï¼Products owned by the organization or person.    "
+    owns(filter: OwnershipFilter, first: Int, offset: Int, order: OwnershipOrder): [Ownership]
+}
+
+"ãå¢ä½åé¨å®ä¹çè§è²ã"
+interface PartyRole {
+    "    ãå¼å§æ¥æã æäºçå¼å§æ¥æåæ¶é´    "
+    dateFrom: DateTime
+    "    ãç»ææ¥æã æ´»å¨ï¼äºä»¶ï¼ç»ææ¶é´ã The end date and time of the item (in ISO 8601 date format).    "
+    dateThrough: DateTime
+    "    å¨ç»ç»æ¿æè§è²çä¸ªäºº    "
+    person(filter: PersonFilter): Person
+    "    ä¸ªäººå¨å¢ä½åæ¿æçè§è²    "
+    roleName(filter: PartyRoleNameFilter): PartyRoleName
+}
+
+"å¯è¯»ç©"
+interface Readable {
+    "    ãéè¯»æ¶æ¡ã è®°å½æ¯ä¸ªäººéè¯»æ¬æ¡æ¶æ¯çæ¶é´,éå±æ§: ReadNote.isReadNoteOf    "
+    hasReadNotes(filter: ReadNoteFilter, first: Int, offset: Int, order: ReadNoteOrder): [ReadNote]
+}
+
+"å¯è´­ç©ï¼å¯ä»¥è´­ä¹°è®¢è´­çäº§åææå¡Productï¼Service"
+interface Shoppingable {
+    "å¯ä»¥è´­ä¹°è®¢è´­çäº§åææå¡Productï¼Service"
+    isShoppingable: Boolean
+}
+
+"A Thing with an IDï¼å¨KGISå¹³å°åææåå®¹é½æ¯ä¸è¥¿Thing"
+interface Thing {
+    "    ãå«åã è¯¥é¡¹çå«åã An alias for the item.    "
+    alternateName: String
+    "ãæè¿°ã è¯¥é¡¹çä¸ä¸ªç®åæè¿°ã A description of the item."
+    description: String
+    "    The id of the thing.    The id: ID! in Thing means that an auto-generated ID by Dgraph will be used to identify things.    "
+    id: ID!
+    "    ãæ è¯ç¬¦ã æ è¯ç¬¦ The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.    "
+    identifier: String
+    "    ãåç§°ãname    Text    The name of the item.    "
+    name: String!
+}
+
+type AddConversationPayload {
+    conversation(filter: ConversationFilter, first: Int, offset: Int, order: ConversationOrder): [Conversation]
+    numUids: Int
+}
+
+type AddDataCatalogPayload {
+    datacatalog(filter: DataCatalogFilter, first: Int, offset: Int, order: DataCatalogOrder): [DataCatalog]
+    numUids: Int
+}
+
+type AddEmployeeRolePayload {
+    employeerole(filter: EmployeeRoleFilter, first: Int, offset: Int, order: EmployeeRoleOrder): [EmployeeRole]
+    numUids: Int
+}
+
+type AddEntryPointPayload {
+    entrypoint(filter: EntryPointFilter, first: Int, offset: Int, order: EntryPointOrder): [EntryPoint]
+    numUids: Int
+}
+
+type AddFollowerRolePayload {
+    followerrole(filter: FollowerRoleFilter, first: Int, offset: Int, order: FollowerRoleOrder): [FollowerRole]
+    numUids: Int
+}
+
+type AddGeneralOrganizationPayload {
+    generalorganization(filter: GeneralOrganizationFilter, first: Int, offset: Int, order: GeneralOrganizationOrder): [GeneralOrganization]
+    numUids: Int
+}
+
+type AddMemberRolePayload {
+    memberrole(filter: MemberRoleFilter, first: Int, offset: Int, order: MemberRoleOrder): [MemberRole]
+    numUids: Int
+}
+
+type AddMessagePayload {
+    message(filter: MessageFilter, first: Int, offset: Int, order: MessageOrder): [Message]
+    numUids: Int
+}
+
+type AddOfferPayload {
+    numUids: Int
+    offer(filter: OfferFilter, first: Int, offset: Int, order: OfferOrder): [Offer]
+}
+
+type AddOwnershipPayload {
+    numUids: Int
+    ownership(filter: OwnershipFilter, first: Int, offset: Int, order: OwnershipOrder): [Ownership]
+}
+
+type AddPartyRoleNamePayload {
+    numUids: Int
+    partyrolename(filter: PartyRoleNameFilter, first: Int, offset: Int, order: PartyRoleNameOrder): [PartyRoleName]
+}
+
+type AddPersonPayload {
+    numUids: Int
+    person(filter: PersonFilter, first: Int, offset: Int, order: PersonOrder): [Person]
+}
+
+type AddProductModelPayload {
+    numUids: Int
+    productmodel(filter: ProductModelFilter, first: Int, offset: Int, order: ProductModelOrder): [ProductModel]
+}
+
+type AddProductPayload {
+    numUids: Int
+    product(filter: ProductFilter, first: Int, offset: Int, order: ProductOrder): [Product]
+}
+
+type AddReadNotePayload {
+    numUids: Int
+    readnote(filter: ReadNoteFilter, first: Int, offset: Int, order: ReadNoteOrder): [ReadNote]
+}
+
+type AddReviewPayload {
+    numUids: Int
+    review(filter: ReviewFilter, first: Int, offset: Int, order: ReviewOrder): [Review]
+}
+
+type AddSoftwareApplicationPayload {
+    numUids: Int
+    softwareapplication(filter: SoftwareApplicationFilter, first: Int, offset: Int, order: SoftwareApplicationOrder): [SoftwareApplication]
+}
+
+type AddStorePayload {
+    numUids: Int
+    store(filter: StoreFilter, first: Int, offset: Int, order: StoreOrder): [Store]
+}
+
+type AddUserPayload {
+    numUids: Int
+    user(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+}
+
+type AddWebhookPayload {
+    numUids: Int
+    webhook(filter: WebhookFilter, first: Int, offset: Int, order: WebhookOrder): [Webhook]
+}
+
+"ãå¯¹è¯ãç»ç»ä¹é´æç¹å®ä¸»é¢çäººåä¹é´çä¸ä¸ªæå¤ä¸ªæ¶æ¯ã å¯ä»¥ä½¿ç¨isPartOfæhasPartå±æ§å°ä¸ªäººæ¶æ¯é¾æ¥å°ä¼è¯ã One or more messages between organizations or people on a particular topic. Individual messages can be linked to the conversation with isPartOf or hasPart properties."
+type Conversation implements Thing {
+    "    ãå³äºã äºç©çå³äºä¿¡æ¯ The subject matter of the content.    "
+    about(filter: ThingFilter): Thing
+    "    ãè´è´£äººã å¯¹CreativeWorkè´ææ³å¾è´£ä»»çç¹å®çäººã Specifies the Person that is legally accountable for the CreativeWork.    "
+    accountablePerson(filter: UserFilter): User
+    alternateName: String
+    "    ãä½èã è¯¥ CreativeWork çåä½è/ä½èã    "
+    creator(filter: UserFilter): User
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    "    åç§ hasPartãä½åç»ä»¶ã è¡¨ç¤ºæä¸ªä½åæ¯è¯¥ä½åçä¸é¨å     "
+    hasMessages(filter: MessageFilter, first: Int, offset: Int, order: MessageOrder): [Message]
+    id: ID!
+    identifier: String
+    "    ãæå¨æ°æ®éç®å½ãæå¨çæ°æ®éç®å½ A data catalog which contains this dataset.    "
+    includedInDataCatalog(filter: DataCatalogFilter): DataCatalog
+    name: String!
+    "    æ¬ä¼è¯Conversationç»ç¬¬ä¸æ¹è½¯ä»¶å¦Githubãé¿éäºä»£ç åå»ºçwebhookï¼ç¬¬ä¸æ¹è½¯ä»¶åæ¬ä¼è¯æ¨éäºä»¶æ¶æ¯    "
+    webhook(filter: WebhookFilter, first: Int, offset: Int, order: WebhookOrder): [Webhook]
+}
+
+"Canonical URL: http://cnschema.org/DataCatalogãæ°æ®ç®å½ãæ°æ®éçç®å½ A collection of datasets."
+type DataCatalog implements Thing {
+    alternateName: String
+    "    ãä½èã è¯¥ CreativeWork çåä½è/ä½èã    "
+    creator(filter: UserFilter): User
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    name: String!
+    "    ãæå¨ç¶æ°æ®éç®å½ãæå¨çç¶æ°æ®éç®å½ A data catalog which contains this dataset.    "
+    parentDataCatalog(filter: DataCatalogFilter): DataCatalog
+    "    ãåå«å­æ°æ®éç®å½ãåå«å­çæ°æ®éç®å½    "
+    subDataCatalogs(filter: DataCatalogFilter, first: Int, offset: Int, order: DataCatalogOrder): [DataCatalog]
+}
+
+type DeleteConversationPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteDataCatalogPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteEmployeeRolePayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteEntryPointPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteFollowerRolePayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteGeneralOrganizationPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteMemberRolePayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteMessagePayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteOfferPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteOwnershipPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeletePartyRoleNamePayload {
+    msg: String
+    numUids: Int
+}
+
+type DeletePersonPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteProductModelPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteProductPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteReadNotePayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteReviewPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteSoftwareApplicationPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteStorePayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteThingPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteUserPayload {
+    msg: String
+    numUids: Int
+}
+
+type DeleteWebhookPayload {
+    msg: String
+    numUids: Int
+}
+
+"[ãéåè§è²ãOrganizationRoleçå­ç±»ï¼æè¿°éåå³ç³»,ææ¶é´éå¶](http://cnschema.org/EmployeeRole)"
+type EmployeeRole implements PartyRole & Thing {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    name: String!
+    "    ãåå·¥ç¼å·ã    "
+    number: String
+    person(filter: PersonFilter): Person
+    roleName(filter: PartyRoleNameFilter): PartyRoleName
+}
+
+"http://cnschema.org/EntryPoint å¥å£ãä¸ä¸ªå¥å£ï¼åå«ä¸äºåºäºwebçåè®® An entry point, within some Web-based protocol."
+type EntryPoint implements Thing {
+    alternateName: String
+    description: String
+    id: ID!
+    identifier: String
+    name: String!
+    "ãé¾æ¥æ¨¡çã ä¸ä¸ªURLçæ¨¡çï¼å¯ä»¥å©ç¨åååæ°å½¢æå®æ´çURLã An url template (RFC6570) that will be used to construct the target of the execution of the action."
+    urlTemplate: String
+}
+
+"[ãç¤¾äº¤å³æ³¨è§è²ãFollowerRole)"
+type FollowerRole implements PartyRole & Thing {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    name: String!
+    person(filter: PersonFilter): Person
+    roleName(filter: PartyRoleNameFilter): PartyRoleName
+    "å³æ³¨è®¾ç½®,å¦å³æ³¨ææ°äº§åä¿¡æ¯"
+    settings: String
+}
+
+"ãä¸è¬æºæãä¸ä¸ªç»ç»ï¼ä¾å¦å­¦æ ¡ãéæ¿åºç»ç»ãå¬å¸ãä¿±ä¹é¨ç­ An organization such as a school, NGO, corporation, club, etc.ä¹ç¨äºä¸´æ¶å ä¸ªäººç»æçèå¤©å°ç»ï¼æ¿é´http://cnschema.org/Organization"
+type GeneralOrganization implements Organization & Party & Thing {
+    alternateName: String
+    "å¯ä»¥è®¿é®çä¼è¯"
+    availableConversations(filter: ConversationFilter, first: Int, offset: Int, order: ConversationOrder): [Conversation]
+    " æ¬ç»ç»é»è®¤å¯è®¿é®çä¼è¯ "
+    defaultConversation(filter: ConversationFilter): Conversation
+    departments(first: Int, offset: Int): [Organization]
+    description: String
+    hasPartyRoleName(filter: PartyRoleNameFilter, first: Int, offset: Int, order: PartyRoleNameOrder): [PartyRoleName]
+    id: ID!
+    identifier: String
+    name: String!
+    owns(filter: OwnershipFilter, first: Int, offset: Int, order: OwnershipOrder): [Ownership]
+    parentOrganization(first: Int, offset: Int): [Organization]
+    subOrganizations(first: Int, offset: Int): [Organization]
+}
+
+"[ãä¼åè§è²ãOrganizationRoleçå­ç±»ï¼æè¿°ä¼åå³ç³»,ææ¶é´éå¶](http://cnschema.org/EmployeeRole)"
+type MemberRole implements PartyRole & Thing {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    name: String!
+    "    ãä¼åç¼å·ã    "
+    number: String
+    person(filter: PersonFilter): Person
+    roleName(filter: PartyRoleNameFilter): PartyRoleName
+}
+
+"ãæ¶æ¯ãç±åéèåç»ä¸ä¸ªæå¤ä¸ªç»ç»æä¸ªäººçä¿¡æ¯ A single message from a sender to one or more organizations or people."
+type Message implements Readable & Thing {
+    alternateName: String
+    "    ãéè¯»æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººè¯»åçæ¥æ/æ¶é´ã The date/time at which the message has been read by the recipient if a single recipient exists.    "
+    dateRead: DateTime
+    "    ãæ¥æ¶æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººæ¥æ¶çæ¥æ/æ¶é´ã The date/time the message was received if a single recipient exists.    "
+    dateReceived: DateTime
+    "    ãåéæ¥æã æ¶æ¯è¢«åéçæ¥æ/æ¶é´ã The date/time at which the message was sent.    "
+    dateSent: DateTime
+    description: String
+    hasReadNotes(filter: ReadNoteFilter, first: Int, offset: Int, order: ReadNoteOrder): [ReadNote]
+    "    ãè¯è®ºã è¯è®ºï¼ä¸è¬æ¯ç¨æ·å¯¹CreativeWorkçè¯è®ºã     "
+    hasReviews(filter: ReviewFilter, first: Int, offset: Int, order: ReviewOrder): [Review]
+    id: ID!
+    identifier: String
+    "    åç§isPartOfãä»å±äºã æ¯å®çä¸é¨å Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.    "
+    isMessageOf(filter: ConversationFilter, first: Int, offset: Int, order: ConversationOrder): [Conversation]
+    name: String!
+    "    ãæ¥æ¶èã åä¸èçå­å±æ§ã å¨è¡å¨æ¥æ¶ç«¯çåä¸èã A sub property of participant. The participant who is at the receiving end of the action.    "
+    recipient(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+    "    ãåéèã åä¸èçå­å±æ§ãä¾å¦é®ä»¶çåéèã A sub property of participant. The participant who is at the sending end of the action.    "
+    sender(filter: UserFilter): User!
+    "    ãæ¶ä»¶äººã æ¶æ¯çç´æ¥æ¶ä»¶äºº A sub property of recipient. The recipient who was directly sent the message.    "
+    toRecipient(filter: UserFilter): User
+}
+
+type Mutation {
+    addConversation(input: [AddConversationInput!]!): AddConversationPayload
+    addDataCatalog(input: [AddDataCatalogInput!]!): AddDataCatalogPayload
+    addEmployeeRole(input: [AddEmployeeRoleInput!]!): AddEmployeeRolePayload
+    addEntryPoint(input: [AddEntryPointInput!]!): AddEntryPointPayload
+    addFollowerRole(input: [AddFollowerRoleInput!]!): AddFollowerRolePayload
+    addGeneralOrganization(input: [AddGeneralOrganizationInput!]!): AddGeneralOrganizationPayload
+    addMemberRole(input: [AddMemberRoleInput!]!): AddMemberRolePayload
+    addMessage(input: [AddMessageInput!]!): AddMessagePayload
+    addOffer(input: [AddOfferInput!]!): AddOfferPayload
+    addOwnership(input: [AddOwnershipInput!]!): AddOwnershipPayload
+    addPartyRoleName(input: [AddPartyRoleNameInput!]!): AddPartyRoleNamePayload
+    addPerson(input: [AddPersonInput!]!): AddPersonPayload
+    addProduct(input: [AddProductInput!]!): AddProductPayload
+    addProductModel(input: [AddProductModelInput!]!): AddProductModelPayload
+    addReadNote(input: [AddReadNoteInput!]!): AddReadNotePayload
+    addReview(input: [AddReviewInput!]!): AddReviewPayload
+    addSoftwareApplication(input: [AddSoftwareApplicationInput!]!): AddSoftwareApplicationPayload
+    addStore(input: [AddStoreInput!]!): AddStorePayload
+    addUser(input: [AddUserInput!]!): AddUserPayload
+    addWebhook(input: [AddWebhookInput!]!): AddWebhookPayload
+    deleteConversation(filter: ConversationFilter!): DeleteConversationPayload
+    deleteDataCatalog(filter: DataCatalogFilter!): DeleteDataCatalogPayload
+    deleteEmployeeRole(filter: EmployeeRoleFilter!): DeleteEmployeeRolePayload
+    deleteEntryPoint(filter: EntryPointFilter!): DeleteEntryPointPayload
+    deleteFollowerRole(filter: FollowerRoleFilter!): DeleteFollowerRolePayload
+    deleteGeneralOrganization(filter: GeneralOrganizationFilter!): DeleteGeneralOrganizationPayload
+    deleteMemberRole(filter: MemberRoleFilter!): DeleteMemberRolePayload
+    deleteMessage(filter: MessageFilter!): DeleteMessagePayload
+    deleteOffer(filter: OfferFilter!): DeleteOfferPayload
+    deleteOwnership(filter: OwnershipFilter!): DeleteOwnershipPayload
+    deletePartyRoleName(filter: PartyRoleNameFilter!): DeletePartyRoleNamePayload
+    deletePerson(filter: PersonFilter!): DeletePersonPayload
+    deleteProduct(filter: ProductFilter!): DeleteProductPayload
+    deleteProductModel(filter: ProductModelFilter!): DeleteProductModelPayload
+    deleteReadNote(filter: ReadNoteFilter!): DeleteReadNotePayload
+    deleteReview(filter: ReviewFilter!): DeleteReviewPayload
+    deleteSoftwareApplication(filter: SoftwareApplicationFilter!): DeleteSoftwareApplicationPayload
+    deleteStore(filter: StoreFilter!): DeleteStorePayload
+    deleteThing(filter: ThingFilter!): DeleteThingPayload
+    deleteUser(filter: UserFilter!): DeleteUserPayload
+    deleteWebhook(filter: WebhookFilter!): DeleteWebhookPayload
+    updateConversation(input: UpdateConversationInput!): UpdateConversationPayload
+    updateDataCatalog(input: UpdateDataCatalogInput!): UpdateDataCatalogPayload
+    updateEmployeeRole(input: UpdateEmployeeRoleInput!): UpdateEmployeeRolePayload
+    updateEntryPoint(input: UpdateEntryPointInput!): UpdateEntryPointPayload
+    updateFollowerRole(input: UpdateFollowerRoleInput!): UpdateFollowerRolePayload
+    updateGeneralOrganization(input: UpdateGeneralOrganizationInput!): UpdateGeneralOrganizationPayload
+    updateMemberRole(input: UpdateMemberRoleInput!): UpdateMemberRolePayload
+    updateMessage(input: UpdateMessageInput!): UpdateMessagePayload
+    updateOffer(input: UpdateOfferInput!): UpdateOfferPayload
+    updateOwnership(input: UpdateOwnershipInput!): UpdateOwnershipPayload
+    updatePartyRoleName(input: UpdatePartyRoleNameInput!): UpdatePartyRoleNamePayload
+    updatePerson(input: UpdatePersonInput!): UpdatePersonPayload
+    updateProduct(input: UpdateProductInput!): UpdateProductPayload
+    updateProductModel(input: UpdateProductModelInput!): UpdateProductModelPayload
+    updateReadNote(input: UpdateReadNoteInput!): UpdateReadNotePayload
+    updateReview(input: UpdateReviewInput!): UpdateReviewPayload
+    updateSoftwareApplication(input: UpdateSoftwareApplicationInput!): UpdateSoftwareApplicationPayload
+    updateStore(input: UpdateStoreInput!): UpdateStorePayload
+    updateThing(input: UpdateThingInput!): UpdateThingPayload
+    updateUser(input: UpdateUserInput!): UpdateUserPayload
+    updateWebhook(input: UpdateWebhookInput!): UpdateWebhookPayload
+}
+
+"ååä¾åº"
+type Offer implements Thing {
+    alternateName: String
+    "    ãä»·æ ¼ææå¼å§æ¥æã    "
+    dateFrom: DateTime
+    "    ãä»·æ ¼ææç»ææ¥æã    "
+    dateThrough: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    "    å¯è´­ç©çä¸ä¸ªååä¾åº    "
+    itemOffered: Shoppingable
+    name: String!
+    "    ä¾åºååçç»ç»æä¸ªäºº Inverse property: makesOffer.    "
+    offeredBy: Party
+    "    ååä»·æ ¼The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.    "
+    price: Int
+}
+
+"æè¿°äº§åçææèææå±æºæçä¿¡æ¯"
+type Ownership implements Thing {
+    "    ãè·åæ¥æºã äº§åè·åçæºææ¥æº The organization or person from which the product was acquired.    "
+    acquiredFrom: Party
+    alternateName: String
+    "    ãå¼å§æ¥æã æäºçå¼å§æ¥æåæ¶é´    "
+    dateFrom: DateTime
+    "    ãç»ææ¥æã æ´»å¨ï¼äºä»¶ï¼ç»ææ¶é´ã The end date and time of the item (in ISO 8601 date format).    "
+    dateThrough: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    name: String!
+    "    ãä¸è¥¿ç±»åã æ¥æçä¸è¥¿Thingã    "
+    owned(filter: ThingFilter): Thing
+    "    ãä¸ªäººæç»ç»ãæ¥æè    "
+    owner: Party
+}
+
+"ç»ç»å®ä¹çè§è²ï¼ç»ç»åç»ç­¹å®ä¹"
+type PartyRoleName implements Thing {
+    alternateName: String
+    "    ãä½èã è¯¥ CreativeWork çåä½è/ä½èãè·CreativeWorkçAuthorå±æ§ä¸æ ·ã The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserReviews        "
+    creator(filter: UserFilter): User
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    "    è§è²åç»,å¦åå·¥è§è²ç»ãä¼åè§è²ç»    "
+    group: String
+    id: ID!
+    identifier: String
+    "    isPartyRoleNameOf,éå±æ§ Organization.hasPartyRoleName    "
+    isRoleNameOf: Organization
+    name: String!
+}
+
+"ä¸ªäºº,å¯è½å¨å¹³å°éæä¸ä¸ªä¸å¯ä¸çç¨æ·è´¦å·User"
+type Person implements Party & Thing {
+    alternateName: String
+    description: String
+    "ãå§ã å§ã å¨ç¾å½ï¼æ¯ä¸ä¸ªäººå§åä¸­çæåä¸ä¸ªå­ã Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."
+    familyName: String
+    "ãåã åãå¨ç¾å½ï¼æ¯ä¸ä¸ªäººåå­ä¸­çç¬¬ä¸ä¸ªå­ Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."
+    givenName: String
+    "æ¬äººææ¥æçç¨æ·è´¦å·ï¼éå±æ§User.isUserOfï¼åèInverse property: isPartOf"
+    hasUser(filter: UserFilter): User
+    id: ID!
+    identifier: String
+    name: String!
+    owns(filter: OwnershipFilter, first: Int, offset: Int, order: OwnershipOrder): [Ownership]
+    "    ä¸ªäººèº«ä»½è¯ID    "
+    personalID: String!
+}
+
+"äº§å"
+type Product implements Shoppingable & Thing {
+    alternateName: String
+    description: String
+    "    ãåå·ã äº§åçåå·ã    "
+    hasModels(filter: ProductModelFilter, first: Int, offset: Int, order: ProductModelOrder): [ProductModel]
+    id: ID!
+    identifier: String
+    isShoppingable: Boolean
+    name: String!
+}
+
+"äº§ååå·"
+type ProductModel implements Shoppingable & Thing {
+    alternateName: String
+    description: String
+    id: ID!
+    identifier: String
+    "    ãäº§åã æå±äº§åã    "
+    isModelOf(filter: ProductFilter): Product
+    isShoppingable: Boolean
+    name: String!
+}
+
+type Query {
+    getConversation(id: ID!): Conversation
+    getDataCatalog(id: ID!): DataCatalog
+    getEmployeeRole(id: ID!): EmployeeRole
+    getEntryPoint(id: ID!): EntryPoint
+    getFollowerRole(id: ID!): FollowerRole
+    getGeneralOrganization(id: ID!): GeneralOrganization
+    getMemberRole(id: ID!): MemberRole
+    getMessage(id: ID!): Message
+    getOffer(id: ID!): Offer
+    getOwnership(id: ID!): Ownership
+    getPartyRoleName(id: ID!): PartyRoleName
+    getPerson(id: ID!): Person
+    getProduct(id: ID!): Product
+    getProductModel(id: ID!): ProductModel
+    getReadNote(id: ID!): ReadNote
+    getReview(id: ID!): Review
+    getSoftwareApplication(id: ID!): SoftwareApplication
+    getStore(id: ID!): Store
+    getThing(id: ID!): Thing
+    getUser(id: ID, username: String): User
+    getWebhook(id: ID!): Webhook
+    queryConversation(filter: ConversationFilter, first: Int, offset: Int, order: ConversationOrder): [Conversation]
+    queryDataCatalog(filter: DataCatalogFilter, first: Int, offset: Int, order: DataCatalogOrder): [DataCatalog]
+    queryEmployeeRole(filter: EmployeeRoleFilter, first: Int, offset: Int, order: EmployeeRoleOrder): [EmployeeRole]
+    queryEntryPoint(filter: EntryPointFilter, first: Int, offset: Int, order: EntryPointOrder): [EntryPoint]
+    queryFollowerRole(filter: FollowerRoleFilter, first: Int, offset: Int, order: FollowerRoleOrder): [FollowerRole]
+    queryGeneralOrganization(filter: GeneralOrganizationFilter, first: Int, offset: Int, order: GeneralOrganizationOrder): [GeneralOrganization]
+    queryMemberRole(filter: MemberRoleFilter, first: Int, offset: Int, order: MemberRoleOrder): [MemberRole]
+    queryMessage(filter: MessageFilter, first: Int, offset: Int, order: MessageOrder): [Message]
+    queryOffer(filter: OfferFilter, first: Int, offset: Int, order: OfferOrder): [Offer]
+    queryOrganization(first: Int, offset: Int): [Organization]
+    queryOwnership(filter: OwnershipFilter, first: Int, offset: Int, order: OwnershipOrder): [Ownership]
+    queryParty(first: Int, offset: Int): [Party]
+    queryPartyRole(first: Int, offset: Int, order: PartyRoleOrder): [PartyRole]
+    queryPartyRoleName(filter: PartyRoleNameFilter, first: Int, offset: Int, order: PartyRoleNameOrder): [PartyRoleName]
+    queryPerson(filter: PersonFilter, first: Int, offset: Int, order: PersonOrder): [Person]
+    queryProduct(filter: ProductFilter, first: Int, offset: Int, order: ProductOrder): [Product]
+    queryProductModel(filter: ProductModelFilter, first: Int, offset: Int, order: ProductModelOrder): [ProductModel]
+    queryReadNote(filter: ReadNoteFilter, first: Int, offset: Int, order: ReadNoteOrder): [ReadNote]
+    queryReadable(first: Int, offset: Int): [Readable]
+    queryReview(filter: ReviewFilter, first: Int, offset: Int, order: ReviewOrder): [Review]
+    queryShoppingable(first: Int, offset: Int): [Shoppingable]
+    querySoftwareApplication(filter: SoftwareApplicationFilter, first: Int, offset: Int, order: SoftwareApplicationOrder): [SoftwareApplication]
+    queryStore(filter: StoreFilter, first: Int, offset: Int, order: StoreOrder): [Store]
+    queryThing(filter: ThingFilter, first: Int, offset: Int, order: ThingOrder): [Thing]
+    queryUser(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+    queryWebhook(filter: WebhookFilter, first: Int, offset: Int, order: WebhookOrder): [Webhook]
+}
+
+"ãéè¯»æ¶æ¡ã è®°å½æ¯ä¸ªäººéè¯»æ¬æ¡æ¶æ¯çæ¶é´"
+type ReadNote implements Thing {
+    alternateName: String
+    "    ãéè¯»æ¥æã     "
+    dateRead: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    "    ãéè¯»åå®¹ã éå±æ§: Message.hasReadNotes    "
+    isReadNoteOf(first: Int, offset: Int): [Readable]
+    name: String!
+    "    ãè¯»èã åå®¹çéè¯»èã    "
+    reader(filter: UserFilter): User
+}
+
+"ãè¯è®ºãå¯¹é¡¹ç®çè¯è®º - ä¾å¦å¯¹åå®¢æç« çè¯è®ºã è¯¥è¯è®ºçåå®¹æ¯éè¿textå±æ§è¡¨ç¤ºçï¼å¶ä¸»é¢éè¿aboutï¼ä¸ææCreativeWorkså±äº«çå±æ§æ¥è¡¨è¾¾ A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the text property, and its topic via about, properties shared with all CreativeWorks."
+type Review implements Thing {
+    alternateName: String
+    "    ãä½èã æ­¤åå®¹æè¯åçä½èã    "
+    author(filter: UserFilter): User
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã     "
+    dateCreated: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    "itemReviewed\tThing \tThe item that is being reviewed/rated."
+    itemReviewed(filter: ThingFilter): Thing
+    name: String!
+    "    ratingValue\tè¯å The rating for the content.    "
+    ratingValue: Int
+    "reviewAspect\tText \tThis Review or Rating is relevant to this part or facet of the itemReviewed."
+    reviewAspect: String
+    "reviewBody\tText \tThe actual body of the review."
+    reviewBody: String
+}
+
+"https://schema.org/SoftwareApplication A software application."
+type SoftwareApplication implements Thing {
+    alternateName: String
+    "    applicationSuite\tText \tThe name of the application suite to which the application belongs (e.g. Excel belongs to Office).    "
+    applicationSuite: String
+    description: String
+    "    availableOnDevice\tText \tDevice required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.    countriesNotSupported\tText \tCountries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    countriesSupported\tText \tCountries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    downloadUrl\tURL \tIf the file can be downloaded, URL to download the binary.    "
+    downloadUrl: String
+    "    featureList\tText  or URL \tFeatures or modules provided by this application (and possibly required by other applications).    "
+    featureList: String
+    id: ID!
+    identifier: String
+    "    fileSize\tText \tSize of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.    installUrl\tURL \tURL at which the app may be installed, if different from the URL of the item.    "
+    installUrl: String
+    name: String!
+    "    memoryRequirements\tText  or URL \tMinimum memory requirements.    operatingSystem\tText \tOperating systems supported (Windows 7, OSX 10.6, Android 1.6).    permissions\tText \tPermission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).    processorRequirements\tText \tProcessor architecture required to run the application (e.g. IA64).    releaseNotes\tText  or URL \tDescription of what changed in this version.    "
+    releaseNotes: String
+    "    screenshot\tImageObject  or URL \tA link to a screenshot image of the app.    "
+    screenshot: String
+    "    softwareAddOn\tSoftwareApplication \tAdditional content for a software application.    softwareHelp\tCreativeWork \tSoftware application help.    softwareRequirements\tText  or URL \tComponent dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.    softwareVersion\tText \tVersion of the software instance.    storageRequirements\tText  or URL \tStorage requirements (free space required).    supportingData\tDataFeed \tSupporting data for a SoftwareApplication.    "
+    softwareVersion: String
+}
+
+"é¶å®åºéº"
+type Store implements Organization & Party & Thing {
+    alternateName: String
+    "    ãåå»ºäººã è¯¥ç©ä½çåä½è/ä½èã    "
+    creator(filter: UserFilter): User
+    "    ãåå»ºæ¥æã    "
+    dateCreated: DateTime
+    "    ãæ´æ°æ¥æã    "
+    dateModified: DateTime
+    departments(first: Int, offset: Int): [Organization]
+    description: String
+    "    ãéåã ç»ç»çéå.å¨ç»ç»æ¿æè§è²çä¸ªäººææ¶é´éå¶    "
+    employees(filter: EmployeeRoleFilter, first: Int, offset: Int, order: EmployeeRoleOrder): [EmployeeRole]
+    "    ãå³æ³¨ç»ç»çäººã ç¤¾äº¤ç½ç»ä¸æ¬ç»ç»è¢«å«äººå³æ³¨     "
+    followers(filter: FollowerRoleFilter, first: Int, offset: Int, order: FollowerRoleOrder): [FollowerRole]
+    hasPartyRoleName(filter: PartyRoleNameFilter, first: Int, offset: Int, order: PartyRoleNameOrder): [PartyRoleName]
+    id: ID!
+    identifier: String
+    "    ãä¼åã ç»ç»æé¡¹ç®çæå,å¨ç»ç»æ¿æè§è²çä¸ªäººææ¶é´éå¶    "
+    members(filter: MemberRoleFilter, first: Int, offset: Int, order: MemberRoleOrder): [MemberRole]
+    name: String!
+    owns(filter: OwnershipFilter, first: Int, offset: Int, order: OwnershipOrder): [Ownership]
+    parentOrganization(first: Int, offset: Int): [Organization]
+    subOrganizations(first: Int, offset: Int): [Organization]
+}
+
+type UpdateConversationPayload {
+    conversation(filter: ConversationFilter, first: Int, offset: Int, order: ConversationOrder): [Conversation]
+    numUids: Int
+}
+
+type UpdateDataCatalogPayload {
+    datacatalog(filter: DataCatalogFilter, first: Int, offset: Int, order: DataCatalogOrder): [DataCatalog]
+    numUids: Int
+}
+
+type UpdateEmployeeRolePayload {
+    employeerole(filter: EmployeeRoleFilter, first: Int, offset: Int, order: EmployeeRoleOrder): [EmployeeRole]
+    numUids: Int
+}
+
+type UpdateEntryPointPayload {
+    entrypoint(filter: EntryPointFilter, first: Int, offset: Int, order: EntryPointOrder): [EntryPoint]
+    numUids: Int
+}
+
+type UpdateFollowerRolePayload {
+    followerrole(filter: FollowerRoleFilter, first: Int, offset: Int, order: FollowerRoleOrder): [FollowerRole]
+    numUids: Int
+}
+
+type UpdateGeneralOrganizationPayload {
+    generalorganization(filter: GeneralOrganizationFilter, first: Int, offset: Int, order: GeneralOrganizationOrder): [GeneralOrganization]
+    numUids: Int
+}
+
+type UpdateMemberRolePayload {
+    memberrole(filter: MemberRoleFilter, first: Int, offset: Int, order: MemberRoleOrder): [MemberRole]
+    numUids: Int
+}
+
+type UpdateMessagePayload {
+    message(filter: MessageFilter, first: Int, offset: Int, order: MessageOrder): [Message]
+    numUids: Int
+}
+
+type UpdateOfferPayload {
+    numUids: Int
+    offer(filter: OfferFilter, first: Int, offset: Int, order: OfferOrder): [Offer]
+}
+
+type UpdateOwnershipPayload {
+    numUids: Int
+    ownership(filter: OwnershipFilter, first: Int, offset: Int, order: OwnershipOrder): [Ownership]
+}
+
+type UpdatePartyRoleNamePayload {
+    numUids: Int
+    partyrolename(filter: PartyRoleNameFilter, first: Int, offset: Int, order: PartyRoleNameOrder): [PartyRoleName]
+}
+
+type UpdatePersonPayload {
+    numUids: Int
+    person(filter: PersonFilter, first: Int, offset: Int, order: PersonOrder): [Person]
+}
+
+type UpdateProductModelPayload {
+    numUids: Int
+    productmodel(filter: ProductModelFilter, first: Int, offset: Int, order: ProductModelOrder): [ProductModel]
+}
+
+type UpdateProductPayload {
+    numUids: Int
+    product(filter: ProductFilter, first: Int, offset: Int, order: ProductOrder): [Product]
+}
+
+type UpdateReadNotePayload {
+    numUids: Int
+    readnote(filter: ReadNoteFilter, first: Int, offset: Int, order: ReadNoteOrder): [ReadNote]
+}
+
+type UpdateReviewPayload {
+    numUids: Int
+    review(filter: ReviewFilter, first: Int, offset: Int, order: ReviewOrder): [Review]
+}
+
+type UpdateSoftwareApplicationPayload {
+    numUids: Int
+    softwareapplication(filter: SoftwareApplicationFilter, first: Int, offset: Int, order: SoftwareApplicationOrder): [SoftwareApplication]
+}
+
+type UpdateStorePayload {
+    numUids: Int
+    store(filter: StoreFilter, first: Int, offset: Int, order: StoreOrder): [Store]
+}
+
+type UpdateThingPayload {
+    numUids: Int
+    thing(filter: ThingFilter, first: Int, offset: Int, order: ThingOrder): [Thing]
+}
+
+type UpdateUserPayload {
+    numUids: Int
+    user(filter: UserFilter, first: Int, offset: Int, order: UserOrder): [User]
+}
+
+type UpdateWebhookPayload {
+    numUids: Int
+    webhook(filter: WebhookFilter, first: Int, offset: Int, order: WebhookOrder): [Webhook]
+}
+
+"ç¨æ·è´¦å·"
+type User implements Thing {
+    alternateName: String
+    "    The user's public profile bio.    "
+    bio: String
+    description: String
+    id: ID!
+    identifier: String
+    "    ç¨æ·è´¦å·å¯¹åºçäººï¼æè´¦å·ä¸å®æç¸å³çPersonï¼éå±æ§ Person.hasUserï¼åèInverse property: hasPart    "
+    isUserOf(filter: PersonFilter): Person!
+    name: String!
+    "    The password used to login.    "
+    password: String!
+    "    The username used to login.    We also want to make sure that usernames are unique. The @id directive takes care of that - it also automatically adds hash searching, so we can drop the @search(by: [hash]), though having it also causes no harm.    "
+    username: String!
+}
+
+"ç½ç»é©å­æ¯âç¨æ·å®ä¹çHTTPåè°âã[2]ç½ç»é©å­éå¸¸è¢«æäºäºä»¶æ¿æ´»ï¼æ¯å¦å°ä»£ç æ¨éå°æº[3]æè¯è®ºåå®¢ã[4]å½æ­¤äºä»¶åçæ¶ï¼åç½ç«å°åä¸ºç½ç»é©å­éç½®çURLåéHTTPè¯·æ±ãç¨æ·å¯éç½®å®ä»¬å¼åç½é¡µä¸çäºä»¶ä»¥è°ç¨å¦ä¸ä¸ªç½ç«çè¡ä¸ºãWebhooks allow external services to be notified when certain events happen. "
+type Webhook implements Thing {
+    alternateName: String
+    "     è°ç¨æ­¤webhookçå®¢æ·ç«¯     "
+    client(filter: SoftwareApplicationFilter): SoftwareApplication
+    "    åè°æäº¤çæ°æ®åå®¹ç±»åå¦application/json    "
+    contentType: String
+    "    ãä½èã è¯¥ CreativeWork çåä½è/ä½èã    "
+    creator(filter: UserFilter): User
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated\tDateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    id: ID!
+    identifier: String
+    name: String!
+    "    åè°url    "
+    payloadUrl: String
+    "    ä½¿ç¨payloadUrlçå®å¨token    "
+    secret: String
+}
+
+enum ConversationOrderable {
+    alternateName
+    dateCreated
+    description
+    identifier
+    name
+}
+
+enum DataCatalogOrderable {
+    alternateName
+    dateCreated
+    description
+    identifier
+    name
+}
+
+enum DgraphIndex {
+    bool
+    day
+    exact
+    float
+    fulltext
+    hash
+    hour
+    int
+    month
+    regexp
+    term
+    trigram
+    year
+}
+
+enum EmployeeRoleOrderable {
+    alternateName
+    dateFrom
+    dateThrough
+    description
+    identifier
+    name
+    number
+}
+
+enum EntryPointOrderable {
+    alternateName
+    description
+    identifier
+    name
+    urlTemplate
+}
+
+enum FollowerRoleOrderable {
+    alternateName
+    dateFrom
+    dateThrough
+    description
+    identifier
+    name
+    settings
+}
+
+enum GeneralOrganizationOrderable {
+    alternateName
+    description
+    identifier
+    name
+}
+
+enum MemberRoleOrderable {
+    alternateName
+    dateFrom
+    dateThrough
+    description
+    identifier
+    name
+    number
+}
+
+enum MessageOrderable {
+    alternateName
+    dateRead
+    dateReceived
+    dateSent
+    description
+    identifier
+    name
+}
+
+enum OfferOrderable {
+    alternateName
+    dateFrom
+    dateThrough
+    description
+    identifier
+    name
+    price
+}
+
+enum OwnershipOrderable {
+    alternateName
+    dateFrom
+    dateThrough
+    description
+    identifier
+    name
+}
+
+enum PartyRoleNameOrderable {
+    alternateName
+    dateCreated
+    description
+    group
+    identifier
+    name
+}
+
+enum PartyRoleOrderable {
+    dateFrom
+    dateThrough
+}
+
+enum PersonOrderable {
+    alternateName
+    description
+    familyName
+    givenName
+    identifier
+    name
+    personalID
+}
+
+enum ProductModelOrderable {
+    alternateName
+    description
+    identifier
+    name
+}
+
+enum ProductOrderable {
+    alternateName
+    description
+    identifier
+    name
+}
+
+enum ReadNoteOrderable {
+    alternateName
+    dateRead
+    description
+    identifier
+    name
+}
+
+enum ReviewOrderable {
+    alternateName
+    dateCreated
+    description
+    identifier
+    name
+    ratingValue
+    reviewAspect
+    reviewBody
+}
+
+enum SoftwareApplicationOrderable {
+    alternateName
+    applicationSuite
+    description
+    downloadUrl
+    featureList
+    identifier
+    installUrl
+    name
+    releaseNotes
+    screenshot
+    softwareVersion
+}
+
+enum StoreOrderable {
+    alternateName
+    dateCreated
+    dateModified
+    description
+    identifier
+    name
+}
+
+enum ThingOrderable {
+    alternateName
+    description
+    identifier
+    name
+}
+
+enum UserOrderable {
+    alternateName
+    bio
+    description
+    identifier
+    name
+    password
+    username
+}
+
+enum WebhookOrderable {
+    alternateName
+    contentType
+    dateCreated
+    description
+    identifier
+    name
+    payloadUrl
+    secret
+}
+
+input AddConversationInput {
+    about: ThingRef
+    accountablePerson: UserRef
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    hasMessages: [MessageRef]
+    identifier: String
+    includedInDataCatalog: DataCatalogRef
+    name: String!
+    webhook: [WebhookRef]
+}
+
+input AddDataCatalogInput {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    identifier: String
+    name: String!
+    parentDataCatalog: DataCatalogRef
+    subDataCatalogs: [DataCatalogRef]
+}
+
+input AddEmployeeRoleInput {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String!
+    "    ãåå·¥ç¼å·ã    "
+    number: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+}
+
+input AddEntryPointInput {
+    alternateName: String
+    description: String
+    identifier: String
+    name: String!
+    "ãé¾æ¥æ¨¡çã ä¸ä¸ªURLçæ¨¡çï¼å¯ä»¥å©ç¨åååæ°å½¢æå®æ´çURLã An url template (RFC6570) that will be used to construct the target of the execution of the action."
+    urlTemplate: String
+}
+
+input AddFollowerRoleInput {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String!
+    person: PersonRef
+    roleName: PartyRoleNameRef
+    "å³æ³¨è®¾ç½®,å¦å³æ³¨ææ°äº§åä¿¡æ¯"
+    settings: String
+}
+
+input AddGeneralOrganizationInput {
+    alternateName: String
+    availableConversations: [ConversationRef]
+    defaultConversation: ConversationRef
+    description: String
+    hasPartyRoleName: [PartyRoleNameRef]
+    identifier: String
+    name: String!
+    owns: [OwnershipRef]
+}
+
+input AddMemberRoleInput {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String!
+    "    ãä¼åç¼å·ã    "
+    number: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+}
+
+input AddMessageInput {
+    alternateName: String
+    "    ãéè¯»æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººè¯»åçæ¥æ/æ¶é´ã The date/time at which the message has been read by the recipient if a single recipient exists.    "
+    dateRead: DateTime
+    "    ãæ¥æ¶æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººæ¥æ¶çæ¥æ/æ¶é´ã The date/time the message was received if a single recipient exists.    "
+    dateReceived: DateTime
+    "    ãåéæ¥æã æ¶æ¯è¢«åéçæ¥æ/æ¶é´ã The date/time at which the message was sent.    "
+    dateSent: DateTime
+    description: String
+    hasReadNotes: [ReadNoteRef]
+    hasReviews: [ReviewRef]
+    identifier: String
+    isMessageOf: [ConversationRef]
+    name: String!
+    recipient: [UserRef]
+    sender: UserRef!
+    toRecipient: UserRef
+}
+
+input AddOfferInput {
+    alternateName: String
+    "    ãä»·æ ¼ææå¼å§æ¥æã    "
+    dateFrom: DateTime
+    "    ãä»·æ ¼ææç»ææ¥æã    "
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String!
+    "    ååä»·æ ¼The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.    "
+    price: Int
+}
+
+input AddOwnershipInput {
+    alternateName: String
+    "    ãå¼å§æ¥æã æäºçå¼å§æ¥æåæ¶é´    "
+    dateFrom: DateTime
+    "    ãç»ææ¥æã æ´»å¨ï¼äºä»¶ï¼ç»ææ¶é´ã The end date and time of the item (in ISO 8601 date format).    "
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String!
+    owned: ThingRef
+}
+
+input AddPartyRoleNameInput {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    "    è§è²åç»,å¦åå·¥è§è²ç»ãä¼åè§è²ç»    "
+    group: String
+    identifier: String
+    name: String!
+}
+
+input AddPersonInput {
+    alternateName: String
+    description: String
+    "ãå§ã å§ã å¨ç¾å½ï¼æ¯ä¸ä¸ªäººå§åä¸­çæåä¸ä¸ªå­ã Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."
+    familyName: String
+    "ãåã åãå¨ç¾å½ï¼æ¯ä¸ä¸ªäººåå­ä¸­çç¬¬ä¸ä¸ªå­ Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."
+    givenName: String
+    hasUser: UserRef
+    identifier: String
+    name: String!
+    owns: [OwnershipRef]
+    "    ä¸ªäººèº«ä»½è¯ID    "
+    personalID: String!
+}
+
+input AddProductInput {
+    alternateName: String
+    description: String
+    hasModels: [ProductModelRef]
+    identifier: String
+    isShoppingable: Boolean
+    name: String!
+}
+
+input AddProductModelInput {
+    alternateName: String
+    description: String
+    identifier: String
+    isModelOf: ProductRef
+    isShoppingable: Boolean
+    name: String!
+}
+
+input AddReadNoteInput {
+    alternateName: String
+    "    ãéè¯»æ¥æã     "
+    dateRead: DateTime
+    description: String
+    identifier: String
+    name: String!
+    reader: UserRef
+}
+
+input AddReviewInput {
+    alternateName: String
+    author: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã     "
+    dateCreated: DateTime
+    description: String
+    identifier: String
+    itemReviewed: ThingRef
+    name: String!
+    "    ratingValue\tè¯å The rating for the content.    "
+    ratingValue: Int
+    "reviewAspect\tText \tThis Review or Rating is relevant to this part or facet of the itemReviewed."
+    reviewAspect: String
+    "reviewBody\tText \tThe actual body of the review."
+    reviewBody: String
+}
+
+input AddSoftwareApplicationInput {
+    alternateName: String
+    "    applicationSuite\tText \tThe name of the application suite to which the application belongs (e.g. Excel belongs to Office).    "
+    applicationSuite: String
+    description: String
+    "    availableOnDevice\tText \tDevice required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.    countriesNotSupported\tText \tCountries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    countriesSupported\tText \tCountries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    downloadUrl\tURL \tIf the file can be downloaded, URL to download the binary.    "
+    downloadUrl: String
+    "    featureList\tText  or URL \tFeatures or modules provided by this application (and possibly required by other applications).    "
+    featureList: String
+    identifier: String
+    "    fileSize\tText \tSize of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.    installUrl\tURL \tURL at which the app may be installed, if different from the URL of the item.    "
+    installUrl: String
+    name: String!
+    "    memoryRequirements\tText  or URL \tMinimum memory requirements.    operatingSystem\tText \tOperating systems supported (Windows 7, OSX 10.6, Android 1.6).    permissions\tText \tPermission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).    processorRequirements\tText \tProcessor architecture required to run the application (e.g. IA64).    releaseNotes\tText  or URL \tDescription of what changed in this version.    "
+    releaseNotes: String
+    "    screenshot\tImageObject  or URL \tA link to a screenshot image of the app.    "
+    screenshot: String
+    "    softwareAddOn\tSoftwareApplication \tAdditional content for a software application.    softwareHelp\tCreativeWork \tSoftware application help.    softwareRequirements\tText  or URL \tComponent dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.    softwareVersion\tText \tVersion of the software instance.    storageRequirements\tText  or URL \tStorage requirements (free space required).    supportingData\tDataFeed \tSupporting data for a SoftwareApplication.    "
+    softwareVersion: String
+}
+
+input AddStoreInput {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã    "
+    dateCreated: DateTime
+    "    ãæ´æ°æ¥æã    "
+    dateModified: DateTime
+    description: String
+    employees: [EmployeeRoleRef]
+    followers: [FollowerRoleRef]
+    hasPartyRoleName: [PartyRoleNameRef]
+    identifier: String
+    members: [MemberRoleRef]
+    name: String!
+    owns: [OwnershipRef]
+}
+
+input AddUserInput {
+    alternateName: String
+    "    The user's public profile bio.    "
+    bio: String
+    description: String
+    identifier: String
+    isUserOf: PersonRef!
+    name: String!
+    "    The password used to login.    "
+    password: String!
+    "    The username used to login.    We also want to make sure that usernames are unique. The @id directive takes care of that - it also automatically adds hash searching, so we can drop the @search(by: [hash]), though having it also causes no harm.    "
+    username: String!
+}
+
+input AddWebhookInput {
+    alternateName: String
+    client: SoftwareApplicationRef
+    "    åè°æäº¤çæ°æ®åå®¹ç±»åå¦application/json    "
+    contentType: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated\tDateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    identifier: String
+    name: String!
+    "    åè°url    "
+    payloadUrl: String
+    "    ä½¿ç¨payloadUrlçå®å¨token    "
+    secret: String
+}
+
+input ConversationFilter {
+    and: ConversationFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: ConversationFilter
+    or: ConversationFilter
+}
+
+input ConversationOrder {
+    asc: ConversationOrderable
+    desc: ConversationOrderable
+    then: ConversationOrder
+}
+
+input ConversationPatch {
+    about: ThingRef
+    accountablePerson: UserRef
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    hasMessages: [MessageRef]
+    identifier: String
+    includedInDataCatalog: DataCatalogRef
+    name: String
+    webhook: [WebhookRef]
+}
+
+input ConversationRef {
+    about: ThingRef
+    accountablePerson: UserRef
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    hasMessages: [MessageRef]
+    id: ID
+    identifier: String
+    includedInDataCatalog: DataCatalogRef
+    name: String
+    webhook: [WebhookRef]
+}
+
+input DataCatalogFilter {
+    and: DataCatalogFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: DataCatalogFilter
+    or: DataCatalogFilter
+}
+
+input DataCatalogOrder {
+    asc: DataCatalogOrderable
+    desc: DataCatalogOrderable
+    then: DataCatalogOrder
+}
+
+input DataCatalogPatch {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    identifier: String
+    name: String
+    parentDataCatalog: DataCatalogRef
+    subDataCatalogs: [DataCatalogRef]
+}
+
+input DataCatalogRef {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    parentDataCatalog: DataCatalogRef
+    subDataCatalogs: [DataCatalogRef]
+}
+
+input DateTimeFilter {
+    eq: DateTime
+    ge: DateTime
+    gt: DateTime
+    le: DateTime
+    lt: DateTime
+}
+
+input EmployeeRoleFilter {
+    and: EmployeeRoleFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: EmployeeRoleFilter
+    or: EmployeeRoleFilter
+}
+
+input EmployeeRoleOrder {
+    asc: EmployeeRoleOrderable
+    desc: EmployeeRoleOrderable
+    then: EmployeeRoleOrder
+}
+
+input EmployeeRolePatch {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String
+    "    ãåå·¥ç¼å·ã    "
+    number: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+}
+
+input EmployeeRoleRef {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    "    ãåå·¥ç¼å·ã    "
+    number: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+}
+
+input EntryPointFilter {
+    and: EntryPointFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: EntryPointFilter
+    or: EntryPointFilter
+}
+
+input EntryPointOrder {
+    asc: EntryPointOrderable
+    desc: EntryPointOrderable
+    then: EntryPointOrder
+}
+
+input EntryPointPatch {
+    alternateName: String
+    description: String
+    identifier: String
+    name: String
+    "ãé¾æ¥æ¨¡çã ä¸ä¸ªURLçæ¨¡çï¼å¯ä»¥å©ç¨åååæ°å½¢æå®æ´çURLã An url template (RFC6570) that will be used to construct the target of the execution of the action."
+    urlTemplate: String
+}
+
+input EntryPointRef {
+    alternateName: String
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    "ãé¾æ¥æ¨¡çã ä¸ä¸ªURLçæ¨¡çï¼å¯ä»¥å©ç¨åååæ°å½¢æå®æ´çURLã An url template (RFC6570) that will be used to construct the target of the execution of the action."
+    urlTemplate: String
+}
+
+input FloatFilter {
+    eq: Float
+    ge: Float
+    gt: Float
+    le: Float
+    lt: Float
+}
+
+input FollowerRoleFilter {
+    and: FollowerRoleFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: FollowerRoleFilter
+    or: FollowerRoleFilter
+}
+
+input FollowerRoleOrder {
+    asc: FollowerRoleOrderable
+    desc: FollowerRoleOrderable
+    then: FollowerRoleOrder
+}
+
+input FollowerRolePatch {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+    "å³æ³¨è®¾ç½®,å¦å³æ³¨ææ°äº§åä¿¡æ¯"
+    settings: String
+}
+
+input FollowerRoleRef {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+    "å³æ³¨è®¾ç½®,å¦å³æ³¨ææ°äº§åä¿¡æ¯"
+    settings: String
+}
+
+input GeneralOrganizationFilter {
+    and: GeneralOrganizationFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: GeneralOrganizationFilter
+    or: GeneralOrganizationFilter
+}
+
+input GeneralOrganizationOrder {
+    asc: GeneralOrganizationOrderable
+    desc: GeneralOrganizationOrderable
+    then: GeneralOrganizationOrder
+}
+
+input GeneralOrganizationPatch {
+    alternateName: String
+    availableConversations: [ConversationRef]
+    defaultConversation: ConversationRef
+    description: String
+    hasPartyRoleName: [PartyRoleNameRef]
+    identifier: String
+    name: String
+    owns: [OwnershipRef]
+}
+
+input GeneralOrganizationRef {
+    alternateName: String
+    availableConversations: [ConversationRef]
+    defaultConversation: ConversationRef
+    description: String
+    hasPartyRoleName: [PartyRoleNameRef]
+    id: ID
+    identifier: String
+    name: String
+    owns: [OwnershipRef]
+}
+
+input IntFilter {
+    eq: Int
+    ge: Int
+    gt: Int
+    le: Int
+    lt: Int
+}
+
+input MemberRoleFilter {
+    and: MemberRoleFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: MemberRoleFilter
+    or: MemberRoleFilter
+}
+
+input MemberRoleOrder {
+    asc: MemberRoleOrderable
+    desc: MemberRoleOrderable
+    then: MemberRoleOrder
+}
+
+input MemberRolePatch {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String
+    "    ãä¼åç¼å·ã    "
+    number: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+}
+
+input MemberRoleRef {
+    alternateName: String
+    dateFrom: DateTime
+    dateThrough: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    "    ãä¼åç¼å·ã    "
+    number: String
+    person: PersonRef
+    roleName: PartyRoleNameRef
+}
+
+input MessageFilter {
+    and: MessageFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: MessageFilter
+    or: MessageFilter
+}
+
+input MessageOrder {
+    asc: MessageOrderable
+    desc: MessageOrderable
+    then: MessageOrder
+}
+
+input MessagePatch {
+    alternateName: String
+    "    ãéè¯»æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººè¯»åçæ¥æ/æ¶é´ã The date/time at which the message has been read by the recipient if a single recipient exists.    "
+    dateRead: DateTime
+    "    ãæ¥æ¶æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººæ¥æ¶çæ¥æ/æ¶é´ã The date/time the message was received if a single recipient exists.    "
+    dateReceived: DateTime
+    "    ãåéæ¥æã æ¶æ¯è¢«åéçæ¥æ/æ¶é´ã The date/time at which the message was sent.    "
+    dateSent: DateTime
+    description: String
+    hasReadNotes: [ReadNoteRef]
+    hasReviews: [ReviewRef]
+    identifier: String
+    isMessageOf: [ConversationRef]
+    name: String
+    recipient: [UserRef]
+    sender: UserRef
+    toRecipient: UserRef
+}
+
+input MessageRef {
+    alternateName: String
+    "    ãéè¯»æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººè¯»åçæ¥æ/æ¶é´ã The date/time at which the message has been read by the recipient if a single recipient exists.    "
+    dateRead: DateTime
+    "    ãæ¥æ¶æ¥æã å¦æå­å¨åä¸ªçæ¶ä»¶äººï¼å°±æ¯æ¶æ¯è¢«æ¶ä»¶äººæ¥æ¶çæ¥æ/æ¶é´ã The date/time the message was received if a single recipient exists.    "
+    dateReceived: DateTime
+    "    ãåéæ¥æã æ¶æ¯è¢«åéçæ¥æ/æ¶é´ã The date/time at which the message was sent.    "
+    dateSent: DateTime
+    description: String
+    hasReadNotes: [ReadNoteRef]
+    hasReviews: [ReviewRef]
+    id: ID
+    identifier: String
+    isMessageOf: [ConversationRef]
+    name: String
+    recipient: [UserRef]
+    sender: UserRef
+    toRecipient: UserRef
+}
+
+input OfferFilter {
+    and: OfferFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: OfferFilter
+    or: OfferFilter
+}
+
+input OfferOrder {
+    asc: OfferOrderable
+    desc: OfferOrderable
+    then: OfferOrder
+}
+
+input OfferPatch {
+    alternateName: String
+    "    ãä»·æ ¼ææå¼å§æ¥æã    "
+    dateFrom: DateTime
+    "    ãä»·æ ¼ææç»ææ¥æã    "
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String
+    "    ååä»·æ ¼The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.    "
+    price: Int
+}
+
+input OfferRef {
+    alternateName: String
+    "    ãä»·æ ¼ææå¼å§æ¥æã    "
+    dateFrom: DateTime
+    "    ãä»·æ ¼ææç»ææ¥æã    "
+    dateThrough: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    "    ååä»·æ ¼The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.    "
+    price: Int
+}
+
+input OwnershipFilter {
+    and: OwnershipFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: OwnershipFilter
+    or: OwnershipFilter
+}
+
+input OwnershipOrder {
+    asc: OwnershipOrderable
+    desc: OwnershipOrderable
+    then: OwnershipOrder
+}
+
+input OwnershipPatch {
+    alternateName: String
+    "    ãå¼å§æ¥æã æäºçå¼å§æ¥æåæ¶é´    "
+    dateFrom: DateTime
+    "    ãç»ææ¥æã æ´»å¨ï¼äºä»¶ï¼ç»ææ¶é´ã The end date and time of the item (in ISO 8601 date format).    "
+    dateThrough: DateTime
+    description: String
+    identifier: String
+    name: String
+    owned: ThingRef
+}
+
+input OwnershipRef {
+    alternateName: String
+    "    ãå¼å§æ¥æã æäºçå¼å§æ¥æåæ¶é´    "
+    dateFrom: DateTime
+    "    ãç»ææ¥æã æ´»å¨ï¼äºä»¶ï¼ç»ææ¶é´ã The end date and time of the item (in ISO 8601 date format).    "
+    dateThrough: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    owned: ThingRef
+}
+
+input PartyRoleNameFilter {
+    and: PartyRoleNameFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: PartyRoleNameFilter
+    or: PartyRoleNameFilter
+}
+
+input PartyRoleNameOrder {
+    asc: PartyRoleNameOrderable
+    desc: PartyRoleNameOrderable
+    then: PartyRoleNameOrder
+}
+
+input PartyRoleNamePatch {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    "    è§è²åç»,å¦åå·¥è§è²ç»ãä¼åè§è²ç»    "
+    group: String
+    identifier: String
+    name: String
+}
+
+input PartyRoleNameRef {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    "    è§è²åç»,å¦åå·¥è§è²ç»ãä¼åè§è²ç»    "
+    group: String
+    id: ID
+    identifier: String
+    name: String
+}
+
+input PartyRoleOrder {
+    asc: PartyRoleOrderable
+    desc: PartyRoleOrderable
+    then: PartyRoleOrder
+}
+
+input PersonFilter {
+    and: PersonFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: PersonFilter
+    or: PersonFilter
+}
+
+input PersonOrder {
+    asc: PersonOrderable
+    desc: PersonOrderable
+    then: PersonOrder
+}
+
+input PersonPatch {
+    alternateName: String
+    description: String
+    "ãå§ã å§ã å¨ç¾å½ï¼æ¯ä¸ä¸ªäººå§åä¸­çæåä¸ä¸ªå­ã Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."
+    familyName: String
+    "ãåã åãå¨ç¾å½ï¼æ¯ä¸ä¸ªäººåå­ä¸­çç¬¬ä¸ä¸ªå­ Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."
+    givenName: String
+    hasUser: UserRef
+    identifier: String
+    name: String
+    owns: [OwnershipRef]
+    "    ä¸ªäººèº«ä»½è¯ID    "
+    personalID: String
+}
+
+input PersonRef {
+    alternateName: String
+    description: String
+    "ãå§ã å§ã å¨ç¾å½ï¼æ¯ä¸ä¸ªäººå§åä¸­çæåä¸ä¸ªå­ã Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property."
+    familyName: String
+    "ãåã åãå¨ç¾å½ï¼æ¯ä¸ä¸ªäººåå­ä¸­çç¬¬ä¸ä¸ªå­ Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property."
+    givenName: String
+    hasUser: UserRef
+    id: ID
+    identifier: String
+    name: String
+    owns: [OwnershipRef]
+    "    ä¸ªäººèº«ä»½è¯ID    "
+    personalID: String
+}
+
+input ProductFilter {
+    and: ProductFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: ProductFilter
+    or: ProductFilter
+}
+
+input ProductModelFilter {
+    and: ProductModelFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: ProductModelFilter
+    or: ProductModelFilter
+}
+
+input ProductModelOrder {
+    asc: ProductModelOrderable
+    desc: ProductModelOrderable
+    then: ProductModelOrder
+}
+
+input ProductModelPatch {
+    alternateName: String
+    description: String
+    identifier: String
+    isModelOf: ProductRef
+    isShoppingable: Boolean
+    name: String
+}
+
+input ProductModelRef {
+    alternateName: String
+    description: String
+    id: ID
+    identifier: String
+    isModelOf: ProductRef
+    isShoppingable: Boolean
+    name: String
+}
+
+input ProductOrder {
+    asc: ProductOrderable
+    desc: ProductOrderable
+    then: ProductOrder
+}
+
+input ProductPatch {
+    alternateName: String
+    description: String
+    hasModels: [ProductModelRef]
+    identifier: String
+    isShoppingable: Boolean
+    name: String
+}
+
+input ProductRef {
+    alternateName: String
+    description: String
+    hasModels: [ProductModelRef]
+    id: ID
+    identifier: String
+    isShoppingable: Boolean
+    name: String
+}
+
+input ReadNoteFilter {
+    and: ReadNoteFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: ReadNoteFilter
+    or: ReadNoteFilter
+}
+
+input ReadNoteOrder {
+    asc: ReadNoteOrderable
+    desc: ReadNoteOrderable
+    then: ReadNoteOrder
+}
+
+input ReadNotePatch {
+    alternateName: String
+    "    ãéè¯»æ¥æã     "
+    dateRead: DateTime
+    description: String
+    identifier: String
+    name: String
+    reader: UserRef
+}
+
+input ReadNoteRef {
+    alternateName: String
+    "    ãéè¯»æ¥æã     "
+    dateRead: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    reader: UserRef
+}
+
+input ReviewFilter {
+    and: ReviewFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: ReviewFilter
+    or: ReviewFilter
+}
+
+input ReviewOrder {
+    asc: ReviewOrderable
+    desc: ReviewOrderable
+    then: ReviewOrder
+}
+
+input ReviewPatch {
+    alternateName: String
+    author: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã     "
+    dateCreated: DateTime
+    description: String
+    identifier: String
+    itemReviewed: ThingRef
+    name: String
+    "    ratingValue\tè¯å The rating for the content.    "
+    ratingValue: Int
+    "reviewAspect\tText \tThis Review or Rating is relevant to this part or facet of the itemReviewed."
+    reviewAspect: String
+    "reviewBody\tText \tThe actual body of the review."
+    reviewBody: String
+}
+
+input ReviewRef {
+    alternateName: String
+    author: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã     "
+    dateCreated: DateTime
+    description: String
+    id: ID
+    identifier: String
+    itemReviewed: ThingRef
+    name: String
+    "    ratingValue\tè¯å The rating for the content.    "
+    ratingValue: Int
+    "reviewAspect\tText \tThis Review or Rating is relevant to this part or facet of the itemReviewed."
+    reviewAspect: String
+    "reviewBody\tText \tThe actual body of the review."
+    reviewBody: String
+}
+
+input SoftwareApplicationFilter {
+    and: SoftwareApplicationFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: SoftwareApplicationFilter
+    or: SoftwareApplicationFilter
+}
+
+input SoftwareApplicationOrder {
+    asc: SoftwareApplicationOrderable
+    desc: SoftwareApplicationOrderable
+    then: SoftwareApplicationOrder
+}
+
+input SoftwareApplicationPatch {
+    alternateName: String
+    "    applicationSuite\tText \tThe name of the application suite to which the application belongs (e.g. Excel belongs to Office).    "
+    applicationSuite: String
+    description: String
+    "    availableOnDevice\tText \tDevice required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.    countriesNotSupported\tText \tCountries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    countriesSupported\tText \tCountries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    downloadUrl\tURL \tIf the file can be downloaded, URL to download the binary.    "
+    downloadUrl: String
+    "    featureList\tText  or URL \tFeatures or modules provided by this application (and possibly required by other applications).    "
+    featureList: String
+    identifier: String
+    "    fileSize\tText \tSize of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.    installUrl\tURL \tURL at which the app may be installed, if different from the URL of the item.    "
+    installUrl: String
+    name: String
+    "    memoryRequirements\tText  or URL \tMinimum memory requirements.    operatingSystem\tText \tOperating systems supported (Windows 7, OSX 10.6, Android 1.6).    permissions\tText \tPermission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).    processorRequirements\tText \tProcessor architecture required to run the application (e.g. IA64).    releaseNotes\tText  or URL \tDescription of what changed in this version.    "
+    releaseNotes: String
+    "    screenshot\tImageObject  or URL \tA link to a screenshot image of the app.    "
+    screenshot: String
+    "    softwareAddOn\tSoftwareApplication \tAdditional content for a software application.    softwareHelp\tCreativeWork \tSoftware application help.    softwareRequirements\tText  or URL \tComponent dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.    softwareVersion\tText \tVersion of the software instance.    storageRequirements\tText  or URL \tStorage requirements (free space required).    supportingData\tDataFeed \tSupporting data for a SoftwareApplication.    "
+    softwareVersion: String
+}
+
+input SoftwareApplicationRef {
+    alternateName: String
+    "    applicationSuite\tText \tThe name of the application suite to which the application belongs (e.g. Excel belongs to Office).    "
+    applicationSuite: String
+    description: String
+    "    availableOnDevice\tText \tDevice required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.    countriesNotSupported\tText \tCountries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    countriesSupported\tText \tCountries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.    downloadUrl\tURL \tIf the file can be downloaded, URL to download the binary.    "
+    downloadUrl: String
+    "    featureList\tText  or URL \tFeatures or modules provided by this application (and possibly required by other applications).    "
+    featureList: String
+    id: ID
+    identifier: String
+    "    fileSize\tText \tSize of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.    installUrl\tURL \tURL at which the app may be installed, if different from the URL of the item.    "
+    installUrl: String
+    name: String
+    "    memoryRequirements\tText  or URL \tMinimum memory requirements.    operatingSystem\tText \tOperating systems supported (Windows 7, OSX 10.6, Android 1.6).    permissions\tText \tPermission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).    processorRequirements\tText \tProcessor architecture required to run the application (e.g. IA64).    releaseNotes\tText  or URL \tDescription of what changed in this version.    "
+    releaseNotes: String
+    "    screenshot\tImageObject  or URL \tA link to a screenshot image of the app.    "
+    screenshot: String
+    "    softwareAddOn\tSoftwareApplication \tAdditional content for a software application.    softwareHelp\tCreativeWork \tSoftware application help.    softwareRequirements\tText  or URL \tComponent dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.    softwareVersion\tText \tVersion of the software instance.    storageRequirements\tText  or URL \tStorage requirements (free space required).    supportingData\tDataFeed \tSupporting data for a SoftwareApplication.    "
+    softwareVersion: String
+}
+
+input StoreFilter {
+    and: StoreFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: StoreFilter
+    or: StoreFilter
+}
+
+input StoreOrder {
+    asc: StoreOrderable
+    desc: StoreOrderable
+    then: StoreOrder
+}
+
+input StorePatch {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã    "
+    dateCreated: DateTime
+    "    ãæ´æ°æ¥æã    "
+    dateModified: DateTime
+    description: String
+    employees: [EmployeeRoleRef]
+    followers: [FollowerRoleRef]
+    hasPartyRoleName: [PartyRoleNameRef]
+    identifier: String
+    members: [MemberRoleRef]
+    name: String
+    owns: [OwnershipRef]
+}
+
+input StoreRef {
+    alternateName: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã    "
+    dateCreated: DateTime
+    "    ãæ´æ°æ¥æã    "
+    dateModified: DateTime
+    description: String
+    employees: [EmployeeRoleRef]
+    followers: [FollowerRoleRef]
+    hasPartyRoleName: [PartyRoleNameRef]
+    id: ID
+    identifier: String
+    members: [MemberRoleRef]
+    name: String
+    owns: [OwnershipRef]
+}
+
+input StringExactFilter {
+    eq: String
+    ge: String
+    gt: String
+    le: String
+    lt: String
+}
+
+input StringFullTextFilter {
+    alloftext: String
+    anyoftext: String
+}
+
+input StringHashFilter {
+    eq: String
+}
+
+input StringRegExpFilter {
+    regexp: String
+}
+
+input StringTermFilter {
+    allofterms: String
+    anyofterms: String
+}
+
+input ThingFilter {
+    and: ThingFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: ThingFilter
+    or: ThingFilter
+}
+
+input ThingOrder {
+    asc: ThingOrderable
+    desc: ThingOrderable
+    then: ThingOrder
+}
+
+input ThingPatch {
+    "    ãå«åã è¯¥é¡¹çå«åã An alias for the item.    "
+    alternateName: String
+    "ãæè¿°ã è¯¥é¡¹çä¸ä¸ªç®åæè¿°ã A description of the item."
+    description: String
+    "    ãæ è¯ç¬¦ã æ è¯ç¬¦ The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.    "
+    identifier: String
+    "    ãåç§°ãname    Text    The name of the item.    "
+    name: String
+}
+
+input ThingRef {
+    "    The id of the thing.    The id: ID! in Thing means that an auto-generated ID by Dgraph will be used to identify things.    "
+    id: ID!
+}
+
+input UpdateConversationInput {
+    filter: ConversationFilter!
+    remove: ConversationPatch
+    set: ConversationPatch
+}
+
+input UpdateDataCatalogInput {
+    filter: DataCatalogFilter!
+    remove: DataCatalogPatch
+    set: DataCatalogPatch
+}
+
+input UpdateEmployeeRoleInput {
+    filter: EmployeeRoleFilter!
+    remove: EmployeeRolePatch
+    set: EmployeeRolePatch
+}
+
+input UpdateEntryPointInput {
+    filter: EntryPointFilter!
+    remove: EntryPointPatch
+    set: EntryPointPatch
+}
+
+input UpdateFollowerRoleInput {
+    filter: FollowerRoleFilter!
+    remove: FollowerRolePatch
+    set: FollowerRolePatch
+}
+
+input UpdateGeneralOrganizationInput {
+    filter: GeneralOrganizationFilter!
+    remove: GeneralOrganizationPatch
+    set: GeneralOrganizationPatch
+}
+
+input UpdateMemberRoleInput {
+    filter: MemberRoleFilter!
+    remove: MemberRolePatch
+    set: MemberRolePatch
+}
+
+input UpdateMessageInput {
+    filter: MessageFilter!
+    remove: MessagePatch
+    set: MessagePatch
+}
+
+input UpdateOfferInput {
+    filter: OfferFilter!
+    remove: OfferPatch
+    set: OfferPatch
+}
+
+input UpdateOwnershipInput {
+    filter: OwnershipFilter!
+    remove: OwnershipPatch
+    set: OwnershipPatch
+}
+
+input UpdatePartyRoleNameInput {
+    filter: PartyRoleNameFilter!
+    remove: PartyRoleNamePatch
+    set: PartyRoleNamePatch
+}
+
+input UpdatePersonInput {
+    filter: PersonFilter!
+    remove: PersonPatch
+    set: PersonPatch
+}
+
+input UpdateProductInput {
+    filter: ProductFilter!
+    remove: ProductPatch
+    set: ProductPatch
+}
+
+input UpdateProductModelInput {
+    filter: ProductModelFilter!
+    remove: ProductModelPatch
+    set: ProductModelPatch
+}
+
+input UpdateReadNoteInput {
+    filter: ReadNoteFilter!
+    remove: ReadNotePatch
+    set: ReadNotePatch
+}
+
+input UpdateReviewInput {
+    filter: ReviewFilter!
+    remove: ReviewPatch
+    set: ReviewPatch
+}
+
+input UpdateSoftwareApplicationInput {
+    filter: SoftwareApplicationFilter!
+    remove: SoftwareApplicationPatch
+    set: SoftwareApplicationPatch
+}
+
+input UpdateStoreInput {
+    filter: StoreFilter!
+    remove: StorePatch
+    set: StorePatch
+}
+
+input UpdateThingInput {
+    filter: ThingFilter!
+    remove: ThingPatch
+    set: ThingPatch
+}
+
+input UpdateUserInput {
+    filter: UserFilter!
+    remove: UserPatch
+    set: UserPatch
+}
+
+input UpdateWebhookInput {
+    filter: WebhookFilter!
+    remove: WebhookPatch
+    set: WebhookPatch
+}
+
+input UserFilter {
+    and: UserFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: UserFilter
+    or: UserFilter
+    username: StringHashFilter
+}
+
+input UserOrder {
+    asc: UserOrderable
+    desc: UserOrderable
+    then: UserOrder
+}
+
+input UserPatch {
+    alternateName: String
+    "    The user's public profile bio.    "
+    bio: String
+    description: String
+    identifier: String
+    isUserOf: PersonRef
+    name: String
+    "    The password used to login.    "
+    password: String
+}
+
+input UserRef {
+    alternateName: String
+    "    The user's public profile bio.    "
+    bio: String
+    description: String
+    id: ID
+    identifier: String
+    isUserOf: PersonRef
+    name: String
+    "    The password used to login.    "
+    password: String
+    "    The username used to login.    We also want to make sure that usernames are unique. The @id directive takes care of that - it also automatically adds hash searching, so we can drop the @search(by: [hash]), though having it also causes no harm.    "
+    username: String
+}
+
+input WebhookFilter {
+    and: WebhookFilter
+    id: [ID!]
+    name: StringHashFilter
+    not: WebhookFilter
+    or: WebhookFilter
+}
+
+input WebhookOrder {
+    asc: WebhookOrderable
+    desc: WebhookOrderable
+    then: WebhookOrder
+}
+
+input WebhookPatch {
+    alternateName: String
+    client: SoftwareApplicationRef
+    "    åè°æäº¤çæ°æ®åå®¹ç±»åå¦application/json    "
+    contentType: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated\tDateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    identifier: String
+    name: String
+    "    åè°url    "
+    payloadUrl: String
+    "    ä½¿ç¨payloadUrlçå®å¨token    "
+    secret: String
+}
+
+input WebhookRef {
+    alternateName: String
+    client: SoftwareApplicationRef
+    "    åè°æäº¤çæ°æ®åå®¹ç±»åå¦application/json    "
+    contentType: String
+    creator: UserRef
+    "    ãåå»ºæ¥æã åä½åºCreativeWorkçæ¥æã The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated\tDateTime or Date or DataFeedItem or CreativeWork    "
+    dateCreated: DateTime
+    description: String
+    id: ID
+    identifier: String
+    name: String
+    "    åè°url    "
+    payloadUrl: String
+    "    ä½¿ç¨payloadUrlçå®å¨token    "
+    secret: String
+}
+
+
+scalar DateTime

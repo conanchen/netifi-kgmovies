@@ -1,6 +1,6 @@
 {
   "name": "KGIS Dgraph Schema",
-  "schemaPath": "kgis-dgraph-schema.graphql",
+  "schemaPath": "document/kgis-generated-dgschema.graphql",
   "excludes": [
     "bin/**",
     "build/**"
@@ -8,7 +8,7 @@
   "extensions": {
     "endpoints": {
       "KGIS Dgraph-GraphQL Endpoint": {
-        "url": "http://localhost:9988/graphql",
+        "url": "http://localhost:8080/graphql",
         "headers": {
           "Authorization": "Bearer ${env:KGIS-DGRAPH-ACCESS-TOKEN}",
           "user-agent": "JS GraphQL"
