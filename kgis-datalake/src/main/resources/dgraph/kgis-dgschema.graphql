@@ -115,6 +115,11 @@ type PartyRoleName implements Thing{
     group: String
 
     """
+    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserReviews    
+    """
+    creator: User
+
+    """
     【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
     """
     dateCreated: DateTime
@@ -147,7 +152,7 @@ type DataCatalog implements Thing{
     subDataCatalogs: [DataCatalog]
 
     """
-    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    
+    【作者】 该 CreativeWork 的创作者/作者。
     """
     creator: User
 
@@ -173,7 +178,7 @@ type Conversation implements Thing{
     accountablePerson: User
 
     """
-    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    
+    【作者】 该 CreativeWork 的创作者/作者。
     """
     creator: User
 
@@ -239,19 +244,28 @@ type Message implements Thing & Readable{
     recipient: [User]
 
     """
-    【评论】 评论，一般是用户对CreativeWork的评论。 Comments, typically from users.
+    【评论】 评论，一般是用户对CreativeWork的评论。 
     """
-    hasComments: [Comment]
+    hasReviews: [Review]
 }
 
 """
 【评论】对项目的评论 - 例如对博客文章的评论。 该评论的内容是通过text属性表示的，其主题通过about，与所有CreativeWorks共享的属性来表达 A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the text property, and its topic via about, properties shared with all CreativeWorks.
 """
-type Comment implements Thing{
+type Review implements Thing{
+    """itemReviewed	Thing 	The item that is being reviewed/rated."""
+    itemReviewed:	Thing
+
+    """reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed."""
+    reviewAspect: String
+
+    """reviewBody	Text 	The actual body of the review."""
+    reviewBody: String
+
     """
-    【上级条目】 一个问题、答案或条目的父条目 The parent of a question, answer or item in general.
+    ratingValue	评分 The rating for the content.
     """
-    isCommentOf: Thing
+    ratingValue: Int
 
     """
     【作者】 此内容或评分的作者。
@@ -580,7 +594,7 @@ type Webhook implements Thing{
     secret: String
 
     """
-    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator	Organization or Person or CreativeWork or UserComments	
+    【作者】 该 CreativeWork 的创作者/作者。
     """
     creator: User
 

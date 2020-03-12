@@ -21,9 +21,6 @@ type Brand implements Thing & Node{
     """logo	ImageObject  or URL 	An associated logo."""
     logo: String
 
-    """review	Review 	A review of the item. Supersedes reviews."""
-    review: Review
-    
     """slogan	Text 	A slogan or motto associated with the item."""
     slogan: String
 
@@ -67,7 +64,10 @@ type BrandsEdge {
   cursor: String!
 }
 
-"""Review A review of an item - for example, of a restaurant, movie, or store."""
+"""
+评论及评分
+Review A review of an item - for example, of a restaurant, movie, or store.
+"""
 type Review implements Node{
     """itemReviewed	Thing 	The item that is being reviewed/rated."""
     itemReviewed:	Thing
@@ -78,36 +78,13 @@ type Review implements Node{
     """reviewBody	Text 	The actual body of the review."""
     reviewBody: String
 
-    """reviewRating	Rating 	The rating given in this review. Note that reviews can themselves be rated. The reviewRating applies to rating given by the review. The aggregateRating property applies to the review itself, as a creative work."""
-    reviewRating: Rating
-
-    """The id of the object."""
-    id: ID!
-}
-
-"""Rating A rating is an evaluation on a numeric scale, such as 1 to 5 stars."""
-type Rating implements Node{
-    """author	Organization  or Person 	The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably."""
-    author: Party    
-
-    """bestRating	Number  or Text 	The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed."""
-    bestRating: Int
-
-    """ratingExplanation	Text 	A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using ClaimReview."""
-    ratingExplanation: String
-
     """ratingValue	Number  or Text 	The rating for the content."""
     ratingValue: Int
 
-    """reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed."""
-    reviewAspect: String
-
-    """worstRating	Number  or Text 	The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed."""
-    worstRating: Int
-
     """The id of the object."""
     id: ID!
 }
+
 
 """AggregateRating The average rating based on multiple ratings or reviews."""
 type AggregateRating implements Node{
@@ -120,6 +97,20 @@ type AggregateRating implements Node{
 
     """reviewCount	Integer 	The count of total number of reviews."""
     reviewCount:	Int
+
+    """bestRating	Number  or Text 	The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed."""
+    bestRating: Int
+
+    """平均分"""
+    averageRating: Int
+
+    """worstRating	Number  or Text 	The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed."""
+    worstRating: Int
+
+    """ratingExplanation	Text 	A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using ClaimReview."""
+    ratingExplanation: String
+
+    reviews: [Review]
 
     """The id of the object."""
     id: ID!
