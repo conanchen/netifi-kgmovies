@@ -4,7 +4,7 @@ import io.github.conanchen.message.graphql.model.*;
 
 public interface Mutation {
 
-    ConversationPayloadGQO conversationCreate(ConversationCreateInputGQO input) throws Exception;
+    AddConversationPayloadGQO conversationAdd(AddConversationInputGQO input) throws Exception;
 
     ConversationPayloadGQO conversationJoinRequest(ConversationJoinRequestInputGQO input) throws Exception;
 
@@ -22,10 +22,10 @@ public interface Mutation {
 
     MessagePayloadGQO messgeWithdraw(String messageId) throws Exception;
 
-    MessagePayloadGQO messgeComment(String messageId, MessageCommentInputGQO input) throws Exception;
+    MessagePayloadGQO messgeReview(String messageId, MessageReviewInputGQO input) throws Exception;
 
-    MessagePayloadGQO messgeCommentUpdate(String messageId, MessageCommentInputGQO input) throws Exception;
+    MessagePayloadGQO messgeReviewUpdate(String messageId, MessageReviewInputGQO input) throws Exception;
 
-    MessagePayloadGQO messgeCommentDelete(String messageId, MessageCommentInputGQO input) throws Exception;
+    MessagePayloadGQO messgeReviewDelete(String messageId, MessageReviewInputGQO input) throws Exception;
 
 }

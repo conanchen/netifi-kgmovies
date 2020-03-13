@@ -1,15 +1,18 @@
 package io.github.conanchen.message.graphql.model;
 
-public class ConversationCreateInputGQO {
+import java.util.*;
+import io.github.conanchen.message.graphql.api.*;
+
+public class MessageReviewInputGQO {
 
     private String clientMutationId;
     @javax.validation.constraints.NotNull
     private String actionId;
 
-    public ConversationCreateInputGQO() {
+    public MessageReviewInputGQO() {
     }
 
-    public ConversationCreateInputGQO(String clientMutationId, String actionId) {
+    public MessageReviewInputGQO(String clientMutationId, String actionId) {
         this.clientMutationId = clientMutationId;
         this.actionId = actionId;
     }

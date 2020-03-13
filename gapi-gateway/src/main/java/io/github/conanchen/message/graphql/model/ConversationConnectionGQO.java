@@ -1,25 +1,25 @@
 package io.github.conanchen.message.graphql.model;
 
+import java.util.*;
+import io.github.conanchen.message.graphql.api.*;
 import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
 
-import java.util.Collection;
-
-public class ConversationsConnectionGQO {
+public class ConversationConnectionGQO {
 
     @javax.validation.constraints.NotNull
     private PageInfoGQO pageInfo;
-    private Collection<ConversationsEdgeGQO> edges;
+    private Collection<ConversationEdgeGQO> edges;
     private Integer totalCount;
-    private Collection<ConversationGQO> items;
+    private Collection<ConversationGQO> nodes;
 
-    public ConversationsConnectionGQO() {
+    public ConversationConnectionGQO() {
     }
 
-    public ConversationsConnectionGQO(PageInfoGQO pageInfo, Collection<ConversationsEdgeGQO> edges, Integer totalCount, Collection<ConversationGQO> items) {
+    public ConversationConnectionGQO(PageInfoGQO pageInfo, Collection<ConversationEdgeGQO> edges, Integer totalCount, Collection<ConversationGQO> nodes) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
-        this.items = items;
+        this.nodes = nodes;
     }
 
     public PageInfoGQO getPageInfo() {
@@ -29,10 +29,10 @@ public class ConversationsConnectionGQO {
         this.pageInfo = pageInfo;
     }
 
-    public Collection<ConversationsEdgeGQO> getEdges() {
+    public Collection<ConversationEdgeGQO> getEdges() {
         return edges;
     }
-    public void setEdges(Collection<ConversationsEdgeGQO> edges) {
+    public void setEdges(Collection<ConversationEdgeGQO> edges) {
         this.edges = edges;
     }
 
@@ -43,11 +43,11 @@ public class ConversationsConnectionGQO {
         this.totalCount = totalCount;
     }
 
-    public Collection<ConversationGQO> getItems() {
-        return items;
+    public Collection<ConversationGQO> getNodes() {
+        return nodes;
     }
-    public void setItems(Collection<ConversationGQO> items) {
-        this.items = items;
+    public void setNodes(Collection<ConversationGQO> nodes) {
+        this.nodes = nodes;
     }
 
 }

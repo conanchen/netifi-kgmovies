@@ -1,5 +1,6 @@
 package io.github.conanchen.intangible.graphql.model;
 
+import io.github.conanchen.message.graphql.model.AggregateReviewGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 

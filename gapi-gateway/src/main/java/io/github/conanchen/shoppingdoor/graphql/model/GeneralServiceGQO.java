@@ -1,13 +1,12 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import java.util.Collection;
-
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.intangible.graphql.model.AggregateReviewGQO;
-import io.github.conanchen.intangible.graphql.model.ReviewGQO;
+import io.github.conanchen.message.graphql.model.AggregateReviewGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
+
+import java.util.Collection;
 
 public class GeneralServiceGQO implements ThingGQO, ShoppingableGQO, ServiceGQO, NodeGQO {
 
@@ -24,14 +23,13 @@ public class GeneralServiceGQO implements ThingGQO, ShoppingableGQO, ServiceGQO,
     private Collection<ItemCategoryGQO> itemCategory;
     private AggregateOfferGQO offers;
     private Collection<DemandGQO> demands;
-    private Collection<ReviewGQO> review;
     @javax.validation.constraints.NotNull
     private String id;
 
     public GeneralServiceGQO() {
     }
 
-    public GeneralServiceGQO(Boolean isShoppingable, String name, String alternateName, String description, AggregateReviewGQO aggregateReview, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public GeneralServiceGQO(Boolean isShoppingable, String name, String alternateName, String description, AggregateReviewGQO aggregateReview, PlaceGQO areaServed, OpeningHoursSpecificationGQO hoursAvailable, ProductGQO isRelatedTo, ServiceGQO isSimilarTo, Collection<ActionGQO> potentialAction, Collection<ItemCategoryGQO> itemCategory, AggregateOfferGQO offers, Collection<DemandGQO> demands, String id) {
         this.isShoppingable = isShoppingable;
         this.name = name;
         this.alternateName = alternateName;
@@ -45,7 +43,6 @@ public class GeneralServiceGQO implements ThingGQO, ShoppingableGQO, ServiceGQO,
         this.itemCategory = itemCategory;
         this.offers = offers;
         this.demands = demands;
-        this.review = review;
         this.id = id;
     }
 
@@ -138,13 +135,6 @@ public class GeneralServiceGQO implements ThingGQO, ShoppingableGQO, ServiceGQO,
     }
     public void setDemands(Collection<DemandGQO> demands) {
         this.demands = demands;
-    }
-
-    public Collection<ReviewGQO> getReview() {
-        return review;
-    }
-    public void setReview(Collection<ReviewGQO> review) {
-        this.review = review;
     }
 
     public String getId() {

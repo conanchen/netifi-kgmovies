@@ -1,11 +1,11 @@
-package io.github.conanchen.intangible.graphql.model;
-
-import java.util.Collection;
+package io.github.conanchen.message.graphql.model;
 
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
 
-public class AggregateReviewGQO implements NodeGQO{
+import java.util.Collection;
+
+public class AggregateReviewGQO implements NodeGQO {
 
     private ThingGQO itemReviewed;
     private Integer ratingCount;

@@ -1,13 +1,15 @@
 package io.github.conanchen.taskproject.graphql.model;
 
-import io.github.conanchen.message.graphql.model.CommentGQO;
+import java.util.*;
+
 import io.github.conanchen.organization.graphql.model.PartyGQO;
+import io.github.conanchen.message.graphql.model.ReviewGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
-public class TaskAssignmentGQO implements NodeGQO{
+public class TaskAssignmentGQO implements NodeGQO {
 
     private TaskGQO about;
-    private CommentGQO comment;
+    private ReviewGQO comment;
     private PartyGQO assignee;
     private PartyGQO assigner;
     @javax.validation.constraints.NotNull
@@ -22,7 +24,7 @@ public class TaskAssignmentGQO implements NodeGQO{
     public TaskAssignmentGQO() {
     }
 
-    public TaskAssignmentGQO(TaskGQO about, CommentGQO comment, PartyGQO assignee, PartyGQO assigner, java.util.Date readAt, java.util.Date acceptedAt, java.util.Date assignedAt, String id) {
+    public TaskAssignmentGQO(TaskGQO about, ReviewGQO comment, PartyGQO assignee, PartyGQO assigner, java.util.Date readAt, java.util.Date acceptedAt, java.util.Date assignedAt, String id) {
         this.about = about;
         this.comment = comment;
         this.assignee = assignee;
@@ -40,10 +42,10 @@ public class TaskAssignmentGQO implements NodeGQO{
         this.about = about;
     }
 
-    public CommentGQO getComment() {
+    public ReviewGQO getComment() {
         return comment;
     }
-    public void setComment(CommentGQO comment) {
+    public void setComment(ReviewGQO comment) {
         this.comment = comment;
     }
 

@@ -1,11 +1,11 @@
 
 """A connection to a list of items."""
-type WebhookConnection {
+type ConversationConnection {
     """Information to aid in pagination."""
     pageInfo: PageInfo!
 
     """A list of edges."""
-    edges: [WebhookEdge]
+    edges: [ConversationEdge]
 
     """
     A count of the total number of objects in this connection, ignoring pagination.
@@ -23,15 +23,13 @@ type WebhookConnection {
     the edge to enable efficient pagination, this shortcut cannot be used, and the
     full "{ edges { node } }" version should be used instead.
     """
-    nodes: [Webhook]
+    nodes: [Conversation]
 }
 
-
-
 """An edge in a connection."""
-type WebhookEdge {
+type ConversationEdge {
     """The item at the end of the edge"""
-    node: Webhook
+    node: Conversation
 
     """A cursor for use in pagination"""
     cursor: String!

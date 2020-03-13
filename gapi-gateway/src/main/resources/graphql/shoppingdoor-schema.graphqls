@@ -59,8 +59,9 @@ interface Product {
     offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
+
 
 }
 
@@ -110,8 +111,8 @@ type ProductModel implements Thing & Shoppingable & Node{
     offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
 
     """The id of the object."""
     id: ID!
@@ -157,8 +158,8 @@ type GeneralProduct implements Thing & Product & Shoppingable & ConversationalTh
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
 
     """关于本物的所有会话"""
     availableConversations: [Conversation]
@@ -252,8 +253,9 @@ interface Service {
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
+
 }
 
 type GeneralService implements Thing & Shoppingable & Service & Node{
@@ -302,8 +304,8 @@ type GeneralService implements Thing & Shoppingable & Service & Node{
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
 
     """The id of the object."""
     id: ID!
@@ -356,8 +358,8 @@ type FoodService implements Thing & Shoppingable & Service & Node{
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
 
     """The id of the object."""
     id: ID!
@@ -410,8 +412,8 @@ type HousekeepingService implements Thing & Shoppingable & Service & Node{
     """【需求】 寻求此项目的报价 - 例如，寻求产品的报价，寻求电影DVD的出租价格、门票价格 An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.  offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
 
     """The id of the object."""
     id: ID!
@@ -469,8 +471,8 @@ type GovernmentService implements Thing & Service & Node{
     offers    Offer or Trip or Service or Product or AggregateOffer or MenuItem or CreativeWork or Event    """
     demands: [Demand]
 
-    """【事物的评论】 针对某一个事物（人，文章，地点，产品）的评论 A review of the item."""
-    review: [Review]
+    """【评论】 评论，一般是用户对CreativeWork的评论。 Reviews, typically from users."""
+    aggregateReview: AggregateReview
 
     """The id of the object."""
     id: ID!

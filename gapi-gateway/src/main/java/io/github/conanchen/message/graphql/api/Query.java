@@ -4,7 +4,9 @@ import io.github.conanchen.message.graphql.model.*;
 
 public interface Query {
 
-    ConversationsConnectionGQO allConversations(String after, Integer first, String before, Integer last) throws Exception;
+    ConversationConnectionGQO allConversations(String after, Integer first, String before, Integer last) throws Exception;
+
+    ConversationConnectionGQO conversationSearch(ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset) throws Exception;
 
     ConversationGQO conversation(String id, String csID) throws Exception;
 
@@ -12,9 +14,9 @@ public interface Query {
 
     MessageSendActionGQO messageSendAction(String id, String msgID) throws Exception;
 
-    MessageCommentActionGQO messageCommentAction(String id, String msgID) throws Exception;
+    MessageReviewActionGQO messageReviewAction(String id, String msgID) throws Exception;
 
-    ConversationCreateActionGQO conversationCreateAction(String id, String msgID) throws Exception;
+    ConversationAddActionGQO conversationAddAction(String id, String msgID) throws Exception;
 
     ConversationJoinRequestActionGQO conversationJoinRequestAction(String id, String msgID) throws Exception;
 

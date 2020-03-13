@@ -10,7 +10,7 @@ public class MessageMutationResolver implements Mutation,GraphQLMutationResolver
 
 
   @Override
-  public ConversationPayloadGQO conversationCreate(ConversationCreateInputGQO input) throws Exception {
+  public AddConversationPayloadGQO conversationAdd(AddConversationInputGQO input) throws Exception {
     return null;
   }
 
@@ -55,17 +55,19 @@ public class MessageMutationResolver implements Mutation,GraphQLMutationResolver
   }
 
   @Override
-  public MessagePayloadGQO messgeComment(String messageId, MessageCommentInputGQO input) throws Exception {
+  public MessagePayloadGQO messgeReview(String messageId, MessageReviewInputGQO input) throws Exception {
     return null;
   }
 
   @Override
-  public MessagePayloadGQO messgeCommentUpdate(String messageId, MessageCommentInputGQO input) throws Exception {
+  public MessagePayloadGQO messgeReviewUpdate(String messageId, MessageReviewInputGQO input) throws Exception {
     return null;
   }
 
   @Override
-  public MessagePayloadGQO messgeCommentDelete(String messageId, MessageCommentInputGQO input) throws Exception {
+  public MessagePayloadGQO messgeReviewDelete(String messageId, MessageReviewInputGQO input) throws Exception {
     return null;
   }
+
+
 }

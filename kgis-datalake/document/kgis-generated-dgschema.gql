@@ -9,30 +9,6 @@ directive @id on FIELD_DEFINITION
 
 directive @hasInverse(field: String!) on FIELD_DEFINITION
 
-input AddCommentInput {
-  identifier: String
-  name: String!
-  alternateName: String
-  description: String
-  parentItem: ThingRef
-  author: UserRef
-
-  """
-  【创建日期】 创作出CreativeWork的日期。
-  """
-  dateCreated: DateTime
-}
-
-type AddCommentPayload {
-  comment(
-    filter: CommentFilter
-    order: CommentOrder
-    first: Int
-    offset: Int
-  ): [Comment]
-  numUids: Int
-}
-
 input AddConversationInput {
   identifier: String
   name: String!
@@ -43,13 +19,13 @@ input AddConversationInput {
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
   includedInDataCatalog: DataCatalogRef
-  hasParts: [MessageRef]
+  hasMessages: [MessageRef]
   webhook: [WebhookRef]
 }
 
@@ -73,8 +49,8 @@ input AddDataCatalogInput {
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
@@ -87,6 +63,32 @@ type AddDataCatalogPayload {
     first: Int
     offset: Int
   ): [DataCatalog]
+  numUids: Int
+}
+
+input AddEmployeeRoleInput {
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+
+  """
+      【员工编号】
+  """
+  number: String
+}
+
+type AddEmployeeRolePayload {
+  employeerole(
+    filter: EmployeeRoleFilter
+    order: EmployeeRoleOrder
+    first: Int
+    offset: Int
+  ): [EmployeeRole]
   numUids: Int
 }
 
@@ -113,32 +115,106 @@ type AddEntryPointPayload {
   numUids: Int
 }
 
-input AddMessageInput {
+input AddFollowerRoleInput {
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
   identifier: String
   name: String!
   alternateName: String
   description: String
-  isPartOf: [ConversationRef]
+
+  """
+  关注设置,如关注最新产品信息
+  """
+  settings: String
+}
+
+type AddFollowerRolePayload {
+  followerrole(
+    filter: FollowerRoleFilter
+    order: FollowerRoleOrder
+    first: Int
+    offset: Int
+  ): [FollowerRole]
+  numUids: Int
+}
+
+input AddGeneralOrganizationInput {
+  owns: [OwnershipRef]
+  hasPartyRoleName: [PartyRoleNameRef]
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  availableConversations: [ConversationRef]
+  defaultConversation: ConversationRef
+}
+
+type AddGeneralOrganizationPayload {
+  generalorganization(
+    filter: GeneralOrganizationFilter
+    order: GeneralOrganizationOrder
+    first: Int
+    offset: Int
+  ): [GeneralOrganization]
+  numUids: Int
+}
+
+input AddMemberRoleInput {
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+
+  """
+      【会员编号】
+  """
+  number: String
+}
+
+type AddMemberRolePayload {
+  memberrole(
+    filter: MemberRoleFilter
+    order: MemberRoleOrder
+    first: Int
+    offset: Int
+  ): [MemberRole]
+  numUids: Int
+}
+
+input AddMessageInput {
+  hasReadNotes: [ReadNoteRef]
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  isMessageOf: [ConversationRef]
   sender: UserRef!
 
   """
-  【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
+      【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
   """
   dateSent: DateTime
   toRecipient: UserRef
 
   """
-  【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
+      【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
   been read by the recipient if a single recipient exists.
   """
   dateRead: DateTime
 
   """
-  【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
+      【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
   """
   dateReceived: DateTime
   recipient: [UserRef]
-  comments: [CommentRef]
+  hasReviews: [ReviewRef]
 }
 
 type AddMessagePayload {
@@ -158,9 +234,19 @@ input AddOfferInput {
   description: String
 
   """
-  The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
+      商品价格The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
   """
   price: Int
+
+  """
+      【价格有效开始日期】
+  """
+  dateFrom: DateTime
+
+  """
+      【价格有效结束日期】
+  """
+  dateThrough: DateTime
 }
 
 type AddOfferPayload {
@@ -173,43 +259,22 @@ type AddOfferPayload {
   numUids: Int
 }
 
-input AddOrganizationInput {
-  identifier: String
-  name: String!
-  alternateName: String
-  description: String
-  owns: [OwnershipRef]
-  parentOrganization: [OrganizationRef]
-  subOrganizations: [OrganizationRef]
-  departments: [OrganizationRef]
-}
-
-type AddOrganizationPayload {
-  organization(
-    filter: OrganizationFilter
-    order: OrganizationOrder
-    first: Int
-    offset: Int
-  ): [Organization]
-  numUids: Int
-}
-
 input AddOwnershipInput {
   identifier: String
   name: String!
   alternateName: String
   description: String
-
-  """
-  【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product.
-  """
-  ownedFrom: DateTime
-
-  """
-  【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product.
-  """
-  ownedThrough: DateTime
   owned: ThingRef
+
+  """
+      【开始日期】 某事的开始日期和时间
+  """
+  dateFrom: DateTime
+
+  """
+      【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+  """
+  dateThrough: DateTime
 }
 
 type AddOwnershipPayload {
@@ -219,6 +284,36 @@ type AddOwnershipPayload {
     first: Int
     offset: Int
   ): [Ownership]
+  numUids: Int
+}
+
+input AddPartyRoleNameInput {
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+
+  """
+      角色分组,如员工角色组、会员角色组
+  """
+  group: String
+  creator: UserRef
+
+  """
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
+  DataFeedItem or CreativeWork
+  """
+  dateCreated: DateTime
+}
+
+type AddPartyRoleNamePayload {
+  partyrolename(
+    filter: PartyRoleNameFilter
+    order: PartyRoleNameOrder
+    first: Int
+    offset: Int
+  ): [PartyRoleName]
   numUids: Int
 }
 
@@ -264,7 +359,6 @@ input AddProductInput {
   alternateName: String
   description: String
   isShoppingable: Boolean
-  itemOffers: [OfferRef]
   hasModels: [ProductModelRef]
 }
 
@@ -274,7 +368,6 @@ input AddProductModelInput {
   alternateName: String
   description: String
   isShoppingable: Boolean
-  itemOffers: [OfferRef]
   isModelOf: ProductRef
 }
 
@@ -298,6 +391,68 @@ type AddProductPayload {
   numUids: Int
 }
 
+input AddReadNoteInput {
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  reader: UserRef
+
+  """
+      【阅读日期】
+  """
+  dateRead: DateTime
+}
+
+type AddReadNotePayload {
+  readnote(
+    filter: ReadNoteFilter
+    order: ReadNoteOrder
+    first: Int
+    offset: Int
+  ): [ReadNote]
+  numUids: Int
+}
+
+input AddReviewInput {
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  itemReviewed: ThingRef
+
+  """
+  reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed.
+  """
+  reviewAspect: String
+
+  """
+  reviewBody	Text 	The actual body of the review.
+  """
+  reviewBody: String
+
+  """
+      ratingValue	评分 The rating for the content.
+  """
+  ratingValue: Int
+  author: UserRef
+
+  """
+      【创建日期】 创作出CreativeWork的日期。
+  """
+  dateCreated: DateTime
+}
+
+type AddReviewPayload {
+  review(
+    filter: ReviewFilter
+    order: ReviewOrder
+    first: Int
+    offset: Int
+  ): [Review]
+  numUids: Int
+}
+
 input AddSoftwareApplicationInput {
   identifier: String
   name: String!
@@ -305,35 +460,38 @@ input AddSoftwareApplicationInput {
   description: String
 
   """
-  applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
+      applicationSuite	Text 	The name of the application suite to which the
+  application belongs (e.g. Excel belongs to Office).
   """
   applicationSuite: String
 
   """
-  availableOnDevice	Text 	Device required to run the application. Used in cases
-  where a specific make/model is required to run the application. Supersedes
-  device.    countriesNotSupported	Text 	Countries for which the application is
-  not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    countriesSupported	Text 	Countries for which the application is
-  supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    downloadUrl	URL 	If the file can be downloaded, URL to download the binary.
+      availableOnDevice	Text 	Device required to run the application. Used in
+  cases where a specific make/model is required to run the application.
+  Supersedes device.    countriesNotSupported	Text 	Countries for which the
+  application is not supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    countriesSupported	Text 	Countries for which the
+  application is supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    downloadUrl	URL 	If the file can be downloaded, URL
+  to download the binary.
   """
   downloadUrl: String
 
   """
-  featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications).
+      featureList	Text  or URL 	Features or modules provided by this application
+  (and possibly required by other applications).
   """
   featureList: String
 
   """
-  fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence
-  of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at which
-  the app may be installed, if different from the URL of the item.
+      fileSize	Text 	Size of the application / package (e.g. 18MB). In the
+  absence of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at
+  which the app may be installed, if different from the URL of the item.
   """
   installUrl: String
 
   """
-  memoryRequirements	Text  or URL 	Minimum memory requirements.
+      memoryRequirements	Text  or URL 	Minimum memory requirements.
   operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6,
   Android 1.6).    permissions	Text 	Permission(s) required to run the app (for
   example, a mobile app may require full internet access or may run only on
@@ -344,12 +502,12 @@ input AddSoftwareApplicationInput {
   releaseNotes: String
 
   """
-  screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
+      screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
   """
   screenshot: String
 
   """
-  softwareAddOn	SoftwareApplication 	Additional content for a software
+      softwareAddOn	SoftwareApplication 	Additional content for a software
   application.    softwareHelp	CreativeWork 	Software application help.
   softwareRequirements	Text  or URL 	Component dependency requirements for
   application. This includes runtime environments and shared libraries that are
@@ -373,18 +531,23 @@ type AddSoftwareApplicationPayload {
 }
 
 input AddStoreInput {
+  owns: [OwnershipRef]
+  hasPartyRoleName: [PartyRoleNameRef]
   identifier: String
   name: String!
   alternateName: String
   description: String
+  employees: [EmployeeRoleRef]
+  followers: [FollowerRoleRef]
+  members: [MemberRoleRef]
 
   """
-  【创建日期】
+      【创建日期】
   """
   dateCreated: DateTime
 
   """
-  【更新日期】
+      【更新日期】
   """
   dateModified: DateTime
   creator: UserRef
@@ -438,25 +601,25 @@ input AddWebhookInput {
   description: String
 
   """
-  url
+      回调url
   """
   payloadUrl: String
 
   """
-  如application/json
+      回调提交的数据内容类型如application/json
   """
   contentType: String
 
   """
-  使用payloadUrl的安全token
+      使用payloadUrl的安全token
   """
   secret: String
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem
-  or CreativeWork
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated	DateTime or Date or
+  DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
   client: SoftwareApplicationRef
@@ -473,87 +636,6 @@ type AddWebhookPayload {
 }
 
 """
-CommentCanonical URL: http://cnschema.org/CommentThing > CreativeWork >
-Comment【评论】对项目的评论 - 例如对博客文章的评论。
-该评论的内容是通过text属性表示的，其主题通过about，与所有CreativeWorks共享的属性来表达 A comment on an item -
-for example, a comment on a blog post. The comment's content is expressed via
-the text property, and its topic via about, properties shared with all CreativeWorks.
-"""
-type Comment implements Thing {
-  identifier: String
-  name: String!
-  alternateName: String
-  description: String
-  id: ID!
-
-  """
-  【上级条目】 一个问题、答案或条目的父条目 The parent of a question, answer or item in general.
-  """
-  parentItem(filter: ThingFilter): Thing
-
-  """
-  【作者】 此内容或评分的作者。
-  """
-  author(filter: UserFilter): User
-
-  """
-  【创建日期】 创作出CreativeWork的日期。
-  """
-  dateCreated: DateTime
-}
-
-input CommentFilter {
-  name: StringHashFilter
-  id: [ID!]
-  and: CommentFilter
-  or: CommentFilter
-  not: CommentFilter
-}
-
-input CommentOrder {
-  asc: CommentOrderable
-  desc: CommentOrderable
-  then: CommentOrder
-}
-
-enum CommentOrderable {
-  identifier
-  name
-  alternateName
-  description
-  dateCreated
-}
-
-input CommentPatch {
-  identifier: String
-  name: String
-  alternateName: String
-  description: String
-  parentItem: ThingRef
-  author: UserRef
-
-  """
-  【创建日期】 创作出CreativeWork的日期。
-  """
-  dateCreated: DateTime
-}
-
-input CommentRef {
-  id: ID
-  identifier: String
-  name: String
-  alternateName: String
-  description: String
-  parentItem: ThingRef
-  author: UserRef
-
-  """
-  【创建日期】 创作出CreativeWork的日期。
-  """
-  dateCreated: DateTime
-}
-
-"""
 【对话】组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。 One or more
 messages between organizations or people on a particular topic. Individual
 messages can be linked to the conversation with isPartOf or hasPart properties.
@@ -566,38 +648,36 @@ type Conversation implements Thing {
   id: ID!
 
   """
-  【关于】 事物的关于信息 The subject matter of the content.
+      【关于】 事物的关于信息 The subject matter of the content.
   """
   about(filter: ThingFilter): Thing
 
   """
-  【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the CreativeWork.
+      【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the CreativeWork.
   """
   accountablePerson(filter: UserFilter): User
 
   """
-  【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of
-  this CreativeWork. This is the same as the Author property for
-  CreativeWork.creator    Organization or Person or CreativeWork or UserComments
+      【作者】 该 CreativeWork 的创作者/作者。
   """
   creator(filter: UserFilter): User
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
 
   """
-  【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset.
+      【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset.
   """
   includedInDataCatalog(filter: DataCatalogFilter): DataCatalog
 
   """
-  参照 hasPart【作品组件】 表示某个作品是该作品的一部分
+      参照 hasPart【作品组件】 表示某个作品是该作品的一部分
   """
-  hasParts(
+  hasMessages(
     filter: MessageFilter
     order: MessageOrder
     first: Int
@@ -605,7 +685,7 @@ type Conversation implements Thing {
   ): [Message]
 
   """
-  本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息
+      本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息
   """
   webhook(
     filter: WebhookFilter
@@ -647,13 +727,13 @@ input ConversationPatch {
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
   includedInDataCatalog: DataCatalogRef
-  hasParts: [MessageRef]
+  hasMessages: [MessageRef]
   webhook: [WebhookRef]
 }
 
@@ -668,13 +748,13 @@ input ConversationRef {
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
   includedInDataCatalog: DataCatalogRef
-  hasParts: [MessageRef]
+  hasMessages: [MessageRef]
   webhook: [WebhookRef]
 }
 
@@ -689,12 +769,12 @@ type DataCatalog implements Thing {
   id: ID!
 
   """
-  【所在父数据集目录】所在的父数据集目录 A data catalog which contains this dataset.
+      【所在父数据集目录】所在的父数据集目录 A data catalog which contains this dataset.
   """
   parentDataCatalog(filter: DataCatalogFilter): DataCatalog
 
   """
-  【包含子数据集目录】包含子的数据集目录
+      【包含子数据集目录】包含子的数据集目录
   """
   subDataCatalogs(
     filter: DataCatalogFilter
@@ -704,15 +784,13 @@ type DataCatalog implements Thing {
   ): [DataCatalog]
 
   """
-  【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of
-  this CreativeWork. This is the same as the Author property for
-  CreativeWork.creator    Organization or Person or CreativeWork or UserComments
+      【作者】 该 CreativeWork 的创作者/作者。
   """
   creator(filter: UserFilter): User
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
@@ -750,8 +828,8 @@ input DataCatalogPatch {
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
@@ -768,8 +846,8 @@ input DataCatalogRef {
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated    DateTime or Date or
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
   DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
@@ -785,11 +863,6 @@ input DateTimeFilter {
   gt: DateTime
 }
 
-type DeleteCommentPayload {
-  msg: String
-  numUids: Int
-}
-
 type DeleteConversationPayload {
   msg: String
   numUids: Int
@@ -800,7 +873,27 @@ type DeleteDataCatalogPayload {
   numUids: Int
 }
 
+type DeleteEmployeeRolePayload {
+  msg: String
+  numUids: Int
+}
+
 type DeleteEntryPointPayload {
+  msg: String
+  numUids: Int
+}
+
+type DeleteFollowerRolePayload {
+  msg: String
+  numUids: Int
+}
+
+type DeleteGeneralOrganizationPayload {
+  msg: String
+  numUids: Int
+}
+
+type DeleteMemberRolePayload {
   msg: String
   numUids: Int
 }
@@ -815,12 +908,12 @@ type DeleteOfferPayload {
   numUids: Int
 }
 
-type DeleteOrganizationPayload {
+type DeleteOwnershipPayload {
   msg: String
   numUids: Int
 }
 
-type DeleteOwnershipPayload {
+type DeletePartyRoleNamePayload {
   msg: String
   numUids: Int
 }
@@ -836,6 +929,16 @@ type DeleteProductModelPayload {
 }
 
 type DeleteProductPayload {
+  msg: String
+  numUids: Int
+}
+
+type DeleteReadNotePayload {
+  msg: String
+  numUids: Int
+}
+
+type DeleteReviewPayload {
   msg: String
   numUids: Int
 }
@@ -879,6 +982,83 @@ enum DgraphIndex {
   month
   day
   hour
+}
+
+"""
+[【雇员角色】OrganizationRole的子类，描述雇员关系,有时间限制](http://cnschema.org/EmployeeRole)
+"""
+type EmployeeRole implements Thing & PartyRole {
+  person(filter: PersonFilter): Person
+  roleName(filter: PartyRoleNameFilter): PartyRoleName
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  id: ID!
+
+  """
+      【员工编号】
+  """
+  number: String
+}
+
+input EmployeeRoleFilter {
+  name: StringHashFilter
+  id: [ID!]
+  and: EmployeeRoleFilter
+  or: EmployeeRoleFilter
+  not: EmployeeRoleFilter
+}
+
+input EmployeeRoleOrder {
+  asc: EmployeeRoleOrderable
+  desc: EmployeeRoleOrderable
+  then: EmployeeRoleOrder
+}
+
+enum EmployeeRoleOrderable {
+  dateFrom
+  dateThrough
+  identifier
+  name
+  alternateName
+  description
+  number
+}
+
+input EmployeeRolePatch {
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+      【员工编号】
+  """
+  number: String
+}
+
+input EmployeeRoleRef {
+  id: ID
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+      【员工编号】
+  """
+  number: String
 }
 
 """
@@ -955,6 +1135,169 @@ input FloatFilter {
   gt: Float
 }
 
+"""
+[【社交关注角色】FollowerRole)
+"""
+type FollowerRole implements Thing & PartyRole {
+  person(filter: PersonFilter): Person
+  roleName(filter: PartyRoleNameFilter): PartyRoleName
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  id: ID!
+
+  """
+  关注设置,如关注最新产品信息
+  """
+  settings: String
+}
+
+input FollowerRoleFilter {
+  name: StringHashFilter
+  id: [ID!]
+  and: FollowerRoleFilter
+  or: FollowerRoleFilter
+  not: FollowerRoleFilter
+}
+
+input FollowerRoleOrder {
+  asc: FollowerRoleOrderable
+  desc: FollowerRoleOrderable
+  then: FollowerRoleOrder
+}
+
+enum FollowerRoleOrderable {
+  dateFrom
+  dateThrough
+  identifier
+  name
+  alternateName
+  description
+  settings
+}
+
+input FollowerRolePatch {
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+  关注设置,如关注最新产品信息
+  """
+  settings: String
+}
+
+input FollowerRoleRef {
+  id: ID
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+  关注设置,如关注最新产品信息
+  """
+  settings: String
+}
+
+"""
+【一般机构】一个组织，例如学校、非政府组织、公司、俱乐部等 An organization such as a school, NGO,
+corporation, club, etc.也用于临时几个人组成的聊天小组，房间http://cnschema.org/Organization
+"""
+type GeneralOrganization implements Thing & Organization & Party {
+  owns(
+    filter: OwnershipFilter
+    order: OwnershipOrder
+    first: Int
+    offset: Int
+  ): [Ownership]
+  parentOrganization(first: Int, offset: Int): [Organization]
+  subOrganizations(first: Int, offset: Int): [Organization]
+  departments(first: Int, offset: Int): [Organization]
+  hasPartyRoleName(
+    filter: PartyRoleNameFilter
+    order: PartyRoleNameOrder
+    first: Int
+    offset: Int
+  ): [PartyRoleName]
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  id: ID!
+
+  """
+  可以访问的会话
+  """
+  availableConversations(
+    filter: ConversationFilter
+    order: ConversationOrder
+    first: Int
+    offset: Int
+  ): [Conversation]
+
+  """
+   本组织默认可访问的会话
+  """
+  defaultConversation(filter: ConversationFilter): Conversation
+}
+
+input GeneralOrganizationFilter {
+  name: StringHashFilter
+  id: [ID!]
+  and: GeneralOrganizationFilter
+  or: GeneralOrganizationFilter
+  not: GeneralOrganizationFilter
+}
+
+input GeneralOrganizationOrder {
+  asc: GeneralOrganizationOrderable
+  desc: GeneralOrganizationOrderable
+  then: GeneralOrganizationOrder
+}
+
+enum GeneralOrganizationOrderable {
+  identifier
+  name
+  alternateName
+  description
+}
+
+input GeneralOrganizationPatch {
+  owns: [OwnershipRef]
+  hasPartyRoleName: [PartyRoleNameRef]
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+  availableConversations: [ConversationRef]
+  defaultConversation: ConversationRef
+}
+
+input GeneralOrganizationRef {
+  id: ID
+  owns: [OwnershipRef]
+  hasPartyRoleName: [PartyRoleNameRef]
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+  availableConversations: [ConversationRef]
+  defaultConversation: ConversationRef
+}
+
 input IntFilter {
   eq: Int
   le: Int
@@ -964,9 +1307,13 @@ input IntFilter {
 }
 
 """
-【消息】由发送者发给一个或多个组织或个人的信息 A single message from a sender to one or more organizations or people.
+[【会员角色】OrganizationRole的子类，描述会员关系,有时间限制](http://cnschema.org/EmployeeRole)
 """
-type Message implements Thing {
+type MemberRole implements Thing & PartyRole {
+  person(filter: PersonFilter): Person
+  roleName(filter: PartyRoleNameFilter): PartyRoleName
+  dateFrom: DateTime
+  dateThrough: DateTime
   identifier: String
   name: String!
   alternateName: String
@@ -974,9 +1321,89 @@ type Message implements Thing {
   id: ID!
 
   """
-  isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.
+      【会员编号】
   """
-  isPartOf(
+  number: String
+}
+
+input MemberRoleFilter {
+  name: StringHashFilter
+  id: [ID!]
+  and: MemberRoleFilter
+  or: MemberRoleFilter
+  not: MemberRoleFilter
+}
+
+input MemberRoleOrder {
+  asc: MemberRoleOrderable
+  desc: MemberRoleOrderable
+  then: MemberRoleOrder
+}
+
+enum MemberRoleOrderable {
+  dateFrom
+  dateThrough
+  identifier
+  name
+  alternateName
+  description
+  number
+}
+
+input MemberRolePatch {
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+      【会员编号】
+  """
+  number: String
+}
+
+input MemberRoleRef {
+  id: ID
+  person: PersonRef
+  roleName: PartyRoleNameRef
+  dateFrom: DateTime
+  dateThrough: DateTime
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+      【会员编号】
+  """
+  number: String
+}
+
+"""
+【消息】由发送者发给一个或多个组织或个人的信息 A single message from a sender to one or more organizations or people.
+"""
+type Message implements Thing & Readable {
+  hasReadNotes(
+    filter: ReadNoteFilter
+    order: ReadNoteOrder
+    first: Int
+    offset: Int
+  ): [ReadNote]
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  id: ID!
+
+  """
+      参照isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or
+  CreativeWork (in some sense), is part of.
+  """
+  isMessageOf(
     filter: ConversationFilter
     order: ConversationOrder
     first: Int
@@ -984,33 +1411,34 @@ type Message implements Thing {
   ): [Conversation]
 
   """
-  【发送者】 参与者的子属性。例如邮件的发送者。 A sub property of participant. The participant who is at the sending end of the action.
+      【发送者】 参与者的子属性。例如邮件的发送者。 A sub property of participant. The participant who is at the sending end of the action.
   """
   sender(filter: UserFilter): User!
 
   """
-  【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
+      【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
   """
   dateSent: DateTime
 
   """
-  【收件人】 消息的直接收件人 A sub property of recipient. The recipient who was directly sent the message.
+      【收件人】 消息的直接收件人 A sub property of recipient. The recipient who was directly sent the message.
   """
   toRecipient(filter: UserFilter): User
 
   """
-  【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
+      【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
   been read by the recipient if a single recipient exists.
   """
   dateRead: DateTime
 
   """
-  【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
+      【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
   """
   dateReceived: DateTime
 
   """
-  【接收者】 参与者的子属性。 在行动接收端的参与者。 A sub property of participant. The participant who is at the receiving end of the action.
+      【接收者】 参与者的子属性。 在行动接收端的参与者。 A sub property of participant. The participant
+  who is at the receiving end of the action.
   """
   recipient(
     filter: UserFilter
@@ -1020,14 +1448,14 @@ type Message implements Thing {
   ): [User]
 
   """
-  【评论】 评论，一般是用户对CreativeWork的评论。 Comments, typically from users.
+      【评论】 评论，一般是用户对CreativeWork的评论。
   """
-  comments(
-    filter: CommentFilter
-    order: CommentOrder
+  hasReviews(
+    filter: ReviewFilter
+    order: ReviewOrder
     first: Int
     offset: Int
-  ): [Comment]
+  ): [Review]
 }
 
 input MessageFilter {
@@ -1055,89 +1483,72 @@ enum MessageOrderable {
 }
 
 input MessagePatch {
+  hasReadNotes: [ReadNoteRef]
   identifier: String
   name: String
   alternateName: String
   description: String
-  isPartOf: [ConversationRef]
+  isMessageOf: [ConversationRef]
   sender: UserRef
 
   """
-  【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
+      【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
   """
   dateSent: DateTime
   toRecipient: UserRef
 
   """
-  【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
+      【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
   been read by the recipient if a single recipient exists.
   """
   dateRead: DateTime
 
   """
-  【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
+      【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
   """
   dateReceived: DateTime
   recipient: [UserRef]
-  comments: [CommentRef]
+  hasReviews: [ReviewRef]
 }
 
 input MessageRef {
   id: ID
+  hasReadNotes: [ReadNoteRef]
   identifier: String
   name: String
   alternateName: String
   description: String
-  isPartOf: [ConversationRef]
+  isMessageOf: [ConversationRef]
   sender: UserRef
 
   """
-  【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
+      【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
   """
   dateSent: DateTime
   toRecipient: UserRef
 
   """
-  【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
+      【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has
   been read by the recipient if a single recipient exists.
   """
   dateRead: DateTime
 
   """
-  【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
+      【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient exists.
   """
   dateReceived: DateTime
   recipient: [UserRef]
-  comments: [CommentRef]
+  hasReviews: [ReviewRef]
 }
 
 type Mutation {
   updateThing(input: UpdateThingInput!): UpdateThingPayload
   deleteThing(filter: ThingFilter!): DeleteThingPayload
-  addProduct(input: [AddProductInput!]!): AddProductPayload
-  updateProduct(input: UpdateProductInput!): UpdateProductPayload
-  deleteProduct(filter: ProductFilter!): DeleteProductPayload
-  addProductModel(input: [AddProductModelInput!]!): AddProductModelPayload
-  updateProductModel(input: UpdateProductModelInput!): UpdateProductModelPayload
-  deleteProductModel(filter: ProductModelFilter!): DeleteProductModelPayload
-  addOffer(input: [AddOfferInput!]!): AddOfferPayload
-  updateOffer(input: UpdateOfferInput!): UpdateOfferPayload
-  deleteOffer(filter: OfferFilter!): DeleteOfferPayload
-  addStore(input: [AddStoreInput!]!): AddStorePayload
-  updateStore(input: UpdateStoreInput!): UpdateStorePayload
-  deleteStore(filter: StoreFilter!): DeleteStorePayload
-  addUser(input: [AddUserInput!]!): AddUserPayload
-  updateUser(input: UpdateUserInput!): UpdateUserPayload
-  deleteUser(filter: UserFilter!): DeleteUserPayload
-  addPerson(input: [AddPersonInput!]!): AddPersonPayload
-  updatePerson(input: UpdatePersonInput!): UpdatePersonPayload
-  deletePerson(filter: PersonFilter!): DeletePersonPayload
-  addOrganization(input: [AddOrganizationInput!]!): AddOrganizationPayload
-  updateOrganization(input: UpdateOrganizationInput!): UpdateOrganizationPayload
-  deleteOrganization(filter: OrganizationFilter!): DeleteOrganizationPayload
-  addOwnership(input: [AddOwnershipInput!]!): AddOwnershipPayload
-  updateOwnership(input: UpdateOwnershipInput!): UpdateOwnershipPayload
-  deleteOwnership(filter: OwnershipFilter!): DeleteOwnershipPayload
+  addPartyRoleName(input: [AddPartyRoleNameInput!]!): AddPartyRoleNamePayload
+  updatePartyRoleName(
+    input: UpdatePartyRoleNameInput!
+  ): UpdatePartyRoleNamePayload
+  deletePartyRoleName(filter: PartyRoleNameFilter!): DeletePartyRoleNamePayload
   addDataCatalog(input: [AddDataCatalogInput!]!): AddDataCatalogPayload
   updateDataCatalog(input: UpdateDataCatalogInput!): UpdateDataCatalogPayload
   deleteDataCatalog(filter: DataCatalogFilter!): DeleteDataCatalogPayload
@@ -1147,9 +1558,51 @@ type Mutation {
   addMessage(input: [AddMessageInput!]!): AddMessagePayload
   updateMessage(input: UpdateMessageInput!): UpdateMessagePayload
   deleteMessage(filter: MessageFilter!): DeleteMessagePayload
-  addComment(input: [AddCommentInput!]!): AddCommentPayload
-  updateComment(input: UpdateCommentInput!): UpdateCommentPayload
-  deleteComment(filter: CommentFilter!): DeleteCommentPayload
+  addReview(input: [AddReviewInput!]!): AddReviewPayload
+  updateReview(input: UpdateReviewInput!): UpdateReviewPayload
+  deleteReview(filter: ReviewFilter!): DeleteReviewPayload
+  addReadNote(input: [AddReadNoteInput!]!): AddReadNotePayload
+  updateReadNote(input: UpdateReadNoteInput!): UpdateReadNotePayload
+  deleteReadNote(filter: ReadNoteFilter!): DeleteReadNotePayload
+  addGeneralOrganization(
+    input: [AddGeneralOrganizationInput!]!
+  ): AddGeneralOrganizationPayload
+  updateGeneralOrganization(
+    input: UpdateGeneralOrganizationInput!
+  ): UpdateGeneralOrganizationPayload
+  deleteGeneralOrganization(
+    filter: GeneralOrganizationFilter!
+  ): DeleteGeneralOrganizationPayload
+  addEmployeeRole(input: [AddEmployeeRoleInput!]!): AddEmployeeRolePayload
+  updateEmployeeRole(input: UpdateEmployeeRoleInput!): UpdateEmployeeRolePayload
+  deleteEmployeeRole(filter: EmployeeRoleFilter!): DeleteEmployeeRolePayload
+  addFollowerRole(input: [AddFollowerRoleInput!]!): AddFollowerRolePayload
+  updateFollowerRole(input: UpdateFollowerRoleInput!): UpdateFollowerRolePayload
+  deleteFollowerRole(filter: FollowerRoleFilter!): DeleteFollowerRolePayload
+  addMemberRole(input: [AddMemberRoleInput!]!): AddMemberRolePayload
+  updateMemberRole(input: UpdateMemberRoleInput!): UpdateMemberRolePayload
+  deleteMemberRole(filter: MemberRoleFilter!): DeleteMemberRolePayload
+  addOwnership(input: [AddOwnershipInput!]!): AddOwnershipPayload
+  updateOwnership(input: UpdateOwnershipInput!): UpdateOwnershipPayload
+  deleteOwnership(filter: OwnershipFilter!): DeleteOwnershipPayload
+  addUser(input: [AddUserInput!]!): AddUserPayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+  deleteUser(filter: UserFilter!): DeleteUserPayload
+  addPerson(input: [AddPersonInput!]!): AddPersonPayload
+  updatePerson(input: UpdatePersonInput!): UpdatePersonPayload
+  deletePerson(filter: PersonFilter!): DeletePersonPayload
+  addStore(input: [AddStoreInput!]!): AddStorePayload
+  updateStore(input: UpdateStoreInput!): UpdateStorePayload
+  deleteStore(filter: StoreFilter!): DeleteStorePayload
+  addProduct(input: [AddProductInput!]!): AddProductPayload
+  updateProduct(input: UpdateProductInput!): UpdateProductPayload
+  deleteProduct(filter: ProductFilter!): DeleteProductPayload
+  addProductModel(input: [AddProductModelInput!]!): AddProductModelPayload
+  updateProductModel(input: UpdateProductModelInput!): UpdateProductModelPayload
+  deleteProductModel(filter: ProductModelFilter!): DeleteProductModelPayload
+  addOffer(input: [AddOfferInput!]!): AddOfferPayload
+  updateOffer(input: UpdateOfferInput!): UpdateOfferPayload
+  deleteOffer(filter: OfferFilter!): DeleteOfferPayload
   addEntryPoint(input: [AddEntryPointInput!]!): AddEntryPointPayload
   updateEntryPoint(input: UpdateEntryPointInput!): UpdateEntryPointPayload
   deleteEntryPoint(filter: EntryPointFilter!): DeleteEntryPointPayload
@@ -1167,6 +1620,9 @@ type Mutation {
   deleteWebhook(filter: WebhookFilter!): DeleteWebhookPayload
 }
 
+"""
+商品供应
+"""
 type Offer implements Thing {
   identifier: String
   name: String!
@@ -1175,26 +1631,29 @@ type Offer implements Thing {
   id: ID!
 
   """
-  itemOffered    AggregateOffer  or CreativeWork  or Event  or MenuItem  or
-  Product  or Service  or Trip    An item being offered (or demanded). The
-  transactional nature of the offer or demand is documented using
-  businessFunction, e.g. sell, lease etc. While several common expected types
-  are listed explicitly in this definition, others can be used. Using a second
-  type, such as Product or a subtype of Product, can clarify the nature of the
-  offer. Inverse property: offers.
+      可购物的一个商品供应
   """
   itemOffered: Shoppingable
 
   """
-  offeredBy    Organization  or Person    A pointer to the organization or
-  person making the offer. Inverse property: makesOffer.
+      供应商品的组织或个人 Inverse property: makesOffer.
   """
   offeredBy: Party
 
   """
-  The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
+      商品价格The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
   """
   price: Int
+
+  """
+      【价格有效开始日期】
+  """
+  dateFrom: DateTime
+
+  """
+      【价格有效结束日期】
+  """
+  dateThrough: DateTime
 }
 
 input OfferFilter {
@@ -1217,6 +1676,8 @@ enum OfferOrderable {
   alternateName
   description
   price
+  dateFrom
+  dateThrough
 }
 
 input OfferPatch {
@@ -1226,9 +1687,19 @@ input OfferPatch {
   description: String
 
   """
-  The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
+      商品价格The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
   """
   price: Int
+
+  """
+      【价格有效开始日期】
+  """
+  dateFrom: DateTime
+
+  """
+      【价格有效结束日期】
+  """
+  dateThrough: DateTime
 }
 
 input OfferRef {
@@ -1239,103 +1710,52 @@ input OfferRef {
   description: String
 
   """
-  The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
+      商品价格The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
   """
   price: Int
+
+  """
+      【价格有效开始日期】
+  """
+  dateFrom: DateTime
+
+  """
+      【价格有效结束日期】
+  """
+  dateThrough: DateTime
 }
 
 """
-组织
+【机构】一个组织，例如学校、非政府组织、公司、俱乐部等,也可用于临时几个人组成的聊天小组，房间
 """
-type Organization implements Party & Thing {
-  identifier: String
-  name: String!
-  alternateName: String
-  description: String
-  id: ID!
-  owns(
-    filter: OwnershipFilter
-    order: OwnershipOrder
-    first: Int
-    offset: Int
-  ): [Ownership]
+interface Organization {
+  """
+      【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织
+  """
+  parentOrganization(first: Int, offset: Int): [Organization]
 
   """
-  【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织
+      【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。
   """
-  parentOrganization(
-    filter: OrganizationFilter
-    order: OrganizationOrder
-    first: Int
-    offset: Int
-  ): [Organization]
+  subOrganizations(first: Int, offset: Int): [Organization]
 
   """
-  【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。
-  """
-  subOrganizations(
-    filter: OrganizationFilter
-    order: OrganizationOrder
-    first: Int
-    offset: Int
-  ): [Organization]
-
-  """
-  【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A
+      【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A
   relationship between an organization and a department of that organization,
   also described as an organization (allowing different urls, logos, opening
   hours). For example: a store with a pharmacy, or a bakery with a cafe.
   """
-  departments(
-    filter: OrganizationFilter
-    order: OrganizationOrder
+  departments(first: Int, offset: Int): [Organization]
+
+  """
+      组织定义的角色名称,hasPartyRoleName,逆属性 PartyRoleName.isPartyRoleNameOf
+  """
+  hasPartyRoleName(
+    filter: PartyRoleNameFilter
+    order: PartyRoleNameOrder
     first: Int
     offset: Int
-  ): [Organization]
-}
-
-input OrganizationFilter {
-  name: StringHashFilter
-  id: [ID!]
-  and: OrganizationFilter
-  or: OrganizationFilter
-  not: OrganizationFilter
-}
-
-input OrganizationOrder {
-  asc: OrganizationOrderable
-  desc: OrganizationOrderable
-  then: OrganizationOrder
-}
-
-enum OrganizationOrderable {
-  identifier
-  name
-  alternateName
-  description
-}
-
-input OrganizationPatch {
-  identifier: String
-  name: String
-  alternateName: String
-  description: String
-  owns: [OwnershipRef]
-  parentOrganization: [OrganizationRef]
-  subOrganizations: [OrganizationRef]
-  departments: [OrganizationRef]
-}
-
-input OrganizationRef {
-  id: ID
-  identifier: String
-  name: String
-  alternateName: String
-  description: String
-  owns: [OwnershipRef]
-  parentOrganization: [OrganizationRef]
-  subOrganizations: [OrganizationRef]
-  departments: [OrganizationRef]
+  ): [PartyRoleName]
 }
 
 """
@@ -1349,29 +1769,29 @@ type Ownership implements Thing {
   id: ID!
 
   """
-  【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.
+      【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.
   """
   acquiredFrom: Party
 
   """
-  【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product.
-  """
-  ownedFrom: DateTime
-
-  """
-  【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product.
-  """
-  ownedThrough: DateTime
-
-  """
-  【东西类型】 拥有的东西Thing。
+      【东西类型】 拥有的东西Thing。
   """
   owned(filter: ThingFilter): Thing
 
   """
-  【个人或组织】拥有者
+      【个人或组织】拥有者
   """
   owner: Party
+
+  """
+      【开始日期】 某事的开始日期和时间
+  """
+  dateFrom: DateTime
+
+  """
+      【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+  """
+  dateThrough: DateTime
 }
 
 input OwnershipFilter {
@@ -1393,8 +1813,8 @@ enum OwnershipOrderable {
   name
   alternateName
   description
-  ownedFrom
-  ownedThrough
+  dateFrom
+  dateThrough
 }
 
 input OwnershipPatch {
@@ -1402,17 +1822,17 @@ input OwnershipPatch {
   name: String
   alternateName: String
   description: String
-
-  """
-  【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product.
-  """
-  ownedFrom: DateTime
-
-  """
-  【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product.
-  """
-  ownedThrough: DateTime
   owned: ThingRef
+
+  """
+      【开始日期】 某事的开始日期和时间
+  """
+  dateFrom: DateTime
+
+  """
+      【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+  """
+  dateThrough: DateTime
 }
 
 input OwnershipRef {
@@ -1421,25 +1841,25 @@ input OwnershipRef {
   name: String
   alternateName: String
   description: String
-
-  """
-  【所有权开始时间】 获得产品所有权的日期和时间 The date and time of obtaining the product.
-  """
-  ownedFrom: DateTime
-
-  """
-  【所有权结束时间】 放弃产品所有权的日期和时间 The date and time of giving up ownership on the product.
-  """
-  ownedThrough: DateTime
   owned: ThingRef
+
+  """
+      【开始日期】 某事的开始日期和时间
+  """
+  dateFrom: DateTime
+
+  """
+      【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+  """
+  dateThrough: DateTime
 }
 
 """
-Party 代表有行动能力的人或组织
+Party 团体:代表有行动能力的个人或组织
 """
 interface Party {
   """
-  【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person.
+      【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person.
   """
   owns(
     filter: OwnershipFilter
@@ -1447,6 +1867,141 @@ interface Party {
     first: Int
     offset: Int
   ): [Ownership]
+}
+
+"""
+【团体内部定义的角色】
+"""
+interface PartyRole {
+  """
+      在组织承担角色的个人
+  """
+  person(filter: PersonFilter): Person
+
+  """
+      个人在团体内承担的角色
+  """
+  roleName(filter: PartyRoleNameFilter): PartyRoleName
+
+  """
+      【开始日期】 某事的开始日期和时间
+  """
+  dateFrom: DateTime
+
+  """
+      【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+  """
+  dateThrough: DateTime
+}
+
+"""
+组织定义的角色，组织内统筹定义
+"""
+type PartyRoleName implements Thing {
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  id: ID!
+
+  """
+      isPartyRoleNameOf,逆属性 Organization.hasPartyRoleName
+  """
+  isRoleNameOf: Organization
+
+  """
+      角色分组,如员工角色组、会员角色组
+  """
+  group: String
+
+  """
+      【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of
+  this CreativeWork. This is the same as the Author property for
+  CreativeWork.creator    Organization or Person or CreativeWork or UserReviews
+  """
+  creator(filter: UserFilter): User
+
+  """
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
+  DataFeedItem or CreativeWork
+  """
+  dateCreated: DateTime
+}
+
+input PartyRoleNameFilter {
+  name: StringHashFilter
+  id: [ID!]
+  and: PartyRoleNameFilter
+  or: PartyRoleNameFilter
+  not: PartyRoleNameFilter
+}
+
+input PartyRoleNameOrder {
+  asc: PartyRoleNameOrderable
+  desc: PartyRoleNameOrderable
+  then: PartyRoleNameOrder
+}
+
+enum PartyRoleNameOrderable {
+  identifier
+  name
+  alternateName
+  description
+  group
+  dateCreated
+}
+
+input PartyRoleNamePatch {
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+      角色分组,如员工角色组、会员角色组
+  """
+  group: String
+  creator: UserRef
+
+  """
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
+  DataFeedItem or CreativeWork
+  """
+  dateCreated: DateTime
+}
+
+input PartyRoleNameRef {
+  id: ID
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+
+  """
+      角色分组,如员工角色组、会员角色组
+  """
+  group: String
+  creator: UserRef
+
+  """
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated    DateTime or Date or
+  DataFeedItem or CreativeWork
+  """
+  dateCreated: DateTime
+}
+
+input PartyRoleOrder {
+  asc: PartyRoleOrderable
+  desc: PartyRoleOrderable
+  then: PartyRoleOrder
+}
+
+enum PartyRoleOrderable {
+  dateFrom
+  dateThrough
 }
 
 """
@@ -1565,6 +2120,9 @@ input PersonRef {
   hasUser: UserRef
 }
 
+"""
+产品
+"""
 type Product implements Shoppingable & Thing {
   identifier: String
   name: String!
@@ -1572,15 +2130,9 @@ type Product implements Shoppingable & Thing {
   description: String
   id: ID!
   isShoppingable: Boolean
-  itemOffers(
-    filter: OfferFilter
-    order: OfferOrder
-    first: Int
-    offset: Int
-  ): [Offer]
 
   """
-  【型号】 产品的型号。
+      【型号】 产品的型号。
   """
   hasModels(
     filter: ProductModelFilter
@@ -1598,6 +2150,9 @@ input ProductFilter {
   not: ProductFilter
 }
 
+"""
+产品型号
+"""
 type ProductModel implements Shoppingable & Thing {
   identifier: String
   name: String!
@@ -1605,15 +2160,9 @@ type ProductModel implements Shoppingable & Thing {
   description: String
   id: ID!
   isShoppingable: Boolean
-  itemOffers(
-    filter: OfferFilter
-    order: OfferOrder
-    first: Int
-    offset: Int
-  ): [Offer]
 
   """
-  【产品】 所属产品。
+      【产品】 所属产品。
   """
   isModelOf(filter: ProductFilter): Product
 }
@@ -1645,7 +2194,6 @@ input ProductModelPatch {
   alternateName: String
   description: String
   isShoppingable: Boolean
-  itemOffers: [OfferRef]
   isModelOf: ProductRef
 }
 
@@ -1656,7 +2204,6 @@ input ProductModelRef {
   alternateName: String
   description: String
   isShoppingable: Boolean
-  itemOffers: [OfferRef]
   isModelOf: ProductRef
 }
 
@@ -1679,7 +2226,6 @@ input ProductPatch {
   alternateName: String
   description: String
   isShoppingable: Boolean
-  itemOffers: [OfferRef]
   hasModels: [ProductModelRef]
 }
 
@@ -1690,7 +2236,6 @@ input ProductRef {
   alternateName: String
   description: String
   isShoppingable: Boolean
-  itemOffers: [OfferRef]
   hasModels: [ProductModelRef]
 }
 
@@ -1704,62 +2249,16 @@ type Query {
   ): [Thing]
   queryShoppingable(first: Int, offset: Int): [Shoppingable]
   queryParty(first: Int, offset: Int): [Party]
-  getProduct(id: ID!): Product
-  queryProduct(
-    filter: ProductFilter
-    order: ProductOrder
+  queryOrganization(first: Int, offset: Int): [Organization]
+  queryPartyRole(order: PartyRoleOrder, first: Int, offset: Int): [PartyRole]
+  getPartyRoleName(id: ID!): PartyRoleName
+  queryPartyRoleName(
+    filter: PartyRoleNameFilter
+    order: PartyRoleNameOrder
     first: Int
     offset: Int
-  ): [Product]
-  getProductModel(id: ID!): ProductModel
-  queryProductModel(
-    filter: ProductModelFilter
-    order: ProductModelOrder
-    first: Int
-    offset: Int
-  ): [ProductModel]
-  getOffer(id: ID!): Offer
-  queryOffer(
-    filter: OfferFilter
-    order: OfferOrder
-    first: Int
-    offset: Int
-  ): [Offer]
-  getStore(id: ID!): Store
-  queryStore(
-    filter: StoreFilter
-    order: StoreOrder
-    first: Int
-    offset: Int
-  ): [Store]
-  getUser(id: ID, username: String): User
-  queryUser(
-    filter: UserFilter
-    order: UserOrder
-    first: Int
-    offset: Int
-  ): [User]
-  getPerson(id: ID!): Person
-  queryPerson(
-    filter: PersonFilter
-    order: PersonOrder
-    first: Int
-    offset: Int
-  ): [Person]
-  getOrganization(id: ID!): Organization
-  queryOrganization(
-    filter: OrganizationFilter
-    order: OrganizationOrder
-    first: Int
-    offset: Int
-  ): [Organization]
-  getOwnership(id: ID!): Ownership
-  queryOwnership(
-    filter: OwnershipFilter
-    order: OwnershipOrder
-    first: Int
-    offset: Int
-  ): [Ownership]
+  ): [PartyRoleName]
+  queryReadable(first: Int, offset: Int): [Readable]
   getDataCatalog(id: ID!): DataCatalog
   queryDataCatalog(
     filter: DataCatalogFilter
@@ -1781,13 +2280,97 @@ type Query {
     first: Int
     offset: Int
   ): [Message]
-  getComment(id: ID!): Comment
-  queryComment(
-    filter: CommentFilter
-    order: CommentOrder
+  getReview(id: ID!): Review
+  queryReview(
+    filter: ReviewFilter
+    order: ReviewOrder
     first: Int
     offset: Int
-  ): [Comment]
+  ): [Review]
+  getReadNote(id: ID!): ReadNote
+  queryReadNote(
+    filter: ReadNoteFilter
+    order: ReadNoteOrder
+    first: Int
+    offset: Int
+  ): [ReadNote]
+  getGeneralOrganization(id: ID!): GeneralOrganization
+  queryGeneralOrganization(
+    filter: GeneralOrganizationFilter
+    order: GeneralOrganizationOrder
+    first: Int
+    offset: Int
+  ): [GeneralOrganization]
+  getEmployeeRole(id: ID!): EmployeeRole
+  queryEmployeeRole(
+    filter: EmployeeRoleFilter
+    order: EmployeeRoleOrder
+    first: Int
+    offset: Int
+  ): [EmployeeRole]
+  getFollowerRole(id: ID!): FollowerRole
+  queryFollowerRole(
+    filter: FollowerRoleFilter
+    order: FollowerRoleOrder
+    first: Int
+    offset: Int
+  ): [FollowerRole]
+  getMemberRole(id: ID!): MemberRole
+  queryMemberRole(
+    filter: MemberRoleFilter
+    order: MemberRoleOrder
+    first: Int
+    offset: Int
+  ): [MemberRole]
+  getOwnership(id: ID!): Ownership
+  queryOwnership(
+    filter: OwnershipFilter
+    order: OwnershipOrder
+    first: Int
+    offset: Int
+  ): [Ownership]
+  getUser(id: ID, username: String): User
+  queryUser(
+    filter: UserFilter
+    order: UserOrder
+    first: Int
+    offset: Int
+  ): [User]
+  getPerson(id: ID!): Person
+  queryPerson(
+    filter: PersonFilter
+    order: PersonOrder
+    first: Int
+    offset: Int
+  ): [Person]
+  getStore(id: ID!): Store
+  queryStore(
+    filter: StoreFilter
+    order: StoreOrder
+    first: Int
+    offset: Int
+  ): [Store]
+  getProduct(id: ID!): Product
+  queryProduct(
+    filter: ProductFilter
+    order: ProductOrder
+    first: Int
+    offset: Int
+  ): [Product]
+  getProductModel(id: ID!): ProductModel
+  queryProductModel(
+    filter: ProductModelFilter
+    order: ProductModelOrder
+    first: Int
+    offset: Int
+  ): [ProductModel]
+  getOffer(id: ID!): Offer
+  queryOffer(
+    filter: OfferFilter
+    order: OfferOrder
+    first: Int
+    offset: Int
+  ): [Offer]
   getEntryPoint(id: ID!): EntryPoint
   queryEntryPoint(
     filter: EntryPointFilter
@@ -1812,6 +2395,224 @@ type Query {
 }
 
 """
+可读物
+"""
+interface Readable {
+  """
+      【阅读收条】 记录每个人阅读本条消息的时间,逆属性: ReadNote.isReadNoteOf
+  """
+  hasReadNotes(
+    filter: ReadNoteFilter
+    order: ReadNoteOrder
+    first: Int
+    offset: Int
+  ): [ReadNote]
+}
+
+"""
+【阅读收条】 记录每个人阅读本条消息的时间
+"""
+type ReadNote implements Thing {
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  id: ID!
+
+  """
+      【阅读内容】 逆属性: Message.hasReadNotes
+  """
+  isReadNoteOf(first: Int, offset: Int): [Readable]
+
+  """
+      【读者】 内容的阅读者。
+  """
+  reader(filter: UserFilter): User
+
+  """
+      【阅读日期】
+  """
+  dateRead: DateTime
+}
+
+input ReadNoteFilter {
+  name: StringHashFilter
+  id: [ID!]
+  and: ReadNoteFilter
+  or: ReadNoteFilter
+  not: ReadNoteFilter
+}
+
+input ReadNoteOrder {
+  asc: ReadNoteOrderable
+  desc: ReadNoteOrderable
+  then: ReadNoteOrder
+}
+
+enum ReadNoteOrderable {
+  identifier
+  name
+  alternateName
+  description
+  dateRead
+}
+
+input ReadNotePatch {
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+  reader: UserRef
+
+  """
+      【阅读日期】
+  """
+  dateRead: DateTime
+}
+
+input ReadNoteRef {
+  id: ID
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+  reader: UserRef
+
+  """
+      【阅读日期】
+  """
+  dateRead: DateTime
+}
+
+"""
+【评论】对项目的评论 - 例如对博客文章的评论。 该评论的内容是通过text属性表示的，其主题通过about，与所有CreativeWorks共享的属性来表达
+A comment on an item - for example, a comment on a blog post. The comment's
+content is expressed via the text property, and its topic via about, properties
+shared with all CreativeWorks.
+"""
+type Review implements Thing {
+  identifier: String
+  name: String!
+  alternateName: String
+  description: String
+  id: ID!
+
+  """
+  itemReviewed	Thing 	The item that is being reviewed/rated.
+  """
+  itemReviewed(filter: ThingFilter): Thing
+
+  """
+  reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed.
+  """
+  reviewAspect: String
+
+  """
+  reviewBody	Text 	The actual body of the review.
+  """
+  reviewBody: String
+
+  """
+      ratingValue	评分 The rating for the content.
+  """
+  ratingValue: Int
+
+  """
+      【作者】 此内容或评分的作者。
+  """
+  author(filter: UserFilter): User
+
+  """
+      【创建日期】 创作出CreativeWork的日期。
+  """
+  dateCreated: DateTime
+}
+
+input ReviewFilter {
+  name: StringHashFilter
+  id: [ID!]
+  and: ReviewFilter
+  or: ReviewFilter
+  not: ReviewFilter
+}
+
+input ReviewOrder {
+  asc: ReviewOrderable
+  desc: ReviewOrderable
+  then: ReviewOrder
+}
+
+enum ReviewOrderable {
+  identifier
+  name
+  alternateName
+  description
+  reviewAspect
+  reviewBody
+  ratingValue
+  dateCreated
+}
+
+input ReviewPatch {
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+  itemReviewed: ThingRef
+
+  """
+  reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed.
+  """
+  reviewAspect: String
+
+  """
+  reviewBody	Text 	The actual body of the review.
+  """
+  reviewBody: String
+
+  """
+      ratingValue	评分 The rating for the content.
+  """
+  ratingValue: Int
+  author: UserRef
+
+  """
+      【创建日期】 创作出CreativeWork的日期。
+  """
+  dateCreated: DateTime
+}
+
+input ReviewRef {
+  id: ID
+  identifier: String
+  name: String
+  alternateName: String
+  description: String
+  itemReviewed: ThingRef
+
+  """
+  reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed.
+  """
+  reviewAspect: String
+
+  """
+  reviewBody	Text 	The actual body of the review.
+  """
+  reviewBody: String
+
+  """
+      ratingValue	评分 The rating for the content.
+  """
+  ratingValue: Int
+  author: UserRef
+
+  """
+      【创建日期】 创作出CreativeWork的日期。
+  """
+  dateCreated: DateTime
+}
+
+"""
 可购物：可以购买订购的产品或服务Product，Service
 """
 interface Shoppingable {
@@ -1819,16 +2620,6 @@ interface Shoppingable {
   可以购买订购的产品或服务Product，Service
   """
   isShoppingable: Boolean
-
-  """
-  【商品供应】 供应的商品。
-  """
-  itemOffers(
-    filter: OfferFilter
-    order: OfferOrder
-    first: Int
-    offset: Int
-  ): [Offer]
 }
 
 """
@@ -1842,35 +2633,38 @@ type SoftwareApplication implements Thing {
   id: ID!
 
   """
-  applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
+      applicationSuite	Text 	The name of the application suite to which the
+  application belongs (e.g. Excel belongs to Office).
   """
   applicationSuite: String
 
   """
-  availableOnDevice	Text 	Device required to run the application. Used in cases
-  where a specific make/model is required to run the application. Supersedes
-  device.    countriesNotSupported	Text 	Countries for which the application is
-  not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    countriesSupported	Text 	Countries for which the application is
-  supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    downloadUrl	URL 	If the file can be downloaded, URL to download the binary.
+      availableOnDevice	Text 	Device required to run the application. Used in
+  cases where a specific make/model is required to run the application.
+  Supersedes device.    countriesNotSupported	Text 	Countries for which the
+  application is not supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    countriesSupported	Text 	Countries for which the
+  application is supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    downloadUrl	URL 	If the file can be downloaded, URL
+  to download the binary.
   """
   downloadUrl: String
 
   """
-  featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications).
+      featureList	Text  or URL 	Features or modules provided by this application
+  (and possibly required by other applications).
   """
   featureList: String
 
   """
-  fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence
-  of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at which
-  the app may be installed, if different from the URL of the item.
+      fileSize	Text 	Size of the application / package (e.g. 18MB). In the
+  absence of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at
+  which the app may be installed, if different from the URL of the item.
   """
   installUrl: String
 
   """
-  memoryRequirements	Text  or URL 	Minimum memory requirements.
+      memoryRequirements	Text  or URL 	Minimum memory requirements.
   operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6,
   Android 1.6).    permissions	Text 	Permission(s) required to run the app (for
   example, a mobile app may require full internet access or may run only on
@@ -1881,12 +2675,12 @@ type SoftwareApplication implements Thing {
   releaseNotes: String
 
   """
-  screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
+      screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
   """
   screenshot: String
 
   """
-  softwareAddOn	SoftwareApplication 	Additional content for a software
+      softwareAddOn	SoftwareApplication 	Additional content for a software
   application.    softwareHelp	CreativeWork 	Software application help.
   softwareRequirements	Text  or URL 	Component dependency requirements for
   application. This includes runtime environments and shared libraries that are
@@ -1934,35 +2728,38 @@ input SoftwareApplicationPatch {
   description: String
 
   """
-  applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
+      applicationSuite	Text 	The name of the application suite to which the
+  application belongs (e.g. Excel belongs to Office).
   """
   applicationSuite: String
 
   """
-  availableOnDevice	Text 	Device required to run the application. Used in cases
-  where a specific make/model is required to run the application. Supersedes
-  device.    countriesNotSupported	Text 	Countries for which the application is
-  not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    countriesSupported	Text 	Countries for which the application is
-  supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    downloadUrl	URL 	If the file can be downloaded, URL to download the binary.
+      availableOnDevice	Text 	Device required to run the application. Used in
+  cases where a specific make/model is required to run the application.
+  Supersedes device.    countriesNotSupported	Text 	Countries for which the
+  application is not supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    countriesSupported	Text 	Countries for which the
+  application is supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    downloadUrl	URL 	If the file can be downloaded, URL
+  to download the binary.
   """
   downloadUrl: String
 
   """
-  featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications).
+      featureList	Text  or URL 	Features or modules provided by this application
+  (and possibly required by other applications).
   """
   featureList: String
 
   """
-  fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence
-  of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at which
-  the app may be installed, if different from the URL of the item.
+      fileSize	Text 	Size of the application / package (e.g. 18MB). In the
+  absence of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at
+  which the app may be installed, if different from the URL of the item.
   """
   installUrl: String
 
   """
-  memoryRequirements	Text  or URL 	Minimum memory requirements.
+      memoryRequirements	Text  or URL 	Minimum memory requirements.
   operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6,
   Android 1.6).    permissions	Text 	Permission(s) required to run the app (for
   example, a mobile app may require full internet access or may run only on
@@ -1973,12 +2770,12 @@ input SoftwareApplicationPatch {
   releaseNotes: String
 
   """
-  screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
+      screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
   """
   screenshot: String
 
   """
-  softwareAddOn	SoftwareApplication 	Additional content for a software
+      softwareAddOn	SoftwareApplication 	Additional content for a software
   application.    softwareHelp	CreativeWork 	Software application help.
   softwareRequirements	Text  or URL 	Component dependency requirements for
   application. This includes runtime environments and shared libraries that are
@@ -1999,35 +2796,38 @@ input SoftwareApplicationRef {
   description: String
 
   """
-  applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
+      applicationSuite	Text 	The name of the application suite to which the
+  application belongs (e.g. Excel belongs to Office).
   """
   applicationSuite: String
 
   """
-  availableOnDevice	Text 	Device required to run the application. Used in cases
-  where a specific make/model is required to run the application. Supersedes
-  device.    countriesNotSupported	Text 	Countries for which the application is
-  not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    countriesSupported	Text 	Countries for which the application is
-  supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-  code.    downloadUrl	URL 	If the file can be downloaded, URL to download the binary.
+      availableOnDevice	Text 	Device required to run the application. Used in
+  cases where a specific make/model is required to run the application.
+  Supersedes device.    countriesNotSupported	Text 	Countries for which the
+  application is not supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    countriesSupported	Text 	Countries for which the
+  application is supported. You can also provide the two-letter ISO 3166-1
+  alpha-2 country code.    downloadUrl	URL 	If the file can be downloaded, URL
+  to download the binary.
   """
   downloadUrl: String
 
   """
-  featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications).
+      featureList	Text  or URL 	Features or modules provided by this application
+  (and possibly required by other applications).
   """
   featureList: String
 
   """
-  fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence
-  of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at which
-  the app may be installed, if different from the URL of the item.
+      fileSize	Text 	Size of the application / package (e.g. 18MB). In the
+  absence of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at
+  which the app may be installed, if different from the URL of the item.
   """
   installUrl: String
 
   """
-  memoryRequirements	Text  or URL 	Minimum memory requirements.
+      memoryRequirements	Text  or URL 	Minimum memory requirements.
   operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6,
   Android 1.6).    permissions	Text 	Permission(s) required to run the app (for
   example, a mobile app may require full internet access or may run only on
@@ -2038,12 +2838,12 @@ input SoftwareApplicationRef {
   releaseNotes: String
 
   """
-  screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
+      screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
   """
   screenshot: String
 
   """
-  softwareAddOn	SoftwareApplication 	Additional content for a software
+      softwareAddOn	SoftwareApplication 	Additional content for a software
   application.    softwareHelp	CreativeWork 	Software application help.
   softwareRequirements	Text  or URL 	Component dependency requirements for
   application. This includes runtime environments and shared libraries that are
@@ -2056,7 +2856,25 @@ input SoftwareApplicationRef {
   softwareVersion: String
 }
 
-type Store implements Thing {
+"""
+零售店铺
+"""
+type Store implements Thing & Organization & Party {
+  owns(
+    filter: OwnershipFilter
+    order: OwnershipOrder
+    first: Int
+    offset: Int
+  ): [Ownership]
+  parentOrganization(first: Int, offset: Int): [Organization]
+  subOrganizations(first: Int, offset: Int): [Organization]
+  departments(first: Int, offset: Int): [Organization]
+  hasPartyRoleName(
+    filter: PartyRoleNameFilter
+    order: PartyRoleNameOrder
+    first: Int
+    offset: Int
+  ): [PartyRoleName]
   identifier: String
   name: String!
   alternateName: String
@@ -2064,17 +2882,47 @@ type Store implements Thing {
   id: ID!
 
   """
-  【创建日期】
+      【雇员】 组织的雇员.在组织承担角色的个人有时间限制
+  """
+  employees(
+    filter: EmployeeRoleFilter
+    order: EmployeeRoleOrder
+    first: Int
+    offset: Int
+  ): [EmployeeRole]
+
+  """
+      【关注组织的人】 社交网络上本组织被别人关注
+  """
+  followers(
+    filter: FollowerRoleFilter
+    order: FollowerRoleOrder
+    first: Int
+    offset: Int
+  ): [FollowerRole]
+
+  """
+      【会员】 组织或项目的成员,在组织承担角色的个人有时间限制
+  """
+  members(
+    filter: MemberRoleFilter
+    order: MemberRoleOrder
+    first: Int
+    offset: Int
+  ): [MemberRole]
+
+  """
+      【创建日期】
   """
   dateCreated: DateTime
 
   """
-  【更新日期】
+      【更新日期】
   """
   dateModified: DateTime
 
   """
-  【创建人】 该物体的创作者/作者。
+      【创建人】 该物体的创作者/作者。
   """
   creator(filter: UserFilter): User
 }
@@ -2103,18 +2951,23 @@ enum StoreOrderable {
 }
 
 input StorePatch {
+  owns: [OwnershipRef]
+  hasPartyRoleName: [PartyRoleNameRef]
   identifier: String
   name: String
   alternateName: String
   description: String
+  employees: [EmployeeRoleRef]
+  followers: [FollowerRoleRef]
+  members: [MemberRoleRef]
 
   """
-  【创建日期】
+      【创建日期】
   """
   dateCreated: DateTime
 
   """
-  【更新日期】
+      【更新日期】
   """
   dateModified: DateTime
   creator: UserRef
@@ -2122,18 +2975,23 @@ input StorePatch {
 
 input StoreRef {
   id: ID
+  owns: [OwnershipRef]
+  hasPartyRoleName: [PartyRoleNameRef]
   identifier: String
   name: String
   alternateName: String
   description: String
+  employees: [EmployeeRoleRef]
+  followers: [FollowerRoleRef]
+  members: [MemberRoleRef]
 
   """
-  【创建日期】
+      【创建日期】
   """
   dateCreated: DateTime
 
   """
-  【更新日期】
+      【更新日期】
   """
   dateModified: DateTime
   creator: UserRef
@@ -2170,18 +3028,18 @@ A Thing with an ID，在KGIS平台内所有内容都是东西Thing
 """
 interface Thing {
   """
-  【标识符】 标识符 The identifier property represents any kind of identifier for any
+      【标识符】 标识符 The identifier property represents any kind of identifier for any
   kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.
   """
   identifier: String
 
   """
-  name    Text    The name of the item.
+      【名称】name    Text    The name of the item.
   """
   name: String!
 
   """
-  【别名】 该项的别名。 An alias for the item.
+      【别名】 该项的别名。 An alias for the item.
   """
   alternateName: String
 
@@ -2220,18 +3078,18 @@ enum ThingOrderable {
 
 input ThingPatch {
   """
-  【标识符】 标识符 The identifier property represents any kind of identifier for any
+      【标识符】 标识符 The identifier property represents any kind of identifier for any
   kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.
   """
   identifier: String
 
   """
-  name    Text    The name of the item.
+      【名称】name    Text    The name of the item.
   """
   name: String
 
   """
-  【别名】 该项的别名。 An alias for the item.
+      【别名】 该项的别名。 An alias for the item.
   """
   alternateName: String
 
@@ -2247,22 +3105,6 @@ input ThingRef {
   ID by Dgraph will be used to identify things.
   """
   id: ID!
-}
-
-input UpdateCommentInput {
-  filter: CommentFilter!
-  set: CommentPatch
-  remove: CommentPatch
-}
-
-type UpdateCommentPayload {
-  comment(
-    filter: CommentFilter
-    order: CommentOrder
-    first: Int
-    offset: Int
-  ): [Comment]
-  numUids: Int
 }
 
 input UpdateConversationInput {
@@ -2297,6 +3139,22 @@ type UpdateDataCatalogPayload {
   numUids: Int
 }
 
+input UpdateEmployeeRoleInput {
+  filter: EmployeeRoleFilter!
+  set: EmployeeRolePatch
+  remove: EmployeeRolePatch
+}
+
+type UpdateEmployeeRolePayload {
+  employeerole(
+    filter: EmployeeRoleFilter
+    order: EmployeeRoleOrder
+    first: Int
+    offset: Int
+  ): [EmployeeRole]
+  numUids: Int
+}
+
 input UpdateEntryPointInput {
   filter: EntryPointFilter!
   set: EntryPointPatch
@@ -2310,6 +3168,54 @@ type UpdateEntryPointPayload {
     first: Int
     offset: Int
   ): [EntryPoint]
+  numUids: Int
+}
+
+input UpdateFollowerRoleInput {
+  filter: FollowerRoleFilter!
+  set: FollowerRolePatch
+  remove: FollowerRolePatch
+}
+
+type UpdateFollowerRolePayload {
+  followerrole(
+    filter: FollowerRoleFilter
+    order: FollowerRoleOrder
+    first: Int
+    offset: Int
+  ): [FollowerRole]
+  numUids: Int
+}
+
+input UpdateGeneralOrganizationInput {
+  filter: GeneralOrganizationFilter!
+  set: GeneralOrganizationPatch
+  remove: GeneralOrganizationPatch
+}
+
+type UpdateGeneralOrganizationPayload {
+  generalorganization(
+    filter: GeneralOrganizationFilter
+    order: GeneralOrganizationOrder
+    first: Int
+    offset: Int
+  ): [GeneralOrganization]
+  numUids: Int
+}
+
+input UpdateMemberRoleInput {
+  filter: MemberRoleFilter!
+  set: MemberRolePatch
+  remove: MemberRolePatch
+}
+
+type UpdateMemberRolePayload {
+  memberrole(
+    filter: MemberRoleFilter
+    order: MemberRoleOrder
+    first: Int
+    offset: Int
+  ): [MemberRole]
   numUids: Int
 }
 
@@ -2345,22 +3251,6 @@ type UpdateOfferPayload {
   numUids: Int
 }
 
-input UpdateOrganizationInput {
-  filter: OrganizationFilter!
-  set: OrganizationPatch
-  remove: OrganizationPatch
-}
-
-type UpdateOrganizationPayload {
-  organization(
-    filter: OrganizationFilter
-    order: OrganizationOrder
-    first: Int
-    offset: Int
-  ): [Organization]
-  numUids: Int
-}
-
 input UpdateOwnershipInput {
   filter: OwnershipFilter!
   set: OwnershipPatch
@@ -2374,6 +3264,22 @@ type UpdateOwnershipPayload {
     first: Int
     offset: Int
   ): [Ownership]
+  numUids: Int
+}
+
+input UpdatePartyRoleNameInput {
+  filter: PartyRoleNameFilter!
+  set: PartyRoleNamePatch
+  remove: PartyRoleNamePatch
+}
+
+type UpdatePartyRoleNamePayload {
+  partyrolename(
+    filter: PartyRoleNameFilter
+    order: PartyRoleNameOrder
+    first: Int
+    offset: Int
+  ): [PartyRoleName]
   numUids: Int
 }
 
@@ -2422,6 +3328,38 @@ type UpdateProductPayload {
     first: Int
     offset: Int
   ): [Product]
+  numUids: Int
+}
+
+input UpdateReadNoteInput {
+  filter: ReadNoteFilter!
+  set: ReadNotePatch
+  remove: ReadNotePatch
+}
+
+type UpdateReadNotePayload {
+  readnote(
+    filter: ReadNoteFilter
+    order: ReadNoteOrder
+    first: Int
+    offset: Int
+  ): [ReadNote]
+  numUids: Int
+}
+
+input UpdateReviewInput {
+  filter: ReviewFilter!
+  set: ReviewPatch
+  remove: ReviewPatch
+}
+
+type UpdateReviewPayload {
+  review(
+    filter: ReviewFilter
+    order: ReviewOrder
+    first: Int
+    offset: Int
+  ): [Review]
   numUids: Int
 }
 
@@ -2529,7 +3467,7 @@ type User implements Thing {
   bio: String
 
   """
-  用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart
+      用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart
   """
   isUserOf(filter: PersonFilter): Person!
 }
@@ -2615,36 +3553,34 @@ type Webhook implements Thing {
   id: ID!
 
   """
-  url
+      回调url
   """
   payloadUrl: String
 
   """
-  如application/json
+      回调提交的数据内容类型如application/json
   """
   contentType: String
 
   """
-  使用payloadUrl的安全token
+      使用payloadUrl的安全token
   """
   secret: String
 
   """
-  【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of
-  this CreativeWork. This is the same as the Author property for
-  CreativeWork.creator	Organization or Person or CreativeWork or UserComments
+      【作者】 该 CreativeWork 的创作者/作者。
   """
   creator(filter: UserFilter): User
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem
-  or CreativeWork
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated	DateTime or Date or
+  DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
 
   """
-   调用此webhook的客户端
+       调用此webhook的客户端
   """
   client(filter: SoftwareApplicationFilter): SoftwareApplication
 }
@@ -2681,25 +3617,25 @@ input WebhookPatch {
   description: String
 
   """
-  url
+      回调url
   """
   payloadUrl: String
 
   """
-  如application/json
+      回调提交的数据内容类型如application/json
   """
   contentType: String
 
   """
-  使用payloadUrl的安全token
+      使用payloadUrl的安全token
   """
   secret: String
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem
-  or CreativeWork
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated	DateTime or Date or
+  DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
   client: SoftwareApplicationRef
@@ -2713,25 +3649,25 @@ input WebhookRef {
   description: String
 
   """
-  url
+      回调url
   """
   payloadUrl: String
 
   """
-  如application/json
+      回调提交的数据内容类型如application/json
   """
   contentType: String
 
   """
-  使用payloadUrl的安全token
+      使用payloadUrl的安全token
   """
   secret: String
   creator: UserRef
 
   """
-  【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-  the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem
-  or CreativeWork
+      【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created
+  or the item was added to a DataFeed. dateCreated	DateTime or Date or
+  DataFeedItem or CreativeWork
   """
   dateCreated: DateTime
   client: SoftwareApplicationRef

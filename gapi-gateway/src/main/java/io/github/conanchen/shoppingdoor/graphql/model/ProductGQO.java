@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import io.github.conanchen.intangible.graphql.model.ReviewGQO;
+import io.github.conanchen.message.graphql.model.AggregateReviewGQO;
 import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 
 import java.util.Collection;
@@ -31,6 +31,6 @@ public interface ProductGQO {
 
     Collection<DemandGQO> getDemands();
 
-    Collection<ReviewGQO> getReview();
+    AggregateReviewGQO getAggregateReview();
 
 }

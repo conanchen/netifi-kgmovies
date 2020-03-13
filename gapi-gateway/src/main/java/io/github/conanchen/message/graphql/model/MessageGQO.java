@@ -18,7 +18,7 @@ public class MessageGQO implements NodeGQO{
     private Collection<PersonGQO> recipient;
     @javax.validation.constraints.NotNull
     private String text;
-    private Collection<CommentGQO> comments;
+    private AggregateReviewGQO aggregateReview;
     private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private String id;
@@ -26,7 +26,7 @@ public class MessageGQO implements NodeGQO{
     public MessageGQO() {
     }
 
-    public MessageGQO(Collection<ConversationGQO> isPartOf, PersonGQO sender, java.util.Date dateSent, PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, String text, Collection<CommentGQO> comments, Collection<ActionGQO> potentialActions, String id) {
+    public MessageGQO(Collection<ConversationGQO> isPartOf, PersonGQO sender, java.util.Date dateSent, PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, String text, AggregateReviewGQO aggregateReview, Collection<ActionGQO> potentialActions, String id) {
         this.isPartOf = isPartOf;
         this.sender = sender;
         this.dateSent = dateSent;
@@ -35,7 +35,7 @@ public class MessageGQO implements NodeGQO{
         this.dateReceived = dateReceived;
         this.recipient = recipient;
         this.text = text;
-        this.comments = comments;
+        this.aggregateReview = aggregateReview;
         this.potentialActions = potentialActions;
         this.id = id;
     }
@@ -96,11 +96,11 @@ public class MessageGQO implements NodeGQO{
         this.text = text;
     }
 
-    public Collection<CommentGQO> getComments() {
-        return comments;
+    public AggregateReviewGQO getAggregateReview() {
+        return aggregateReview;
     }
-    public void setComments(Collection<CommentGQO> comments) {
-        this.comments = comments;
+    public void setAggregateReview(AggregateReviewGQO aggregateReview) {
+        this.aggregateReview = aggregateReview;
     }
 
     public Collection<ActionGQO> getPotentialActions() {

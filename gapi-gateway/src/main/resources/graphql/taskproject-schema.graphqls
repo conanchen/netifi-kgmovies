@@ -6,7 +6,7 @@ extend type Query {
 
 """an individual or collaborative enterprise that is carefully planned to achieve a particular aim."""
 type Project implements Thing & Organization & ConversationalThing &  Node{
-# Properties from Thing    
+    # Properties from Thing
     """name    Text    The name of the item."""
     name: String
 
@@ -206,7 +206,7 @@ type TaskAssignment implements Node{
     about: Task
 
     """任务本次分配说明"""
-    comment: Comment
+    comment: Review
 
     """任务执行人"""
     assignee: Party

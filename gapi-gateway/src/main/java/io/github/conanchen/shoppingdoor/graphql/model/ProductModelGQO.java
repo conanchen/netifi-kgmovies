@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import io.github.conanchen.intangible.graphql.model.ReviewGQO;
+import io.github.conanchen.message.graphql.model.AggregateReviewGQO;
 import io.github.conanchen.organization.graphql.model.OrganizationGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
@@ -22,14 +22,14 @@ public class ProductModelGQO implements ThingGQO, ShoppingableGQO, NodeGQO {
     private OrganizationGQO manufacturer;
     private AggregateOfferGQO offers;
     private Collection<DemandGQO> demands;
-    private Collection<ReviewGQO> review;
+    private AggregateReviewGQO aggregateReview;
     @javax.validation.constraints.NotNull
     private String id;
 
     public ProductModelGQO() {
     }
 
-    public ProductModelGQO(ProductModelGQO isVariantOf, ProductModelGQO predecessorOf, ProductModelGQO successorOf, Boolean isShoppingable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, AggregateOfferGQO offers, Collection<DemandGQO> demands, Collection<ReviewGQO> review, String id) {
+    public ProductModelGQO(ProductModelGQO isVariantOf, ProductModelGQO predecessorOf, ProductModelGQO successorOf, Boolean isShoppingable, String name, String alternateName, String description, String productID, Collection<ProductGQO> isRelatedTo, Collection<ProductGQO> isSimilarTo, OrganizationGQO manufacturer, AggregateOfferGQO offers, Collection<DemandGQO> demands, AggregateReviewGQO aggregateReview, String id) {
         this.isVariantOf = isVariantOf;
         this.predecessorOf = predecessorOf;
         this.successorOf = successorOf;
@@ -43,7 +43,7 @@ public class ProductModelGQO implements ThingGQO, ShoppingableGQO, NodeGQO {
         this.manufacturer = manufacturer;
         this.offers = offers;
         this.demands = demands;
-        this.review = review;
+        this.aggregateReview = aggregateReview;
         this.id = id;
     }
 
@@ -141,11 +141,11 @@ public class ProductModelGQO implements ThingGQO, ShoppingableGQO, NodeGQO {
         this.demands = demands;
     }
 
-    public Collection<ReviewGQO> getReview() {
-        return review;
+    public AggregateReviewGQO getAggregateReview() {
+        return aggregateReview;
     }
-    public void setReview(Collection<ReviewGQO> review) {
-        this.review = review;
+    public void setAggregateReview(AggregateReviewGQO aggregateReview) {
+        this.aggregateReview = aggregateReview;
     }
 
     public String getId() {

@@ -3,8 +3,7 @@ package io.github.conanchen.shoppingdoor.graphql.model;
 import java.util.Collection;
 
 import io.github.conanchen.action.graphql.model.ActionGQO;
-import io.github.conanchen.intangible.graphql.model.AggregateReviewGQO;
-import io.github.conanchen.intangible.graphql.model.ReviewGQO;
+import io.github.conanchen.message.graphql.model.AggregateReviewGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 
 public interface ServiceGQO {
@@ -33,6 +32,5 @@ public interface ServiceGQO {
 
     Collection<DemandGQO> getDemands();
 
-    Collection<ReviewGQO> getReview();
 
 }
