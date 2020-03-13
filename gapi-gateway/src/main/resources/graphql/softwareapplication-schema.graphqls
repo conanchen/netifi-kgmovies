@@ -2,19 +2,14 @@ extend type Query {
     allSoftwareApplications(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection
     softwareApplication(id: ID, softwareApplicationID: ID): SoftwareApplication
     webhook(id: ID, webhookID: ID): Webhook
-    webhookSearch(
-        filter: WebhookFilter
-        order: WebhookOrder
-        first: Int
-        offset: Int
-    ): [WebhookConnection]
+    webhookSearch(filter: WebhookFilter,order: WebhookOrder,first: Int,offset: Int): [WebhookConnection]
 
 }
 
 extend type Mutation{
     webhookAdd(input: [WebhookAddInput!]!): WebhookAddPayload
     webhookUpdate(input: WebhookUpdateInput!): WebhookUpdatePayload
-    #    webhookDelete(filter: WebhookFilter!): DeleteWebhookPayload
+    webhookDelete(filter: WebhookFilter!): WebhookDeletePayload
 }
 
 """https://schema.org/SoftwareApplication A software application."""
@@ -468,6 +463,31 @@ type  WebhookUpdateError implements DisplayableError{
 
 """Possible error codes that could be returned by a store mutation."""
 enum WebhookUpdateErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+type WebhookDeletePayload {
+    """Error code to uniquely identify the error."""
+    code: WebhookDeleteErrorCode
+
+    """The error store."""
+    message: String!
+
+    webhookSearch(filter: WebhookFilter,order: WebhookOrder,first: Int,offset: Int): [WebhookConnection]
+}
+
+"""Possible error codes that could be returned by a webhook mutation."""
+enum WebhookDeleteErrorCode{
     """Input value is blank."""
     BLANK
 

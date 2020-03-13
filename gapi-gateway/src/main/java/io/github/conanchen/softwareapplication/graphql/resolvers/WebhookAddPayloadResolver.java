@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-class WebhookPayloadAddResolver implements GraphQLResolver<WebhookAddPayloadGQO> {
+class WebhookAddPayloadResolver implements GraphQLResolver<WebhookAddPayloadGQO> {
 
     public Collection<WebhookConnectionGQO> webhookSearch(WebhookAddPayloadGQO webhookAddPayloadGQO, WebhookFilterGQO filter, WebhookOrderGQO order, Integer first, Integer offset) throws Exception {
         return null;
