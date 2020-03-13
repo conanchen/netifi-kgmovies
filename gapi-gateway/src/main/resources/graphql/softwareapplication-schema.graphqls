@@ -1,59 +1,65 @@
 extend type Query {
-  allSoftwareApplications(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection
-  softwareApplication(id: ID, softwareApplicationID: ID): SoftwareApplication
-  webhook(id: ID, webhookID: ID): Webhook
+    allSoftwareApplications(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection
+    softwareApplication(id: ID, softwareApplicationID: ID): SoftwareApplication
+    webhook(id: ID, webhookID: ID): Webhook
+    webhookSearch(
+        filter: WebhookFilter
+        order: WebhookOrder
+        first: Int
+        offset: Int
+    ): [WebhookConnection]
 
 }
 
 extend type Mutation{
     webhookAdd(input: [WebhookAddInput!]!): WebhookAddPayload
-#    webhookUpdate(input: UpdateWebhookInput!): UpdateWebhookPayload
-#    webhookDelete(filter: WebhookFilter!): DeleteWebhookPayload
+    webhookUpdate(input: WebhookUpdateInput!): WebhookUpdatePayload
+    #    webhookDelete(filter: WebhookFilter!): DeleteWebhookPayload
 }
 
 """https://schema.org/SoftwareApplication A software application."""
 type SoftwareApplication implements Node {
     """【名称】 条目的名称 The name of the item."""
     name: String!
-    
+
     """【别名】 该项的别名。 An alias for the item."""
     alternateName: String
 
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
 
-    """applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office)."""
+    """applicationSuite    Text    The name of the application suite to which the application belongs (e.g. Excel belongs to Office)."""
     applicationSuite: String
 
-    """availableOnDevice	Text 	Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
-    countriesNotSupported	Text 	Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
-    countriesSupported	Text 	Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
-    downloadUrl	URL 	If the file can be downloaded, URL to download the binary."""
+    """availableOnDevice    Text    Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
+    countriesNotSupported    Text    Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    countriesSupported    Text    Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    downloadUrl    URL    If the file can be downloaded, URL to download the binary."""
     downloadUrl: String
 
-    """featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications)."""
+    """featureList    Text  or URL    Features or modules provided by this application (and possibly required by other applications)."""
     featureList: String
 
-    """fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
-    installUrl	URL 	URL at which the app may be installed, if different from the URL of the item."""
+    """fileSize    Text    Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
+    installUrl    URL    URL at which the app may be installed, if different from the URL of the item."""
     installUrl:String
 
-    """memoryRequirements	Text  or URL 	Minimum memory requirements.
-    operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
-    permissions	Text 	Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
-    processorRequirements	Text 	Processor architecture required to run the application (e.g. IA64).
-    releaseNotes	Text  or URL 	Description of what changed in this version."""
+    """memoryRequirements    Text  or URL    Minimum memory requirements.
+    operatingSystem    Text    Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
+    permissions    Text    Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
+    processorRequirements    Text    Processor architecture required to run the application (e.g. IA64).
+    releaseNotes    Text  or URL    Description of what changed in this version."""
     releaseNotes: String
 
-    """screenshot	ImageObject  or URL 	A link to a screenshot image of the app."""
+    """screenshot    ImageObject  or URL    A link to a screenshot image of the app."""
     screenshot: String
 
-    """softwareAddOn	SoftwareApplication 	Additional content for a software application.
-    softwareHelp	CreativeWork 	Software application help.
-    softwareRequirements	Text  or URL 	Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.
-    softwareVersion	Text 	Version of the software instance.
-    storageRequirements	Text  or URL 	Storage requirements (free space required).
-    supportingData	DataFeed 	Supporting data for a SoftwareApplication."""
+    """softwareAddOn    SoftwareApplication    Additional content for a software application.
+    softwareHelp    CreativeWork    Software application help.
+    softwareRequirements    Text  or URL    Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.
+    softwareVersion    Text    Version of the software instance.
+    storageRequirements    Text  or URL    Storage requirements (free space required).
+    supportingData    DataFeed    Supporting data for a SoftwareApplication."""
     softwareVersion: String
 
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
@@ -67,38 +73,38 @@ type SoftwareApplication implements Node {
 
 """A connection to a list of items."""
 type SoftwareApplicationsConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [SoftwareApplicationsEdge]
+    """A list of edges."""
+    edges: [SoftwareApplicationsEdge]
 
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
 
-  """
-  A list of all of the objects returned in the connection. This is a convenience
-  field provided for quickly exploring the API; rather than querying for
-  "{ edges { node } }" when no edge data is needed, this field can be be used
-  instead. Note that when clients like Relay need to fetch the "cursor" field on
-  the edge to enable efficient pagination, this shortcut cannot be used, and the
-  full "{ edges { node } }" version should be used instead.
-  """
-  films: [SoftwareApplication]
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    films: [SoftwareApplication]
 }
 
 """An edge in a connection."""
 type SoftwareApplicationsEdge {
-  """The item at the end of the edge"""
-  node: SoftwareApplication
+    """The item at the end of the edge"""
+    node: SoftwareApplication
 
-  """A cursor for use in pagination"""
-  cursor: String!
+    """A cursor for use in pagination"""
+    cursor: String!
 }
 
 """网络钩子是“用户定义的HTTP回调”。[2]网络钩子通常被某些事件激活，比如将代码推送到源[3]或评论博客。[4]当此事件发生时，原网站将向为网络钩子配置的URL发送HTTP请求。用户可配置它们引发网页上的事件以调用另一个网站的行为。Webhooks allow external services to be notified when certain events happen. """
@@ -117,15 +123,15 @@ type Webhook implements Node{
     contentType: String
     secret: String
 
-    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator	Organization or Person or CreativeWork or UserComments	"""
+    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserComments    """
     creator: Person
 
-    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem or CreativeWork"""
+    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork"""
     dateCreated: DateTime
 
     """ 调用此webhook的客户端 """
     client: SoftwareApplication
-    
+
     """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
     potentialActions: [Action]
 
@@ -158,7 +164,7 @@ input WebhookAddInput {
 
     """
     【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
-    the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem
+    the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem
     or CreativeWork
     """
     dateCreated: DateTime
@@ -258,59 +264,59 @@ input SoftwareApplicationRef {
     description: String
 
     """
-    applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
+    applicationSuite    Text    The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
     """
     applicationSuite: String
 
     """
-    availableOnDevice	Text 	Device required to run the application. Used in cases
+    availableOnDevice    Text    Device required to run the application. Used in cases
     where a specific make/model is required to run the application. Supersedes
-    device.    countriesNotSupported	Text 	Countries for which the application is
+    device.    countriesNotSupported    Text    Countries for which the application is
     not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-    code.    countriesSupported	Text 	Countries for which the application is
+    code.    countriesSupported    Text    Countries for which the application is
     supported. You can also provide the two-letter ISO 3166-1 alpha-2 country
-    code.    downloadUrl	URL 	If the file can be downloaded, URL to download the binary.
+    code.    downloadUrl    URL    If the file can be downloaded, URL to download the binary.
     """
     downloadUrl: String
 
     """
-    featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications).
+    featureList    Text  or URL    Features or modules provided by this application (and possibly required by other applications).
     """
     featureList: String
 
     """
-    fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence
-    of a unit (MB, KB etc.), KB will be assumed.    installUrl	URL 	URL at which
+    fileSize    Text    Size of the application / package (e.g. 18MB). In the absence
+    of a unit (MB, KB etc.), KB will be assumed.    installUrl    URL    URL at which
     the app may be installed, if different from the URL of the item.
     """
     installUrl: String
 
     """
-    memoryRequirements	Text  or URL 	Minimum memory requirements.
-    operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6,
-    Android 1.6).    permissions	Text 	Permission(s) required to run the app (for
+    memoryRequirements    Text  or URL    Minimum memory requirements.
+    operatingSystem    Text    Operating systems supported (Windows 7, OSX 10.6,
+    Android 1.6).    permissions    Text    Permission(s) required to run the app (for
     example, a mobile app may require full internet access or may run only on
-    wifi).    processorRequirements	Text 	Processor architecture required to run
-    the application (e.g. IA64).    releaseNotes	Text  or URL 	Description of what
+    wifi).    processorRequirements    Text    Processor architecture required to run
+    the application (e.g. IA64).    releaseNotes    Text  or URL    Description of what
     changed in this version.
     """
     releaseNotes: String
 
     """
-    screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
+    screenshot    ImageObject  or URL    A link to a screenshot image of the app.
     """
     screenshot: String
 
     """
-    softwareAddOn	SoftwareApplication 	Additional content for a software
-    application.    softwareHelp	CreativeWork 	Software application help.
-    softwareRequirements	Text  or URL 	Component dependency requirements for
+    softwareAddOn    SoftwareApplication    Additional content for a software
+    application.    softwareHelp    CreativeWork    Software application help.
+    softwareRequirements    Text  or URL    Component dependency requirements for
     application. This includes runtime environments and shared libraries that are
     not included in the application distribution package, but required to run the
     application (Examples: DirectX, Java or .NET runtime). Supersedes
-    requirements.    softwareVersion	Text 	Version of the software instance.
-    storageRequirements	Text  or URL 	Storage requirements (free space required).
-    supportingData	DataFeed 	Supporting data for a SoftwareApplication.
+    requirements.    softwareVersion    Text    Version of the software instance.
+    storageRequirements    Text  or URL    Storage requirements (free space required).
+    supportingData    DataFeed    Supporting data for a SoftwareApplication.
     """
     softwareVersion: String
 }
@@ -321,11 +327,18 @@ input SoftwareApplicationRef {
 Webhook mutation api response payload
 """
 type WebhookAddPayload{
-    """The store object ."""
+    """The added object ."""
     item: Webhook
 
     """List of errors that occurred executing the mutation."""
     errors: [WebhookAddError!]!
+
+    webhookSearch(
+        filter: WebhookFilter
+        order: WebhookOrder
+        first: Int
+        offset: Int
+    ): [WebhookConnection]
 }
 
 """
@@ -359,4 +372,150 @@ enum WebhookAddErrorCode{
 
     """不允许执行该操作Action"""
     ACTION_NOT_PERMITTED
+}
+
+input WebhookUpdateInput {
+    filter: WebhookFilter!
+    set: WebhookPatch
+    remove: WebhookPatch
+}
+
+type WebhookUpdatePayload {
+    """The updated object ."""
+    item: Webhook
+
+    """List of errors that occurred executing the mutation."""
+    errors: [WebhookUpdateError!]!
+
+    webhookSearch(
+        filter: WebhookFilter
+        order: WebhookOrder
+        first: Int
+        offset: Int
+    ): [WebhookConnection]
+}
+
+
+input WebhookPatch {
+    identifier: String
+    name: String
+    alternateName: String
+    description: String
+
+    """
+    url
+    """
+    payloadUrl: String
+
+    """
+    如application/json
+    """
+    contentType: String
+
+    """
+    使用payloadUrl的安全token
+    """
+    secret: String
+    creator: UserRef
+
+    """
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or
+    the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem
+    or CreativeWork
+    """
+    dateCreated: DateTime
+    client: SoftwareApplicationRef
+}
+
+input WebhookFilter {
+    name: StringHashFilter
+    id: [ID!]
+    and: WebhookFilter
+    or: WebhookFilter
+    not: WebhookFilter
+}
+
+input WebhookOrder {
+    asc: WebhookOrderable
+    desc: WebhookOrderable
+    then: WebhookOrder
+}
+
+enum WebhookOrderable {
+    identifier
+    name
+    alternateName
+    description
+    payloadUrl
+    contentType
+    secret
+    dateCreated
+}
+
+"""Represents an error that happens during execution of a store mutation."""
+type  WebhookUpdateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: WebhookUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error store."""
+    message: String!
+
+}
+
+"""Possible error codes that could be returned by a store mutation."""
+enum WebhookUpdateErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+
+"""A connection to a list of items."""
+type WebhookConnection {
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """A list of edges."""
+    edges: [WebhookEdge]
+
+    """
+    A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+    """
+    totalCount: Int
+
+    """
+    A list of all of the objects returned in the connection. This is a convenience
+    field provided for quickly exploring the API; rather than querying for
+    "{ edges { node } }" when no edge data is needed, this field can be be used
+    instead. Note that when clients like Relay need to fetch the "cursor" field on
+    the edge to enable efficient pagination, this shortcut cannot be used, and the
+    full "{ edges { node } }" version should be used instead.
+    """
+    nodes: [Webhook]
+}
+
+
+
+"""An edge in a connection."""
+type WebhookEdge {
+    """The item at the end of the edge"""
+    node: Webhook
+
+    """A cursor for use in pagination"""
+    cursor: String!
 }

@@ -2,10 +2,10 @@ package io.github.conanchen.softwareapplication.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import io.github.conanchen.softwareapplication.graphql.api.Query;
-import io.github.conanchen.softwareapplication.graphql.model.SoftwareApplicationGQO;
-import io.github.conanchen.softwareapplication.graphql.model.SoftwareApplicationsConnectionGQO;
-import io.github.conanchen.softwareapplication.graphql.model.WebhookGQO;
+import io.github.conanchen.softwareapplication.graphql.model.*;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 
 @Service
@@ -30,5 +30,10 @@ public class SoftwareapplicationQueriesResolver implements Query, GraphQLQueryRe
     // TODO Auto-generated method stub
     return null;
   }
-  
+
+  @Override
+  public Collection<WebhookConnectionGQO> webhookSearch(WebhookFilterGQO filter, WebhookOrderGQO order, Integer first, Integer offset) throws Exception {
+    return null;
+  }
+
 }

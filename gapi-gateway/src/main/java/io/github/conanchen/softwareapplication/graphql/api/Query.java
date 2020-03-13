@@ -1,8 +1,8 @@
 package io.github.conanchen.softwareapplication.graphql.api;
 
-import io.github.conanchen.softwareapplication.graphql.model.SoftwareApplicationGQO;
-import io.github.conanchen.softwareapplication.graphql.model.SoftwareApplicationsConnectionGQO;
-import io.github.conanchen.softwareapplication.graphql.model.WebhookGQO;
+import io.github.conanchen.softwareapplication.graphql.model.*;
+
+import java.util.Collection;
 
 public interface Query {
 
@@ -11,4 +11,7 @@ public interface Query {
     SoftwareApplicationGQO softwareApplication(String id, String softwareApplicationID) throws Exception;
 
     WebhookGQO webhook(String id, String webhookID) throws Exception;
+
+    Collection<WebhookConnectionGQO> webhookSearch(WebhookFilterGQO filter, WebhookOrderGQO order, Integer first, Integer offset) throws Exception;
+
 }
