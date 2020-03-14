@@ -21,6 +21,11 @@ directive @preview(
 """
 directive @unique on SCALAR | FIELD_DEFINITION | INPUT_FIELD_DEFINITION
 
+"""
+[relay connection](https://www.graphql-java-kickstart.com/tools/relay/)
+"""
+directive @connection(for: String) on SCALAR | FIELD_DEFINITION 
+
 
 """
 标记需要认证访问的单元,如
