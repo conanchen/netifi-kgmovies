@@ -26,7 +26,7 @@ extend type Mutation {
 
     """创建会话，受限于是否在所在会话中拥有【ConversationAddAction】. create a conversation."""
     conversationAdd(input: AddConversationInput!): AddConversationPayload
-    #    conversationUpdate(input: ConversationUpdateInput!): ConversationUpdatePayload
+    conversationUpdate(input: UpdateConversationInput!): UpdateConversationPayload
     #    conversationDelete(filter: ConversationFilter!): ConversationDeletePayload
 
     """申请加入会话，受限于是否在所在会话中拥有【ConversationJoinRequestAction】.request to join a conversation."""
@@ -48,19 +48,19 @@ extend type Mutation {
     conversationWebhookCreate(input: ConversationWebhookCreateInput!): ConversationPayload
 
     """向会话发送消息，受限于是否在所在会话中拥有【MessageSendAction】. Sends a message to a conversation."""
-    messgeSend(conversationId: String, input: MessageSendInput!): MessagePayload
+    messageSend(conversationId: String, input: MessageSendInput!): MessagePayload
 
     """撤回消息，受限于是否对该消息拥有【MessageWithdrawAction】.withdraw  a message."""
-    messgeWithdraw(messageId: String): MessagePayload
+    messageWithdraw(messageId: String): MessagePayload
 
     """消息补充备注，受限于是否对该消息拥有【MessageReviewAction】.post a comment to a message."""
-    messgeReview(messageId: String, input: MessageReviewInput!): MessagePayload
+    messageReview(messageId: String, input: MessageReviewInput!): MessagePayload
 
     """消息备注修改，受限于是否对该消息拥有【MessageEditAction】.edit a comment to a message."""
-    messgeReviewUpdate(messageId: String, input: MessageReviewInput!): MessagePayload
+    messageReviewUpdate(messageId: String, input: MessageReviewInput!): MessagePayload
 
     """消息备注删除，受限于是否对该消息拥有【MessageAction】.delete a comment to a message."""
-    messgeReviewDelete(messageId: String, input: MessageReviewInput!): MessagePayload
+    messageReviewDelete(messageId: String, input: MessageReviewInput!): MessagePayload
 }
 
 
@@ -771,3 +771,34 @@ type ConversationWebhookCreateAction implements Action & Node{
     id: ID!
 }
 
+input UpdateConversationInput {
+    filter: ConversationFilter!
+    set: ConversationPatch
+    remove: ConversationPatch
+}
+
+type UpdateConversationPayload {
+    """
+    The mutated object .
+    """
+    item: Conversation
+
+    """
+    List of errors that occurred executing the mutation.
+    """
+    errors: [ConversationAddError!]!
+
+    conversationSearch(filter: ConversationFilter,order: ConversationOrder,first: Int,offset: Int): ConversationConnection  @connection(for: "Conversation")
+
+}
+
+input ConversationPatch {
+    identifier: String
+    name: String
+    alternateName: String
+    description: String
+    about: ThingRef
+    accountablePerson: UserRef
+    creator: UserRef
+
+}

@@ -15,6 +15,11 @@ public class MessageMutationResolver implements Mutation,GraphQLMutationResolver
   }
 
   @Override
+  public UpdateConversationPayloadGQO conversationUpdate(UpdateConversationInputGQO input) throws Exception {
+    return null;
+  }
+
+  @Override
   public ConversationPayloadGQO conversationJoinRequest(ConversationJoinRequestInputGQO input) throws Exception {
     return null;
   }
@@ -45,27 +50,27 @@ public class MessageMutationResolver implements Mutation,GraphQLMutationResolver
   }
 
   @Override
-  public MessagePayloadGQO messgeSend(String conversationId, MessageSendInputGQO input) throws Exception {
+  public MessagePayloadGQO messageSend(String conversationId, MessageSendInputGQO input) throws Exception {
     return null;
   }
 
   @Override
-  public MessagePayloadGQO messgeWithdraw(String messageId) throws Exception {
+  public MessagePayloadGQO messageWithdraw(String messageId) throws Exception {
     return null;
   }
 
   @Override
-  public MessagePayloadGQO messgeReview(String messageId, MessageReviewInputGQO input) throws Exception {
+  public MessagePayloadGQO messageReview(String messageId, MessageReviewInputGQO input) throws Exception {
     return null;
   }
 
   @Override
-  public MessagePayloadGQO messgeReviewUpdate(String messageId, MessageReviewInputGQO input) throws Exception {
+  public MessagePayloadGQO messageReviewUpdate(String messageId, MessageReviewInputGQO input) throws Exception {
     return null;
   }
 
   @Override
-  public MessagePayloadGQO messgeReviewDelete(String messageId, MessageReviewInputGQO input) throws Exception {
+  public MessagePayloadGQO messageReviewDelete(String messageId, MessageReviewInputGQO input) throws Exception {
     return null;
   }
 

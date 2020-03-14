@@ -6,6 +6,8 @@ public interface Mutation {
 
     AddConversationPayloadGQO conversationAdd(AddConversationInputGQO input) throws Exception;
 
+    UpdateConversationPayloadGQO conversationUpdate(UpdateConversationInputGQO input) throws Exception;
+
     ConversationPayloadGQO conversationJoinRequest(ConversationJoinRequestInputGQO input) throws Exception;
 
     ConversationPayloadGQO conversationJoinApprove(ConversationJoinApproveInputGQO input) throws Exception;
@@ -18,14 +20,14 @@ public interface Mutation {
 
     ConversationPayloadGQO conversationWebhookCreate(ConversationWebhookCreateInputGQO input) throws Exception;
 
-    MessagePayloadGQO messgeSend(String conversationId, MessageSendInputGQO input) throws Exception;
+    MessagePayloadGQO messageSend(String conversationId, MessageSendInputGQO input) throws Exception;
 
-    MessagePayloadGQO messgeWithdraw(String messageId) throws Exception;
+    MessagePayloadGQO messageWithdraw(String messageId) throws Exception;
 
-    MessagePayloadGQO messgeReview(String messageId, MessageReviewInputGQO input) throws Exception;
+    MessagePayloadGQO messageReview(String messageId, MessageReviewInputGQO input) throws Exception;
 
-    MessagePayloadGQO messgeReviewUpdate(String messageId, MessageReviewInputGQO input) throws Exception;
+    MessagePayloadGQO messageReviewUpdate(String messageId, MessageReviewInputGQO input) throws Exception;
 
-    MessagePayloadGQO messgeReviewDelete(String messageId, MessageReviewInputGQO input) throws Exception;
+    MessagePayloadGQO messageReviewDelete(String messageId, MessageReviewInputGQO input) throws Exception;
 
 }

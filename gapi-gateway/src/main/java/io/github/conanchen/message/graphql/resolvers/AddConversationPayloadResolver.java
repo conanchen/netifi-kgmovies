@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-class ConversationAddPayloadResolver implements GraphQLResolver<AddConversationPayloadGQO> {
+class AddConversationPayloadResolver implements GraphQLResolver<AddConversationPayloadGQO> {
 
 
     public Connection<ConversationGQO> conversationSearch(AddConversationPayloadGQO addConversationPayloadGQO,ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset, DataFetchingEnvironment env) {
