@@ -4,9 +4,6 @@ import io.github.conanchen.message.graphql.model.*;
 
 public interface Query {
 
-    ConversationConnectionGQO allConversations(String after, Integer first, String before, Integer last) throws Exception;
-
-    ConversationConnectionGQO conversationSearch(ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset) throws Exception;
 
     ConversationGQO conversation(String id, String csID) throws Exception;
 

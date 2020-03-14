@@ -7,8 +7,8 @@ extend type Query {
     - last: 指定取游标前的多少个数据，与before搭配使用；
     relay风格的分页格式定义细节见：https://facebook.github.io/relay/graphql/connections.htm#
     """
-    allConversations(after: String, first: Int, before: String, last: Int): ConversationConnection
-    conversationSearch(filter: ConversationFilter,order: ConversationOrder,first: Int,offset: Int): ConversationConnection
+    allConversations(after: String, first: Int, before: String, last: Int): ConversationConnection @connection(for: "Conversation")
+    conversationSearch(filter: ConversationFilter,order: ConversationOrder,first: Int,offset: Int): ConversationConnection @connection(for: "Conversation")
     conversation(id: ID, csID: ID): Conversation
     message(id: ID, msgID: ID): Message
     messageSendAction(id: ID, msgID: ID): MessageSendAction
@@ -91,40 +91,66 @@ type DataCatalog implements Node{
     id: ID!
 }
 
-"""【对话】组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。 One or more messages between organizations or people on a particular topic. Individual messages can be linked to the conversation with isPartOf or hasPart properties."""
+"""
+【对话】组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。
+One or more messages between organizations or people on a particular topic. Individual messages
+can be linked to the conversation with isPartOf or hasPart properties.
+"""
 type Conversation implements Node{
 
-    """【关于】 事物的关于信息 The subject matter of the content."""
+    """
+    【关于】 事物的关于信息 The subject matter of the content.
+    """
     about: Thing
 
-    """【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the CreativeWork."""
+    """
+    【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the CreativeWork.
+    """
     accountablePerson: Person
 
-    """【文章标题】 文章标题 Headline of the article."""
+    """
+    【文章标题】 文章标题 Headline of the article.
+    """
     headline: String
 
-    """【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork."""
+    """
+    【副标题】 CreativeWork的副标题。 A secondary title of the CreativeWork.
+    """
     alternativeHeadline: String
 
-    """【描述】 该项的一个简单描述。 A description of the item. description    Text or Thing    """
+    """
+    【描述】 该项的一个简单描述。 A description of the item. description    Text or Thing
+    """
     description: String
 
-    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserReviews    """
+    """
+    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.creator    Organization or Person or CreativeWork or UserReviews
+    """
     creator: Person
 
-    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork"""
+    """
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
+    """
     dateCreated: DateTime
 
-    """【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset."""
+    """
+    【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset.
+    """
     includedInDataCatalog: DataCatalog
 
-    """参照 hasPart【作品组件】 表示某个作品是该作品的一部分 """
-    hasParts: [Message]
+    """
+    参照 hasPart【作品组件】 表示某个作品是该作品的一部分
+    """
+    hasMessages: [Message]
 
-    """本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息"""
+    """
+    本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息
+    """
     webhook: [Webhook]
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """The id of the object."""
@@ -134,11 +160,14 @@ type Conversation implements Node{
 """【消息】由发送者发给一个或多个组织或个人的信息 A single message from a sender to one or more organizations or people."""
 type Message implements Node{
 
-    """isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of."""
-    isPartOf: [Conversation]
+    """
+    isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.
+    """
+    isMessageOf: Conversation
 
     """【发送者】 参与者的子属性。例如邮件的发送者。 A sub property of participant. The participant who is at the sending end of the action."""
     sender: Person!
+
     """【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent."""
     dateSent: DateTime
 
@@ -173,16 +202,16 @@ type Message implements Node{
 Review A review of an item - for example, of a restaurant, movie, or store.
 """
 type Review implements Node{
-    """itemReviewed	Thing 	The item that is being reviewed/rated."""
-    itemReviewed:	Thing
+    """itemReviewed    Thing    The item that is being reviewed/rated."""
+    itemReviewed:    Thing
 
-    """reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed."""
+    """reviewAspect    Text    This Review or Rating is relevant to this part or facet of the itemReviewed."""
     reviewAspect: String
 
-    """reviewBody	Text 	The actual body of the review."""
+    """reviewBody    Text    The actual body of the review."""
     reviewBody: String
 
-    """ratingValue	Number  or Text 	The rating for the content."""
+    """ratingValue    Number  or Text    The rating for the content."""
     ratingValue: Int
 
     """【作者】 此内容或评分的作者。"""
@@ -196,25 +225,25 @@ type Review implements Node{
 """AggregateReview The average rating based on multiple ratings or reviews."""
 type AggregateReview implements Node{
 
-    """itemReviewed	Thing 	The item that is being reviewed/rated."""
-    itemReviewed:	Thing
+    """itemReviewed    Thing    The item that is being reviewed/rated."""
+    itemReviewed:    Thing
 
-    """ratingCount	Integer 	The count of total number of ratings."""
-    ratingCount:	Int
+    """ratingCount    Integer    The count of total number of ratings."""
+    ratingCount:    Int
 
-    """reviewCount	Integer 	The count of total number of reviews."""
-    reviewCount:	Int
+    """reviewCount    Integer    The count of total number of reviews."""
+    reviewCount:    Int
 
-    """bestRating	Number  or Text 	The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed."""
+    """bestRating    Number  or Text    The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed."""
     bestRating: Int
 
     """平均分"""
     averageRating: Int
 
-    """worstRating	Number  or Text 	The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed."""
+    """worstRating    Number  or Text    The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed."""
     worstRating: Int
 
-    """ratingExplanation	Text 	A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using ClaimReview."""
+    """ratingExplanation    Text    A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using ClaimReview."""
     ratingExplanation: String
 
     reviews: [Review]
@@ -362,7 +391,7 @@ type AddConversationPayload{
     """
     errors: [ConversationAddError!]!
 
-    conversationSearch(filter: ConversationFilter,order: ConversationOrder,first: Int,offset: Int): ConversationConnection
+    conversationSearch(filter: ConversationFilter,order: ConversationOrder,first: Int,offset: Int): ConversationConnection  @connection(for: "Conversation")
 
 }
 
@@ -742,39 +771,3 @@ type ConversationWebhookCreateAction implements Action & Node{
     id: ID!
 }
 
-
-"""A connection to a list of items."""
-type ConversationConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
-
-    """A list of edges."""
-    edges: [ConversationEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    nodes: [Conversation]
-}
-
-"""An edge in a connection."""
-type ConversationEdge {
-    """The item at the end of the edge"""
-    node: Conversation
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}

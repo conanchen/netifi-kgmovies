@@ -1,26 +1,41 @@
 package io.github.conanchen.message.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.relay.Connection;
+import graphql.relay.SimpleListConnection;
+import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.message.graphql.api.Query;
 import io.github.conanchen.message.graphql.model.*;
+import io.github.conanchen.person.graphql.model.UserGQO;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 
 @Service
 public class MessageQueriesResolver implements Query, GraphQLQueryResolver {
 
-
-    @Override
-    public ConversationConnectionGQO allConversations(String after, Integer first, String before, Integer last) throws Exception {
-        return null;
+    public Connection<ConversationGQO> allConversations(String after, Integer first, String before, Integer last, DataFetchingEnvironment env) {
+        return new SimpleListConnection<ConversationGQO>(
+                Arrays.asList(
+                        ConversationGQO.builder().id("id1").alternativeHeadline("alternamte1").build(),
+                        ConversationGQO.builder().id("id2").alternativeHeadline("alternamte2").build(),
+                        ConversationGQO.builder().id("id3").alternativeHeadline("alternamte3").build()
+                )
+        ).get(env);
     }
 
-    @Override
-    public ConversationConnectionGQO conversationSearch(ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset) throws Exception {
-        return null;
+    public Connection<ConversationGQO> conversationSearch(ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset, DataFetchingEnvironment env) {
+        return new SimpleListConnection<ConversationGQO>(
+                Arrays.asList(
+                        ConversationGQO.builder().id("id1").alternativeHeadline("alternamte1").build(),
+                        ConversationGQO.builder().id("id2").alternativeHeadline("alternamte2").build(),
+                        ConversationGQO.builder().id("id3").alternativeHeadline("alternamte3").build()
+                )
+        ).get(env);
     }
+
 
 
     @Override

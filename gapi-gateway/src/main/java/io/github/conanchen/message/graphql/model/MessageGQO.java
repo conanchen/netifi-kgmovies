@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class MessageGQO implements NodeGQO{
 
-    private Collection<ConversationGQO> isPartOf;
+    private ConversationGQO isMessageOf;
     @javax.validation.constraints.NotNull
     private PersonGQO sender;
     private java.util.Date dateSent;
@@ -26,8 +26,8 @@ public class MessageGQO implements NodeGQO{
     public MessageGQO() {
     }
 
-    public MessageGQO(Collection<ConversationGQO> isPartOf, PersonGQO sender, java.util.Date dateSent, PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, String text, AggregateReviewGQO aggregateReview, Collection<ActionGQO> potentialActions, String id) {
-        this.isPartOf = isPartOf;
+    public MessageGQO(ConversationGQO isMessageOf, PersonGQO sender, java.util.Date dateSent, PersonGQO toRecipient, java.util.Date dateRead, java.util.Date dateReceived, Collection<PersonGQO> recipient, String text, AggregateReviewGQO aggregateReview, Collection<ActionGQO> potentialActions, String id) {
+        this.isMessageOf = isMessageOf;
         this.sender = sender;
         this.dateSent = dateSent;
         this.toRecipient = toRecipient;
@@ -40,11 +40,11 @@ public class MessageGQO implements NodeGQO{
         this.id = id;
     }
 
-    public Collection<ConversationGQO> getIsPartOf() {
-        return isPartOf;
+    public ConversationGQO getIsMessageOf() {
+        return isMessageOf;
     }
-    public void setIsPartOf(Collection<ConversationGQO> isPartOf) {
-        this.isPartOf = isPartOf;
+    public void setIsMessageOf(ConversationGQO isMessageOf) {
+        this.isMessageOf = isMessageOf;
     }
 
     public PersonGQO getSender() {

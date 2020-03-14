@@ -8,15 +8,13 @@ public class AddConversationPayloadGQO {
     private ConversationGQO item;
     @javax.validation.constraints.NotNull
     private Collection<ConversationAddErrorGQO> errors;
-    private Collection<ConversationConnectionGQO> conversationSearch;
 
     public AddConversationPayloadGQO() {
     }
 
-    public AddConversationPayloadGQO(ConversationGQO item, Collection<ConversationAddErrorGQO> errors, Collection<ConversationConnectionGQO> conversationSearch) {
+    public AddConversationPayloadGQO(ConversationGQO item, Collection<ConversationAddErrorGQO> errors) {
         this.item = item;
         this.errors = errors;
-        this.conversationSearch = conversationSearch;
     }
 
     public ConversationGQO getItem() {
@@ -32,12 +30,5 @@ public class AddConversationPayloadGQO {
     public void setErrors(Collection<ConversationAddErrorGQO> errors) {
         this.errors = errors;
     }
-
-    public Collection<ConversationConnectionGQO> getConversationSearch() {
-        return conversationSearch;
-    }
-    public void setConversationSearch(Collection<ConversationConnectionGQO> conversationSearch) {
-        this.conversationSearch = conversationSearch;
-    }
-
+    
 }

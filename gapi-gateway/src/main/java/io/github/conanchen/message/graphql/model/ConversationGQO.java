@@ -5,9 +5,13 @@ import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.softwareapplication.graphql.model.WebhookGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.Collection;
 
+@Data
+@Builder
 public class ConversationGQO implements NodeGQO{
 
     private ThingGQO about;
@@ -18,7 +22,7 @@ public class ConversationGQO implements NodeGQO{
     private PersonGQO creator;
     private java.util.Date dateCreated;
     private DataCatalogGQO includedInDataCatalog;
-    private Collection<MessageGQO> hasParts;
+    private Collection<MessageGQO> hasMessages;
     private Collection<WebhookGQO> webhook;
     private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
@@ -27,7 +31,7 @@ public class ConversationGQO implements NodeGQO{
     public ConversationGQO() {
     }
 
-    public ConversationGQO(ThingGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasParts, Collection<WebhookGQO> webhook, Collection<ActionGQO> potentialActions, String id) {
+    public ConversationGQO(ThingGQO about, PersonGQO accountablePerson, String headline, String alternativeHeadline, String description, PersonGQO creator, java.util.Date dateCreated, DataCatalogGQO includedInDataCatalog, Collection<MessageGQO> hasMessages, Collection<WebhookGQO> webhook, Collection<ActionGQO> potentialActions, String id) {
         this.about = about;
         this.accountablePerson = accountablePerson;
         this.headline = headline;
@@ -36,7 +40,7 @@ public class ConversationGQO implements NodeGQO{
         this.creator = creator;
         this.dateCreated = dateCreated;
         this.includedInDataCatalog = includedInDataCatalog;
-        this.hasParts = hasParts;
+        this.hasMessages = hasMessages;
         this.webhook = webhook;
         this.potentialActions = potentialActions;
         this.id = id;
@@ -98,11 +102,11 @@ public class ConversationGQO implements NodeGQO{
         this.includedInDataCatalog = includedInDataCatalog;
     }
 
-    public Collection<MessageGQO> getHasParts() {
-        return hasParts;
+    public Collection<MessageGQO> getHasMessages() {
+        return hasMessages;
     }
-    public void setHasParts(Collection<MessageGQO> hasParts) {
-        this.hasParts = hasParts;
+    public void setHasMessages(Collection<MessageGQO> hasMessages) {
+        this.hasMessages = hasMessages;
     }
 
     public Collection<WebhookGQO> getWebhook() {
