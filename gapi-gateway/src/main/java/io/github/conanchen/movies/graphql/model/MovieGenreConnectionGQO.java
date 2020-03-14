@@ -1,13 +1,13 @@
 package io.github.conanchen.movies.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+import graphql.relay.PageInfo;
 
 import java.util.Collection;
 
 public class MovieGenreConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<MovieGenreEdgeGQO> edges;
     private Integer totalCount;
     private Collection<GenreGQO> genres;
@@ -15,17 +15,17 @@ public class MovieGenreConnectionGQO {
     public MovieGenreConnectionGQO() {
     }
 
-    public MovieGenreConnectionGQO(PageInfoGQO pageInfo, Collection<MovieGenreEdgeGQO> edges, Integer totalCount, Collection<GenreGQO> genres) {
+    public MovieGenreConnectionGQO(PageInfo pageInfo, Collection<MovieGenreEdgeGQO> edges, Integer totalCount, Collection<GenreGQO> genres) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.genres = genres;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 

@@ -2,12 +2,12 @@ package io.github.conanchen.message.graphql.model;
 
 import java.util.*;
 import io.github.conanchen.message.graphql.api.*;
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+import graphql.relay.PageInfo;
 
 public class ConversationConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<ConversationEdgeGQO> edges;
     private Integer totalCount;
     private Collection<ConversationGQO> nodes;
@@ -15,17 +15,17 @@ public class ConversationConnectionGQO {
     public ConversationConnectionGQO() {
     }
 
-    public ConversationConnectionGQO(PageInfoGQO pageInfo, Collection<ConversationEdgeGQO> edges, Integer totalCount, Collection<ConversationGQO> nodes) {
+    public ConversationConnectionGQO(PageInfo pageInfo, Collection<ConversationEdgeGQO> edges, Integer totalCount, Collection<ConversationGQO> nodes) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.nodes = nodes;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 

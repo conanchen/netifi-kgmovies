@@ -1,13 +1,13 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+import graphql.relay.PageInfo;
 
 import java.util.Collection;
 
 public class DiscountApplicationConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<DiscountApplicationEdgeGQO> edges;
     private Integer totalCount;
     private Collection<DiscountApplicationGQO> films;
@@ -15,17 +15,17 @@ public class DiscountApplicationConnectionGQO {
     public DiscountApplicationConnectionGQO() {
     }
 
-    public DiscountApplicationConnectionGQO(PageInfoGQO pageInfo, Collection<DiscountApplicationEdgeGQO> edges, Integer totalCount, Collection<DiscountApplicationGQO> films) {
+    public DiscountApplicationConnectionGQO(PageInfo pageInfo, Collection<DiscountApplicationEdgeGQO> edges, Integer totalCount, Collection<DiscountApplicationGQO> films) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.films = films;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 

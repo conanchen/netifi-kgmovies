@@ -1,13 +1,13 @@
 package io.github.conanchen.event.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+import graphql.relay.PageInfo;
 
 import java.util.Collection;
 
 public class EventsConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<EventsEdgeGQO> edges;
     private Integer totalCount;
     private Collection<EventGQO> events;
@@ -15,17 +15,17 @@ public class EventsConnectionGQO {
     public EventsConnectionGQO() {
     }
 
-    public EventsConnectionGQO(PageInfoGQO pageInfo, Collection<EventsEdgeGQO> edges, Integer totalCount, Collection<EventGQO> events) {
+    public EventsConnectionGQO(PageInfo pageInfo, Collection<EventsEdgeGQO> edges, Integer totalCount, Collection<EventGQO> events) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.events = events;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 

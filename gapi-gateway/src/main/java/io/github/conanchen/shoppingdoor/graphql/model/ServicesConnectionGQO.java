@@ -1,13 +1,13 @@
 package io.github.conanchen.shoppingdoor.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+import graphql.relay.PageInfo;
 
 import java.util.Collection;
 
 public class ServicesConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<ServicesEdgeGQO> edges;
     private Integer totalCount;
     private Collection<ServiceGQO> services;
@@ -15,17 +15,17 @@ public class ServicesConnectionGQO {
     public ServicesConnectionGQO() {
     }
 
-    public ServicesConnectionGQO(PageInfoGQO pageInfo, Collection<ServicesEdgeGQO> edges, Integer totalCount, Collection<ServiceGQO> services) {
+    public ServicesConnectionGQO(PageInfo pageInfo, Collection<ServicesEdgeGQO> edges, Integer totalCount, Collection<ServiceGQO> services) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.services = services;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 

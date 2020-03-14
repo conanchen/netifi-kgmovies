@@ -1,13 +1,13 @@
 package io.github.conanchen.place.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+import graphql.relay.PageInfo;
 
 import java.util.Collection;
 
 public class LocalBusinessConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<LocalBusinessEdgeGQO> edges;
     private Integer totalCount;
     private Collection<LocalBusinessGQO> localBusiness;
@@ -15,17 +15,17 @@ public class LocalBusinessConnectionGQO {
     public LocalBusinessConnectionGQO() {
     }
 
-    public LocalBusinessConnectionGQO(PageInfoGQO pageInfo, Collection<LocalBusinessEdgeGQO> edges, Integer totalCount, Collection<LocalBusinessGQO> localBusiness) {
+    public LocalBusinessConnectionGQO(PageInfo pageInfo, Collection<LocalBusinessEdgeGQO> edges, Integer totalCount, Collection<LocalBusinessGQO> localBusiness) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.localBusiness = localBusiness;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 

@@ -1,13 +1,14 @@
 package io.github.conanchen.organization.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+
+import graphql.relay.PageInfo;
 
 import java.util.Collection;
 
 public class MemberRoleConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<MemberRoleEdgeGQO> edges;
     private Integer totalCount;
     private Collection<MemberRoleGQO> roles;
@@ -15,18 +16,18 @@ public class MemberRoleConnectionGQO {
     public MemberRoleConnectionGQO() {
     }
 
-    public MemberRoleConnectionGQO(PageInfoGQO pageInfo, Collection<MemberRoleEdgeGQO> edges, Integer totalCount, Collection<MemberRoleGQO> roles) {
+    public MemberRoleConnectionGQO(PageInfo pageInfo, Collection<MemberRoleEdgeGQO> edges, Integer totalCount, Collection<MemberRoleGQO> roles) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.roles = roles;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
 
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 

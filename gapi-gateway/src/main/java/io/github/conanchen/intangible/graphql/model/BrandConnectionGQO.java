@@ -2,12 +2,12 @@ package io.github.conanchen.intangible.graphql.model;
 
 import java.util.Collection;
 
-import io.github.conanchen.zommon.graphql.model.PageInfoGQO;
+import graphql.relay.PageInfo;
 
 public class BrandConnectionGQO {
 
     @javax.validation.constraints.NotNull
-    private PageInfoGQO pageInfo;
+    private PageInfo pageInfo;
     private Collection<BrandEdgeGQO> edges;
     private Integer totalCount;
     private Collection<BrandGQO> films;
@@ -15,17 +15,17 @@ public class BrandConnectionGQO {
     public BrandConnectionGQO() {
     }
 
-    public BrandConnectionGQO(PageInfoGQO pageInfo, Collection<BrandEdgeGQO> edges, Integer totalCount, Collection<BrandGQO> films) {
+    public BrandConnectionGQO(PageInfo pageInfo, Collection<BrandEdgeGQO> edges, Integer totalCount, Collection<BrandGQO> films) {
         this.pageInfo = pageInfo;
         this.edges = edges;
         this.totalCount = totalCount;
         this.films = films;
     }
 
-    public PageInfoGQO getPageInfo() {
+    public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public void setPageInfo(PageInfoGQO pageInfo) {
+    public void setPageInfo(PageInfo pageInfo) {
         this.pageInfo = pageInfo;
     }
 
