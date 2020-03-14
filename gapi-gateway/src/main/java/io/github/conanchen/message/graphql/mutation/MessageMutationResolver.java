@@ -20,6 +20,11 @@ public class MessageMutationResolver implements Mutation,GraphQLMutationResolver
   }
 
   @Override
+  public DeleteConversationPayloadGQO conversationDelete(ConversationFilterGQO filter) throws Exception {
+    return null;
+  }
+
+  @Override
   public ConversationPayloadGQO conversationJoinRequest(ConversationJoinRequestInputGQO input) throws Exception {
     return null;
   }

@@ -27,7 +27,7 @@ extend type Mutation {
     """创建会话，受限于是否在所在会话中拥有【ConversationAddAction】. create a conversation."""
     conversationAdd(input: AddConversationInput!): AddConversationPayload
     conversationUpdate(input: UpdateConversationInput!): UpdateConversationPayload
-    #    conversationDelete(filter: ConversationFilter!): ConversationDeletePayload
+    conversationDelete(filter: ConversationFilter!): DeleteConversationPayload
 
     """申请加入会话，受限于是否在所在会话中拥有【ConversationJoinRequestAction】.request to join a conversation."""
     conversationJoinRequest(input: ConversationJoinRequestInput!): ConversationPayload
@@ -62,7 +62,6 @@ extend type Mutation {
     """消息备注删除，受限于是否对该消息拥有【MessageAction】.delete a comment to a message."""
     messageReviewDelete(messageId: String, input: MessageReviewInput!): MessagePayload
 }
-
 
 
 """Canonical URL: http://cnschema.org/DataCatalog
@@ -802,3 +801,31 @@ input ConversationPatch {
     creator: UserRef
 
 }
+
+
+type DeleteConversationPayload {
+    """Error code to uniquely identify the error."""
+    code: ConversationDeleteErrorCode
+
+    """The error store."""
+    message: String!
+
+    conversationSearch(filter: ConversationFilter,order: ConversationOrder,first: Int,offset: Int): ConversationConnection  @connection(for: "Conversation")
+
+}
+
+"""Possible error codes that could be returned by a webhook mutation."""
+enum ConversationDeleteErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+

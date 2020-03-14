@@ -24,12 +24,7 @@ public class DataObjectBuilder<T> {
     }
 
     public <P1> DataObjectBuilder<T> with(Consumer1<T, P1> consumer, P1 p1) {
-        Consumer<T> c = new Consumer<T>() {
-            @Override
-            public void accept(T instance) {
-                consumer.accept(instance, p1);
-            }
-        };
+        Consumer<T> c = instance -> consumer.accept(instance, p1);
         modifiers.add(c);
         return this;
     }

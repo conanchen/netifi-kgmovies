@@ -8,6 +8,8 @@ public interface Mutation {
 
     UpdateConversationPayloadGQO conversationUpdate(UpdateConversationInputGQO input) throws Exception;
 
+    DeleteConversationPayloadGQO conversationDelete(ConversationFilterGQO filter) throws Exception;
+
     ConversationPayloadGQO conversationJoinRequest(ConversationJoinRequestInputGQO input) throws Exception;
 
     ConversationPayloadGQO conversationJoinApprove(ConversationJoinApproveInputGQO input) throws Exception;
