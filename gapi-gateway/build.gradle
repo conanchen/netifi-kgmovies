@@ -1,6 +1,3 @@
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
-import io.github.kobylynskyi.graphql.codegen.gradle.GraphqlCodegenGradleTask
-
 plugins {
     id 'java'
     id 'application'
@@ -11,6 +8,9 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.60'
     id "io.github.kobylynskyi.graphql.codegen" version "1.3.0"
 }
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import io.github.kobylynskyi.graphql.codegen.gradle.GraphqlCodegenGradleTask
 
 dependencies {
     // protobuf project(':product-service-idl')
@@ -233,7 +233,7 @@ task graphqlCodegenShoppingman(type: GraphqlCodegenGradleTask,dependsOn: graphql
     generateApis = true
 }
 
-task graphqlCodegenSoftwareApplication(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
+task graphqlCodegenSoftwareapplication(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/softwareapplication-schema.graphqls".toString()]
     outputDir = new File("$buildDir/generated/graphql/softwareapplication")
     apiPackageName = "io.github.conanchen.softwareapplication.graphql.api"
