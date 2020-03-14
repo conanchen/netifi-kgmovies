@@ -8,27 +8,27 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ConversationAddErrorGQO implements DisplayableErrorGQO {
+public class ConversationUpdateErrorGQO implements DisplayableErrorGQO {
 
-    private ConversationAddErrorCodeGQO code;
+    private ConversationUpdateErrorCodeGQO code;
     @javax.validation.constraints.NotNull
     private Collection<String> field;
     @javax.validation.constraints.NotNull
     private String message;
 
-    public ConversationAddErrorGQO() {
+    public ConversationUpdateErrorGQO() {
     }
 
-    public ConversationAddErrorGQO(ConversationAddErrorCodeGQO code, Collection<String> field, String message) {
+    public ConversationUpdateErrorGQO(ConversationUpdateErrorCodeGQO code, Collection<String> field, String message) {
         this.code = code;
         this.field = field;
         this.message = message;
     }
 
-    public ConversationAddErrorCodeGQO getCode() {
+    public ConversationUpdateErrorCodeGQO getCode() {
         return code;
     }
-    public void setCode(ConversationAddErrorCodeGQO code) {
+    public void setCode(ConversationUpdateErrorCodeGQO code) {
         this.code = code;
     }
 

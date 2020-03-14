@@ -785,12 +785,25 @@ type UpdateConversationPayload {
     """
     List of errors that occurred executing the mutation.
     """
-    errors: [ConversationAddError!]!
+    errors: [ConversationUpdateError!]!
 
     conversationSearch(filter: ConversationFilter,order: ConversationOrder,first: Int,offset: Int): ConversationConnection  @connection(for: "Conversation")
 
 }
 
+"""Represents an error that happens during execution of a conversation mutation."""
+type  ConversationUpdateError implements DisplayableError{
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
 input ConversationPatch {
     identifier: String
     name: String
@@ -816,6 +829,22 @@ type DeleteConversationPayload {
 
 """Possible error codes that could be returned by a webhook mutation."""
 enum ConversationDeleteErrorCode{
+    """Input value is blank."""
+    BLANK
+
+    """Input value is invalid."""
+    INVALID
+
+    """Input value is too long."""
+    TOO_LONG
+
+    """不允许执行该操作Action"""
+    ACTION_NOT_PERMITTED
+}
+
+
+"""Possible error codes that could be returned by a webhook mutation."""
+enum ConversationUpdateErrorCode{
     """Input value is blank."""
     BLANK
 

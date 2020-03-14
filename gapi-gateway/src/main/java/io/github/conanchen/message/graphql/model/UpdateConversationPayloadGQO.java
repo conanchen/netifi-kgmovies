@@ -2,17 +2,21 @@ package io.github.conanchen.message.graphql.model;
 
 import java.util.*;
 import io.github.conanchen.message.graphql.api.*;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
 public class UpdateConversationPayloadGQO {
 
     private ConversationGQO item;
     @javax.validation.constraints.NotNull
-    private Collection<ConversationAddErrorGQO> errors;
+    private Collection<ConversationUpdateErrorGQO> errors;
 
     public UpdateConversationPayloadGQO() {
     }
 
-    public UpdateConversationPayloadGQO(ConversationGQO item, Collection<ConversationAddErrorGQO> errors) {
+    public UpdateConversationPayloadGQO(ConversationGQO item, Collection<ConversationUpdateErrorGQO> errors) {
         this.item = item;
         this.errors = errors;
     }
@@ -24,10 +28,10 @@ public class UpdateConversationPayloadGQO {
         this.item = item;
     }
 
-    public Collection<ConversationAddErrorGQO> getErrors() {
+    public Collection<ConversationUpdateErrorGQO> getErrors() {
         return errors;
     }
-    public void setErrors(Collection<ConversationAddErrorGQO> errors) {
+    public void setErrors(Collection<ConversationUpdateErrorGQO> errors) {
         this.errors = errors;
     }
 
