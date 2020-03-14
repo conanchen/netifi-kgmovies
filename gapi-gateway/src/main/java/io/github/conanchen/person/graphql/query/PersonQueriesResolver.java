@@ -7,10 +7,10 @@ import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.person.graphql.api.Query;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.person.graphql.model.UserGQO;
+import io.github.utils.DataObjectBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 
 @Service
@@ -28,12 +28,19 @@ public class PersonQueriesResolver implements Query, GraphQLQueryResolver {
     }
 
     public Connection<UserGQO> users(int first, String after, DataFetchingEnvironment env) {
+
         return new SimpleListConnection<>(
                 Arrays.asList(
                         new UserGQO("username1", "name1", "bio1", "bioHTML1", null, "id1"),
                         new UserGQO("username2", "name2", "bio2", "bioHTML2", null, "id2"),
                         new UserGQO("username3", "name3", "bio3", "bioHTML3", null, "id3"),
-                        new UserGQO("username4", "name4", "bio4", "bioHTML4", null, "id4")
+                        DataObjectBuilder.of(UserGQO::new)
+                                .with(UserGQO::setUsername, "Builder username4")
+                                .with(UserGQO::setName, "Builder name4")
+                                .with(UserGQO::setBio, "Builder bio4")
+                                .with(UserGQO::setBioHTML, "Builder bioHTML4")
+                                .with(UserGQO::setId, "id4")
+                                .build()
                 )
         ).get(env);
     }
