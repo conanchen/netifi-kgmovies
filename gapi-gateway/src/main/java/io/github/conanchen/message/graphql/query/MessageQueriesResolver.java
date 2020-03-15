@@ -39,58 +39,59 @@ public class MessageQueriesResolver implements Query, GraphQLQueryResolver {
 
 
     @Override
-    public ConversationGQO conversation(String id, String csID) throws Exception {
+    public ConversationGQO conversation(String id, String csID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessageGQO message(String id, String msgID) throws Exception {
+    public MessageGQO message(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessageSendActionGQO messageSendAction(String id, String msgID) throws Exception {
+    public MessageSendActionGQO messageSendAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessageReviewActionGQO messageReviewAction(String id, String msgID) throws Exception {
+    public MessageReviewActionGQO messageReviewAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationAddActionGQO conversationAddAction(String id, String msgID) throws Exception {
+    public ConversationAddActionGQO conversationAddAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
 
     @Override
-    public ConversationJoinRequestActionGQO conversationJoinRequestAction(String id, String msgID) throws Exception {
+    public ConversationJoinRequestActionGQO conversationJoinRequestAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationJoinApproveActionGQO conversationJoinApproveAction(String id, String msgID) throws Exception {
+    public ConversationJoinApproveActionGQO conversationJoinApproveAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationInvitationRequestActionGQO conversationInvitationRequestAction(String id, String msgID) throws Exception {
+    public ConversationInvitationRequestActionGQO conversationInvitationRequestAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationInvitationAcceptActionGQO conversationInvitationAcceptAction(String id, String msgID) throws Exception {
+    public ConversationInvitationAcceptActionGQO conversationInvitationAcceptAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationMemberRemoveActionGQO conversationMemberRemoveAction(String id, String msgID) throws Exception {
+    public ConversationMemberRemoveActionGQO conversationMemberRemoveAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationWebhookCreateActionGQO conversationWebhookCreateAction(String id, String msgID) throws Exception {
+    public ConversationWebhookCreateActionGQO conversationWebhookCreateAction(String id, String msgID, DataFetchingEnvironment env) throws Exception {
+        env.getContext();
         return null;
     }
 

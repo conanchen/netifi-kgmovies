@@ -1,8 +1,15 @@
 package io.github.conanchen.message.graphql.model;
 
 import java.util.*;
-import io.github.conanchen.message.graphql.api.*;
 
+import io.github.conanchen.message.graphql.api.*;
+import lombok.Builder;
+import lombok.Data;
+
+import javax.validation.constraints.NotNull;
+
+@Data
+@Builder
 public class AddConversationPayloadGQO {
 
     private ConversationGQO item;
@@ -12,23 +19,8 @@ public class AddConversationPayloadGQO {
     public AddConversationPayloadGQO() {
     }
 
-    public AddConversationPayloadGQO(ConversationGQO item, Collection<ConversationAddErrorGQO> errors) {
+    public AddConversationPayloadGQO(ConversationGQO item, @NotNull Collection<ConversationAddErrorGQO> errors) {
         this.item = item;
         this.errors = errors;
     }
-
-    public ConversationGQO getItem() {
-        return item;
-    }
-    public void setItem(ConversationGQO item) {
-        this.item = item;
-    }
-
-    public Collection<ConversationAddErrorGQO> getErrors() {
-        return errors;
-    }
-    public void setErrors(Collection<ConversationAddErrorGQO> errors) {
-        this.errors = errors;
-    }
-    
 }

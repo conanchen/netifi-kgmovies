@@ -16,7 +16,9 @@ import java.util.Arrays;
 class AddConversationPayloadResolver implements GraphQLResolver<AddConversationPayloadGQO> {
 
 
-    public Connection<ConversationGQO> conversationSearch(AddConversationPayloadGQO addConversationPayloadGQO,ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset, DataFetchingEnvironment env) {
+    public Connection<ConversationGQO> conversationSearch(AddConversationPayloadGQO addConversationPayloadGQO,
+                                                          ConversationFilterGQO filter, ConversationOrderGQO order,
+                                                          Integer first, Integer offset, DataFetchingEnvironment env) {
         return new SimpleListConnection<ConversationGQO>(
                 Arrays.asList(
                         ConversationGQO.builder().id("id1").alternativeHeadline("alternamte1").build(),

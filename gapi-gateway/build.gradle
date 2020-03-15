@@ -3,8 +3,8 @@ plugins {
     id "idea"
     id 'application'
     id "net.ltgt.apt" version "0.20"
-    id "io.github.kobylynskyi.graphql.codegen" version "1.3.0"
-//    id "io.github.conanchen.graphql.codegen" version "1.3.0"
+//    id "io.github.kobylynskyi.graphql.codegen" version "1.3.0"
+    id "io.github.conanchen.graphql.codegen" version "1.3.0"
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
     id 'com.google.protobuf'
@@ -71,6 +71,8 @@ task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
+    apiPackageImports = ["import java.util.List;" , "import java.util.Map;"]
+    modelPackageImports = ["import java.util.List;" , "import java.util.Map;"]
 }
 
 task graphqlCodegenAction(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
@@ -162,6 +164,9 @@ task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCode
     customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
+    apiPackageImports = ["java.util" , "java.util"]
+    modelPackageImports = ["io.github.conanchen.movies.graphql.model" ,
+                           "io.github.conanchen.person.graphql.model"]
 }
 
 task graphqlCodegenMovie(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
