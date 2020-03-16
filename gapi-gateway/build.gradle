@@ -161,6 +161,7 @@ task graphqlCodegenMessage(type: GraphqlCodegenGradleTask,dependsOn: graphqlCode
     outputDir = new File("$buildDir/generated/graphql/message")
     apiPackageName = "io.github.conanchen.message.graphql.api"
     modelPackageName = "io.github.conanchen.message.graphql.model"
+    resolverPackageName = "io.github.conanchen.message.graphql.resolver"
     customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true

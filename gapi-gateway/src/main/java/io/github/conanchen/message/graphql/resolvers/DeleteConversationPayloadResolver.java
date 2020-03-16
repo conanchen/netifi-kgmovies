@@ -8,15 +8,16 @@ import io.github.conanchen.message.graphql.model.ConversationFilterGQO;
 import io.github.conanchen.message.graphql.model.ConversationGQO;
 import io.github.conanchen.message.graphql.model.ConversationOrderGQO;
 import io.github.conanchen.message.graphql.model.DeleteConversationPayloadGQO;
+import io.github.conanchen.message.graphql.resolver.Resolvers;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
 @Service
-class DeleteConversationPayloadResolver implements GraphQLResolver<DeleteConversationPayloadGQO> {
+class DeleteConversationPayloadResolver implements Resolvers.DeleteConversationPayload, GraphQLResolver<DeleteConversationPayloadGQO> {
 
-
-    public Connection<ConversationGQO> conversationSearch(DeleteConversationPayloadGQO updateConversationPayloadGQO,ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset, DataFetchingEnvironment env) {
+    @Override
+    public Connection<ConversationGQO> conversationSearch(DeleteConversationPayloadGQO parent, ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset, DataFetchingEnvironment env) {
         return new SimpleListConnection<ConversationGQO>(
                 Arrays.asList(
                         ConversationGQO.builder().id("id1").alternativeHeadline("alternamte1").build(),

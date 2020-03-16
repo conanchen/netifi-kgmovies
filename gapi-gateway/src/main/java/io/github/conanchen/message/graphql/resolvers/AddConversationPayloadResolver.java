@@ -8,15 +8,16 @@ import io.github.conanchen.message.graphql.model.AddConversationPayloadGQO;
 import io.github.conanchen.message.graphql.model.ConversationFilterGQO;
 import io.github.conanchen.message.graphql.model.ConversationGQO;
 import io.github.conanchen.message.graphql.model.ConversationOrderGQO;
+import io.github.conanchen.message.graphql.resolver.Resolvers;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
 @Service
-class AddConversationPayloadResolver implements GraphQLResolver<AddConversationPayloadGQO> {
+class AddConversationPayloadResolver implements Resolvers.AddConversationPayload,GraphQLResolver<AddConversationPayloadGQO> {
 
-
-    public Connection<ConversationGQO> conversationSearch(AddConversationPayloadGQO addConversationPayloadGQO,
+    @Override
+    public Connection<ConversationGQO> conversationSearch(AddConversationPayloadGQO parent,
                                                           ConversationFilterGQO filter, ConversationOrderGQO order,
                                                           Integer first, Integer offset, DataFetchingEnvironment env) {
         return new SimpleListConnection<ConversationGQO>(
@@ -27,4 +28,6 @@ class AddConversationPayloadResolver implements GraphQLResolver<AddConversationP
                 )
         ).get(env);
     }
+
+
 }
