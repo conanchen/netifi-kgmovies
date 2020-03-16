@@ -1,6 +1,7 @@
 package io.github.conanchen.message.graphql.mutation;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.message.graphql.api.Mutation;
 import io.github.conanchen.message.graphql.model.*;
 import org.springframework.stereotype.Service;
@@ -10,14 +11,23 @@ import java.util.Collections;
 @Service
 public class MessageMutationResolver implements Mutation, GraphQLMutationResolver {
 
-
     @Override
-    public AddConversationPayloadGQO conversationAdd(AddConversationInputGQO input) throws Exception {
-        return null;
+    public AddConversationPayloadGQO conversationAdd(AddConversationInputGQO input, DataFetchingEnvironment env) throws Exception {
+        return AddConversationPayloadGQO.builder()
+                .item(ConversationGQO.builder()
+                        .headline("headline")
+                        .alternativeHeadline("alter")
+                        .id("idconver1")
+                        .build())
+                .errors(Collections.singleton(ConversationAddErrorGQO.builder()
+                        .code(ConversationAddErrorCodeGQO.ACTION_NOT_PERMITTED)
+                        .message("testing error")
+                        .build()))
+                .build();
     }
 
     @Override
-    public UpdateConversationPayloadGQO conversationUpdate(UpdateConversationInputGQO input) throws Exception {
+    public UpdateConversationPayloadGQO conversationUpdate(String conversationId, UpdateConversationInputGQO input, DataFetchingEnvironment env) throws Exception {
         return UpdateConversationPayloadGQO.builder()
                 .item(ConversationGQO.builder()
                         .headline("headline")
@@ -32,64 +42,62 @@ public class MessageMutationResolver implements Mutation, GraphQLMutationResolve
     }
 
     @Override
-    public DeleteConversationPayloadGQO conversationDelete(ConversationFilterGQO filter) throws Exception {
+    public DeleteConversationPayloadGQO conversationDelete(String conversationId, ConversationFilterGQO filter, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationPayloadGQO conversationJoinRequest(ConversationJoinRequestInputGQO input) throws Exception {
+    public ConversationJoinRequestPayloadGQO conversationJoinRequest(String conversationId, ConversationJoinRequestInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationPayloadGQO conversationJoinApprove(ConversationJoinApproveInputGQO input) throws Exception {
+    public ConversationJoinApprovePayloadGQO conversationJoinApprove(String conversationId, ConversationJoinApproveInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationPayloadGQO conversationInvitationRequest(ConversationInvitationRequestInputGQO input) throws Exception {
+    public ConversationInvitationRequestPayloadGQO conversationInvitationRequest(String conversationId, ConversationInvitationRequestInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationPayloadGQO conversationInvitationAccept(ConversationInvitationAcceptInputGQO input) throws Exception {
+    public ConversationInvitationAcceptPayloadGQO conversationInvitationAccept(ConversationInvitationAcceptInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationPayloadGQO conversationMemberRemove(ConversationMemberRemoveInputGQO input) throws Exception {
+    public ConversationMemberRemovePayloadGQO conversationMemberRemove(String conversationId, ConversationMemberRemoveInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ConversationPayloadGQO conversationWebhookCreate(ConversationWebhookCreateInputGQO input) throws Exception {
+    public ConversationWebhookCreatePayloadGQO conversationWebhookCreate(String conversationId, ConversationWebhookCreateInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessagePayloadGQO messageSend(String conversationId, MessageSendInputGQO input) throws Exception {
+    public MessagePayloadGQO messageSend(String conversationId, MessageSendInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessagePayloadGQO messageWithdraw(String messageId) throws Exception {
+    public MessagePayloadGQO messageWithdraw(String messageId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessagePayloadGQO messageReview(String messageId, MessageReviewInputGQO input) throws Exception {
+    public MessagePayloadGQO messageReviewAdd(String messageId, MessageReviewInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessagePayloadGQO messageReviewUpdate(String messageId, MessageReviewInputGQO input) throws Exception {
+    public MessagePayloadGQO messageReviewUpdate(String reviewId, MessageReviewInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public MessagePayloadGQO messageReviewDelete(String messageId, MessageReviewInputGQO input) throws Exception {
+    public MessagePayloadGQO messageReviewDelete(String reviewId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
-
-
 }

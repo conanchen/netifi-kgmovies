@@ -20,47 +20,50 @@ extend type Query {
     conversationInvitationAcceptAction(id: ID, msgID: ID): ConversationInvitationAcceptAction
     conversationMemberRemoveAction(id: ID, msgID: ID): ConversationMemberRemoveAction
     conversationWebhookCreateAction(id: ID, msgID: ID): ConversationWebhookCreateAction
+    conversationError(id: ID, msgID: ID):ConversationError
 }
 
 extend type Mutation {
 
     """创建会话，受限于是否在所在会话中拥有【ConversationAddAction】. create a conversation."""
     conversationAdd(input: AddConversationInput!): AddConversationPayload
-    conversationUpdate(input: UpdateConversationInput!): UpdateConversationPayload
-    conversationDelete(filter: ConversationFilter!): DeleteConversationPayload
+    """修改会话信息，受限于是否在所在会话中拥有【ConversationUpdateAction】. update a conversation."""
+    conversationUpdate(conversationId: ID!, input: UpdateConversationInput!): UpdateConversationPayload
+    """删除会话，受限于是否在所在会话中拥有【ConversationDeleteAction】. delete a conversation."""
+    conversationDelete(conversationId: ID, filter: ConversationFilter!): DeleteConversationPayload
 
     """申请加入会话，受限于是否在所在会话中拥有【ConversationJoinRequestAction】.request to join a conversation."""
-    conversationJoinRequest(input: ConversationJoinRequestInput!): ConversationPayload
+    conversationJoinRequest(conversationId: ID!, input: ConversationJoinRequestInput!): ConversationJoinRequestPayload
 
     """批准加入会话，受限于是否在所在会话中拥有【ConversationJoinApproveAction】.approve to join a conversation."""
-    conversationJoinApprove(input: ConversationJoinApproveInput!): ConversationPayload
+    conversationJoinApprove(conversationId: ID!, input: ConversationJoinApproveInput!): ConversationJoinApprovePayload
 
     """发送邀请加入会话，受限于是否在所在会话中拥有【ConversationInvitationRequestAction】.send invitation to join a conversation."""
-    conversationInvitationRequest(input: ConversationInvitationRequestInput!): ConversationPayload
+    conversationInvitationRequest(conversationId: ID!, input: ConversationInvitationRequestInput!): ConversationInvitationRequestPayload
 
     """接受邀请加入会话，accept invitation to join a conversation."""
-    conversationInvitationAccept(input: ConversationInvitationAcceptInput!): ConversationPayload
+    conversationInvitationAccept(input: ConversationInvitationAcceptInput!): ConversationInvitationAcceptPayload
 
     """踢出会话成员，受限于是否在所在会话中拥有【ConversationMemberRemoveAction】. remove members from a conversation."""
-    conversationMemberRemove(input: ConversationMemberRemoveInput!): ConversationPayload
+    conversationMemberRemove(conversationId: ID!, input: ConversationMemberRemoveInput!): ConversationMemberRemovePayload
 
     """会话本身的webhook，以便第三方应用向会话发送消息通知，受限于是否在所在会话中拥有【ConversationWebhookCreateAction】. webhook of the conversation."""
-    conversationWebhookCreate(input: ConversationWebhookCreateInput!): ConversationPayload
+    conversationWebhookCreate(conversationId: ID!, input: ConversationWebhookCreateInput!): ConversationWebhookCreatePayload
 
     """向会话发送消息，受限于是否在所在会话中拥有【MessageSendAction】. Sends a message to a conversation."""
-    messageSend(conversationId: String, input: MessageSendInput!): MessagePayload
+    messageSend(conversationId: ID!, input: MessageSendInput!): MessagePayload
 
     """撤回消息，受限于是否对该消息拥有【MessageWithdrawAction】.withdraw  a message."""
-    messageWithdraw(messageId: String): MessagePayload
+    messageWithdraw(messageId: ID!): MessagePayload
 
     """消息补充备注，受限于是否对该消息拥有【MessageReviewAction】.post a comment to a message."""
-    messageReview(messageId: String, input: MessageReviewInput!): MessagePayload
+    messageReviewAdd(messageId: ID!, input: MessageReviewInput!): MessagePayload
 
     """消息备注修改，受限于是否对该消息拥有【MessageEditAction】.edit a comment to a message."""
-    messageReviewUpdate(messageId: String, input: MessageReviewInput!): MessagePayload
+    messageReviewUpdate(reviewId: ID!, input: MessageReviewInput!): MessagePayload
 
     """消息备注删除，受限于是否对该消息拥有【MessageAction】.delete a comment to a message."""
-    messageReviewDelete(messageId: String, input: MessageReviewInput!): MessagePayload
+    messageReviewDelete(reviewId: ID!): MessagePayload
 }
 
 
@@ -858,3 +861,81 @@ enum ConversationUpdateErrorCode{
     ACTION_NOT_PERMITTED
 }
 
+
+type ConversationWebhookCreatePayload {
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
+
+type ConversationMemberRemovePayload {
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
+
+type ConversationInvitationAcceptPayload {
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
+
+type ConversationInvitationRequestPayload {
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
+
+type ConversationJoinApprovePayload {
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
+
+type ConversationJoinRequestPayload {
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}

@@ -95,4 +95,9 @@ public class MessageQueriesResolver implements Query, GraphQLQueryResolver {
         return null;
     }
 
+    @Override
+    public ConversationErrorGQO conversationError(String id, String msgID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
+
 }

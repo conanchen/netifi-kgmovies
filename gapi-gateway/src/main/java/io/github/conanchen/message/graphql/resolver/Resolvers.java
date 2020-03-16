@@ -81,4 +81,22 @@ public class Resolvers{
     // KK
         public Connection<ConversationGQO> conversationSearch(DeleteConversationPayloadGQO parent,ConversationFilterGQO filter, ConversationOrderGQO order, Integer first, Integer offset, DataFetchingEnvironment env);
     }
+    public interface ConversationWebhookCreatePayload {
+    // KK
+    }
+    public interface ConversationMemberRemovePayload {
+    // KK
+    }
+    public interface ConversationInvitationAcceptPayload {
+    // KK
+    }
+    public interface ConversationInvitationRequestPayload {
+    // KK
+    }
+    public interface ConversationJoinApprovePayload {
+    // KK
+    }
+    public interface ConversationJoinRequestPayload {
+    // KK
+    }
 }

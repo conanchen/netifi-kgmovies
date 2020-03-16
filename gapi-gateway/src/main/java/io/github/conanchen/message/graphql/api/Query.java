@@ -22,4 +22,5 @@ public interface Query {
     ConversationInvitationAcceptActionGQO conversationInvitationAcceptAction(String id, String msgID, DataFetchingEnvironment env) throws Exception;
     ConversationMemberRemoveActionGQO conversationMemberRemoveAction(String id, String msgID, DataFetchingEnvironment env) throws Exception;
     ConversationWebhookCreateActionGQO conversationWebhookCreateAction(String id, String msgID, DataFetchingEnvironment env) throws Exception;
+    ConversationErrorGQO conversationError(String id, String msgID, DataFetchingEnvironment env) throws Exception;
 }
