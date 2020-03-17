@@ -44,6 +44,9 @@ extend type Mutation {
     """接受邀请加入会话，accept invitation to join a conversation."""
     conversationInvitationAccept(input: ConversationInvitationAcceptInput!): ConversationInvitationAcceptPayload
 
+    """直接添加会话成员，受限于是否在所在会话中拥有【ConversationMemberAddAction】. add members to a conversation."""
+    conversationMemberAdd(conversationId: ID!, input: ConversationMemberAddInput!): ConversationMemberAddPayload
+
     """踢出会话成员，受限于是否在所在会话中拥有【ConversationMemberRemoveAction】. remove members from a conversation."""
     conversationMemberRemove(conversationId: ID!, input: ConversationMemberRemoveInput!): ConversationMemberRemovePayload
 
@@ -358,6 +361,16 @@ input ConversationInvitationAcceptInput {
 
     actionId: ID!
 }
+
+input ConversationMemberAddInput {
+    """
+    客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
+    """
+    clientMutationId: String
+
+    actionId: ID!
+}
+
 
 input ConversationMemberRemoveInput {
     """
@@ -863,6 +876,19 @@ enum ConversationUpdateErrorCode{
 
 
 type ConversationWebhookCreatePayload {
+
+    """Error code to uniquely identify the error."""
+    code: ConversationUpdateErrorCode
+
+    """Path to the input field which caused the error."""
+    field: [String!]
+
+    """The error conversation."""
+    message: String!
+
+}
+
+type ConversationMemberAddPayload {
 
     """Error code to uniquely identify the error."""
     code: ConversationUpdateErrorCode

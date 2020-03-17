@@ -67,6 +67,11 @@ public class MessageMutationResolver implements Mutation, GraphQLMutationResolve
     }
 
     @Override
+    public ConversationMemberAddPayloadGQO conversationMemberAdd(String conversationId, ConversationMemberAddInputGQO input, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
+
+    @Override
     public ConversationMemberRemovePayloadGQO conversationMemberRemove(String conversationId, ConversationMemberRemoveInputGQO input, DataFetchingEnvironment env) throws Exception {
         return null;
     }

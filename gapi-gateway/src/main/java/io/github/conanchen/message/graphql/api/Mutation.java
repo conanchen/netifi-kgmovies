@@ -16,6 +16,7 @@ public interface Mutation {
     ConversationJoinApprovePayloadGQO conversationJoinApprove(String conversationId, ConversationJoinApproveInputGQO input, DataFetchingEnvironment env) throws Exception;
     ConversationInvitationRequestPayloadGQO conversationInvitationRequest(String conversationId, ConversationInvitationRequestInputGQO input, DataFetchingEnvironment env) throws Exception;
     ConversationInvitationAcceptPayloadGQO conversationInvitationAccept(ConversationInvitationAcceptInputGQO input, DataFetchingEnvironment env) throws Exception;
+    ConversationMemberAddPayloadGQO conversationMemberAdd(String conversationId, ConversationMemberAddInputGQO input, DataFetchingEnvironment env) throws Exception;
     ConversationMemberRemovePayloadGQO conversationMemberRemove(String conversationId, ConversationMemberRemoveInputGQO input, DataFetchingEnvironment env) throws Exception;
     ConversationWebhookCreatePayloadGQO conversationWebhookCreate(String conversationId, ConversationWebhookCreateInputGQO input, DataFetchingEnvironment env) throws Exception;
     MessagePayloadGQO messageSend(String conversationId, MessageSendInputGQO input, DataFetchingEnvironment env) throws Exception;

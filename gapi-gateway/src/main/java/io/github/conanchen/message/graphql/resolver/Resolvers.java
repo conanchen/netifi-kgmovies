@@ -84,6 +84,9 @@ public class Resolvers{
     public interface ConversationWebhookCreatePayload {
     // KK
     }
+    public interface ConversationMemberAddPayload {
+    // KK
+    }
     public interface ConversationMemberRemovePayload {
     // KK
     }
