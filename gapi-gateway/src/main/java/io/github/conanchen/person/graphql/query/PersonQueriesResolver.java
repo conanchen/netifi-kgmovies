@@ -16,18 +16,8 @@ import java.util.Arrays;
 @Service
 public class PersonQueriesResolver implements Query, GraphQLQueryResolver {
 
-
     @Override
-    public PersonGQO person(String id, String pId) throws Exception {
-        return null;
-    }
-
-    @Override
-    public UserGQO user(String id, String uId) throws Exception {
-        return null;
-    }
-
-    public Connection<UserGQO> users(int first, String after, DataFetchingEnvironment env) {
+    public Connection<UserGQO> users(Integer first, String after, DataFetchingEnvironment env) {
 
         return new SimpleListConnection<>(
                 Arrays.asList(
@@ -44,4 +34,15 @@ public class PersonQueriesResolver implements Query, GraphQLQueryResolver {
                 )
         ).get(env);
     }
+
+    @Override
+    public PersonGQO person(String id, String pId, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
+
+    @Override
+    public UserGQO user(String id, String uId, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
+
 }

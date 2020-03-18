@@ -157,6 +157,14 @@ subprojects {
             dependency "io.dgraph:dgraph4j:${dgraph4jVersion}"
             dependency 'org.antlr:ST4:4.3'
             dependency 'com.github.kstyrc:embedded-redis:0.6'
+
+            dependency "io.jsonwebtoken:jjwt-api:${jsonwebtokenVersion}"
+            dependency "io.jsonwebtoken:jjwt-impl:${jsonwebtokenVersion}"
+            // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+            //'org.bouncycastle:bcprov-jdk15on:1.60',
+            // dependency 'io.jsonwebtoken:jjwt-jackson:0.11.1'
+            // or
+            dependency "io.jsonwebtoken:jjwt-gson:${jsonwebtokenVersion}" //for gson
         }
     }
 }

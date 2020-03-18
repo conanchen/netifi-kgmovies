@@ -50,6 +50,10 @@ dependencies {
 
     compile ('io.dgraph:dgraph4j'){exclude group: 'ch.qos.logback'}
     compile 'org.antlr:ST4'
+
+    compile 'io.jsonwebtoken:jjwt-api'
+    runtime 'io.jsonwebtoken:jjwt-impl', 'io.jsonwebtoken:jjwt-gson:0.11.1'
+
 }
 
 mainClassName = 'io.github.GapiApplication'
@@ -71,8 +75,8 @@ task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
-    apiPackageImports = ["import java.util.List;" , "import java.util.Map;"]
-    modelPackageImports = ["import java.util.List;" , "import java.util.Map;"]
+    apiPackageImports = ["java.util" , "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util" , "io.github.conanchen.zommon.graphql.model"]
 }
 
 task graphqlCodegenAction(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {
@@ -187,9 +191,14 @@ task graphqlCodegenPerson(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodeg
     outputDir = new File("$buildDir/generated/graphql/person")
     apiPackageName = "io.github.conanchen.person.graphql.api"
     modelPackageName = "io.github.conanchen.person.graphql.model"
+    resolverPackageName = "io.github.conanchen.person.graphql.resolver"
     customTypesMapping = [DateTime: "java.util.Date" , URL: "java.lang.String" ,Text: "java.lang.String" ,Markdown: "java.lang.String" ,BigDecimal: "java.math.BigDecimal"]
     modelNameSuffix = "GQO"
     generateApis = true
+    apiPackageImports = ["java.util" , "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util" , "io.github.conanchen.zommon.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model","io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model","io.github.conanchen.organization.graphql.model"]
 }
 
 task graphqlCodegendOrganization(type: GraphqlCodegenGradleTask,dependsOn: graphqlCodegenZommon) {

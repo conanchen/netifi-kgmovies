@@ -1,8 +1,17 @@
 package io.github.conanchen.person.graphql.model;
 
 import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
 import io.github.conanchen.person.graphql.api.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class UserSigninInputGQO {
 
     @javax.validation.constraints.NotNull
@@ -13,22 +22,8 @@ public class UserSigninInputGQO {
     public UserSigninInputGQO() {
     }
 
-    public UserSigninInputGQO(String email, String password) {
+    public UserSigninInputGQO( String email,  String password) {
         this.email = email;
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
         this.password = password;
     }
 

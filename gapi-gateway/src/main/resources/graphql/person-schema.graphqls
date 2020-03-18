@@ -60,9 +60,6 @@ type Person implements Party & Node{
     【被关注】 社交网络上被别人关注 A sub property of object. The person or organization being followed."""
     followees:    [Person]
 
-    """Define Types, copied from https://tour.dgraph.io/moredata/2/"""
-    directoredFilms: [Movie]
-
     """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
     membersOf: [MemberRole]
     membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MemberRoleConnection
@@ -153,6 +150,9 @@ type  UserSigninError implements DisplayableError{
 
 """Possible error codes that could be returned by a signin mutation."""
 enum UserSigninErrorCode{
+    """用户登录成功"""
+    SUCC
+
     """Input value is blank."""
     BLANK
 
@@ -164,10 +164,10 @@ enum UserSigninErrorCode{
 }
 
 type UserRegisterPayload {
-    token: String
-    user: User
+    """注册成功立即返回登录凭证"""
+    signinPayload: UserSigninPayload
 
-    """List of errors that occurred executing the mutation."""
+    """注册成功/错误信息"""
     registerErrors: [UserRegisterError!]!
 }
 

@@ -1,12 +1,14 @@
 package io.github.conanchen.person.graphql.api;
 
-import io.github.conanchen.person.graphql.model.PersonGQO;
-import io.github.conanchen.person.graphql.model.UserGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import graphql.schema.DataFetchingEnvironment;
+import graphql.relay.Connection;
 
 public interface Query {
-
-    PersonGQO person(String id, String pId) throws Exception;
-
-    UserGQO user(String id, String uId) throws Exception;
-
+// KK
+    PersonGQO person(String id, String pId, DataFetchingEnvironment env) throws Exception;
+    UserGQO user(String id, String uId, DataFetchingEnvironment env) throws Exception;
+    public Connection<UserGQO> users(Integer first, String after, DataFetchingEnvironment env);
 }

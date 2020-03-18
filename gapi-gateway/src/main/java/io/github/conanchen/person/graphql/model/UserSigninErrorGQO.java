@@ -1,10 +1,19 @@
 package io.github.conanchen.person.graphql.model;
 
 import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
 import io.github.conanchen.person.graphql.api.*;
-import io.github.conanchen.zommon.graphql.model.DisplayableErrorGQO;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
-public class UserSigninErrorGQO implements DisplayableErrorGQO {
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
+public class UserSigninErrorGQO implements DisplayableErrorGQO{
+
 
     private UserSigninErrorCodeGQO code;
     @javax.validation.constraints.NotNull
@@ -15,30 +24,9 @@ public class UserSigninErrorGQO implements DisplayableErrorGQO {
     public UserSigninErrorGQO() {
     }
 
-    public UserSigninErrorGQO(UserSigninErrorCodeGQO code, Collection<String> field, String message) {
+    public UserSigninErrorGQO( UserSigninErrorCodeGQO code,  Collection<String> field,  String message) {
         this.code = code;
         this.field = field;
-        this.message = message;
-    }
-
-    public UserSigninErrorCodeGQO getCode() {
-        return code;
-    }
-    public void setCode(UserSigninErrorCodeGQO code) {
-        this.code = code;
-    }
-
-    public Collection<String> getField() {
-        return field;
-    }
-    public void setField(Collection<String> field) {
-        this.field = field;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-    public void setMessage(String message) {
         this.message = message;
     }
 
