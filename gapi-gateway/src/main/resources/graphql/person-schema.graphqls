@@ -186,6 +186,9 @@ type  UserRegisterError implements DisplayableError{
 
 """Possible error codes that could be returned by a register mutation."""
 enum UserRegisterErrorCode{
+    """用户注册成功"""
+    SUCC
+
     """Input value is blank."""
     BLANK
 
@@ -220,6 +223,9 @@ type  UserSMSCodeError implements DisplayableError{
 
 """Possible error codes that could be returned by a smsCode mutation."""
 enum UserSMSCodeErrorCode{
+    """验证码发送成功"""
+    SUCC
+
     """Input value is blank."""
     BLANK
 
