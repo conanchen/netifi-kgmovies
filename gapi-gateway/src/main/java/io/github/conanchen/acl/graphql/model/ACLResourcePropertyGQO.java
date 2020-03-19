@@ -1,5 +1,17 @@
 package io.github.conanchen.acl.graphql.model;
 
+import io.github.conanchen.acl.graphql.api.*;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
+
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class ACLResourcePropertyGQO {
 
     @javax.validation.constraints.NotNull
@@ -12,30 +24,9 @@ public class ACLResourcePropertyGQO {
     public ACLResourcePropertyGQO() {
     }
 
-    public ACLResourcePropertyGQO(ACLPermitTypeGQO permit, ACLAccessTypeGQO act, String propertyName) {
+    public ACLResourcePropertyGQO( ACLPermitTypeGQO permit,  ACLAccessTypeGQO act,  String propertyName) {
         this.permit = permit;
         this.act = act;
-        this.propertyName = propertyName;
-    }
-
-    public ACLPermitTypeGQO getPermit() {
-        return permit;
-    }
-    public void setPermit(ACLPermitTypeGQO permit) {
-        this.permit = permit;
-    }
-
-    public ACLAccessTypeGQO getAct() {
-        return act;
-    }
-    public void setAct(ACLAccessTypeGQO act) {
-        this.act = act;
-    }
-
-    public String getPropertyName() {
-        return propertyName;
-    }
-    public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
     }
 

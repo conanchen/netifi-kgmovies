@@ -71,7 +71,7 @@ public class HelloDgraphSTQueryResolver implements GraphQLQueryResolver {
         String query(String tplname);
     }
     
-    static STGroup test = new STGroupFile("templates/graphql/email.stg");
+    static STGroup test = new STGroupFile("templates/dgraph/email.stg");
     
     static String queryFind_michael(){
         ST find_michael =test.getInstanceOf("find_michael");

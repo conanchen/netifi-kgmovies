@@ -25,47 +25,65 @@ type ACLUser implements ACLParty{
     hasAclg: [ACLGroup]
 }
 
-"""资源对象所属的namespace,根据一定规则由平台生成或配置定义e.g. order.store001.shurui.io, 默认值是default"""
+"""
+资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
+如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+"""
 type ACLNamespace implements Node{
-
-    """拥有namespace的组织或用户"""
-    isNamespaceOf: [ACLParty]
-
-    """资源对象所属的namespace,根据一定规则由平台生成或配置定义e.g. order.store001.shurui.io, 默认值是default"""
+    """
+    资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
+    如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+    """
     namespace: String
 
-    """属于namespace下的角色"""
+    """拥有namespace的组织或用户"""
+    isNamespaceOf: ACLParty
+
+    """
+    namespace关联的角色
+    """
     hasRole: [ACLRole]
 
-    """属于namespace下的角色绑定"""
+    """
+    namespace关联的角色绑定
+    """
     hasRoleBinding: [ACLRoleBinding]
 
-    """属于namespace下的具体资源对象"""
+    """
+    属于namespace下的具体资源对象
+    """
     hasBelongings: [Thing]
 
     """The id of the object."""
     id: ID!
 }
 
-"""访控角色：访问控制角色 e.g. 1.管理员 2.可以[创建、上架、下架] 3.[产品、服务]"""
+"""
+访控角色，访问控制角色
+如：1.数睿2.运营管理员3.可以[创建、上架、下架]4.1[产品001、服务111]或4.2命名空间io.shurui下的所有资源
+"""
 type ACLRole implements Node{
-    """1. 角色名称,如管理员manager."""
+    """1. 角色所属的组织或个人"""
+    isRoleOf: ACLParty
+
+    """2. 角色名称,如管理员manager."""
     name: String!
 
-    """2. 被授权的操作动词，如Create、Read、Update、Delete相对CreateAction、ReadAction、UpdateAction、DeleteAction"""
-    verbs: [ACLVerb!]!
+    """3. 被授权的操作动词，如Create、Read、Update、Delete相对CreateAction、ReadAction、UpdateAction、DeleteAction"""
+    verbs: [ACLVerb!]
 
-    """3. 授权访问的资源对象"""
-    objects: [ACLResource!]!
+    """4.1 授权访问的资源对象"""
+    objects: [ACLResource!]
+
+    """4.2 资源对象所属的namespaces"""
+    namespaces:  [ACLNamespace!]
+
 
     """【别名】 该项的别名。 An alias for the item."""
     alternateName: String
 
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
-
-    """角色从属于的namespace"""
-    isRoleOf: ACLNamespace
 
     """访控角色绑定的用户组或用户e.g. 管理员角色有: 1.超级运营组、2.用户陈朵拉，逆属性 ACLRoleBinding.isRolebindingOf"""
     hasRolebinding: [ACLRoleBinding]
@@ -137,11 +155,13 @@ enum ACLVerb {
 
 }
 
-"""需要进行访问控制的资源,可以控制namespace范围内的资源对象,或更进一步控制到指定资源对象及其属性"""
+"""
+需要进行访问控制的资源,可以控制namespace范围内的资源对象,或更进一步控制到指定资源对象及其属性
+一个资源可能属于多个namespace"""
 type ACLResource implements Node{
 
-    """资源对象所属的namespace"""
-    namespace: ACLNamespace!
+    """资源对象所属的namespaces"""
+    namespaces:  [ACLNamespace!]!
 
     """资源唯一标识UID,可选"""
     uid:ID

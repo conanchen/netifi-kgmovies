@@ -1,16 +1,28 @@
 package io.github.conanchen.acl.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
-import io.github.conanchen.zommon.graphql.model.ThingGQO;
+import io.github.conanchen.acl.graphql.api.*;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
-import java.util.Collection;
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
+public class ACLNamespaceGQO implements NodeGQO{
 
-public class ACLNamespaceGQO implements NodeGQO {
 
-    private Collection<ACLPartyGQO> isNamespaceOf;
     private String namespace;
+
+    private ACLPartyGQO isNamespaceOf;
+
     private Collection<ACLRoleGQO> hasRole;
+
     private Collection<ACLRoleBindingGQO> hasRoleBinding;
+
     private Collection<ThingGQO> hasBelongings;
     @javax.validation.constraints.NotNull
     private String id;
@@ -18,60 +30,12 @@ public class ACLNamespaceGQO implements NodeGQO {
     public ACLNamespaceGQO() {
     }
 
-    public ACLNamespaceGQO(Collection<ACLPartyGQO> isNamespaceOf, String namespace, Collection<ACLRoleGQO> hasRole, Collection<ACLRoleBindingGQO> hasRoleBinding, Collection<ThingGQO> hasBelongings, String id) {
-        this.isNamespaceOf = isNamespaceOf;
+    public ACLNamespaceGQO( String namespace,  ACLPartyGQO isNamespaceOf,  Collection<ACLRoleGQO> hasRole,  Collection<ACLRoleBindingGQO> hasRoleBinding,  Collection<ThingGQO> hasBelongings,  String id) {
         this.namespace = namespace;
+        this.isNamespaceOf = isNamespaceOf;
         this.hasRole = hasRole;
         this.hasRoleBinding = hasRoleBinding;
         this.hasBelongings = hasBelongings;
-        this.id = id;
-    }
-
-    public Collection<ACLPartyGQO> getIsNamespaceOf() {
-        return isNamespaceOf;
-    }
-
-    public void setIsNamespaceOf(Collection<ACLPartyGQO> isNamespaceOf) {
-        this.isNamespaceOf = isNamespaceOf;
-    }
-
-    public String getNamespace() {
-        return namespace;
-    }
-
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
-
-    public Collection<ACLRoleGQO> getHasRole() {
-        return hasRole;
-    }
-
-    public void setHasRole(Collection<ACLRoleGQO> hasRole) {
-        this.hasRole = hasRole;
-    }
-
-    public Collection<ACLRoleBindingGQO> getHasRoleBinding() {
-        return hasRoleBinding;
-    }
-
-    public void setHasRoleBinding(Collection<ACLRoleBindingGQO> hasRoleBinding) {
-        this.hasRoleBinding = hasRoleBinding;
-    }
-
-    public Collection<ThingGQO> getHasBelongings() {
-        return hasBelongings;
-    }
-
-    public void setHasBelongings(Collection<ThingGQO> hasBelongings) {
-        this.hasBelongings = hasBelongings;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,0 +1,16 @@
+add_user() ::= <<
+  find_michael(func: eq(name@., "Michael")) {
+    uid
+    name@.
+    age
+  }
+>>
+
+queryall() ::= <<
+    query all($a: string){
+      all(func: eq(name, $a)) {
+        name
+      }
+    }
+
+>>

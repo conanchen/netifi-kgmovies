@@ -1,20 +1,34 @@
 package io.github.conanchen.acl.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import io.github.conanchen.acl.graphql.api.*;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
-import java.util.Collection;
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
+public class ACLRoleGQO implements NodeGQO{
 
-public class ACLRoleGQO implements NodeGQO {
 
+    private ACLPartyGQO isRoleOf;
     @javax.validation.constraints.NotNull
     private String name;
     @javax.validation.constraints.NotNull
     private Collection<ACLVerbGQO> verbs;
     @javax.validation.constraints.NotNull
     private Collection<ACLResourceGQO> objects;
+    @javax.validation.constraints.NotNull
+    private Collection<ACLNamespaceGQO> namespaces;
+
     private String alternateName;
+
     private String description;
-    private ACLNamespaceGQO isRoleOf;
+
     private Collection<ACLRoleBindingGQO> hasRolebinding;
     @javax.validation.constraints.NotNull
     private String id;
@@ -22,73 +36,15 @@ public class ACLRoleGQO implements NodeGQO {
     public ACLRoleGQO() {
     }
 
-    public ACLRoleGQO(String name, Collection<ACLVerbGQO> verbs, Collection<ACLResourceGQO> objects, String alternateName, String description, ACLNamespaceGQO isRoleOf, Collection<ACLRoleBindingGQO> hasRolebinding, String id) {
+    public ACLRoleGQO( ACLPartyGQO isRoleOf,  String name,  Collection<ACLVerbGQO> verbs,  Collection<ACLResourceGQO> objects,  Collection<ACLNamespaceGQO> namespaces,  String alternateName,  String description,  Collection<ACLRoleBindingGQO> hasRolebinding,  String id) {
+        this.isRoleOf = isRoleOf;
         this.name = name;
         this.verbs = verbs;
         this.objects = objects;
+        this.namespaces = namespaces;
         this.alternateName = alternateName;
         this.description = description;
-        this.isRoleOf = isRoleOf;
         this.hasRolebinding = hasRolebinding;
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Collection<ACLVerbGQO> getVerbs() {
-        return verbs;
-    }
-    public void setVerbs(Collection<ACLVerbGQO> verbs) {
-        this.verbs = verbs;
-    }
-
-    public Collection<ACLResourceGQO> getObjects() {
-        return objects;
-    }
-    public void setObjects(Collection<ACLResourceGQO> objects) {
-        this.objects = objects;
-    }
-
-    public String getAlternateName() {
-        return alternateName;
-    }
-    public void setAlternateName(String alternateName) {
-        this.alternateName = alternateName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public ACLNamespaceGQO getIsRoleOf() {
-        return isRoleOf;
-    }
-
-    public void setIsRoleOf(ACLNamespaceGQO isRoleOf) {
-        this.isRoleOf = isRoleOf;
-    }
-
-    public Collection<ACLRoleBindingGQO> getHasRolebinding() {
-        return hasRolebinding;
-    }
-
-    public void setHasRolebinding(Collection<ACLRoleBindingGQO> hasRolebinding) {
-        this.hasRolebinding = hasRolebinding;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
         this.id = id;
     }
 

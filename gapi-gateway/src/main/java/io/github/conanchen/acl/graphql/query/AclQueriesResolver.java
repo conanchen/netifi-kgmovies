@@ -1,6 +1,7 @@
 package io.github.conanchen.acl.graphql.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.acl.graphql.api.Query;
 import io.github.conanchen.acl.graphql.model.*;
 import org.springframework.stereotype.Service;
@@ -11,32 +12,32 @@ public class AclQueriesResolver implements Query, GraphQLQueryResolver {
 
 
     @Override
-    public ACLRoleGQO aclRoleFind(String id, String ugId) throws Exception {
+    public ACLRoleGQO aclRoleFind(String id, String ugId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ACLGroupGQO aclGroupFind(String id, String ugId) throws Exception {
+    public ACLGroupGQO aclGroupFind(String id, String ugId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ACLOrganizationGQO aclOrganizationFind(String id, String ugId) throws Exception {
+    public ACLOrganizationGQO aclOrganizationFind(String id, String ugId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ACLUserGQO aclUserFind(String id, String ugId) throws Exception {
+    public ACLUserGQO aclUserFind(String id, String ugId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ACLResourcePropertyGQO aclResourcePropertyFind(String id, String ugId) throws Exception {
+    public ACLResourcePropertyGQO aclResourcePropertyFind(String id, String ugId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 
     @Override
-    public ACLMetadataGQO aclMetadata(String id, String ugId) throws Exception {
+    public ACLMetadataGQO aclMetadata(String id, String ugId, DataFetchingEnvironment env) throws Exception {
         return null;
     }
 }

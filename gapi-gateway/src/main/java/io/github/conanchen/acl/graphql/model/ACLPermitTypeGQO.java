@@ -2,7 +2,7 @@ package io.github.conanchen.acl.graphql.model;
 
 public enum ACLPermitTypeGQO {
 
-    ALLOW,
+    ALLOW, 
     DENY
 
 }
