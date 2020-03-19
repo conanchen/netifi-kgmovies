@@ -52,7 +52,15 @@ public class PersonMutationResolver implements Mutation, GraphQLMutationResolver
 
     @Override
     public UserSMSCodePayloadGQO userSMSCode(UserSMSCodeInputGQO auth, DataFetchingEnvironment env) throws Exception {
-        return null;
+        return UserSMSCodePayloadGQO.builder()
+                .smscode("111111")
+                .smsCodeErrors(Arrays.asList(
+                        UserSMSCodeErrorGQO.builder()
+                                .code(UserSMSCodeErrorCodeGQO.SUCC)
+                                .message("发送sms验证码成功")
+                                .build())
+                )
+                .build();
     }
 
     @Override
@@ -74,12 +82,16 @@ public class PersonMutationResolver implements Mutation, GraphQLMutationResolver
         UserGQO user = UserGQO.builder()
                 .id("userid001").username("conanusername")
                 .name("conan").bio("bio").bioHTML("bioHTML")
-                .isUserOf(PersonGQO.builder().id("personid").personalID("2342234").name("conan").alternateName("altername").build())
+                .isUserOf(PersonGQO.builder()
+                        .id("personid").personalID("2342234")
+                        .name("conan").alternateName("altername")
+                        .build())
                 .build();
         UserSigninPayloadGQO userSigninPayloadGQO = UserSigninPayloadGQO.builder()
                 .token(jws)
                 .user(user)
-                .signinErrors(Arrays.asList(UserSigninErrorGQO.builder()
+                .signinErrors(
+                        Arrays.asList(UserSigninErrorGQO.builder()
                         .code(UserSigninErrorCodeGQO.SUCC)
                         .message("成功登陆").build()))
                 .build();
