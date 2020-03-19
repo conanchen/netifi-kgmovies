@@ -1,16 +1,22 @@
-add_user() ::= <<
-  find_michael(func: eq(name@., "Michael")) {
-    uid
-    name@.
-    age
+query_users() ::= <<
+{
+  users(func: type(User),first:2) {
+   uid
+   name: Thing.name
+   username: User.username
+   password: User.password
   }
+}
 >>
 
-queryall() ::= <<
-    query all($a: string){
-      all(func: eq(name, $a)) {
-        name
-      }
-    }
+find_user() ::= <<
+query variables($name: string = "conanchen") {
+  user(func: eq(User.username, $name)) {
+    uid
+    name: Thing.name
+    username: User.username
+    password: User.password
 
+  }
+}
 >>
