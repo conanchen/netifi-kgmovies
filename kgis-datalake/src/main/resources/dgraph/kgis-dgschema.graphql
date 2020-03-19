@@ -1,8 +1,13 @@
 """
-A Thing with an ID，在KGIS平台内所有内容都是东西Thing
+A Thing with an ID，在KGIS平台内所有内容都是东西Thing,也就是资源Resource
 """
 interface Thing {
-    
+
+    """
+    资源对象所属的namespaces
+    """
+    namespaces:  [Namespace!]
+
     """
     【标识符】 标识符 The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.
     """
@@ -29,6 +34,24 @@ interface Thing {
 }
 
 """
+资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
+如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+"""
+type Namespace implements Thing{
+    """
+    资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
+    如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+    """
+    namespace: String
+
+    """
+    拥有namespace的组织或用户
+    """
+    isNamespaceOf: Party
+
+}
+
+"""
 可购物：可以购买订购的产品或服务Product，Service
 """
 interface Shoppingable{
@@ -44,6 +67,12 @@ interface Party{
     【拥有】 组织或个人拥有的产品 逆属性 Ownable.ownedBy，Products owned by the organization or person.
     """
     owns: [Ownership]
+
+    """
+    拥有的namespace
+    """
+    hasNamespaces: [Namespace!]
+
 }
 
 """
@@ -397,7 +426,7 @@ type User implements Thing{
     """
     用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart
     """
-    isUserOf: Person! @hasInverse(field: "hasUser")
+    isUserOf: Person @hasInverse(field: "hasUser")
 }
 
 """
