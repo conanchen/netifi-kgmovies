@@ -11,7 +11,7 @@ plugins {
 dependencies {
     protobuf project(':movie-service-idl')
 
-    protobuf project(':kgis-datalake-idl')
+    protobuf project(':io.github.kgis-datalake-idl')
 
     implementation "com.netifi:netifi-spring-boot-starter"
 }

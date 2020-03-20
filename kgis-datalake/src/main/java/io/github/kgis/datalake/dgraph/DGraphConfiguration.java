@@ -1,4 +1,4 @@
-package kgis.datalake.dgraph.config;
+package io.github.kgis.datalake.dgraph;
 
 import java.text.SimpleDateFormat;
 

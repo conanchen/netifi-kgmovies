@@ -35,6 +35,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
+        classpath("com.apollographql.apollo:apollo-gradle-plugin:${apolloVersion}")
     }
 }
 
@@ -165,6 +166,9 @@ subprojects {
             // dependency 'io.jsonwebtoken:jjwt-jackson:0.11.1'
             // or
             dependency "io.jsonwebtoken:jjwt-gson:${jsonwebtokenVersion}" //for gson
+
+            dependency "com.apollographql.apollo:apollo-runtime:${apolloVersion}"
+            dependency "com.apollographql.apollo:apollo-rx2-support:${apolloVersion}"
         }
     }
 }

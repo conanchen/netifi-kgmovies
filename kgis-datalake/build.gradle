@@ -7,19 +7,30 @@ plugins {
     id 'com.google.protobuf'
     id 'java-library'
     id 'com.bmuschko.docker-remote-api' version '3.4.4'
+    id 'com.apollographql.apollo'
 }
 
 
 dependencies {
 
-    implementation ("com.netifi:netifi-spring-boot-starter"){
-        exclude group: 'ch.qos.logback'
-    }
+//    implementation ("com.netifi:netifi-spring-boot-starter"){
+//        exclude group: 'ch.qos.logback'
+//    }
+    implementation ('org.springframework.boot:spring-boot-starter-web')
+
     compile 'io.dgraph:dgraph4j'
+
+    implementation("com.apollographql.apollo:apollo-runtime")
+    implementation 'com.apollographql.apollo:apollo-rx2-support'
+
+    // If not already on your classpath, you might need the jetbrains annotations
+    compileOnly("org.jetbrains:annotations:13.0")
+    testCompileOnly("org.jetbrains:annotations:13.0")
+    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
 
 }
 
-mainClassName = 'kgis.datalake.Application'
+mainClassName = 'io.github.kgis.KgisApplication'
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -51,14 +62,35 @@ protobuf {
     }
 }
 
+apollo {
+    onCompilationUnit {
+        graphqlSourceDirectorySet.srcDirs += "src/main/graphql/dgraph"
+        graphqlSourceDirectorySet.exclude("**/*.gql")
+        rootPackageName.set("io.github.kgis")
+    }
+    customTypeMapping = [
+            "Date" : "java.util.Date",
+            "DateTime" : "java.util.Date"
+    ]
+}
+
 
 sourceSets {
     main {
         java {
-            srcDirs = ['src/main/java','build/generated/source/proto/main/java','build/generated/source/proto/main/rsocketRpc']
+            srcDirs = ['src/main/java',
+                       'build/generated/source/proto/main/java',
+                       'build/generated/source/proto/main/rsocketRpc']
         }
         resources {
             srcDirs = ['src/main/resources']
         }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
     }
 }

@@ -54,6 +54,8 @@ dependencies {
     compile 'io.jsonwebtoken:jjwt-api'
     runtime 'io.jsonwebtoken:jjwt-impl', 'io.jsonwebtoken:jjwt-gson:0.11.1'
 
+    compile project (":kgis-datalake")
+
 }
 
 mainClassName = 'io.github.GapiApplication'

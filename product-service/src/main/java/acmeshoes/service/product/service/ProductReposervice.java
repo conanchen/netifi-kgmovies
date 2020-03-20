@@ -25,9 +25,9 @@ import org.springframework.stereotype.Service;
 import acmeshoes.service.product.data.ProductRepositoryLocal;
 import acmeshoes.service.product.data.model.Product;
 import acmeshoes.service.product.service.error.ProductNotFoundException;
-import kgis.datalake.product.protobuf.ProductInfoRequest;
-import kgis.datalake.product.protobuf.ProductInfoResponse;
-import kgis.datalake.product.protobuf.ProductRepositoryClient;
+import io.github.kgis.datalake.product.protobuf.ProductInfoRequest;
+import io.github.kgis.datalake.product.protobuf.ProductInfoResponse;
+import io.github.kgis.datalake.product.protobuf.ProductRepositoryClient;
 import reactor.core.publisher.Mono;
 
 /**
@@ -40,7 +40,7 @@ public class ProductReposervice {
     @Autowired
     private ProductRepositoryLocal repo;
 
-    @Group("kgis.datalake")
+    @Group("io.github.kgis.datalake")
     private ProductRepositoryClient productRepositoryClient;
 
     public Mono<Product> getProduct(String productId) {

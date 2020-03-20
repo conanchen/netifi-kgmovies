@@ -12,9 +12,9 @@
 1. 把上述schema创建到Dgraph服务上
     ```
     
-    $ cd ~/git/netifi-kgmovies/kgis-datalake/src/main/resources/dgraph
+    $ cd ~/git/netifi-kgmovies/io.github.kgis-datalake//dgraphschemadesign
 
-    $ curl -X POST localhost:8080/admin/schema -d '@kgis-dgschema.graphql'
+    $ curl -X POST localhost:8080/admin/schema -d '@io.github.kgis-dgschema.graphql'
 
     ```
 1. [Ratel查看生成的dgraph schema](https://play.dgraph.io)
@@ -28,7 +28,7 @@
 ************************************************************************
 ************************************************************************
 
-# kgis-datalake 知图初源数据湖 Knowledge Graph Initial Source - Data Lake
+# io.github.kgis-datalake 知图初源数据湖 Knowledge Graph Initial Source - Data Lake
 1. [Run Dgraph](https://tour.dgraph.io/intro/2/)
 
 # Run Dgraph
@@ -83,6 +83,15 @@ Dgraph Alpha will now be running and listening for HTTP requests on port 8080 an
 1. Dgraph is at version 1.1.x and is production ready. Apart from the vast open source community, it is being used in production at multiple Fortune 500 companies, and by [Intuit Katlas](https://github.com/intuit/katlas) and [VMware Purser](https://github.com/vmware/purser).
 
 [![Movie Schema](document/movies-schema.png)](https://blog.dgraph.io/post/client0.8.0/)
+
+
+# 开发工作流程
+## 在目录dgraphschemadesign设计编写到kgis-dgschema.graphql，按照[dgraph的graphql支持模块](https://dgraph.io/graphql)设计
+## 按照上面【快速开发参考】把【io.github.kgis-dgschema.graphql】更新schema到dgraph数据库中
+## 按照[APOLLO集成方法](APOLLO.md)下载dgraph的graphql schema定义schema.json到目录【src/main/graphql/dgraph】
+## 按照[APOLLO集成方法](APOLLO.md)把dgraph的graphql查询语句保存到【src/main/graphql/dgraph】如query-users.graphql
+## 按照[APOLLO集成方法](APOLLO.md)把dgraph的graphql schema 和query通过【generateApolloSources】生成java代码
+## 好的，用APOLLO生成的dgraph 查询代码编写其他业务逻辑处理代码
 
 
 

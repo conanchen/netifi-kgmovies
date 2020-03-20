@@ -10,7 +10,7 @@ services:
       - "8001:8001"
       - "8101:8101"
   kgis-datalake:
-    image: gregnetifi/kgis-datalake
+    image: gregnetifi/io.github.kgis-datalake
     environment:
       - "SPRING_PROFILES_ACTIVE=localdocker"
     depends_on:

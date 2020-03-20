@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import kgis.datalake.movie.protobuf.MovieRepositoryClient;
+import io.github.kgis.datalake.movie.protobuf.MovieRepositoryClient;
 import kgmovies.service.movie.data.MovieRepositoryLocal;
 import kgmovies.service.movie.data.model.Movie;
 import kgmovies.service.movie.service.error.MovieNotFoundException;
@@ -36,7 +36,7 @@ public class MovieReposervice {
     @Autowired
     private MovieRepositoryLocal repo;
 
-    @Group("kgis.datalake")
+    @Group("io.github.kgis.datalake")
     private MovieRepositoryClient movieRepositoryClient;
 
 
