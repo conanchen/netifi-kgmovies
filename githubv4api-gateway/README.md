@@ -1,3 +1,0 @@
-# githubv4api
-
-ClosedEvent
