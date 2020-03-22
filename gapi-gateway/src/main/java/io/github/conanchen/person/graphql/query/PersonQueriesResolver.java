@@ -7,7 +7,7 @@ import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.person.graphql.api.Query;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.person.graphql.model.UserGQO;
-import io.github.kgis.Kgis;
+//import io.github.kgis.Kgis;
 import io.github.utils.DataObjectBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -48,7 +48,7 @@ public class PersonQueriesResolver implements Query, GraphQLQueryResolver {
     @Override
     public UserGQO user(String id, String uId, DataFetchingEnvironment env) throws Exception {
         String data =  "aaaa";//
-        data = Kgis.users().get(0);
+//        data = Kgis.users().get(0);
         return UserGQO.builder().id(data+" id").username(data+" username").name(data+" name").bioHTML(data +" bioHtml")
                 .isUserOf(PersonGQO.builder().id("person id").personalID("pid").name("personname").build()).build();
     }

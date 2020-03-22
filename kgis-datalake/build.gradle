@@ -7,7 +7,7 @@ plugins {
     id 'com.google.protobuf'
     id 'java-library'
     id 'com.bmuschko.docker-remote-api' version '3.4.4'
-    id 'com.apollographql.apollo'
+    id 'com.apollographql.apollo' version '1.3.3'
 }
 
 

@@ -35,7 +35,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
-        classpath("com.apollographql.apollo:apollo-gradle-plugin:${apolloVersion}")
+//        classpath("com.apollographql.apollo:apollo-gradle-plugin:${apolloVersion}")
     }
 }
 
