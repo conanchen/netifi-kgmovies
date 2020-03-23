@@ -166,7 +166,7 @@ subprojects {
             // dependency 'io.jsonwebtoken:jjwt-jackson:0.11.1'
             // or
             dependency "io.jsonwebtoken:jjwt-gson:${jsonwebtokenVersion}" //for gson
-
+           // dependency 'com.shopify.graphql.support:support:0.2.0'
             dependency "com.apollographql.apollo:apollo-runtime:${apolloVersion}"
             dependency "com.apollographql.apollo:apollo-rx2-support:${apolloVersion}"
         }

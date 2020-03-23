@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+source "https://gems.ruby-china.com/"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# gem "rails"
+
+gem "colorize", "~> 0.8.1"
+
+gem 'graphql_java_gen', path: '../../graphql_java_gen/'
+
+gem "json", "~> 2.3"

@@ -20,9 +20,13 @@ dependencies {
 
     compile 'io.dgraph:dgraph4j'
 
-    implementation("com.apollographql.apollo:apollo-runtime")
-    implementation 'com.apollographql.apollo:apollo-rx2-support'
+  //  compile 'com.shopify.graphql.support:support'
 
+
+    compile project(':support')
+
+    compile "joda-time:joda-time:2.10.5"
+    
     // If not already on your classpath, you might need the jetbrains annotations
     compileOnly("org.jetbrains:annotations:13.0")
     testCompileOnly("org.jetbrains:annotations:13.0")

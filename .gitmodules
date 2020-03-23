@@ -1,0 +1,3 @@
+[submodule "kgis-datalake/graphql_java_gen"]
+	path = kgis-datalake/graphql_java_gen
+	url = https://github.com/Shopify/graphql_java_gen

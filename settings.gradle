@@ -14,5 +14,7 @@ rootProject.name = 'netifi-kgmovies'
 //include 'movie-service-idl'
 //include 'store-app'
 include 'gapi-gateway'
-//include 'githubv4api-gateway'
 include 'kgis-datalake'
+include 'support'
+
+project(':support').projectDir= new File("./graphql_java_gen/support")
