@@ -57,5 +57,5 @@ $ bundle install
 也可以直接用intellij Gradle任务Tasks/apollo/downloadApolloSchema进行
 
 ```
-$ ruby lib/kgis_client_gen.rb
+$ ruby kgis_client_gen.rb
 ```
