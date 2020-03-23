@@ -28,11 +28,11 @@ import java.util.Map;
 /**
 * 
 */
-public class RootMutation extends AbstractResponse<RootMutation> {
-    public RootMutation() {
+public class Mutation extends AbstractResponse<Mutation> {
+    public Mutation() {
     }
 
-    public RootMutation(JsonObject fields) throws SchemaViolationError {
+    public Mutation(JsonObject fields) throws SchemaViolationError {
         for (Map.Entry<String, JsonElement> field : fields.entrySet()) {
             String key = field.getKey();
             String fieldName = getFieldName(key);
@@ -764,7 +764,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
     }
 
     public String getGraphQlTypeName() {
-        return "RootMutation";
+        return "Mutation";
     }
 
     /**
@@ -775,7 +775,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateThingPayload) get("updateThing");
     }
 
-    public RootMutation setUpdateThing(UpdateThingPayload arg) {
+    public Mutation setUpdateThing(UpdateThingPayload arg) {
         optimisticData.put(getKey("updateThing"), arg);
         return this;
     }
@@ -788,7 +788,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteThingPayload) get("deleteThing");
     }
 
-    public RootMutation setDeleteThing(DeleteThingPayload arg) {
+    public Mutation setDeleteThing(DeleteThingPayload arg) {
         optimisticData.put(getKey("deleteThing"), arg);
         return this;
     }
@@ -801,7 +801,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddNamespacePayload) get("addNamespace");
     }
 
-    public RootMutation setAddNamespace(AddNamespacePayload arg) {
+    public Mutation setAddNamespace(AddNamespacePayload arg) {
         optimisticData.put(getKey("addNamespace"), arg);
         return this;
     }
@@ -814,7 +814,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateNamespacePayload) get("updateNamespace");
     }
 
-    public RootMutation setUpdateNamespace(UpdateNamespacePayload arg) {
+    public Mutation setUpdateNamespace(UpdateNamespacePayload arg) {
         optimisticData.put(getKey("updateNamespace"), arg);
         return this;
     }
@@ -827,7 +827,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteNamespacePayload) get("deleteNamespace");
     }
 
-    public RootMutation setDeleteNamespace(DeleteNamespacePayload arg) {
+    public Mutation setDeleteNamespace(DeleteNamespacePayload arg) {
         optimisticData.put(getKey("deleteNamespace"), arg);
         return this;
     }
@@ -840,7 +840,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddPartyRoleNamePayload) get("addPartyRoleName");
     }
 
-    public RootMutation setAddPartyRoleName(AddPartyRoleNamePayload arg) {
+    public Mutation setAddPartyRoleName(AddPartyRoleNamePayload arg) {
         optimisticData.put(getKey("addPartyRoleName"), arg);
         return this;
     }
@@ -853,7 +853,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdatePartyRoleNamePayload) get("updatePartyRoleName");
     }
 
-    public RootMutation setUpdatePartyRoleName(UpdatePartyRoleNamePayload arg) {
+    public Mutation setUpdatePartyRoleName(UpdatePartyRoleNamePayload arg) {
         optimisticData.put(getKey("updatePartyRoleName"), arg);
         return this;
     }
@@ -866,7 +866,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeletePartyRoleNamePayload) get("deletePartyRoleName");
     }
 
-    public RootMutation setDeletePartyRoleName(DeletePartyRoleNamePayload arg) {
+    public Mutation setDeletePartyRoleName(DeletePartyRoleNamePayload arg) {
         optimisticData.put(getKey("deletePartyRoleName"), arg);
         return this;
     }
@@ -879,7 +879,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddDataCatalogPayload) get("addDataCatalog");
     }
 
-    public RootMutation setAddDataCatalog(AddDataCatalogPayload arg) {
+    public Mutation setAddDataCatalog(AddDataCatalogPayload arg) {
         optimisticData.put(getKey("addDataCatalog"), arg);
         return this;
     }
@@ -892,7 +892,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateDataCatalogPayload) get("updateDataCatalog");
     }
 
-    public RootMutation setUpdateDataCatalog(UpdateDataCatalogPayload arg) {
+    public Mutation setUpdateDataCatalog(UpdateDataCatalogPayload arg) {
         optimisticData.put(getKey("updateDataCatalog"), arg);
         return this;
     }
@@ -905,7 +905,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteDataCatalogPayload) get("deleteDataCatalog");
     }
 
-    public RootMutation setDeleteDataCatalog(DeleteDataCatalogPayload arg) {
+    public Mutation setDeleteDataCatalog(DeleteDataCatalogPayload arg) {
         optimisticData.put(getKey("deleteDataCatalog"), arg);
         return this;
     }
@@ -918,7 +918,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddConversationPayload) get("addConversation");
     }
 
-    public RootMutation setAddConversation(AddConversationPayload arg) {
+    public Mutation setAddConversation(AddConversationPayload arg) {
         optimisticData.put(getKey("addConversation"), arg);
         return this;
     }
@@ -931,7 +931,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateConversationPayload) get("updateConversation");
     }
 
-    public RootMutation setUpdateConversation(UpdateConversationPayload arg) {
+    public Mutation setUpdateConversation(UpdateConversationPayload arg) {
         optimisticData.put(getKey("updateConversation"), arg);
         return this;
     }
@@ -944,7 +944,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteConversationPayload) get("deleteConversation");
     }
 
-    public RootMutation setDeleteConversation(DeleteConversationPayload arg) {
+    public Mutation setDeleteConversation(DeleteConversationPayload arg) {
         optimisticData.put(getKey("deleteConversation"), arg);
         return this;
     }
@@ -957,7 +957,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddMessagePayload) get("addMessage");
     }
 
-    public RootMutation setAddMessage(AddMessagePayload arg) {
+    public Mutation setAddMessage(AddMessagePayload arg) {
         optimisticData.put(getKey("addMessage"), arg);
         return this;
     }
@@ -970,7 +970,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateMessagePayload) get("updateMessage");
     }
 
-    public RootMutation setUpdateMessage(UpdateMessagePayload arg) {
+    public Mutation setUpdateMessage(UpdateMessagePayload arg) {
         optimisticData.put(getKey("updateMessage"), arg);
         return this;
     }
@@ -983,7 +983,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteMessagePayload) get("deleteMessage");
     }
 
-    public RootMutation setDeleteMessage(DeleteMessagePayload arg) {
+    public Mutation setDeleteMessage(DeleteMessagePayload arg) {
         optimisticData.put(getKey("deleteMessage"), arg);
         return this;
     }
@@ -996,7 +996,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddReviewPayload) get("addReview");
     }
 
-    public RootMutation setAddReview(AddReviewPayload arg) {
+    public Mutation setAddReview(AddReviewPayload arg) {
         optimisticData.put(getKey("addReview"), arg);
         return this;
     }
@@ -1009,7 +1009,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateReviewPayload) get("updateReview");
     }
 
-    public RootMutation setUpdateReview(UpdateReviewPayload arg) {
+    public Mutation setUpdateReview(UpdateReviewPayload arg) {
         optimisticData.put(getKey("updateReview"), arg);
         return this;
     }
@@ -1022,7 +1022,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteReviewPayload) get("deleteReview");
     }
 
-    public RootMutation setDeleteReview(DeleteReviewPayload arg) {
+    public Mutation setDeleteReview(DeleteReviewPayload arg) {
         optimisticData.put(getKey("deleteReview"), arg);
         return this;
     }
@@ -1035,7 +1035,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddReadNotePayload) get("addReadNote");
     }
 
-    public RootMutation setAddReadNote(AddReadNotePayload arg) {
+    public Mutation setAddReadNote(AddReadNotePayload arg) {
         optimisticData.put(getKey("addReadNote"), arg);
         return this;
     }
@@ -1048,7 +1048,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateReadNotePayload) get("updateReadNote");
     }
 
-    public RootMutation setUpdateReadNote(UpdateReadNotePayload arg) {
+    public Mutation setUpdateReadNote(UpdateReadNotePayload arg) {
         optimisticData.put(getKey("updateReadNote"), arg);
         return this;
     }
@@ -1061,7 +1061,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteReadNotePayload) get("deleteReadNote");
     }
 
-    public RootMutation setDeleteReadNote(DeleteReadNotePayload arg) {
+    public Mutation setDeleteReadNote(DeleteReadNotePayload arg) {
         optimisticData.put(getKey("deleteReadNote"), arg);
         return this;
     }
@@ -1074,7 +1074,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddGeneralOrganizationPayload) get("addGeneralOrganization");
     }
 
-    public RootMutation setAddGeneralOrganization(AddGeneralOrganizationPayload arg) {
+    public Mutation setAddGeneralOrganization(AddGeneralOrganizationPayload arg) {
         optimisticData.put(getKey("addGeneralOrganization"), arg);
         return this;
     }
@@ -1087,7 +1087,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateGeneralOrganizationPayload) get("updateGeneralOrganization");
     }
 
-    public RootMutation setUpdateGeneralOrganization(UpdateGeneralOrganizationPayload arg) {
+    public Mutation setUpdateGeneralOrganization(UpdateGeneralOrganizationPayload arg) {
         optimisticData.put(getKey("updateGeneralOrganization"), arg);
         return this;
     }
@@ -1100,7 +1100,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteGeneralOrganizationPayload) get("deleteGeneralOrganization");
     }
 
-    public RootMutation setDeleteGeneralOrganization(DeleteGeneralOrganizationPayload arg) {
+    public Mutation setDeleteGeneralOrganization(DeleteGeneralOrganizationPayload arg) {
         optimisticData.put(getKey("deleteGeneralOrganization"), arg);
         return this;
     }
@@ -1113,7 +1113,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddEmployeeRolePayload) get("addEmployeeRole");
     }
 
-    public RootMutation setAddEmployeeRole(AddEmployeeRolePayload arg) {
+    public Mutation setAddEmployeeRole(AddEmployeeRolePayload arg) {
         optimisticData.put(getKey("addEmployeeRole"), arg);
         return this;
     }
@@ -1126,7 +1126,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateEmployeeRolePayload) get("updateEmployeeRole");
     }
 
-    public RootMutation setUpdateEmployeeRole(UpdateEmployeeRolePayload arg) {
+    public Mutation setUpdateEmployeeRole(UpdateEmployeeRolePayload arg) {
         optimisticData.put(getKey("updateEmployeeRole"), arg);
         return this;
     }
@@ -1139,7 +1139,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteEmployeeRolePayload) get("deleteEmployeeRole");
     }
 
-    public RootMutation setDeleteEmployeeRole(DeleteEmployeeRolePayload arg) {
+    public Mutation setDeleteEmployeeRole(DeleteEmployeeRolePayload arg) {
         optimisticData.put(getKey("deleteEmployeeRole"), arg);
         return this;
     }
@@ -1152,7 +1152,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddFollowerRolePayload) get("addFollowerRole");
     }
 
-    public RootMutation setAddFollowerRole(AddFollowerRolePayload arg) {
+    public Mutation setAddFollowerRole(AddFollowerRolePayload arg) {
         optimisticData.put(getKey("addFollowerRole"), arg);
         return this;
     }
@@ -1165,7 +1165,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateFollowerRolePayload) get("updateFollowerRole");
     }
 
-    public RootMutation setUpdateFollowerRole(UpdateFollowerRolePayload arg) {
+    public Mutation setUpdateFollowerRole(UpdateFollowerRolePayload arg) {
         optimisticData.put(getKey("updateFollowerRole"), arg);
         return this;
     }
@@ -1178,7 +1178,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteFollowerRolePayload) get("deleteFollowerRole");
     }
 
-    public RootMutation setDeleteFollowerRole(DeleteFollowerRolePayload arg) {
+    public Mutation setDeleteFollowerRole(DeleteFollowerRolePayload arg) {
         optimisticData.put(getKey("deleteFollowerRole"), arg);
         return this;
     }
@@ -1191,7 +1191,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddMemberRolePayload) get("addMemberRole");
     }
 
-    public RootMutation setAddMemberRole(AddMemberRolePayload arg) {
+    public Mutation setAddMemberRole(AddMemberRolePayload arg) {
         optimisticData.put(getKey("addMemberRole"), arg);
         return this;
     }
@@ -1204,7 +1204,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateMemberRolePayload) get("updateMemberRole");
     }
 
-    public RootMutation setUpdateMemberRole(UpdateMemberRolePayload arg) {
+    public Mutation setUpdateMemberRole(UpdateMemberRolePayload arg) {
         optimisticData.put(getKey("updateMemberRole"), arg);
         return this;
     }
@@ -1217,7 +1217,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteMemberRolePayload) get("deleteMemberRole");
     }
 
-    public RootMutation setDeleteMemberRole(DeleteMemberRolePayload arg) {
+    public Mutation setDeleteMemberRole(DeleteMemberRolePayload arg) {
         optimisticData.put(getKey("deleteMemberRole"), arg);
         return this;
     }
@@ -1230,7 +1230,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddOwnershipPayload) get("addOwnership");
     }
 
-    public RootMutation setAddOwnership(AddOwnershipPayload arg) {
+    public Mutation setAddOwnership(AddOwnershipPayload arg) {
         optimisticData.put(getKey("addOwnership"), arg);
         return this;
     }
@@ -1243,7 +1243,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateOwnershipPayload) get("updateOwnership");
     }
 
-    public RootMutation setUpdateOwnership(UpdateOwnershipPayload arg) {
+    public Mutation setUpdateOwnership(UpdateOwnershipPayload arg) {
         optimisticData.put(getKey("updateOwnership"), arg);
         return this;
     }
@@ -1256,7 +1256,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteOwnershipPayload) get("deleteOwnership");
     }
 
-    public RootMutation setDeleteOwnership(DeleteOwnershipPayload arg) {
+    public Mutation setDeleteOwnership(DeleteOwnershipPayload arg) {
         optimisticData.put(getKey("deleteOwnership"), arg);
         return this;
     }
@@ -1269,7 +1269,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddUserPayload) get("addUser");
     }
 
-    public RootMutation setAddUser(AddUserPayload arg) {
+    public Mutation setAddUser(AddUserPayload arg) {
         optimisticData.put(getKey("addUser"), arg);
         return this;
     }
@@ -1282,7 +1282,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateUserPayload) get("updateUser");
     }
 
-    public RootMutation setUpdateUser(UpdateUserPayload arg) {
+    public Mutation setUpdateUser(UpdateUserPayload arg) {
         optimisticData.put(getKey("updateUser"), arg);
         return this;
     }
@@ -1295,7 +1295,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteUserPayload) get("deleteUser");
     }
 
-    public RootMutation setDeleteUser(DeleteUserPayload arg) {
+    public Mutation setDeleteUser(DeleteUserPayload arg) {
         optimisticData.put(getKey("deleteUser"), arg);
         return this;
     }
@@ -1308,7 +1308,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddPersonPayload) get("addPerson");
     }
 
-    public RootMutation setAddPerson(AddPersonPayload arg) {
+    public Mutation setAddPerson(AddPersonPayload arg) {
         optimisticData.put(getKey("addPerson"), arg);
         return this;
     }
@@ -1321,7 +1321,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdatePersonPayload) get("updatePerson");
     }
 
-    public RootMutation setUpdatePerson(UpdatePersonPayload arg) {
+    public Mutation setUpdatePerson(UpdatePersonPayload arg) {
         optimisticData.put(getKey("updatePerson"), arg);
         return this;
     }
@@ -1334,7 +1334,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeletePersonPayload) get("deletePerson");
     }
 
-    public RootMutation setDeletePerson(DeletePersonPayload arg) {
+    public Mutation setDeletePerson(DeletePersonPayload arg) {
         optimisticData.put(getKey("deletePerson"), arg);
         return this;
     }
@@ -1347,7 +1347,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddStorePayload) get("addStore");
     }
 
-    public RootMutation setAddStore(AddStorePayload arg) {
+    public Mutation setAddStore(AddStorePayload arg) {
         optimisticData.put(getKey("addStore"), arg);
         return this;
     }
@@ -1360,7 +1360,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateStorePayload) get("updateStore");
     }
 
-    public RootMutation setUpdateStore(UpdateStorePayload arg) {
+    public Mutation setUpdateStore(UpdateStorePayload arg) {
         optimisticData.put(getKey("updateStore"), arg);
         return this;
     }
@@ -1373,7 +1373,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteStorePayload) get("deleteStore");
     }
 
-    public RootMutation setDeleteStore(DeleteStorePayload arg) {
+    public Mutation setDeleteStore(DeleteStorePayload arg) {
         optimisticData.put(getKey("deleteStore"), arg);
         return this;
     }
@@ -1386,7 +1386,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddProductPayload) get("addProduct");
     }
 
-    public RootMutation setAddProduct(AddProductPayload arg) {
+    public Mutation setAddProduct(AddProductPayload arg) {
         optimisticData.put(getKey("addProduct"), arg);
         return this;
     }
@@ -1399,7 +1399,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateProductPayload) get("updateProduct");
     }
 
-    public RootMutation setUpdateProduct(UpdateProductPayload arg) {
+    public Mutation setUpdateProduct(UpdateProductPayload arg) {
         optimisticData.put(getKey("updateProduct"), arg);
         return this;
     }
@@ -1412,7 +1412,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteProductPayload) get("deleteProduct");
     }
 
-    public RootMutation setDeleteProduct(DeleteProductPayload arg) {
+    public Mutation setDeleteProduct(DeleteProductPayload arg) {
         optimisticData.put(getKey("deleteProduct"), arg);
         return this;
     }
@@ -1425,7 +1425,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddProductModelPayload) get("addProductModel");
     }
 
-    public RootMutation setAddProductModel(AddProductModelPayload arg) {
+    public Mutation setAddProductModel(AddProductModelPayload arg) {
         optimisticData.put(getKey("addProductModel"), arg);
         return this;
     }
@@ -1438,7 +1438,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateProductModelPayload) get("updateProductModel");
     }
 
-    public RootMutation setUpdateProductModel(UpdateProductModelPayload arg) {
+    public Mutation setUpdateProductModel(UpdateProductModelPayload arg) {
         optimisticData.put(getKey("updateProductModel"), arg);
         return this;
     }
@@ -1451,7 +1451,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteProductModelPayload) get("deleteProductModel");
     }
 
-    public RootMutation setDeleteProductModel(DeleteProductModelPayload arg) {
+    public Mutation setDeleteProductModel(DeleteProductModelPayload arg) {
         optimisticData.put(getKey("deleteProductModel"), arg);
         return this;
     }
@@ -1464,7 +1464,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddOfferPayload) get("addOffer");
     }
 
-    public RootMutation setAddOffer(AddOfferPayload arg) {
+    public Mutation setAddOffer(AddOfferPayload arg) {
         optimisticData.put(getKey("addOffer"), arg);
         return this;
     }
@@ -1477,7 +1477,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateOfferPayload) get("updateOffer");
     }
 
-    public RootMutation setUpdateOffer(UpdateOfferPayload arg) {
+    public Mutation setUpdateOffer(UpdateOfferPayload arg) {
         optimisticData.put(getKey("updateOffer"), arg);
         return this;
     }
@@ -1490,7 +1490,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteOfferPayload) get("deleteOffer");
     }
 
-    public RootMutation setDeleteOffer(DeleteOfferPayload arg) {
+    public Mutation setDeleteOffer(DeleteOfferPayload arg) {
         optimisticData.put(getKey("deleteOffer"), arg);
         return this;
     }
@@ -1503,7 +1503,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddEntryPointPayload) get("addEntryPoint");
     }
 
-    public RootMutation setAddEntryPoint(AddEntryPointPayload arg) {
+    public Mutation setAddEntryPoint(AddEntryPointPayload arg) {
         optimisticData.put(getKey("addEntryPoint"), arg);
         return this;
     }
@@ -1516,7 +1516,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateEntryPointPayload) get("updateEntryPoint");
     }
 
-    public RootMutation setUpdateEntryPoint(UpdateEntryPointPayload arg) {
+    public Mutation setUpdateEntryPoint(UpdateEntryPointPayload arg) {
         optimisticData.put(getKey("updateEntryPoint"), arg);
         return this;
     }
@@ -1529,7 +1529,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteEntryPointPayload) get("deleteEntryPoint");
     }
 
-    public RootMutation setDeleteEntryPoint(DeleteEntryPointPayload arg) {
+    public Mutation setDeleteEntryPoint(DeleteEntryPointPayload arg) {
         optimisticData.put(getKey("deleteEntryPoint"), arg);
         return this;
     }
@@ -1542,7 +1542,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddSoftwareApplicationPayload) get("addSoftwareApplication");
     }
 
-    public RootMutation setAddSoftwareApplication(AddSoftwareApplicationPayload arg) {
+    public Mutation setAddSoftwareApplication(AddSoftwareApplicationPayload arg) {
         optimisticData.put(getKey("addSoftwareApplication"), arg);
         return this;
     }
@@ -1555,7 +1555,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateSoftwareApplicationPayload) get("updateSoftwareApplication");
     }
 
-    public RootMutation setUpdateSoftwareApplication(UpdateSoftwareApplicationPayload arg) {
+    public Mutation setUpdateSoftwareApplication(UpdateSoftwareApplicationPayload arg) {
         optimisticData.put(getKey("updateSoftwareApplication"), arg);
         return this;
     }
@@ -1568,7 +1568,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteSoftwareApplicationPayload) get("deleteSoftwareApplication");
     }
 
-    public RootMutation setDeleteSoftwareApplication(DeleteSoftwareApplicationPayload arg) {
+    public Mutation setDeleteSoftwareApplication(DeleteSoftwareApplicationPayload arg) {
         optimisticData.put(getKey("deleteSoftwareApplication"), arg);
         return this;
     }
@@ -1581,7 +1581,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (AddWebhookPayload) get("addWebhook");
     }
 
-    public RootMutation setAddWebhook(AddWebhookPayload arg) {
+    public Mutation setAddWebhook(AddWebhookPayload arg) {
         optimisticData.put(getKey("addWebhook"), arg);
         return this;
     }
@@ -1594,7 +1594,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (UpdateWebhookPayload) get("updateWebhook");
     }
 
-    public RootMutation setUpdateWebhook(UpdateWebhookPayload arg) {
+    public Mutation setUpdateWebhook(UpdateWebhookPayload arg) {
         optimisticData.put(getKey("updateWebhook"), arg);
         return this;
     }
@@ -1607,7 +1607,7 @@ public class RootMutation extends AbstractResponse<RootMutation> {
         return (DeleteWebhookPayload) get("deleteWebhook");
     }
 
-    public RootMutation setDeleteWebhook(DeleteWebhookPayload arg) {
+    public Mutation setDeleteWebhook(DeleteWebhookPayload arg) {
         optimisticData.put(getKey("deleteWebhook"), arg);
         return this;
     }

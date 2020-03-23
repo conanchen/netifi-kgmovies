@@ -27,14 +27,14 @@ import java.util.Map;
 
 public class QueryResponse {
     private TopLevelResponse response;
-    private RootQuery data;
+    private Query data;
 
     public QueryResponse(TopLevelResponse response) throws SchemaViolationError {
         this.response = response;
-        this.data = response.getData() != null ? new RootQuery(response.getData()) : null;
+        this.data = response.getData() != null ? new Query(response.getData()) : null;
     }
 
-    public RootQuery getData() {
+    public Query getData() {
         return data;
     }
 

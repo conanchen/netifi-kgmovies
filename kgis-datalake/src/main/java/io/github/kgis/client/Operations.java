@@ -26,17 +26,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Operations {
-    public static RootQueryQuery query(RootQueryQueryDefinition queryDef) {
+    public static QueryQuery query(QueryQueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("{");
-        RootQueryQuery query = new RootQueryQuery(queryString);
+        QueryQuery query = new QueryQuery(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;
     }
 
-    public static RootMutationQuery mutation(RootMutationQueryDefinition queryDef) {
+    public static MutationQuery mutation(MutationQueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("mutation{");
-        RootMutationQuery query = new RootMutationQuery(queryString);
+        MutationQuery query = new MutationQuery(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;

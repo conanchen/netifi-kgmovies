@@ -27,14 +27,14 @@ import java.util.Map;
 
 public class MutationResponse {
     private TopLevelResponse response;
-    private RootMutation data;
+    private Mutation data;
 
     public MutationResponse(TopLevelResponse response) throws SchemaViolationError {
         this.response = response;
-        this.data = response.getData() != null ? new RootMutation(response.getData()) : null;
+        this.data = response.getData() != null ? new Mutation(response.getData()) : null;
     }
 
-    public RootMutation getData() {
+    public Mutation getData() {
         return data;
     }
 

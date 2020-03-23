@@ -28,15 +28,15 @@ import java.util.Map;
 /**
 * 
 */
-public class RootQueryQuery extends Query<RootQueryQuery> {
-    RootQueryQuery(StringBuilder _queryBuilder) {
+public class QueryQuery extends Query<QueryQuery> {
+    QueryQuery(StringBuilder _queryBuilder) {
         super(_queryBuilder);
     }
 
     /**
     * 
     */
-    public RootQueryQuery getThing(ID id, ThingQueryDefinition queryDef) {
+    public QueryQuery getThing(ID id, ThingQueryDefinition queryDef) {
         startField("getThing");
 
         _queryBuilder.append("(id:");
@@ -108,14 +108,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryThing(ThingQueryDefinition queryDef) {
+    public QueryQuery queryThing(ThingQueryDefinition queryDef) {
         return queryThing(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryThing(QueryThingArgumentsDefinition argsDef, ThingQueryDefinition queryDef) {
+    public QueryQuery queryThing(QueryThingArgumentsDefinition argsDef, ThingQueryDefinition queryDef) {
         startField("queryThing");
 
         QueryThingArguments args = new QueryThingArguments(_queryBuilder);
@@ -132,7 +132,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getNamespace(ID id, NamespaceQueryDefinition queryDef) {
+    public QueryQuery getNamespace(ID id, NamespaceQueryDefinition queryDef) {
         startField("getNamespace");
 
         _queryBuilder.append("(id:");
@@ -204,14 +204,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryNamespace(NamespaceQueryDefinition queryDef) {
+    public QueryQuery queryNamespace(NamespaceQueryDefinition queryDef) {
         return queryNamespace(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryNamespace(QueryNamespaceArgumentsDefinition argsDef, NamespaceQueryDefinition queryDef) {
+    public QueryQuery queryNamespace(QueryNamespaceArgumentsDefinition argsDef, NamespaceQueryDefinition queryDef) {
         startField("queryNamespace");
 
         QueryNamespaceArguments args = new QueryNamespaceArguments(_queryBuilder);
@@ -260,14 +260,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryShoppingable(ShoppingableQueryDefinition queryDef) {
+    public QueryQuery queryShoppingable(ShoppingableQueryDefinition queryDef) {
         return queryShoppingable(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryShoppingable(QueryShoppingableArgumentsDefinition argsDef, ShoppingableQueryDefinition queryDef) {
+    public QueryQuery queryShoppingable(QueryShoppingableArgumentsDefinition argsDef, ShoppingableQueryDefinition queryDef) {
         startField("queryShoppingable");
 
         QueryShoppingableArguments args = new QueryShoppingableArguments(_queryBuilder);
@@ -316,14 +316,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryParty(PartyQueryDefinition queryDef) {
+    public QueryQuery queryParty(PartyQueryDefinition queryDef) {
         return queryParty(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryParty(QueryPartyArgumentsDefinition argsDef, PartyQueryDefinition queryDef) {
+    public QueryQuery queryParty(QueryPartyArgumentsDefinition argsDef, PartyQueryDefinition queryDef) {
         startField("queryParty");
 
         QueryPartyArguments args = new QueryPartyArguments(_queryBuilder);
@@ -372,14 +372,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryOrganization(OrganizationQueryDefinition queryDef) {
+    public QueryQuery queryOrganization(OrganizationQueryDefinition queryDef) {
         return queryOrganization(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryOrganization(QueryOrganizationArgumentsDefinition argsDef, OrganizationQueryDefinition queryDef) {
+    public QueryQuery queryOrganization(QueryOrganizationArgumentsDefinition argsDef, OrganizationQueryDefinition queryDef) {
         startField("queryOrganization");
 
         QueryOrganizationArguments args = new QueryOrganizationArguments(_queryBuilder);
@@ -439,14 +439,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryPartyRole(PartyRoleQueryDefinition queryDef) {
+    public QueryQuery queryPartyRole(PartyRoleQueryDefinition queryDef) {
         return queryPartyRole(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryPartyRole(QueryPartyRoleArgumentsDefinition argsDef, PartyRoleQueryDefinition queryDef) {
+    public QueryQuery queryPartyRole(QueryPartyRoleArgumentsDefinition argsDef, PartyRoleQueryDefinition queryDef) {
         startField("queryPartyRole");
 
         QueryPartyRoleArguments args = new QueryPartyRoleArguments(_queryBuilder);
@@ -463,7 +463,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getPartyRoleName(ID id, PartyRoleNameQueryDefinition queryDef) {
+    public QueryQuery getPartyRoleName(ID id, PartyRoleNameQueryDefinition queryDef) {
         startField("getPartyRoleName");
 
         _queryBuilder.append("(id:");
@@ -535,14 +535,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryPartyRoleName(PartyRoleNameQueryDefinition queryDef) {
+    public QueryQuery queryPartyRoleName(PartyRoleNameQueryDefinition queryDef) {
         return queryPartyRoleName(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryPartyRoleName(QueryPartyRoleNameArgumentsDefinition argsDef, PartyRoleNameQueryDefinition queryDef) {
+    public QueryQuery queryPartyRoleName(QueryPartyRoleNameArgumentsDefinition argsDef, PartyRoleNameQueryDefinition queryDef) {
         startField("queryPartyRoleName");
 
         QueryPartyRoleNameArguments args = new QueryPartyRoleNameArguments(_queryBuilder);
@@ -591,14 +591,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryReadable(ReadableQueryDefinition queryDef) {
+    public QueryQuery queryReadable(ReadableQueryDefinition queryDef) {
         return queryReadable(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryReadable(QueryReadableArgumentsDefinition argsDef, ReadableQueryDefinition queryDef) {
+    public QueryQuery queryReadable(QueryReadableArgumentsDefinition argsDef, ReadableQueryDefinition queryDef) {
         startField("queryReadable");
 
         QueryReadableArguments args = new QueryReadableArguments(_queryBuilder);
@@ -615,7 +615,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getDataCatalog(ID id, DataCatalogQueryDefinition queryDef) {
+    public QueryQuery getDataCatalog(ID id, DataCatalogQueryDefinition queryDef) {
         startField("getDataCatalog");
 
         _queryBuilder.append("(id:");
@@ -687,14 +687,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryDataCatalog(DataCatalogQueryDefinition queryDef) {
+    public QueryQuery queryDataCatalog(DataCatalogQueryDefinition queryDef) {
         return queryDataCatalog(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryDataCatalog(QueryDataCatalogArgumentsDefinition argsDef, DataCatalogQueryDefinition queryDef) {
+    public QueryQuery queryDataCatalog(QueryDataCatalogArgumentsDefinition argsDef, DataCatalogQueryDefinition queryDef) {
         startField("queryDataCatalog");
 
         QueryDataCatalogArguments args = new QueryDataCatalogArguments(_queryBuilder);
@@ -711,7 +711,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getConversation(ID id, ConversationQueryDefinition queryDef) {
+    public QueryQuery getConversation(ID id, ConversationQueryDefinition queryDef) {
         startField("getConversation");
 
         _queryBuilder.append("(id:");
@@ -783,14 +783,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryConversation(ConversationQueryDefinition queryDef) {
+    public QueryQuery queryConversation(ConversationQueryDefinition queryDef) {
         return queryConversation(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryConversation(QueryConversationArgumentsDefinition argsDef, ConversationQueryDefinition queryDef) {
+    public QueryQuery queryConversation(QueryConversationArgumentsDefinition argsDef, ConversationQueryDefinition queryDef) {
         startField("queryConversation");
 
         QueryConversationArguments args = new QueryConversationArguments(_queryBuilder);
@@ -807,7 +807,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getMessage(ID id, MessageQueryDefinition queryDef) {
+    public QueryQuery getMessage(ID id, MessageQueryDefinition queryDef) {
         startField("getMessage");
 
         _queryBuilder.append("(id:");
@@ -879,14 +879,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryMessage(MessageQueryDefinition queryDef) {
+    public QueryQuery queryMessage(MessageQueryDefinition queryDef) {
         return queryMessage(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryMessage(QueryMessageArgumentsDefinition argsDef, MessageQueryDefinition queryDef) {
+    public QueryQuery queryMessage(QueryMessageArgumentsDefinition argsDef, MessageQueryDefinition queryDef) {
         startField("queryMessage");
 
         QueryMessageArguments args = new QueryMessageArguments(_queryBuilder);
@@ -903,7 +903,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getReview(ID id, ReviewQueryDefinition queryDef) {
+    public QueryQuery getReview(ID id, ReviewQueryDefinition queryDef) {
         startField("getReview");
 
         _queryBuilder.append("(id:");
@@ -975,14 +975,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryReview(ReviewQueryDefinition queryDef) {
+    public QueryQuery queryReview(ReviewQueryDefinition queryDef) {
         return queryReview(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryReview(QueryReviewArgumentsDefinition argsDef, ReviewQueryDefinition queryDef) {
+    public QueryQuery queryReview(QueryReviewArgumentsDefinition argsDef, ReviewQueryDefinition queryDef) {
         startField("queryReview");
 
         QueryReviewArguments args = new QueryReviewArguments(_queryBuilder);
@@ -999,7 +999,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getReadNote(ID id, ReadNoteQueryDefinition queryDef) {
+    public QueryQuery getReadNote(ID id, ReadNoteQueryDefinition queryDef) {
         startField("getReadNote");
 
         _queryBuilder.append("(id:");
@@ -1071,14 +1071,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryReadNote(ReadNoteQueryDefinition queryDef) {
+    public QueryQuery queryReadNote(ReadNoteQueryDefinition queryDef) {
         return queryReadNote(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryReadNote(QueryReadNoteArgumentsDefinition argsDef, ReadNoteQueryDefinition queryDef) {
+    public QueryQuery queryReadNote(QueryReadNoteArgumentsDefinition argsDef, ReadNoteQueryDefinition queryDef) {
         startField("queryReadNote");
 
         QueryReadNoteArguments args = new QueryReadNoteArguments(_queryBuilder);
@@ -1095,7 +1095,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getGeneralOrganization(ID id, GeneralOrganizationQueryDefinition queryDef) {
+    public QueryQuery getGeneralOrganization(ID id, GeneralOrganizationQueryDefinition queryDef) {
         startField("getGeneralOrganization");
 
         _queryBuilder.append("(id:");
@@ -1167,14 +1167,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryGeneralOrganization(GeneralOrganizationQueryDefinition queryDef) {
+    public QueryQuery queryGeneralOrganization(GeneralOrganizationQueryDefinition queryDef) {
         return queryGeneralOrganization(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryGeneralOrganization(QueryGeneralOrganizationArgumentsDefinition argsDef, GeneralOrganizationQueryDefinition queryDef) {
+    public QueryQuery queryGeneralOrganization(QueryGeneralOrganizationArgumentsDefinition argsDef, GeneralOrganizationQueryDefinition queryDef) {
         startField("queryGeneralOrganization");
 
         QueryGeneralOrganizationArguments args = new QueryGeneralOrganizationArguments(_queryBuilder);
@@ -1191,7 +1191,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getEmployeeRole(ID id, EmployeeRoleQueryDefinition queryDef) {
+    public QueryQuery getEmployeeRole(ID id, EmployeeRoleQueryDefinition queryDef) {
         startField("getEmployeeRole");
 
         _queryBuilder.append("(id:");
@@ -1263,14 +1263,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryEmployeeRole(EmployeeRoleQueryDefinition queryDef) {
+    public QueryQuery queryEmployeeRole(EmployeeRoleQueryDefinition queryDef) {
         return queryEmployeeRole(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryEmployeeRole(QueryEmployeeRoleArgumentsDefinition argsDef, EmployeeRoleQueryDefinition queryDef) {
+    public QueryQuery queryEmployeeRole(QueryEmployeeRoleArgumentsDefinition argsDef, EmployeeRoleQueryDefinition queryDef) {
         startField("queryEmployeeRole");
 
         QueryEmployeeRoleArguments args = new QueryEmployeeRoleArguments(_queryBuilder);
@@ -1287,7 +1287,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getFollowerRole(ID id, FollowerRoleQueryDefinition queryDef) {
+    public QueryQuery getFollowerRole(ID id, FollowerRoleQueryDefinition queryDef) {
         startField("getFollowerRole");
 
         _queryBuilder.append("(id:");
@@ -1359,14 +1359,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryFollowerRole(FollowerRoleQueryDefinition queryDef) {
+    public QueryQuery queryFollowerRole(FollowerRoleQueryDefinition queryDef) {
         return queryFollowerRole(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryFollowerRole(QueryFollowerRoleArgumentsDefinition argsDef, FollowerRoleQueryDefinition queryDef) {
+    public QueryQuery queryFollowerRole(QueryFollowerRoleArgumentsDefinition argsDef, FollowerRoleQueryDefinition queryDef) {
         startField("queryFollowerRole");
 
         QueryFollowerRoleArguments args = new QueryFollowerRoleArguments(_queryBuilder);
@@ -1383,7 +1383,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getMemberRole(ID id, MemberRoleQueryDefinition queryDef) {
+    public QueryQuery getMemberRole(ID id, MemberRoleQueryDefinition queryDef) {
         startField("getMemberRole");
 
         _queryBuilder.append("(id:");
@@ -1455,14 +1455,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryMemberRole(MemberRoleQueryDefinition queryDef) {
+    public QueryQuery queryMemberRole(MemberRoleQueryDefinition queryDef) {
         return queryMemberRole(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryMemberRole(QueryMemberRoleArgumentsDefinition argsDef, MemberRoleQueryDefinition queryDef) {
+    public QueryQuery queryMemberRole(QueryMemberRoleArgumentsDefinition argsDef, MemberRoleQueryDefinition queryDef) {
         startField("queryMemberRole");
 
         QueryMemberRoleArguments args = new QueryMemberRoleArguments(_queryBuilder);
@@ -1479,7 +1479,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getOwnership(ID id, OwnershipQueryDefinition queryDef) {
+    public QueryQuery getOwnership(ID id, OwnershipQueryDefinition queryDef) {
         startField("getOwnership");
 
         _queryBuilder.append("(id:");
@@ -1551,14 +1551,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryOwnership(OwnershipQueryDefinition queryDef) {
+    public QueryQuery queryOwnership(OwnershipQueryDefinition queryDef) {
         return queryOwnership(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryOwnership(QueryOwnershipArgumentsDefinition argsDef, OwnershipQueryDefinition queryDef) {
+    public QueryQuery queryOwnership(QueryOwnershipArgumentsDefinition argsDef, OwnershipQueryDefinition queryDef) {
         startField("queryOwnership");
 
         QueryOwnershipArguments args = new QueryOwnershipArguments(_queryBuilder);
@@ -1607,14 +1607,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getUser(UserQueryDefinition queryDef) {
+    public QueryQuery getUser(UserQueryDefinition queryDef) {
         return getUser(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery getUser(GetUserArgumentsDefinition argsDef, UserQueryDefinition queryDef) {
+    public QueryQuery getUser(GetUserArgumentsDefinition argsDef, UserQueryDefinition queryDef) {
         startField("getUser");
 
         GetUserArguments args = new GetUserArguments(_queryBuilder);
@@ -1685,14 +1685,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryUser(UserQueryDefinition queryDef) {
+    public QueryQuery queryUser(UserQueryDefinition queryDef) {
         return queryUser(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryUser(QueryUserArgumentsDefinition argsDef, UserQueryDefinition queryDef) {
+    public QueryQuery queryUser(QueryUserArgumentsDefinition argsDef, UserQueryDefinition queryDef) {
         startField("queryUser");
 
         QueryUserArguments args = new QueryUserArguments(_queryBuilder);
@@ -1709,7 +1709,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getPerson(ID id, PersonQueryDefinition queryDef) {
+    public QueryQuery getPerson(ID id, PersonQueryDefinition queryDef) {
         startField("getPerson");
 
         _queryBuilder.append("(id:");
@@ -1781,14 +1781,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryPerson(PersonQueryDefinition queryDef) {
+    public QueryQuery queryPerson(PersonQueryDefinition queryDef) {
         return queryPerson(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryPerson(QueryPersonArgumentsDefinition argsDef, PersonQueryDefinition queryDef) {
+    public QueryQuery queryPerson(QueryPersonArgumentsDefinition argsDef, PersonQueryDefinition queryDef) {
         startField("queryPerson");
 
         QueryPersonArguments args = new QueryPersonArguments(_queryBuilder);
@@ -1805,7 +1805,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getStore(ID id, StoreQueryDefinition queryDef) {
+    public QueryQuery getStore(ID id, StoreQueryDefinition queryDef) {
         startField("getStore");
 
         _queryBuilder.append("(id:");
@@ -1877,14 +1877,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryStore(StoreQueryDefinition queryDef) {
+    public QueryQuery queryStore(StoreQueryDefinition queryDef) {
         return queryStore(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryStore(QueryStoreArgumentsDefinition argsDef, StoreQueryDefinition queryDef) {
+    public QueryQuery queryStore(QueryStoreArgumentsDefinition argsDef, StoreQueryDefinition queryDef) {
         startField("queryStore");
 
         QueryStoreArguments args = new QueryStoreArguments(_queryBuilder);
@@ -1901,7 +1901,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getProduct(ID id, ProductQueryDefinition queryDef) {
+    public QueryQuery getProduct(ID id, ProductQueryDefinition queryDef) {
         startField("getProduct");
 
         _queryBuilder.append("(id:");
@@ -1973,14 +1973,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryProduct(ProductQueryDefinition queryDef) {
+    public QueryQuery queryProduct(ProductQueryDefinition queryDef) {
         return queryProduct(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryProduct(QueryProductArgumentsDefinition argsDef, ProductQueryDefinition queryDef) {
+    public QueryQuery queryProduct(QueryProductArgumentsDefinition argsDef, ProductQueryDefinition queryDef) {
         startField("queryProduct");
 
         QueryProductArguments args = new QueryProductArguments(_queryBuilder);
@@ -1997,7 +1997,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getProductModel(ID id, ProductModelQueryDefinition queryDef) {
+    public QueryQuery getProductModel(ID id, ProductModelQueryDefinition queryDef) {
         startField("getProductModel");
 
         _queryBuilder.append("(id:");
@@ -2069,14 +2069,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryProductModel(ProductModelQueryDefinition queryDef) {
+    public QueryQuery queryProductModel(ProductModelQueryDefinition queryDef) {
         return queryProductModel(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryProductModel(QueryProductModelArgumentsDefinition argsDef, ProductModelQueryDefinition queryDef) {
+    public QueryQuery queryProductModel(QueryProductModelArgumentsDefinition argsDef, ProductModelQueryDefinition queryDef) {
         startField("queryProductModel");
 
         QueryProductModelArguments args = new QueryProductModelArguments(_queryBuilder);
@@ -2093,7 +2093,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getOffer(ID id, OfferQueryDefinition queryDef) {
+    public QueryQuery getOffer(ID id, OfferQueryDefinition queryDef) {
         startField("getOffer");
 
         _queryBuilder.append("(id:");
@@ -2165,14 +2165,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryOffer(OfferQueryDefinition queryDef) {
+    public QueryQuery queryOffer(OfferQueryDefinition queryDef) {
         return queryOffer(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryOffer(QueryOfferArgumentsDefinition argsDef, OfferQueryDefinition queryDef) {
+    public QueryQuery queryOffer(QueryOfferArgumentsDefinition argsDef, OfferQueryDefinition queryDef) {
         startField("queryOffer");
 
         QueryOfferArguments args = new QueryOfferArguments(_queryBuilder);
@@ -2189,7 +2189,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getEntryPoint(ID id, EntryPointQueryDefinition queryDef) {
+    public QueryQuery getEntryPoint(ID id, EntryPointQueryDefinition queryDef) {
         startField("getEntryPoint");
 
         _queryBuilder.append("(id:");
@@ -2261,14 +2261,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryEntryPoint(EntryPointQueryDefinition queryDef) {
+    public QueryQuery queryEntryPoint(EntryPointQueryDefinition queryDef) {
         return queryEntryPoint(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryEntryPoint(QueryEntryPointArgumentsDefinition argsDef, EntryPointQueryDefinition queryDef) {
+    public QueryQuery queryEntryPoint(QueryEntryPointArgumentsDefinition argsDef, EntryPointQueryDefinition queryDef) {
         startField("queryEntryPoint");
 
         QueryEntryPointArguments args = new QueryEntryPointArguments(_queryBuilder);
@@ -2285,7 +2285,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getSoftwareApplication(ID id, SoftwareApplicationQueryDefinition queryDef) {
+    public QueryQuery getSoftwareApplication(ID id, SoftwareApplicationQueryDefinition queryDef) {
         startField("getSoftwareApplication");
 
         _queryBuilder.append("(id:");
@@ -2357,14 +2357,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery querySoftwareApplication(SoftwareApplicationQueryDefinition queryDef) {
+    public QueryQuery querySoftwareApplication(SoftwareApplicationQueryDefinition queryDef) {
         return querySoftwareApplication(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery querySoftwareApplication(QuerySoftwareApplicationArgumentsDefinition argsDef, SoftwareApplicationQueryDefinition queryDef) {
+    public QueryQuery querySoftwareApplication(QuerySoftwareApplicationArgumentsDefinition argsDef, SoftwareApplicationQueryDefinition queryDef) {
         startField("querySoftwareApplication");
 
         QuerySoftwareApplicationArguments args = new QuerySoftwareApplicationArguments(_queryBuilder);
@@ -2381,7 +2381,7 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery getWebhook(ID id, WebhookQueryDefinition queryDef) {
+    public QueryQuery getWebhook(ID id, WebhookQueryDefinition queryDef) {
         startField("getWebhook");
 
         _queryBuilder.append("(id:");
@@ -2453,14 +2453,14 @@ public class RootQueryQuery extends Query<RootQueryQuery> {
     /**
     * 
     */
-    public RootQueryQuery queryWebhook(WebhookQueryDefinition queryDef) {
+    public QueryQuery queryWebhook(WebhookQueryDefinition queryDef) {
         return queryWebhook(args -> {}, queryDef);
     }
 
     /**
     * 
     */
-    public RootQueryQuery queryWebhook(QueryWebhookArgumentsDefinition argsDef, WebhookQueryDefinition queryDef) {
+    public QueryQuery queryWebhook(QueryWebhookArgumentsDefinition argsDef, WebhookQueryDefinition queryDef) {
         startField("queryWebhook");
 
         QueryWebhookArguments args = new QueryWebhookArguments(_queryBuilder);

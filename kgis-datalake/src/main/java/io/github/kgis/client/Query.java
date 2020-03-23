@@ -28,11 +28,11 @@ import java.util.Map;
 /**
 * 
 */
-public class RootQuery extends AbstractResponse<RootQuery> {
-    public RootQuery() {
+public class Query extends AbstractResponse<Query> {
+    public Query() {
     }
 
-    public RootQuery(JsonObject fields) throws SchemaViolationError {
+    public Query(JsonObject fields) throws SchemaViolationError {
         for (Map.Entry<String, JsonElement> field : fields.entrySet()) {
             String key = field.getKey();
             String fieldName = getFieldName(key);
@@ -858,7 +858,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
     }
 
     public String getGraphQlTypeName() {
-        return "RootQuery";
+        return "Query";
     }
 
     /**
@@ -869,7 +869,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Thing) get("getThing");
     }
 
-    public RootQuery setGetThing(Thing arg) {
+    public Query setGetThing(Thing arg) {
         optimisticData.put(getKey("getThing"), arg);
         return this;
     }
@@ -882,7 +882,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Thing>) get("queryThing");
     }
 
-    public RootQuery setQueryThing(List<Thing> arg) {
+    public Query setQueryThing(List<Thing> arg) {
         optimisticData.put(getKey("queryThing"), arg);
         return this;
     }
@@ -895,7 +895,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Namespace) get("getNamespace");
     }
 
-    public RootQuery setGetNamespace(Namespace arg) {
+    public Query setGetNamespace(Namespace arg) {
         optimisticData.put(getKey("getNamespace"), arg);
         return this;
     }
@@ -908,7 +908,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Namespace>) get("queryNamespace");
     }
 
-    public RootQuery setQueryNamespace(List<Namespace> arg) {
+    public Query setQueryNamespace(List<Namespace> arg) {
         optimisticData.put(getKey("queryNamespace"), arg);
         return this;
     }
@@ -921,7 +921,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Shoppingable>) get("queryShoppingable");
     }
 
-    public RootQuery setQueryShoppingable(List<Shoppingable> arg) {
+    public Query setQueryShoppingable(List<Shoppingable> arg) {
         optimisticData.put(getKey("queryShoppingable"), arg);
         return this;
     }
@@ -934,7 +934,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Party>) get("queryParty");
     }
 
-    public RootQuery setQueryParty(List<Party> arg) {
+    public Query setQueryParty(List<Party> arg) {
         optimisticData.put(getKey("queryParty"), arg);
         return this;
     }
@@ -947,7 +947,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Organization>) get("queryOrganization");
     }
 
-    public RootQuery setQueryOrganization(List<Organization> arg) {
+    public Query setQueryOrganization(List<Organization> arg) {
         optimisticData.put(getKey("queryOrganization"), arg);
         return this;
     }
@@ -960,7 +960,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<PartyRole>) get("queryPartyRole");
     }
 
-    public RootQuery setQueryPartyRole(List<PartyRole> arg) {
+    public Query setQueryPartyRole(List<PartyRole> arg) {
         optimisticData.put(getKey("queryPartyRole"), arg);
         return this;
     }
@@ -973,7 +973,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (PartyRoleName) get("getPartyRoleName");
     }
 
-    public RootQuery setGetPartyRoleName(PartyRoleName arg) {
+    public Query setGetPartyRoleName(PartyRoleName arg) {
         optimisticData.put(getKey("getPartyRoleName"), arg);
         return this;
     }
@@ -986,7 +986,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<PartyRoleName>) get("queryPartyRoleName");
     }
 
-    public RootQuery setQueryPartyRoleName(List<PartyRoleName> arg) {
+    public Query setQueryPartyRoleName(List<PartyRoleName> arg) {
         optimisticData.put(getKey("queryPartyRoleName"), arg);
         return this;
     }
@@ -999,7 +999,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Readable>) get("queryReadable");
     }
 
-    public RootQuery setQueryReadable(List<Readable> arg) {
+    public Query setQueryReadable(List<Readable> arg) {
         optimisticData.put(getKey("queryReadable"), arg);
         return this;
     }
@@ -1012,7 +1012,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (DataCatalog) get("getDataCatalog");
     }
 
-    public RootQuery setGetDataCatalog(DataCatalog arg) {
+    public Query setGetDataCatalog(DataCatalog arg) {
         optimisticData.put(getKey("getDataCatalog"), arg);
         return this;
     }
@@ -1025,7 +1025,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<DataCatalog>) get("queryDataCatalog");
     }
 
-    public RootQuery setQueryDataCatalog(List<DataCatalog> arg) {
+    public Query setQueryDataCatalog(List<DataCatalog> arg) {
         optimisticData.put(getKey("queryDataCatalog"), arg);
         return this;
     }
@@ -1038,7 +1038,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Conversation) get("getConversation");
     }
 
-    public RootQuery setGetConversation(Conversation arg) {
+    public Query setGetConversation(Conversation arg) {
         optimisticData.put(getKey("getConversation"), arg);
         return this;
     }
@@ -1051,7 +1051,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Conversation>) get("queryConversation");
     }
 
-    public RootQuery setQueryConversation(List<Conversation> arg) {
+    public Query setQueryConversation(List<Conversation> arg) {
         optimisticData.put(getKey("queryConversation"), arg);
         return this;
     }
@@ -1064,7 +1064,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Message) get("getMessage");
     }
 
-    public RootQuery setGetMessage(Message arg) {
+    public Query setGetMessage(Message arg) {
         optimisticData.put(getKey("getMessage"), arg);
         return this;
     }
@@ -1077,7 +1077,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Message>) get("queryMessage");
     }
 
-    public RootQuery setQueryMessage(List<Message> arg) {
+    public Query setQueryMessage(List<Message> arg) {
         optimisticData.put(getKey("queryMessage"), arg);
         return this;
     }
@@ -1090,7 +1090,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Review) get("getReview");
     }
 
-    public RootQuery setGetReview(Review arg) {
+    public Query setGetReview(Review arg) {
         optimisticData.put(getKey("getReview"), arg);
         return this;
     }
@@ -1103,7 +1103,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Review>) get("queryReview");
     }
 
-    public RootQuery setQueryReview(List<Review> arg) {
+    public Query setQueryReview(List<Review> arg) {
         optimisticData.put(getKey("queryReview"), arg);
         return this;
     }
@@ -1116,7 +1116,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (ReadNote) get("getReadNote");
     }
 
-    public RootQuery setGetReadNote(ReadNote arg) {
+    public Query setGetReadNote(ReadNote arg) {
         optimisticData.put(getKey("getReadNote"), arg);
         return this;
     }
@@ -1129,7 +1129,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<ReadNote>) get("queryReadNote");
     }
 
-    public RootQuery setQueryReadNote(List<ReadNote> arg) {
+    public Query setQueryReadNote(List<ReadNote> arg) {
         optimisticData.put(getKey("queryReadNote"), arg);
         return this;
     }
@@ -1142,7 +1142,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (GeneralOrganization) get("getGeneralOrganization");
     }
 
-    public RootQuery setGetGeneralOrganization(GeneralOrganization arg) {
+    public Query setGetGeneralOrganization(GeneralOrganization arg) {
         optimisticData.put(getKey("getGeneralOrganization"), arg);
         return this;
     }
@@ -1155,7 +1155,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<GeneralOrganization>) get("queryGeneralOrganization");
     }
 
-    public RootQuery setQueryGeneralOrganization(List<GeneralOrganization> arg) {
+    public Query setQueryGeneralOrganization(List<GeneralOrganization> arg) {
         optimisticData.put(getKey("queryGeneralOrganization"), arg);
         return this;
     }
@@ -1168,7 +1168,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (EmployeeRole) get("getEmployeeRole");
     }
 
-    public RootQuery setGetEmployeeRole(EmployeeRole arg) {
+    public Query setGetEmployeeRole(EmployeeRole arg) {
         optimisticData.put(getKey("getEmployeeRole"), arg);
         return this;
     }
@@ -1181,7 +1181,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<EmployeeRole>) get("queryEmployeeRole");
     }
 
-    public RootQuery setQueryEmployeeRole(List<EmployeeRole> arg) {
+    public Query setQueryEmployeeRole(List<EmployeeRole> arg) {
         optimisticData.put(getKey("queryEmployeeRole"), arg);
         return this;
     }
@@ -1194,7 +1194,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (FollowerRole) get("getFollowerRole");
     }
 
-    public RootQuery setGetFollowerRole(FollowerRole arg) {
+    public Query setGetFollowerRole(FollowerRole arg) {
         optimisticData.put(getKey("getFollowerRole"), arg);
         return this;
     }
@@ -1207,7 +1207,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<FollowerRole>) get("queryFollowerRole");
     }
 
-    public RootQuery setQueryFollowerRole(List<FollowerRole> arg) {
+    public Query setQueryFollowerRole(List<FollowerRole> arg) {
         optimisticData.put(getKey("queryFollowerRole"), arg);
         return this;
     }
@@ -1220,7 +1220,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (MemberRole) get("getMemberRole");
     }
 
-    public RootQuery setGetMemberRole(MemberRole arg) {
+    public Query setGetMemberRole(MemberRole arg) {
         optimisticData.put(getKey("getMemberRole"), arg);
         return this;
     }
@@ -1233,7 +1233,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<MemberRole>) get("queryMemberRole");
     }
 
-    public RootQuery setQueryMemberRole(List<MemberRole> arg) {
+    public Query setQueryMemberRole(List<MemberRole> arg) {
         optimisticData.put(getKey("queryMemberRole"), arg);
         return this;
     }
@@ -1246,7 +1246,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Ownership) get("getOwnership");
     }
 
-    public RootQuery setGetOwnership(Ownership arg) {
+    public Query setGetOwnership(Ownership arg) {
         optimisticData.put(getKey("getOwnership"), arg);
         return this;
     }
@@ -1259,7 +1259,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Ownership>) get("queryOwnership");
     }
 
-    public RootQuery setQueryOwnership(List<Ownership> arg) {
+    public Query setQueryOwnership(List<Ownership> arg) {
         optimisticData.put(getKey("queryOwnership"), arg);
         return this;
     }
@@ -1272,7 +1272,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (User) get("getUser");
     }
 
-    public RootQuery setGetUser(User arg) {
+    public Query setGetUser(User arg) {
         optimisticData.put(getKey("getUser"), arg);
         return this;
     }
@@ -1285,7 +1285,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<User>) get("queryUser");
     }
 
-    public RootQuery setQueryUser(List<User> arg) {
+    public Query setQueryUser(List<User> arg) {
         optimisticData.put(getKey("queryUser"), arg);
         return this;
     }
@@ -1298,7 +1298,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Person) get("getPerson");
     }
 
-    public RootQuery setGetPerson(Person arg) {
+    public Query setGetPerson(Person arg) {
         optimisticData.put(getKey("getPerson"), arg);
         return this;
     }
@@ -1311,7 +1311,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Person>) get("queryPerson");
     }
 
-    public RootQuery setQueryPerson(List<Person> arg) {
+    public Query setQueryPerson(List<Person> arg) {
         optimisticData.put(getKey("queryPerson"), arg);
         return this;
     }
@@ -1324,7 +1324,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Store) get("getStore");
     }
 
-    public RootQuery setGetStore(Store arg) {
+    public Query setGetStore(Store arg) {
         optimisticData.put(getKey("getStore"), arg);
         return this;
     }
@@ -1337,7 +1337,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Store>) get("queryStore");
     }
 
-    public RootQuery setQueryStore(List<Store> arg) {
+    public Query setQueryStore(List<Store> arg) {
         optimisticData.put(getKey("queryStore"), arg);
         return this;
     }
@@ -1350,7 +1350,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Product) get("getProduct");
     }
 
-    public RootQuery setGetProduct(Product arg) {
+    public Query setGetProduct(Product arg) {
         optimisticData.put(getKey("getProduct"), arg);
         return this;
     }
@@ -1363,7 +1363,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Product>) get("queryProduct");
     }
 
-    public RootQuery setQueryProduct(List<Product> arg) {
+    public Query setQueryProduct(List<Product> arg) {
         optimisticData.put(getKey("queryProduct"), arg);
         return this;
     }
@@ -1376,7 +1376,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (ProductModel) get("getProductModel");
     }
 
-    public RootQuery setGetProductModel(ProductModel arg) {
+    public Query setGetProductModel(ProductModel arg) {
         optimisticData.put(getKey("getProductModel"), arg);
         return this;
     }
@@ -1389,7 +1389,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<ProductModel>) get("queryProductModel");
     }
 
-    public RootQuery setQueryProductModel(List<ProductModel> arg) {
+    public Query setQueryProductModel(List<ProductModel> arg) {
         optimisticData.put(getKey("queryProductModel"), arg);
         return this;
     }
@@ -1402,7 +1402,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Offer) get("getOffer");
     }
 
-    public RootQuery setGetOffer(Offer arg) {
+    public Query setGetOffer(Offer arg) {
         optimisticData.put(getKey("getOffer"), arg);
         return this;
     }
@@ -1415,7 +1415,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Offer>) get("queryOffer");
     }
 
-    public RootQuery setQueryOffer(List<Offer> arg) {
+    public Query setQueryOffer(List<Offer> arg) {
         optimisticData.put(getKey("queryOffer"), arg);
         return this;
     }
@@ -1428,7 +1428,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (EntryPoint) get("getEntryPoint");
     }
 
-    public RootQuery setGetEntryPoint(EntryPoint arg) {
+    public Query setGetEntryPoint(EntryPoint arg) {
         optimisticData.put(getKey("getEntryPoint"), arg);
         return this;
     }
@@ -1441,7 +1441,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<EntryPoint>) get("queryEntryPoint");
     }
 
-    public RootQuery setQueryEntryPoint(List<EntryPoint> arg) {
+    public Query setQueryEntryPoint(List<EntryPoint> arg) {
         optimisticData.put(getKey("queryEntryPoint"), arg);
         return this;
     }
@@ -1454,7 +1454,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (SoftwareApplication) get("getSoftwareApplication");
     }
 
-    public RootQuery setGetSoftwareApplication(SoftwareApplication arg) {
+    public Query setGetSoftwareApplication(SoftwareApplication arg) {
         optimisticData.put(getKey("getSoftwareApplication"), arg);
         return this;
     }
@@ -1467,7 +1467,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<SoftwareApplication>) get("querySoftwareApplication");
     }
 
-    public RootQuery setQuerySoftwareApplication(List<SoftwareApplication> arg) {
+    public Query setQuerySoftwareApplication(List<SoftwareApplication> arg) {
         optimisticData.put(getKey("querySoftwareApplication"), arg);
         return this;
     }
@@ -1480,7 +1480,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (Webhook) get("getWebhook");
     }
 
-    public RootQuery setGetWebhook(Webhook arg) {
+    public Query setGetWebhook(Webhook arg) {
         optimisticData.put(getKey("getWebhook"), arg);
         return this;
     }
@@ -1493,7 +1493,7 @@ public class RootQuery extends AbstractResponse<RootQuery> {
         return (List<Webhook>) get("queryWebhook");
     }
 
-    public RootQuery setQueryWebhook(List<Webhook> arg) {
+    public Query setQueryWebhook(List<Webhook> arg) {
         optimisticData.put(getKey("queryWebhook"), arg);
         return this;
     }

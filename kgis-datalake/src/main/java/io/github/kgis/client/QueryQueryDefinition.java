@@ -25,6 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public interface RootMutationQueryDefinition {
-    void define(RootMutationQuery _queryBuilder);
+public interface QueryQueryDefinition {
+    void define(QueryQuery _queryBuilder);
 }

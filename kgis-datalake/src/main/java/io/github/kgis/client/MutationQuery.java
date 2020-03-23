@@ -28,15 +28,15 @@ import java.util.Map;
 /**
 * 
 */
-public class RootMutationQuery extends Query<RootMutationQuery> {
-    RootMutationQuery(StringBuilder _queryBuilder) {
+public class MutationQuery extends Query<MutationQuery> {
+    MutationQuery(StringBuilder _queryBuilder) {
         super(_queryBuilder);
     }
 
     /**
     * 
     */
-    public RootMutationQuery updateThing(UpdateThingInput input, UpdateThingPayloadQueryDefinition queryDef) {
+    public MutationQuery updateThing(UpdateThingInput input, UpdateThingPayloadQueryDefinition queryDef) {
         startField("updateThing");
 
         _queryBuilder.append("(input:");
@@ -54,7 +54,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteThing(ThingFilter filter, DeleteThingPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteThing(ThingFilter filter, DeleteThingPayloadQueryDefinition queryDef) {
         startField("deleteThing");
 
         _queryBuilder.append("(filter:");
@@ -72,7 +72,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addNamespace(List<AddNamespaceInput> input, AddNamespacePayloadQueryDefinition queryDef) {
+    public MutationQuery addNamespace(List<AddNamespaceInput> input, AddNamespacePayloadQueryDefinition queryDef) {
         startField("addNamespace");
 
         _queryBuilder.append("(input:");
@@ -99,7 +99,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateNamespace(UpdateNamespaceInput input, UpdateNamespacePayloadQueryDefinition queryDef) {
+    public MutationQuery updateNamespace(UpdateNamespaceInput input, UpdateNamespacePayloadQueryDefinition queryDef) {
         startField("updateNamespace");
 
         _queryBuilder.append("(input:");
@@ -117,7 +117,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteNamespace(NamespaceFilter filter, DeleteNamespacePayloadQueryDefinition queryDef) {
+    public MutationQuery deleteNamespace(NamespaceFilter filter, DeleteNamespacePayloadQueryDefinition queryDef) {
         startField("deleteNamespace");
 
         _queryBuilder.append("(filter:");
@@ -135,7 +135,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addPartyRoleName(List<AddPartyRoleNameInput> input, AddPartyRoleNamePayloadQueryDefinition queryDef) {
+    public MutationQuery addPartyRoleName(List<AddPartyRoleNameInput> input, AddPartyRoleNamePayloadQueryDefinition queryDef) {
         startField("addPartyRoleName");
 
         _queryBuilder.append("(input:");
@@ -162,7 +162,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updatePartyRoleName(UpdatePartyRoleNameInput input, UpdatePartyRoleNamePayloadQueryDefinition queryDef) {
+    public MutationQuery updatePartyRoleName(UpdatePartyRoleNameInput input, UpdatePartyRoleNamePayloadQueryDefinition queryDef) {
         startField("updatePartyRoleName");
 
         _queryBuilder.append("(input:");
@@ -180,7 +180,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deletePartyRoleName(PartyRoleNameFilter filter, DeletePartyRoleNamePayloadQueryDefinition queryDef) {
+    public MutationQuery deletePartyRoleName(PartyRoleNameFilter filter, DeletePartyRoleNamePayloadQueryDefinition queryDef) {
         startField("deletePartyRoleName");
 
         _queryBuilder.append("(filter:");
@@ -198,7 +198,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addDataCatalog(List<AddDataCatalogInput> input, AddDataCatalogPayloadQueryDefinition queryDef) {
+    public MutationQuery addDataCatalog(List<AddDataCatalogInput> input, AddDataCatalogPayloadQueryDefinition queryDef) {
         startField("addDataCatalog");
 
         _queryBuilder.append("(input:");
@@ -225,7 +225,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateDataCatalog(UpdateDataCatalogInput input, UpdateDataCatalogPayloadQueryDefinition queryDef) {
+    public MutationQuery updateDataCatalog(UpdateDataCatalogInput input, UpdateDataCatalogPayloadQueryDefinition queryDef) {
         startField("updateDataCatalog");
 
         _queryBuilder.append("(input:");
@@ -243,7 +243,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteDataCatalog(DataCatalogFilter filter, DeleteDataCatalogPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteDataCatalog(DataCatalogFilter filter, DeleteDataCatalogPayloadQueryDefinition queryDef) {
         startField("deleteDataCatalog");
 
         _queryBuilder.append("(filter:");
@@ -261,7 +261,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addConversation(List<AddConversationInput> input, AddConversationPayloadQueryDefinition queryDef) {
+    public MutationQuery addConversation(List<AddConversationInput> input, AddConversationPayloadQueryDefinition queryDef) {
         startField("addConversation");
 
         _queryBuilder.append("(input:");
@@ -288,7 +288,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateConversation(UpdateConversationInput input, UpdateConversationPayloadQueryDefinition queryDef) {
+    public MutationQuery updateConversation(UpdateConversationInput input, UpdateConversationPayloadQueryDefinition queryDef) {
         startField("updateConversation");
 
         _queryBuilder.append("(input:");
@@ -306,7 +306,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteConversation(ConversationFilter filter, DeleteConversationPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteConversation(ConversationFilter filter, DeleteConversationPayloadQueryDefinition queryDef) {
         startField("deleteConversation");
 
         _queryBuilder.append("(filter:");
@@ -324,7 +324,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addMessage(List<AddMessageInput> input, AddMessagePayloadQueryDefinition queryDef) {
+    public MutationQuery addMessage(List<AddMessageInput> input, AddMessagePayloadQueryDefinition queryDef) {
         startField("addMessage");
 
         _queryBuilder.append("(input:");
@@ -351,7 +351,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateMessage(UpdateMessageInput input, UpdateMessagePayloadQueryDefinition queryDef) {
+    public MutationQuery updateMessage(UpdateMessageInput input, UpdateMessagePayloadQueryDefinition queryDef) {
         startField("updateMessage");
 
         _queryBuilder.append("(input:");
@@ -369,7 +369,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteMessage(MessageFilter filter, DeleteMessagePayloadQueryDefinition queryDef) {
+    public MutationQuery deleteMessage(MessageFilter filter, DeleteMessagePayloadQueryDefinition queryDef) {
         startField("deleteMessage");
 
         _queryBuilder.append("(filter:");
@@ -387,7 +387,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addReview(List<AddReviewInput> input, AddReviewPayloadQueryDefinition queryDef) {
+    public MutationQuery addReview(List<AddReviewInput> input, AddReviewPayloadQueryDefinition queryDef) {
         startField("addReview");
 
         _queryBuilder.append("(input:");
@@ -414,7 +414,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateReview(UpdateReviewInput input, UpdateReviewPayloadQueryDefinition queryDef) {
+    public MutationQuery updateReview(UpdateReviewInput input, UpdateReviewPayloadQueryDefinition queryDef) {
         startField("updateReview");
 
         _queryBuilder.append("(input:");
@@ -432,7 +432,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteReview(ReviewFilter filter, DeleteReviewPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteReview(ReviewFilter filter, DeleteReviewPayloadQueryDefinition queryDef) {
         startField("deleteReview");
 
         _queryBuilder.append("(filter:");
@@ -450,7 +450,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addReadNote(List<AddReadNoteInput> input, AddReadNotePayloadQueryDefinition queryDef) {
+    public MutationQuery addReadNote(List<AddReadNoteInput> input, AddReadNotePayloadQueryDefinition queryDef) {
         startField("addReadNote");
 
         _queryBuilder.append("(input:");
@@ -477,7 +477,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateReadNote(UpdateReadNoteInput input, UpdateReadNotePayloadQueryDefinition queryDef) {
+    public MutationQuery updateReadNote(UpdateReadNoteInput input, UpdateReadNotePayloadQueryDefinition queryDef) {
         startField("updateReadNote");
 
         _queryBuilder.append("(input:");
@@ -495,7 +495,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteReadNote(ReadNoteFilter filter, DeleteReadNotePayloadQueryDefinition queryDef) {
+    public MutationQuery deleteReadNote(ReadNoteFilter filter, DeleteReadNotePayloadQueryDefinition queryDef) {
         startField("deleteReadNote");
 
         _queryBuilder.append("(filter:");
@@ -513,7 +513,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addGeneralOrganization(List<AddGeneralOrganizationInput> input, AddGeneralOrganizationPayloadQueryDefinition queryDef) {
+    public MutationQuery addGeneralOrganization(List<AddGeneralOrganizationInput> input, AddGeneralOrganizationPayloadQueryDefinition queryDef) {
         startField("addGeneralOrganization");
 
         _queryBuilder.append("(input:");
@@ -540,7 +540,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateGeneralOrganization(UpdateGeneralOrganizationInput input, UpdateGeneralOrganizationPayloadQueryDefinition queryDef) {
+    public MutationQuery updateGeneralOrganization(UpdateGeneralOrganizationInput input, UpdateGeneralOrganizationPayloadQueryDefinition queryDef) {
         startField("updateGeneralOrganization");
 
         _queryBuilder.append("(input:");
@@ -558,7 +558,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteGeneralOrganization(GeneralOrganizationFilter filter, DeleteGeneralOrganizationPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteGeneralOrganization(GeneralOrganizationFilter filter, DeleteGeneralOrganizationPayloadQueryDefinition queryDef) {
         startField("deleteGeneralOrganization");
 
         _queryBuilder.append("(filter:");
@@ -576,7 +576,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addEmployeeRole(List<AddEmployeeRoleInput> input, AddEmployeeRolePayloadQueryDefinition queryDef) {
+    public MutationQuery addEmployeeRole(List<AddEmployeeRoleInput> input, AddEmployeeRolePayloadQueryDefinition queryDef) {
         startField("addEmployeeRole");
 
         _queryBuilder.append("(input:");
@@ -603,7 +603,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateEmployeeRole(UpdateEmployeeRoleInput input, UpdateEmployeeRolePayloadQueryDefinition queryDef) {
+    public MutationQuery updateEmployeeRole(UpdateEmployeeRoleInput input, UpdateEmployeeRolePayloadQueryDefinition queryDef) {
         startField("updateEmployeeRole");
 
         _queryBuilder.append("(input:");
@@ -621,7 +621,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteEmployeeRole(EmployeeRoleFilter filter, DeleteEmployeeRolePayloadQueryDefinition queryDef) {
+    public MutationQuery deleteEmployeeRole(EmployeeRoleFilter filter, DeleteEmployeeRolePayloadQueryDefinition queryDef) {
         startField("deleteEmployeeRole");
 
         _queryBuilder.append("(filter:");
@@ -639,7 +639,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addFollowerRole(List<AddFollowerRoleInput> input, AddFollowerRolePayloadQueryDefinition queryDef) {
+    public MutationQuery addFollowerRole(List<AddFollowerRoleInput> input, AddFollowerRolePayloadQueryDefinition queryDef) {
         startField("addFollowerRole");
 
         _queryBuilder.append("(input:");
@@ -666,7 +666,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateFollowerRole(UpdateFollowerRoleInput input, UpdateFollowerRolePayloadQueryDefinition queryDef) {
+    public MutationQuery updateFollowerRole(UpdateFollowerRoleInput input, UpdateFollowerRolePayloadQueryDefinition queryDef) {
         startField("updateFollowerRole");
 
         _queryBuilder.append("(input:");
@@ -684,7 +684,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteFollowerRole(FollowerRoleFilter filter, DeleteFollowerRolePayloadQueryDefinition queryDef) {
+    public MutationQuery deleteFollowerRole(FollowerRoleFilter filter, DeleteFollowerRolePayloadQueryDefinition queryDef) {
         startField("deleteFollowerRole");
 
         _queryBuilder.append("(filter:");
@@ -702,7 +702,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addMemberRole(List<AddMemberRoleInput> input, AddMemberRolePayloadQueryDefinition queryDef) {
+    public MutationQuery addMemberRole(List<AddMemberRoleInput> input, AddMemberRolePayloadQueryDefinition queryDef) {
         startField("addMemberRole");
 
         _queryBuilder.append("(input:");
@@ -729,7 +729,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateMemberRole(UpdateMemberRoleInput input, UpdateMemberRolePayloadQueryDefinition queryDef) {
+    public MutationQuery updateMemberRole(UpdateMemberRoleInput input, UpdateMemberRolePayloadQueryDefinition queryDef) {
         startField("updateMemberRole");
 
         _queryBuilder.append("(input:");
@@ -747,7 +747,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteMemberRole(MemberRoleFilter filter, DeleteMemberRolePayloadQueryDefinition queryDef) {
+    public MutationQuery deleteMemberRole(MemberRoleFilter filter, DeleteMemberRolePayloadQueryDefinition queryDef) {
         startField("deleteMemberRole");
 
         _queryBuilder.append("(filter:");
@@ -765,7 +765,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addOwnership(List<AddOwnershipInput> input, AddOwnershipPayloadQueryDefinition queryDef) {
+    public MutationQuery addOwnership(List<AddOwnershipInput> input, AddOwnershipPayloadQueryDefinition queryDef) {
         startField("addOwnership");
 
         _queryBuilder.append("(input:");
@@ -792,7 +792,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateOwnership(UpdateOwnershipInput input, UpdateOwnershipPayloadQueryDefinition queryDef) {
+    public MutationQuery updateOwnership(UpdateOwnershipInput input, UpdateOwnershipPayloadQueryDefinition queryDef) {
         startField("updateOwnership");
 
         _queryBuilder.append("(input:");
@@ -810,7 +810,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteOwnership(OwnershipFilter filter, DeleteOwnershipPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteOwnership(OwnershipFilter filter, DeleteOwnershipPayloadQueryDefinition queryDef) {
         startField("deleteOwnership");
 
         _queryBuilder.append("(filter:");
@@ -828,7 +828,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addUser(List<AddUserInput> input, AddUserPayloadQueryDefinition queryDef) {
+    public MutationQuery addUser(List<AddUserInput> input, AddUserPayloadQueryDefinition queryDef) {
         startField("addUser");
 
         _queryBuilder.append("(input:");
@@ -855,7 +855,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateUser(UpdateUserInput input, UpdateUserPayloadQueryDefinition queryDef) {
+    public MutationQuery updateUser(UpdateUserInput input, UpdateUserPayloadQueryDefinition queryDef) {
         startField("updateUser");
 
         _queryBuilder.append("(input:");
@@ -873,7 +873,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteUser(UserFilter filter, DeleteUserPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteUser(UserFilter filter, DeleteUserPayloadQueryDefinition queryDef) {
         startField("deleteUser");
 
         _queryBuilder.append("(filter:");
@@ -891,7 +891,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addPerson(List<AddPersonInput> input, AddPersonPayloadQueryDefinition queryDef) {
+    public MutationQuery addPerson(List<AddPersonInput> input, AddPersonPayloadQueryDefinition queryDef) {
         startField("addPerson");
 
         _queryBuilder.append("(input:");
@@ -918,7 +918,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updatePerson(UpdatePersonInput input, UpdatePersonPayloadQueryDefinition queryDef) {
+    public MutationQuery updatePerson(UpdatePersonInput input, UpdatePersonPayloadQueryDefinition queryDef) {
         startField("updatePerson");
 
         _queryBuilder.append("(input:");
@@ -936,7 +936,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deletePerson(PersonFilter filter, DeletePersonPayloadQueryDefinition queryDef) {
+    public MutationQuery deletePerson(PersonFilter filter, DeletePersonPayloadQueryDefinition queryDef) {
         startField("deletePerson");
 
         _queryBuilder.append("(filter:");
@@ -954,7 +954,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addStore(List<AddStoreInput> input, AddStorePayloadQueryDefinition queryDef) {
+    public MutationQuery addStore(List<AddStoreInput> input, AddStorePayloadQueryDefinition queryDef) {
         startField("addStore");
 
         _queryBuilder.append("(input:");
@@ -981,7 +981,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateStore(UpdateStoreInput input, UpdateStorePayloadQueryDefinition queryDef) {
+    public MutationQuery updateStore(UpdateStoreInput input, UpdateStorePayloadQueryDefinition queryDef) {
         startField("updateStore");
 
         _queryBuilder.append("(input:");
@@ -999,7 +999,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteStore(StoreFilter filter, DeleteStorePayloadQueryDefinition queryDef) {
+    public MutationQuery deleteStore(StoreFilter filter, DeleteStorePayloadQueryDefinition queryDef) {
         startField("deleteStore");
 
         _queryBuilder.append("(filter:");
@@ -1017,7 +1017,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addProduct(List<AddProductInput> input, AddProductPayloadQueryDefinition queryDef) {
+    public MutationQuery addProduct(List<AddProductInput> input, AddProductPayloadQueryDefinition queryDef) {
         startField("addProduct");
 
         _queryBuilder.append("(input:");
@@ -1044,7 +1044,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateProduct(UpdateProductInput input, UpdateProductPayloadQueryDefinition queryDef) {
+    public MutationQuery updateProduct(UpdateProductInput input, UpdateProductPayloadQueryDefinition queryDef) {
         startField("updateProduct");
 
         _queryBuilder.append("(input:");
@@ -1062,7 +1062,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteProduct(ProductFilter filter, DeleteProductPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteProduct(ProductFilter filter, DeleteProductPayloadQueryDefinition queryDef) {
         startField("deleteProduct");
 
         _queryBuilder.append("(filter:");
@@ -1080,7 +1080,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addProductModel(List<AddProductModelInput> input, AddProductModelPayloadQueryDefinition queryDef) {
+    public MutationQuery addProductModel(List<AddProductModelInput> input, AddProductModelPayloadQueryDefinition queryDef) {
         startField("addProductModel");
 
         _queryBuilder.append("(input:");
@@ -1107,7 +1107,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateProductModel(UpdateProductModelInput input, UpdateProductModelPayloadQueryDefinition queryDef) {
+    public MutationQuery updateProductModel(UpdateProductModelInput input, UpdateProductModelPayloadQueryDefinition queryDef) {
         startField("updateProductModel");
 
         _queryBuilder.append("(input:");
@@ -1125,7 +1125,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteProductModel(ProductModelFilter filter, DeleteProductModelPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteProductModel(ProductModelFilter filter, DeleteProductModelPayloadQueryDefinition queryDef) {
         startField("deleteProductModel");
 
         _queryBuilder.append("(filter:");
@@ -1143,7 +1143,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addOffer(List<AddOfferInput> input, AddOfferPayloadQueryDefinition queryDef) {
+    public MutationQuery addOffer(List<AddOfferInput> input, AddOfferPayloadQueryDefinition queryDef) {
         startField("addOffer");
 
         _queryBuilder.append("(input:");
@@ -1170,7 +1170,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateOffer(UpdateOfferInput input, UpdateOfferPayloadQueryDefinition queryDef) {
+    public MutationQuery updateOffer(UpdateOfferInput input, UpdateOfferPayloadQueryDefinition queryDef) {
         startField("updateOffer");
 
         _queryBuilder.append("(input:");
@@ -1188,7 +1188,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteOffer(OfferFilter filter, DeleteOfferPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteOffer(OfferFilter filter, DeleteOfferPayloadQueryDefinition queryDef) {
         startField("deleteOffer");
 
         _queryBuilder.append("(filter:");
@@ -1206,7 +1206,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addEntryPoint(List<AddEntryPointInput> input, AddEntryPointPayloadQueryDefinition queryDef) {
+    public MutationQuery addEntryPoint(List<AddEntryPointInput> input, AddEntryPointPayloadQueryDefinition queryDef) {
         startField("addEntryPoint");
 
         _queryBuilder.append("(input:");
@@ -1233,7 +1233,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateEntryPoint(UpdateEntryPointInput input, UpdateEntryPointPayloadQueryDefinition queryDef) {
+    public MutationQuery updateEntryPoint(UpdateEntryPointInput input, UpdateEntryPointPayloadQueryDefinition queryDef) {
         startField("updateEntryPoint");
 
         _queryBuilder.append("(input:");
@@ -1251,7 +1251,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteEntryPoint(EntryPointFilter filter, DeleteEntryPointPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteEntryPoint(EntryPointFilter filter, DeleteEntryPointPayloadQueryDefinition queryDef) {
         startField("deleteEntryPoint");
 
         _queryBuilder.append("(filter:");
@@ -1269,7 +1269,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addSoftwareApplication(List<AddSoftwareApplicationInput> input, AddSoftwareApplicationPayloadQueryDefinition queryDef) {
+    public MutationQuery addSoftwareApplication(List<AddSoftwareApplicationInput> input, AddSoftwareApplicationPayloadQueryDefinition queryDef) {
         startField("addSoftwareApplication");
 
         _queryBuilder.append("(input:");
@@ -1296,7 +1296,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateSoftwareApplication(UpdateSoftwareApplicationInput input, UpdateSoftwareApplicationPayloadQueryDefinition queryDef) {
+    public MutationQuery updateSoftwareApplication(UpdateSoftwareApplicationInput input, UpdateSoftwareApplicationPayloadQueryDefinition queryDef) {
         startField("updateSoftwareApplication");
 
         _queryBuilder.append("(input:");
@@ -1314,7 +1314,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteSoftwareApplication(SoftwareApplicationFilter filter, DeleteSoftwareApplicationPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteSoftwareApplication(SoftwareApplicationFilter filter, DeleteSoftwareApplicationPayloadQueryDefinition queryDef) {
         startField("deleteSoftwareApplication");
 
         _queryBuilder.append("(filter:");
@@ -1332,7 +1332,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery addWebhook(List<AddWebhookInput> input, AddWebhookPayloadQueryDefinition queryDef) {
+    public MutationQuery addWebhook(List<AddWebhookInput> input, AddWebhookPayloadQueryDefinition queryDef) {
         startField("addWebhook");
 
         _queryBuilder.append("(input:");
@@ -1359,7 +1359,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery updateWebhook(UpdateWebhookInput input, UpdateWebhookPayloadQueryDefinition queryDef) {
+    public MutationQuery updateWebhook(UpdateWebhookInput input, UpdateWebhookPayloadQueryDefinition queryDef) {
         startField("updateWebhook");
 
         _queryBuilder.append("(input:");
@@ -1377,7 +1377,7 @@ public class RootMutationQuery extends Query<RootMutationQuery> {
     /**
     * 
     */
-    public RootMutationQuery deleteWebhook(WebhookFilter filter, DeleteWebhookPayloadQueryDefinition queryDef) {
+    public MutationQuery deleteWebhook(WebhookFilter filter, DeleteWebhookPayloadQueryDefinition queryDef) {
         startField("deleteWebhook");
 
         _queryBuilder.append("(filter:");
