@@ -12,9 +12,9 @@
 1. 把上述schema创建到Dgraph服务上
     ```
     
-    $ cd ~/git/netifi-kgmovies/io.github.kgis-datalake//dgraphschemadesign
+    $ cd ~/git/netifi-kgmovies/kgis-datalake/dgraphschemadesign
 
-    $ curl -X POST localhost:8080/admin/schema -d '@io.github.kgis-dgschema.graphql'
+    $ curl -X POST localhost:8080/admin/schema -d '@kgis-dgschema.graphql'
 
     ```
 1. [Ratel查看生成的dgraph schema](https://play.dgraph.io)

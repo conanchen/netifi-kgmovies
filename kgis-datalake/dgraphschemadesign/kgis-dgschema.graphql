@@ -42,7 +42,7 @@ type Namespace implements Thing{
     资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
     如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
     """
-    namespace: String
+    namespace: String @search(by: [exact, regexp])
 
     """
     拥有namespace的组织或用户

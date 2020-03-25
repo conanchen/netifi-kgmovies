@@ -1779,6 +1779,7 @@ type Namespace implements Thing {
 input NamespaceFilter {
   name: StringHashFilter
   id: [ID!]
+  namespace: StringExactFilter_StringRegExpFilter
   and: NamespaceFilter
   or: NamespaceFilter
   not: NamespaceFilter
@@ -3323,6 +3324,15 @@ input StringExactFilter {
   lt: String
   ge: String
   gt: String
+}
+
+input StringExactFilter_StringRegExpFilter {
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  regexp: String
 }
 
 input StringFullTextFilter {
