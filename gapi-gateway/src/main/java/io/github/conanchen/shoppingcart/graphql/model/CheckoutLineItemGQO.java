@@ -14,21 +14,23 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class CheckoutLineItemGQO implements NodeGQO{
 
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CustomAttributeGQO> customAttributes;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<DiscountAllocationGQO> discountAllocations;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Integer quantity;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String title;
 
     private ShoppingableGQO variant;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public CheckoutLineItemGQO() {

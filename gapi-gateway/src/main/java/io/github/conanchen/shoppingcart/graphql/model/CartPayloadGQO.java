@@ -14,13 +14,15 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class CartPayloadGQO {
 
 
     private CartGQO cart;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CartErrorGQO> cartErrors;
 
     public CartPayloadGQO() {

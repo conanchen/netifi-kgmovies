@@ -14,13 +14,15 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class SetCartItemInputGQO {
 
 
     private String clientMutationId;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     private String name;
@@ -30,7 +32,7 @@ public class SetCartItemInputGQO {
     private CartItemTypeGQO type;
 
     private Collection<String> images;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Integer price;
 
     private CurrencyInputGQO currency;

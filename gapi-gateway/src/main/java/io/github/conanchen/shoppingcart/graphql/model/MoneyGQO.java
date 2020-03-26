@@ -14,15 +14,17 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class MoneyGQO {
 
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.math.BigDecimal amount;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private CurrencyCodeGQO currencyCode;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String formatted;
 
     public MoneyGQO() {

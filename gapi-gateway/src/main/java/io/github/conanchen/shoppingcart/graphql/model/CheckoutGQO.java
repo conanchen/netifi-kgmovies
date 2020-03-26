@@ -14,25 +14,27 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class CheckoutGQO implements NodeGQO{
 
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<AppliedGiftCardGQO> appliedGiftCards;
 
     private AvailableShippingRatesGQO availableShippingRates;
 
     private java.util.Date completedAt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date createdAt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private CurrencyCodeGQO currencyCode;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CustomAttributeGQO> customAttributes;
 
     private String email;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO lineItemsSubtotalPrice;
 
     private String note;
@@ -40,33 +42,33 @@ public class CheckoutGQO implements NodeGQO{
     private PoderGQO poder;
 
     private java.lang.String poderStatusUrl;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO paymentDueV2;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Boolean ready;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Boolean requiresShipping;
 
     private PostalAddressGQO shippingAddress;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<DiscountAllocationGQO> shippingDiscountAllocations;
 
     private ShippingRateGQO shippingLine;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO subtotalPriceV2;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Boolean taxExempt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Boolean taxesIncluded;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO totalPriceV2;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO totalTaxV2;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date updatedAt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.lang.String webUrl;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public CheckoutGQO() {

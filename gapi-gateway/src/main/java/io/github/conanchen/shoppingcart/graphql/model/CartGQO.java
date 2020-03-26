@@ -14,11 +14,13 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
-public class CartGQO implements ACLableGQO, NodeGQO{
+public class CartGQO implements NodeGQO{
 
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private CurrencyGQO currency;
 
     private String email;
@@ -26,37 +28,35 @@ public class CartGQO implements ACLableGQO, NodeGQO{
     private Integer totalItems;
 
     private Integer totalUniqueItems;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CartItemGQO> items;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO subTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO shippingTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO taxTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO grandTotal;
 
     private Boolean isEmpty;
 
     private Boolean abandoned;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CustomAttributeGQO> attributes;
 
     private String notes;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date createdAt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date updatedAt;
-
-    private ACLMetadataGQO hasAclmetadata;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public CartGQO() {
     }
 
-    public CartGQO( CurrencyGQO currency,  String email,  Integer totalItems,  Integer totalUniqueItems,  Collection<CartItemGQO> items,  MoneyGQO subTotal,  MoneyGQO shippingTotal,  MoneyGQO taxTotal,  MoneyGQO grandTotal,  Boolean isEmpty,  Boolean abandoned,  Collection<CustomAttributeGQO> attributes,  String notes,  java.util.Date createdAt,  java.util.Date updatedAt,  ACLMetadataGQO hasAclmetadata,  String id) {
+    public CartGQO( CurrencyGQO currency,  String email,  Integer totalItems,  Integer totalUniqueItems,  Collection<CartItemGQO> items,  MoneyGQO subTotal,  MoneyGQO shippingTotal,  MoneyGQO taxTotal,  MoneyGQO grandTotal,  Boolean isEmpty,  Boolean abandoned,  Collection<CustomAttributeGQO> attributes,  String notes,  java.util.Date createdAt,  java.util.Date updatedAt,  String id) {
         this.currency = currency;
         this.email = email;
         this.totalItems = totalItems;
@@ -72,7 +72,6 @@ public class CartGQO implements ACLableGQO, NodeGQO{
         this.notes = notes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.hasAclmetadata = hasAclmetadata;
         this.id = id;
     }
 

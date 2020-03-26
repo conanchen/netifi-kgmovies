@@ -14,17 +14,19 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class CheckoutInputGQO {
 
 
     private String clientMutationId;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String cartId;
 
     private String email;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private PostalAddressInputGQO shipping;
 
     private PostalAddressInputGQO billing;

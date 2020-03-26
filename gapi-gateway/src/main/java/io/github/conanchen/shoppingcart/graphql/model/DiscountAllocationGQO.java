@@ -14,15 +14,17 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class DiscountAllocationGQO implements NodeGQO{
 
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO allocatedAmount;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private DiscountApplicationGQO discountApplication;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public DiscountAllocationGQO() {

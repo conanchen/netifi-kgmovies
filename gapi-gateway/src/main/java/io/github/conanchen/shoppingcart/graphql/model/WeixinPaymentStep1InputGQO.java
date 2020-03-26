@@ -14,13 +14,15 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class WeixinPaymentStep1InputGQO {
 
 
     private String clientMutationId;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public WeixinPaymentStep1InputGQO() {

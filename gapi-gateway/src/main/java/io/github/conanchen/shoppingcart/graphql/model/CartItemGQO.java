@@ -14,38 +14,39 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
-public class CartItemGQO {
+public class CartItemGQO implements NodeGQO{
 
-    @javax.validation.constraints.NotNull
-    private String id;
 
     private String name;
 
     private String description;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private CartItemTypeGQO type;
 
     private Collection<String> images;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO unitTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO lineTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Integer quantity;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CustomAttributeGQO> attributes;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date createdAt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date updatedAt;
+    @lombok.NonNull
+    private String id;
 
     public CartItemGQO() {
     }
 
-    public CartItemGQO( String id,  String name,  String description,  CartItemTypeGQO type,  Collection<String> images,  MoneyGQO unitTotal,  MoneyGQO lineTotal,  Integer quantity,  Collection<CustomAttributeGQO> attributes,  java.util.Date createdAt,  java.util.Date updatedAt) {
-        this.id = id;
+    public CartItemGQO( String name,  String description,  CartItemTypeGQO type,  Collection<String> images,  MoneyGQO unitTotal,  MoneyGQO lineTotal,  Integer quantity,  Collection<CustomAttributeGQO> attributes,  java.util.Date createdAt,  java.util.Date updatedAt,  String id) {
         this.name = name;
         this.description = description;
         this.type = type;
@@ -56,6 +57,7 @@ public class CartItemGQO {
         this.attributes = attributes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.id = id;
     }
 
 }

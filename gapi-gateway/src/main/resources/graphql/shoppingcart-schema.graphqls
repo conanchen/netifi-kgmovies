@@ -178,7 +178,10 @@ input AddToCartInput {
     attributes: [CustomAttributeInput]
 }
 
-type Cart implements ACLable & Node{
+"""
+购物车
+"""
+type Cart implements Node{
     currency: Currency!
     email: String
     totalItems: Int
@@ -195,15 +198,15 @@ type Cart implements ACLable & Node{
     createdAt: DateTime!
     updatedAt: DateTime!
 
-    """受访问控制的Thing资源对象都有ACLMetadata，逆属性 ACLMetadata.isAclmetadataOf"""
-    hasAclmetadata: ACLMetadata
-
     """The id of the object."""
     id: ID!
 }
 
-type CartItem {
-    id: ID!
+"""
+购物车内物品、服务、优惠券等
+"""
+type CartItem  implements Node{
+
     name: String
     description: String
     type: CartItemType!
@@ -214,8 +217,14 @@ type CartItem {
     attributes: [CustomAttribute!]!
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    """The id of the object."""
+    id: ID!
 }
 
+"""
+购物车内物品、服务、优惠券等类型
+"""
 enum CartItemType {
     SKU
     TAX

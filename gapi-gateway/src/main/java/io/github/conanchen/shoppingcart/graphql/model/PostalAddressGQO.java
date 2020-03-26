@@ -14,11 +14,13 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class PostalAddressGQO implements NodeGQO{
 
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String name;
 
     private String alternateName;
@@ -38,7 +40,7 @@ public class PostalAddressGQO implements NodeGQO{
     private String postOfficeBoxNumber;
 
     private String postalCode;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public PostalAddressGQO() {

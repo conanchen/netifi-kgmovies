@@ -14,6 +14,8 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class PoderGQO implements NodeGQO{
@@ -38,35 +40,35 @@ public class PoderGQO implements NodeGQO{
     private OrganizationGQO seller;
 
     private Collection<ActionGQO> potentialActions;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String cartId;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String email;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private PostalAddressGQO shipping;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private PostalAddressGQO billing;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO subTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO shippingTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO taxTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private MoneyGQO grandTotal;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Integer totalItems;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Integer totalUniqueItems;
 
     private String notes;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CustomAttributeGQO> attributes;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date createdAt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private java.util.Date updatedAt;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public PoderGQO() {
