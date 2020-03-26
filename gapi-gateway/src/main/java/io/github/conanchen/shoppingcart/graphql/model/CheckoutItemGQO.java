@@ -18,7 +18,7 @@ import lombok.NonNull;
 
 @Data
 @Builder
-public class CheckoutLineItemGQO implements NodeGQO{
+public class CheckoutItemGQO implements NodeGQO{
 
     @lombok.NonNull
     private Collection<CustomAttributeGQO> customAttributes;
@@ -33,10 +33,10 @@ public class CheckoutLineItemGQO implements NodeGQO{
     @lombok.NonNull
     private String id;
 
-    public CheckoutLineItemGQO() {
+    public CheckoutItemGQO() {
     }
 
-    public CheckoutLineItemGQO( Collection<CustomAttributeGQO> customAttributes,  Collection<DiscountAllocationGQO> discountAllocations,  Integer quantity,  String title,  ShoppingableGQO variant,  String id) {
+    public CheckoutItemGQO( Collection<CustomAttributeGQO> customAttributes,  Collection<DiscountAllocationGQO> discountAllocations,  Integer quantity,  String title,  ShoppingableGQO variant,  String id) {
         this.customAttributes = customAttributes;
         this.discountAllocations = discountAllocations;
         this.quantity = quantity;

@@ -465,7 +465,11 @@ type AppliedGiftCard{
 type AvailableShippingRates{
     id: ID
 }
-"""Checkout:A container for all the information required to checkout items and pay."""
+
+"""
+Checkout:A container for all the information required to checkout items and pay.
+结算单，包含需要结算和支付的所有信息：税收、送货地址、发票账单寄送地址、备注说明等
+"""
 type Checkout implements Node{
     """The gift cards used on the checkout."""
     appliedGiftCards: [AppliedGiftCard!]!
@@ -492,7 +496,7 @@ type Checkout implements Node{
     email: String
 
     """A list of line item objects, each one containing information about an item in the checkout."""
-    lineItems(first: Int after: String last: Int before: String reverse: Boolean = false): CheckoutLineItemConnection! @connection(for: "CheckoutLineItem")
+    lineItems(first: Int after: String last: Int before: String reverse: Boolean = false): CheckoutItemConnection! @connection(for: "CheckoutItem")
 
     """The sum of all the prices of all the items in the checkout. Taxes, shipping and discounts excluded."""
     lineItemsSubtotalPrice: Money!
@@ -551,8 +555,10 @@ type Checkout implements Node{
 }
 
 
-"""A single line item in the checkout, grouped by variant and attributes."""
-type CheckoutLineItem implements Node{
+"""
+A single line item in the checkout, grouped by variant and attributes.
+"""
+type CheckoutItem implements Node{
     """Extra information in the form of an array of Key-Value pairs about the line item."""
     customAttributes: [CustomAttribute!]!
 

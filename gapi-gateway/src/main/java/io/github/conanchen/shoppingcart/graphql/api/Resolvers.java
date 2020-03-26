@@ -41,9 +41,9 @@ public class Resolvers{
     public interface Checkout {
     // KK
         public Connection<DiscountApplicationGQO> discountApplications(CheckoutGQO parent,Integer first, String after, Integer last, String before, Boolean reverse, DataFetchingEnvironment env);
-        public Connection<CheckoutLineItemGQO> lineItems(CheckoutGQO parent,Integer first, String after, Integer last, String before, Boolean reverse, DataFetchingEnvironment env);
+        public Connection<CheckoutItemGQO> lineItems(CheckoutGQO parent,Integer first, String after, Integer last, String before, Boolean reverse, DataFetchingEnvironment env);
     }
-    public interface CheckoutLineItem {
+    public interface CheckoutItem {
     // KK
     }
     public interface DiscountAllocation {
