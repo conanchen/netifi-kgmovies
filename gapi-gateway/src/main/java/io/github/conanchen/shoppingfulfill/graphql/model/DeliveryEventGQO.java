@@ -1,8 +1,22 @@
 package io.github.conanchen.shoppingfulfill.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.api.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
-public class DeliveryEventGQO implements NodeGQO {
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
+public class DeliveryEventGQO implements NodeGQO{
 
     @javax.validation.constraints.NotNull
     private String id;
@@ -10,14 +24,7 @@ public class DeliveryEventGQO implements NodeGQO {
     public DeliveryEventGQO() {
     }
 
-    public DeliveryEventGQO(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
+    public DeliveryEventGQO( String id) {
         this.id = id;
     }
 

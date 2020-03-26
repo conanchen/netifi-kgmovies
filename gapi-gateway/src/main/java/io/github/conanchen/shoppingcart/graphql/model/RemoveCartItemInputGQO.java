@@ -1,7 +1,25 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
+
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class RemoveCartItemInputGQO {
 
+
+    private String clientMutationId;
     @javax.validation.constraints.NotNull
     private String cartId;
     @javax.validation.constraints.NotNull
@@ -10,22 +28,9 @@ public class RemoveCartItemInputGQO {
     public RemoveCartItemInputGQO() {
     }
 
-    public RemoveCartItemInputGQO(String cartId, String id) {
+    public RemoveCartItemInputGQO( String clientMutationId,  String cartId,  String id) {
+        this.clientMutationId = clientMutationId;
         this.cartId = cartId;
-        this.id = id;
-    }
-
-    public String getCartId() {
-        return cartId;
-    }
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
         this.id = id;
     }
 

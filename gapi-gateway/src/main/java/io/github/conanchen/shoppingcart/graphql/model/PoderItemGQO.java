@@ -16,14 +16,22 @@ import lombok.Builder;
 import lombok.Data;
 @Data
 @Builder
-public class CartItemGQO {
+public class PoderItemGQO implements NodeGQO{
 
-    @javax.validation.constraints.NotNull
-    private String id;
 
-    private String name;
+    private PoderGQO partOfPoder;
 
-    private String description;
+    private FulfillDeliveryGQO poderDelivery;
+
+    private String poderItemNumber;
+
+    private PoderStatusGQO poderItemStatus;
+
+    private Integer poderQuantity;
+
+    private ShoppingableGQO poderedItem;
+
+    private Collection<ActionGQO> potentialActions;
     @javax.validation.constraints.NotNull
     private CartItemTypeGQO type;
 
@@ -35,27 +43,34 @@ public class CartItemGQO {
     @javax.validation.constraints.NotNull
     private Integer quantity;
     @javax.validation.constraints.NotNull
-    private Collection<CustomAttributeGQO> attributes;
-    @javax.validation.constraints.NotNull
     private java.util.Date createdAt;
     @javax.validation.constraints.NotNull
     private java.util.Date updatedAt;
+    @javax.validation.constraints.NotNull
+    private Collection<CustomAttributeGQO> attributes;
+    @javax.validation.constraints.NotNull
+    private String id;
 
-    public CartItemGQO() {
+    public PoderItemGQO() {
     }
 
-    public CartItemGQO( String id,  String name,  String description,  CartItemTypeGQO type,  Collection<String> images,  MoneyGQO unitTotal,  MoneyGQO lineTotal,  Integer quantity,  Collection<CustomAttributeGQO> attributes,  java.util.Date createdAt,  java.util.Date updatedAt) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    public PoderItemGQO( PoderGQO partOfPoder,  FulfillDeliveryGQO poderDelivery,  String poderItemNumber,  PoderStatusGQO poderItemStatus,  Integer poderQuantity,  ShoppingableGQO poderedItem,  Collection<ActionGQO> potentialActions,  CartItemTypeGQO type,  Collection<String> images,  MoneyGQO unitTotal,  MoneyGQO lineTotal,  Integer quantity,  java.util.Date createdAt,  java.util.Date updatedAt,  Collection<CustomAttributeGQO> attributes,  String id) {
+        this.partOfPoder = partOfPoder;
+        this.poderDelivery = poderDelivery;
+        this.poderItemNumber = poderItemNumber;
+        this.poderItemStatus = poderItemStatus;
+        this.poderQuantity = poderQuantity;
+        this.poderedItem = poderedItem;
+        this.potentialActions = potentialActions;
         this.type = type;
         this.images = images;
         this.unitTotal = unitTotal;
         this.lineTotal = lineTotal;
         this.quantity = quantity;
-        this.attributes = attributes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.attributes = attributes;
+        this.id = id;
     }
 
 }

@@ -1,7 +1,21 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.CurrencyCodeGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class MoneyGQO {
 
     @javax.validation.constraints.NotNull
@@ -14,30 +28,9 @@ public class MoneyGQO {
     public MoneyGQO() {
     }
 
-    public MoneyGQO(java.math.BigDecimal amount, CurrencyCodeGQO currencyCode, String formatted) {
+    public MoneyGQO( java.math.BigDecimal amount,  CurrencyCodeGQO currencyCode,  String formatted) {
         this.amount = amount;
         this.currencyCode = currencyCode;
-        this.formatted = formatted;
-    }
-
-    public java.math.BigDecimal getAmount() {
-        return amount;
-    }
-    public void setAmount(java.math.BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public CurrencyCodeGQO getCurrencyCode() {
-        return currencyCode;
-    }
-    public void setCurrencyCode(CurrencyCodeGQO currencyCode) {
-        this.currencyCode = currencyCode;
-    }
-
-    public String getFormatted() {
-        return formatted;
-    }
-    public void setFormatted(String formatted) {
         this.formatted = formatted;
     }
 

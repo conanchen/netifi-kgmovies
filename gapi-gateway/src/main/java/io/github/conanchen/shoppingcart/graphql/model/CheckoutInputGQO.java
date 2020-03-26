@@ -1,49 +1,42 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
+
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class CheckoutInputGQO {
 
+
+    private String clientMutationId;
     @javax.validation.constraints.NotNull
     private String cartId;
+
     private String email;
     @javax.validation.constraints.NotNull
     private PostalAddressInputGQO shipping;
+
     private PostalAddressInputGQO billing;
 
     public CheckoutInputGQO() {
     }
 
-    public CheckoutInputGQO(String cartId, String email, PostalAddressInputGQO shipping, PostalAddressInputGQO billing) {
+    public CheckoutInputGQO( String clientMutationId,  String cartId,  String email,  PostalAddressInputGQO shipping,  PostalAddressInputGQO billing) {
+        this.clientMutationId = clientMutationId;
         this.cartId = cartId;
         this.email = email;
         this.shipping = shipping;
-        this.billing = billing;
-    }
-
-    public String getCartId() {
-        return cartId;
-    }
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public PostalAddressInputGQO getShipping() {
-        return shipping;
-    }
-    public void setShipping(PostalAddressInputGQO shipping) {
-        this.shipping = shipping;
-    }
-
-    public PostalAddressInputGQO getBilling() {
-        return billing;
-    }
-    public void setBilling(PostalAddressInputGQO billing) {
         this.billing = billing;
     }
 

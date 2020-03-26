@@ -10,8 +10,14 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 import graphql.schema.DataFetchingEnvironment;
 import graphql.relay.Connection;
 
-public interface Query {
-// KK
-    ParcelDeliveryGQO parcelDelivery(String id, String parelId, DataFetchingEnvironment env) throws Exception;
-    HomeserviceDeliveryGQO homeserviceDelivery(String id, String srvId, DataFetchingEnvironment env) throws Exception;
+public class Resolvers{
+    public interface ParcelDelivery {
+    // KK
+    }
+    public interface HomeserviceDelivery {
+    // KK
+    }
+    public interface DeliveryEvent {
+    // KK
+    }
 }

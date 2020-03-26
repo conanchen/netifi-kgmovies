@@ -1,32 +1,33 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import java.util.Collection;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class CheckoutCompletePayloadGQO {
 
-    private OrderGQO order;
+
+    private PoderGQO poder;
     @javax.validation.constraints.NotNull
     private Collection<CheckoutErrorGQO> checkoutErrors;
 
     public CheckoutCompletePayloadGQO() {
     }
 
-    public CheckoutCompletePayloadGQO(OrderGQO order, Collection<CheckoutErrorGQO> checkoutErrors) {
-        this.order = order;
-        this.checkoutErrors = checkoutErrors;
-    }
-
-    public OrderGQO getOrder() {
-        return order;
-    }
-    public void setOrder(OrderGQO order) {
-        this.order = order;
-    }
-
-    public Collection<CheckoutErrorGQO> getCheckoutErrors() {
-        return checkoutErrors;
-    }
-    public void setCheckoutErrors(Collection<CheckoutErrorGQO> checkoutErrors) {
+    public CheckoutCompletePayloadGQO( PoderGQO poder,  Collection<CheckoutErrorGQO> checkoutErrors) {
+        this.poder = poder;
         this.checkoutErrors = checkoutErrors;
     }
 

@@ -1,7 +1,21 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class DiscountAllocationGQO implements NodeGQO{
 
     @javax.validation.constraints.NotNull
@@ -14,30 +28,9 @@ public class DiscountAllocationGQO implements NodeGQO{
     public DiscountAllocationGQO() {
     }
 
-    public DiscountAllocationGQO(MoneyGQO allocatedAmount, DiscountApplicationGQO discountApplication, String id) {
+    public DiscountAllocationGQO( MoneyGQO allocatedAmount,  DiscountApplicationGQO discountApplication,  String id) {
         this.allocatedAmount = allocatedAmount;
         this.discountApplication = discountApplication;
-        this.id = id;
-    }
-
-    public MoneyGQO getAllocatedAmount() {
-        return allocatedAmount;
-    }
-    public void setAllocatedAmount(MoneyGQO allocatedAmount) {
-        this.allocatedAmount = allocatedAmount;
-    }
-
-    public DiscountApplicationGQO getDiscountApplication() {
-        return discountApplication;
-    }
-    public void setDiscountApplication(DiscountApplicationGQO discountApplication) {
-        this.discountApplication = discountApplication;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
         this.id = id;
     }
 

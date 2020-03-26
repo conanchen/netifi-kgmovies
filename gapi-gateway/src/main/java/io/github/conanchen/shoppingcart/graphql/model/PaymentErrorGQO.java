@@ -1,10 +1,23 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.DisplayableErrorGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
-import java.util.Collection;
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
+public class PaymentErrorGQO implements DisplayableErrorGQO{
 
-public class PaymentErrorGQO implements DisplayableErrorGQO {
 
     private PaymentErrorCodeGQO code;
     @javax.validation.constraints.NotNull
@@ -15,30 +28,9 @@ public class PaymentErrorGQO implements DisplayableErrorGQO {
     public PaymentErrorGQO() {
     }
 
-    public PaymentErrorGQO(PaymentErrorCodeGQO code, Collection<String> field, String message) {
+    public PaymentErrorGQO( PaymentErrorCodeGQO code,  Collection<String> field,  String message) {
         this.code = code;
         this.field = field;
-        this.message = message;
-    }
-
-    public PaymentErrorCodeGQO getCode() {
-        return code;
-    }
-    public void setCode(PaymentErrorCodeGQO code) {
-        this.code = code;
-    }
-
-    public Collection<String> getField() {
-        return field;
-    }
-    public void setField(Collection<String> field) {
-        this.field = field;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-    public void setMessage(String message) {
         this.message = message;
     }
 

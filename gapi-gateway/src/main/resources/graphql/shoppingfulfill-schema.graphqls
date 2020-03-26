@@ -46,7 +46,7 @@ type ParcelDelivery implements FulfillDelivery & Node{
     originAddress:    PostalAddress
 
     """【所属订单】 包含此交货中物品的整体订单"""
-    partOfOrder:    Order
+    partOfPoder:    Poder
 
     """【提供方】 服务提供商，服务运营商或服务执行者; 货物生产者。 另一方（卖方）可以代表提供者提供这些服务或商品。 提供商也可以作为卖方。 The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller."""
     provider:    Party
@@ -86,7 +86,7 @@ type HomeserviceDelivery implements FulfillDelivery & Node{
     originAddress:    PostalAddress
 
     """【所属订单】 包含此交货中物品的整体订单"""
-    partOfOrder:    Order
+    partOfPoder:    Poder
 
     """【提供方】 服务提供商，服务运营商或服务执行者; 货物生产者。 另一方（卖方）可以代表提供者提供这些服务或商品。 提供商也可以作为卖方。 The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller."""
     provider:    Party

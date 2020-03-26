@@ -1,58 +1,45 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.CurrencyCodeGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class CurrencyInputGQO {
 
+
+    private String clientMutationId;
+
     private CurrencyCodeGQO code;
+
     private String symbol;
+
     private String thousandsSeparator;
+
     private String decimalSeparator;
+
     private Integer decimalDigits;
 
     public CurrencyInputGQO() {
     }
 
-    public CurrencyInputGQO(CurrencyCodeGQO code, String symbol, String thousandsSeparator, String decimalSeparator, Integer decimalDigits) {
+    public CurrencyInputGQO( String clientMutationId,  CurrencyCodeGQO code,  String symbol,  String thousandsSeparator,  String decimalSeparator,  Integer decimalDigits) {
+        this.clientMutationId = clientMutationId;
         this.code = code;
         this.symbol = symbol;
         this.thousandsSeparator = thousandsSeparator;
         this.decimalSeparator = decimalSeparator;
-        this.decimalDigits = decimalDigits;
-    }
-
-    public CurrencyCodeGQO getCode() {
-        return code;
-    }
-    public void setCode(CurrencyCodeGQO code) {
-        this.code = code;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public String getThousandsSeparator() {
-        return thousandsSeparator;
-    }
-    public void setThousandsSeparator(String thousandsSeparator) {
-        this.thousandsSeparator = thousandsSeparator;
-    }
-
-    public String getDecimalSeparator() {
-        return decimalSeparator;
-    }
-    public void setDecimalSeparator(String decimalSeparator) {
-        this.decimalSeparator = decimalSeparator;
-    }
-
-    public Integer getDecimalDigits() {
-        return decimalDigits;
-    }
-    public void setDecimalDigits(Integer decimalDigits) {
         this.decimalDigits = decimalDigits;
     }
 

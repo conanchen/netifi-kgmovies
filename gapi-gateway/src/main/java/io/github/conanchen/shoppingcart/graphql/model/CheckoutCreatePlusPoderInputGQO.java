@@ -16,17 +16,17 @@ import lombok.Builder;
 import lombok.Data;
 @Data
 @Builder
-public class TokenizedPaymentInputGQO {
+public class CheckoutCreatePlusPoderInputGQO {
 
 
     private String clientMutationId;
     @javax.validation.constraints.NotNull
     private String id;
 
-    public TokenizedPaymentInputGQO() {
+    public CheckoutCreatePlusPoderInputGQO() {
     }
 
-    public TokenizedPaymentInputGQO( String clientMutationId,  String id) {
+    public CheckoutCreatePlusPoderInputGQO( String clientMutationId,  String id) {
         this.clientMutationId = clientMutationId;
         this.id = id;
     }
