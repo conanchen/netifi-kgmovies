@@ -684,3 +684,76 @@ enum CartItemType {
     TAX
     SHIPPING
 }
+
+
+"""
+Checkout:A container for all the information required to checkout items and pay.
+结算单，包含需要结算和支付的所有信息：税收、送货地址、发票账单寄送地址、备注说明等
+结算单信息完备后才可以创建订单
+"""
+type Checkout implements Thing & Node{
+
+
+    """
+    The date and time when the checkout was completed.
+    """
+    completedAt: DateTime
+
+    """
+    The date and time when the checkout was created.
+    """
+    createdAt: DateTime
+
+    """
+    The email attached to this checkout.
+    """
+    email: String
+
+    """
+    A list of line item objects, each one containing information about an item in the checkout.
+    """
+    items: [CheckoutItem]  @hasInverse(field: "isItemOf")
+
+    """
+    The note associated with the checkout.
+    """
+    note: String
+
+    """
+    Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is required until the value is true.
+    """
+    ready: Boolean
+
+    """
+    States whether or not the fulfillment requires shipping.
+    """
+    requiresShipping: Boolean
+
+    """
+    The date and time when the checkout was last updated.
+    """
+    updatedAt: DateTime
+}
+
+
+"""
+A single line item in the checkout, grouped by variant and attributes.
+结算单内容项
+"""
+type CheckoutItem implements Thing & Node{
+    """
+    所属结算单
+    """
+    isItemOf: Checkout  @hasInverse(field: "items")
+
+    """
+    The quantity of the line item.
+    """
+    quantity: Int!
+
+    """
+    Product/Service variant of the line item.
+    """
+    variant: Shoppingable
+
+}
