@@ -1,3 +1,12 @@
+"""An object with an ID"""
+interface Node {
+    """
+    The id of the thing.
+    The id: ID! in Thing means that an auto-generated ID by Dgraph will be used to identify things.
+    """
+    id: ID!
+}
+
 """
 A Thing with an ID，在KGIS平台内所有内容都是东西Thing,也就是资源Resource
 """
@@ -25,29 +34,6 @@ interface Thing {
 
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
-
-    """
-    The id of the thing.
-    The id: ID! in Thing means that an auto-generated ID by Dgraph will be used to identify things.
-    """
-    id: ID!
-}
-
-"""
-资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
-如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
-"""
-type Namespace implements Thing{
-    """
-    资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
-    如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
-    """
-    namespace: String @search(by: [exact, regexp])
-
-    """
-    拥有namespace的组织或用户
-    """
-    isNamespaceOf: Party
 
 }
 
@@ -129,9 +115,27 @@ interface PartyRole {
 }
 
 """
+资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
+如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+"""
+type Namespace implements Thing & Node{
+    """
+    资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
+    如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+    """
+    namespace: String @search(by: [exact, regexp])
+
+    """
+    拥有namespace的组织或用户
+    """
+    isNamespaceOf: Party
+
+}
+
+"""
 组织定义的角色，组织内统筹定义
 """
-type PartyRoleName implements Thing{
+type PartyRoleName implements  Thing & Node{
 
     """
     isPartyRoleNameOf,逆属性 Organization.hasPartyRoleName
@@ -168,7 +172,7 @@ interface Readable{
 Canonical URL: http://cnschema.org/DataCatalog
 【数据目录】数据集的目录 A collection of datasets.
 """
-type DataCatalog implements Thing{
+type DataCatalog implements  Thing & Node{
 
     """
     【所在父数据集目录】所在的父数据集目录 A data catalog which contains this dataset.
@@ -194,7 +198,7 @@ type DataCatalog implements Thing{
 """
 【对话】组织之间或特定主题的人员之间的一个或多个消息。 可以使用isPartOf或hasPart属性将个人消息链接到会话。 One or more messages between organizations or people on a particular topic. Individual messages can be linked to the conversation with isPartOf or hasPart properties.
 """
-type Conversation implements Thing{
+type Conversation implements  Thing & Node{
 
     """
     【关于】 事物的关于信息 The subject matter of the content.
@@ -222,7 +226,7 @@ type Conversation implements Thing{
     includedInDataCatalog: DataCatalog
 
     """
-    参照 hasPart【作品组件】 表示某个作品是该作品的一部分 
+    参照 hasPart【作品组件】 表示某个作品是该作品的一部分
     """
     hasMessages: [Message]
 
@@ -235,7 +239,7 @@ type Conversation implements Thing{
 """
 【消息】由发送者发给一个或多个组织或个人的信息 A single message from a sender to one or more organizations or people.
 """
-type Message implements Thing & Readable{
+type Message implements  Thing & Node & Readable{
 
     """
     参照isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.
@@ -273,7 +277,7 @@ type Message implements Thing & Readable{
     recipient: [User]
 
     """
-    【评论】 评论，一般是用户对CreativeWork的评论。 
+    【评论】 评论，一般是用户对CreativeWork的评论。
     """
     hasReviews: [Review]
 }
@@ -281,18 +285,18 @@ type Message implements Thing & Readable{
 """
 【评论】对项目的评论 - 例如对博客文章的评论。 该评论的内容是通过text属性表示的，其主题通过about，与所有CreativeWorks共享的属性来表达 A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the text property, and its topic via about, properties shared with all CreativeWorks.
 """
-type Review implements Thing{
-    """itemReviewed	Thing 	The item that is being reviewed/rated."""
-    itemReviewed:	Thing
+type Review implements  Thing & Node{
+    """itemReviewed    Thing    The item that is being reviewed/rated."""
+    itemReviewed:    Thing
 
-    """reviewAspect	Text 	This Review or Rating is relevant to this part or facet of the itemReviewed."""
+    """reviewAspect    Text    This Review or Rating is relevant to this part or facet of the itemReviewed."""
     reviewAspect: String
 
-    """reviewBody	Text 	The actual body of the review."""
+    """reviewBody    Text    The actual body of the review."""
     reviewBody: String
 
     """
-    ratingValue	评分 The rating for the content.
+    ratingValue    评分 The rating for the content.
     """
     ratingValue: Int
 
@@ -302,7 +306,7 @@ type Review implements Thing{
     author:    User
 
     """
-    【创建日期】 创作出CreativeWork的日期。 
+    【创建日期】 创作出CreativeWork的日期。
     """
     dateCreated: DateTime
 }
@@ -310,7 +314,7 @@ type Review implements Thing{
 """
 【阅读收条】 记录每个人阅读本条消息的时间
 """
-type ReadNote implements Thing{
+type ReadNote implements  Thing & Node{
 
     """
     【阅读内容】 逆属性: Message.hasReadNotes
@@ -323,7 +327,7 @@ type ReadNote implements Thing{
     reader: User
 
     """
-    【阅读日期】 
+    【阅读日期】
     """
     dateRead: DateTime
 }
@@ -333,7 +337,7 @@ type ReadNote implements Thing{
 也用于临时几个人组成的聊天小组，房间
 http://cnschema.org/Organization
 """
-type GeneralOrganization  implements Thing & Organization & Party {
+type GeneralOrganization  implements  Thing & Node & Organization & Party {
 
     """可以访问的会话"""
     availableConversations: [Conversation]
@@ -346,7 +350,7 @@ type GeneralOrganization  implements Thing & Organization & Party {
 """
 [【雇员角色】OrganizationRole的子类，描述雇员关系,有时间限制](http://cnschema.org/EmployeeRole)
 """
-type EmployeeRole implements Thing & PartyRole{
+type EmployeeRole implements  Thing & Node & PartyRole{
     """
     【员工编号】
     """
@@ -356,7 +360,7 @@ type EmployeeRole implements Thing & PartyRole{
 """
 [【社交关注角色】FollowerRole)
 """
-type FollowerRole implements Thing & PartyRole{
+type FollowerRole implements  Thing & Node & PartyRole{
     """关注设置,如关注最新产品信息"""
     settings: String
 }
@@ -364,7 +368,7 @@ type FollowerRole implements Thing & PartyRole{
 """
 [【会员角色】OrganizationRole的子类，描述会员关系,有时间限制](http://cnschema.org/EmployeeRole)
 """
-type MemberRole implements Thing & PartyRole{
+type MemberRole implements  Thing & Node & PartyRole{
     """
     【会员编号】
     """
@@ -374,7 +378,7 @@ type MemberRole implements Thing & PartyRole{
 """
 描述产品的所有者或所属机构的信息
 """
-type Ownership implements Thing{
+type Ownership implements  Thing & Node{
 
     """
     【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.
@@ -405,7 +409,7 @@ type Ownership implements Thing{
 """
 用户账号
 """
-type User implements Thing{
+type User implements  Thing & Node{
 
     """
     The username used to login.
@@ -432,7 +436,7 @@ type User implements Thing{
 """
 个人,可能在平台里有一个且唯一的用户账号User
 """
-type Person implements Party & Thing{
+type Person implements Party &  Thing & Node{
     """
     个人身份证ID
     """
@@ -451,14 +455,14 @@ type Person implements Party & Thing{
 """
 零售店铺
 """
-type Store implements Thing & Organization & Party {
+type Store implements  Thing & Node & Organization & Party {
     """
     【雇员】 组织的雇员.在组织承担角色的个人有时间限制
     """
     employees: [EmployeeRole]
 
     """
-    【关注组织的人】 社交网络上本组织被别人关注 
+    【关注组织的人】 社交网络上本组织被别人关注
     """
     followers: [FollowerRole]
 
@@ -488,7 +492,7 @@ type Store implements Thing & Organization & Party {
 """
 产品
 """
-type Product implements Shoppingable & Thing{
+type Product implements Shoppingable &  Thing & Node{
 
     """
     【型号】 产品的型号。
@@ -500,7 +504,7 @@ type Product implements Shoppingable & Thing{
 """
 产品型号
 """
-type ProductModel implements Shoppingable & Thing{
+type ProductModel implements Shoppingable &  Thing & Node{
 
     """
     【产品】 所属产品。
@@ -511,7 +515,7 @@ type ProductModel implements Shoppingable & Thing{
 """
 商品供应
 """
-type Offer implements Thing{
+type Offer implements  Thing & Node{
     """
     可购物的一个商品供应
     """
@@ -542,7 +546,7 @@ type Offer implements Thing{
 """
 http://cnschema.org/EntryPoint 入口】一个入口，包含一些基于web的协议 An entry point, within some Web-based protocol.
 """
-type EntryPoint implements  Thing{
+type EntryPoint implements   Thing & Node{
 
     """【链接模版】 一个URL的模版，可以利用变化参数形成完整的URL。 An url template (RFC6570) that will be used to construct the target of the execution of the action."""
     urlTemplate:    String
@@ -552,61 +556,61 @@ type EntryPoint implements  Thing{
 """
 https://schema.org/SoftwareApplication A software application.
 """
-type SoftwareApplication implements Thing {
+type SoftwareApplication implements  Thing & Node {
 
     """
-    applicationSuite	Text 	The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
+    applicationSuite    Text    The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
     """
     applicationSuite: String
 
     """
-    availableOnDevice	Text 	Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
-    countriesNotSupported	Text 	Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
-    countriesSupported	Text 	Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
-    downloadUrl	URL 	If the file can be downloaded, URL to download the binary.
+    availableOnDevice    Text    Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
+    countriesNotSupported    Text    Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    countriesSupported    Text    Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+    downloadUrl    URL    If the file can be downloaded, URL to download the binary.
     """
     downloadUrl: String
 
     """
-    featureList	Text  or URL 	Features or modules provided by this application (and possibly required by other applications).
+    featureList    Text  or URL    Features or modules provided by this application (and possibly required by other applications).
     """
     featureList: String
 
     """
-    fileSize	Text 	Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
-    installUrl	URL 	URL at which the app may be installed, if different from the URL of the item.
+    fileSize    Text    Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
+    installUrl    URL    URL at which the app may be installed, if different from the URL of the item.
     """
     installUrl:String
 
     """
-    memoryRequirements	Text  or URL 	Minimum memory requirements.
-    operatingSystem	Text 	Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
-    permissions	Text 	Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
-    processorRequirements	Text 	Processor architecture required to run the application (e.g. IA64).
-    releaseNotes	Text  or URL 	Description of what changed in this version.
+    memoryRequirements    Text  or URL    Minimum memory requirements.
+    operatingSystem    Text    Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
+    permissions    Text    Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
+    processorRequirements    Text    Processor architecture required to run the application (e.g. IA64).
+    releaseNotes    Text  or URL    Description of what changed in this version.
     """
     releaseNotes: String
 
     """
-    screenshot	ImageObject  or URL 	A link to a screenshot image of the app.
+    screenshot    ImageObject  or URL    A link to a screenshot image of the app.
     """
     screenshot: String
 
     """
-    softwareAddOn	SoftwareApplication 	Additional content for a software application.
-    softwareHelp	CreativeWork 	Software application help.
-    softwareRequirements	Text  or URL 	Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.
-    softwareVersion	Text 	Version of the software instance.
-    storageRequirements	Text  or URL 	Storage requirements (free space required).
-    supportingData	DataFeed 	Supporting data for a SoftwareApplication.
+    softwareAddOn    SoftwareApplication    Additional content for a software application.
+    softwareHelp    CreativeWork    Software application help.
+    softwareRequirements    Text  or URL    Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements.
+    softwareVersion    Text    Version of the software instance.
+    storageRequirements    Text  or URL    Storage requirements (free space required).
+    supportingData    DataFeed    Supporting data for a SoftwareApplication.
     """
     softwareVersion: String
 }
 
 """
-网络钩子是“用户定义的HTTP回调”。[2]网络钩子通常被某些事件激活，比如将代码推送到源[3]或评论博客。[4]当此事件发生时，原网站将向为网络钩子配置的URL发送HTTP请求。用户可配置它们引发网页上的事件以调用另一个网站的行为。Webhooks allow external services to be notified when certain events happen. 
+网络钩子是“用户定义的HTTP回调”。[2]网络钩子通常被某些事件激活，比如将代码推送到源[3]或评论博客。[4]当此事件发生时，原网站将向为网络钩子配置的URL发送HTTP请求。用户可配置它们引发网页上的事件以调用另一个网站的行为。Webhooks allow external services to be notified when certain events happen.
 """
-type Webhook implements Thing{
+type Webhook implements  Thing & Node{
     """
     回调url
     """
@@ -628,14 +632,55 @@ type Webhook implements Thing{
     creator: User
 
     """
-    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated	DateTime or Date or DataFeedItem or CreativeWork
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
     """
     dateCreated: DateTime
 
-    """ 
-    调用此webhook的客户端 
+    """
+    调用此webhook的客户端
     """
     client: SoftwareApplication
-    
+
 }
 
+
+"""
+购物车
+"""
+type Cart implements Thing & Node{
+    """
+    购物车所有者
+    """
+    owner: User!
+
+    email: String
+    items: [CartItem!] @hasInverse(field: "isItemOf")
+    notes: String
+    createdAt: DateTime
+    updatedAt: DateTime
+}
+
+"""
+购物车内物品、服务、优惠券等
+"""
+type CartItem  implements Thing & Node{
+
+    """
+    所属购物车,
+    """
+    isItemOf: Cart  @hasInverse(field: "items")
+
+    type: CartItemType!
+    quantity: Int!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+"""
+购物车内物品、服务、优惠券等类型
+"""
+enum CartItemType {
+    SKU
+    TAX
+    SHIPPING
+}

@@ -20,7 +20,7 @@ end.parse!
 shared_storefront_api_key = "4a6c829ec3cb12ef9004bf8ed27adf12"
 storefront_api_version = '2020-01'
 
-introspection_result = File.read("kgis-dgschema.json")
+introspection_result = File.read("kgis-generated-dgschema.json")
 schema = GraphQLSchema.new(JSON.parse(introspection_result))
 custom_scalars = [
   GraphQLJavaGen::Scalar.new(
