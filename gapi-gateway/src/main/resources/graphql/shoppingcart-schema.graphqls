@@ -469,6 +469,7 @@ type AvailableShippingRates{
 """
 Checkout:A container for all the information required to checkout items and pay.
 结算单，包含需要结算和支付的所有信息：税收、送货地址、发票账单寄送地址、备注说明等
+结算单信息完备后才可以创建订单
 """
 type Checkout implements Node{
     """The gift cards used on the checkout."""
@@ -557,6 +558,7 @@ type Checkout implements Node{
 
 """
 A single line item in the checkout, grouped by variant and attributes.
+结算单内容项
 """
 type CheckoutItem implements Node{
     """Extra information in the form of an array of Key-Value pairs about the line item."""
