@@ -35,28 +35,12 @@ public class PoderItemGQO implements NodeGQO{
 
     private Collection<ActionGQO> potentialActions;
     @lombok.NonNull
-    private CartItemTypeGQO type;
-
-    private Collection<String> images;
-    @lombok.NonNull
-    private MoneyGQO unitTotal;
-    @lombok.NonNull
-    private MoneyGQO lineTotal;
-    @lombok.NonNull
-    private Integer quantity;
-    @lombok.NonNull
-    private java.util.Date createdAt;
-    @lombok.NonNull
-    private java.util.Date updatedAt;
-    @lombok.NonNull
-    private Collection<CustomAttributeGQO> attributes;
-    @lombok.NonNull
     private String id;
 
     public PoderItemGQO() {
     }
 
-    public PoderItemGQO( PoderGQO partOfPoder,  FulfillDeliveryGQO poderDelivery,  String poderItemNumber,  PoderStatusGQO poderItemStatus,  Integer poderQuantity,  ShoppingableGQO poderedItem,  Collection<ActionGQO> potentialActions,  CartItemTypeGQO type,  Collection<String> images,  MoneyGQO unitTotal,  MoneyGQO lineTotal,  Integer quantity,  java.util.Date createdAt,  java.util.Date updatedAt,  Collection<CustomAttributeGQO> attributes,  String id) {
+    public PoderItemGQO( PoderGQO partOfPoder,  FulfillDeliveryGQO poderDelivery,  String poderItemNumber,  PoderStatusGQO poderItemStatus,  Integer poderQuantity,  ShoppingableGQO poderedItem,  Collection<ActionGQO> potentialActions,  String id) {
         this.partOfPoder = partOfPoder;
         this.poderDelivery = poderDelivery;
         this.poderItemNumber = poderItemNumber;
@@ -64,14 +48,6 @@ public class PoderItemGQO implements NodeGQO{
         this.poderQuantity = poderQuantity;
         this.poderedItem = poderedItem;
         this.potentialActions = potentialActions;
-        this.type = type;
-        this.images = images;
-        this.unitTotal = unitTotal;
-        this.lineTotal = lineTotal;
-        this.quantity = quantity;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.attributes = attributes;
         this.id = id;
     }
 
