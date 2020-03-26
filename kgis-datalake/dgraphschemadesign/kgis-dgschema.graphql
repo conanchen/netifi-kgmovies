@@ -692,7 +692,10 @@ Checkout:A container for all the information required to checkout items and pay.
 结算单信息完备后才可以创建订单
 """
 type Checkout implements Thing & Node{
-
+    """
+    结算单所有者
+    """
+    owner: User!
 
     """
     The date and time when the checkout was completed.
@@ -756,4 +759,115 @@ type CheckoutItem implements Thing & Node{
     """
     variant: Shoppingable
 
+}
+
+
+
+
+"""
+https://schema.org/Poder An poder is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted by the customer.
+命名为Poder即是PurchaseOrder购物订单的意思,为了区分排序单词Order
+"""
+type Poder implements Thing & Node{
+    """
+    acceptedOffer    Offer    The offer(s) -- e.g., product, quantity and price combinations -- included in the poder.
+    billingAddress    PostalAddress    The billing address for the poder.
+    broker    Organization  or Person    An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. Supersedes bookingAgent.
+    """
+    broker:    Party
+
+    """
+    confirmationNumber    Text    A number that confirms the given poder or payment has been received.
+    customer    Organization  or Person    Party placing the poder or paying the invoice.
+    """
+    customer:    Party
+
+    """
+    discount    Number  or Text    Any discount applied (to an Poder).
+    discountCode    Text    Code used to redeem a discount.
+    discountCurrency    Text    The currency of the discount.
+
+    Use standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g. "BTC"; well known names for Local Exchange Tradings Systems (LETS) and other currency types e.g. "Ithaca HOUR".
+
+    isGift    Boolean    Was the offer accepted as a gift for someone other than the buyer.
+    """
+    isGift: Boolean
+
+    """
+    poderDate    DateTime  or DateTime    DateTime poder was placed.
+    """
+    poderDate: DateTime
+
+    """
+    poderNumber    Text    The identifier of the transaction.
+    """
+    poderNumber: String
+
+    """
+    poderStatus    PoderStatus    The current status of the poder.
+    """
+    poderStatus:    PoderStatus
+
+    """
+    poderedItem    PoderItem  or Product  or Service    The item podered.
+    """
+    items:    [PoderItem] @hasInverse(field: "isItemOf")
+
+    """
+    partOfInvoice    Invoice    The poder is being paid as part of the referenced Invoice.
+    paymentDueDate    DateTime  or DateTime    The date that payment is due. Supersedes paymentDue.
+    paymentMethod    PaymentMethod    The name of the credit card or other method of payment for the poder.
+    paymentMethodId    Text    An identifier for the method of payment used (e.g. the last 4 digits of the credit card).
+    paymentUrl    URL    The URL for sending a payment.
+    seller    Organization  or Person    An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
+    """
+    seller:    Organization
+
+}
+
+"""
+https://schema.org/PoderItem
+An poder item is a line of an poder. It includes the quantity and shipping details of a bought offer.
+购物订单内容项
+"""
+type PoderItem implements Thing & Node{
+
+    """
+    partOfPoder    Poder    The overall poder the items in this delivery were included in.
+    """
+    isItemOf:    Poder @hasInverse(field: "items")
+
+    """
+    poderItemNumber    Text    The identifier of the poder item.
+    """
+    poderItemNumber: String
+
+    """
+    poderItemStatus    PoderStatus    The current status of the poder item.
+    """
+    poderItemStatus:    PoderStatus
+
+    """
+    poderQuantity    Number    The number of the item podered. If the property is not set, assume the quantity is one.
+    """
+    poderQuantity: Int
+
+    """
+    poderedItem    PoderItem  or Product  or Service
+    """
+    poderedItem: Shoppingable
+
+}
+
+enum PoderStatus{
+    PoderCancelled
+    PoderDelivered
+    PoderInTransit
+    PoderPaymentDue
+    PoderUNPAID
+    PoderPAID
+    PoderPickupAvailable
+    PoderProblem
+    PoderProcessing
+    PoderReturned
 }
