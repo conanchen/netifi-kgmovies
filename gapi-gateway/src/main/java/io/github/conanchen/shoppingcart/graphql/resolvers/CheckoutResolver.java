@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingcart.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
+import graphql.kickstart.tools.GraphQLResolver;
 import graphql.relay.Connection;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.shoppingcart.graphql.api.Resolvers;

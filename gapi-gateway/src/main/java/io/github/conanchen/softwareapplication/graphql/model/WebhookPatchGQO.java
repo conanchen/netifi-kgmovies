@@ -1,8 +1,5 @@
 package io.github.conanchen.softwareapplication.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.softwareapplication.graphql.api.*;
-
 public class WebhookPatchGQO {
 
     private String identifier;

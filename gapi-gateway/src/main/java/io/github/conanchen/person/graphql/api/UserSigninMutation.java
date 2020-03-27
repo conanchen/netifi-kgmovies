@@ -1,7 +1,7 @@
 package io.github.conanchen.person.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.person.graphql.model.UserSigninInputGQO;
+import io.github.conanchen.person.graphql.model.UserSigninPayloadGQO;
 
 public interface UserSigninMutation {
 

@@ -1,7 +1,6 @@
 package io.github.conanchen.intangible.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.intangible.graphql.model.*;
+import io.github.conanchen.intangible.graphql.model.BrandConnectionGQO;
 
 public interface AllBrandQuery {
 

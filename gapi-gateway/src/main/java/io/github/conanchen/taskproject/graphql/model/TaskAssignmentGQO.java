@@ -1,9 +1,7 @@
 package io.github.conanchen.taskproject.graphql.model;
 
-import java.util.*;
-
-import io.github.conanchen.organization.graphql.model.PartyGQO;
 import io.github.conanchen.message.graphql.model.ReviewGQO;
+import io.github.conanchen.organization.graphql.model.PartyGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 
 public class TaskAssignmentGQO implements NodeGQO {

@@ -1,10 +1,10 @@
 package io.github.conanchen.taskproject.graphql.model;
 
-import java.util.*;
-
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
+
+import java.util.Collection;
 
 public class IssueGQO implements ThingGQO, NodeGQO{
 

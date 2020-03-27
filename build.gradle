@@ -35,7 +35,6 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
-//        classpath("com.apollographql.apollo:apollo-gradle-plugin:${apolloVersion}")
     }
 }
 
@@ -137,7 +136,6 @@ subprojects {
         imports {
             mavenBom "com.netifi:netifi-bom:${netifiBomVersion}"
             mavenBom "org.apache.logging.log4j:log4j-bom:${log4j2Version}"
-            mavenBom "com.graphql-java-kickstart:graphql-java-tools:${graphqlJavaToolsVersion}"
         }
 
         dependencies {
@@ -148,7 +146,6 @@ subprojects {
             dependency "io.rsocket:rsocket-transport-netty:${rsocketVersion}"
             dependency "io.rsocket.rpc:rsocket-rpc-protobuf:${rsocketRpcVersion}"
             dependency "io.rsocket.rpc:rsocket-rpc-core:${rsocketRpcVersion}"
-//            dependency "com.graphql-java-kickstart:graphql-java-tools:${graphqlJavaToolsVersion}"
             dependency "com.graphql-java-kickstart:graphql-spring-boot-starter:${graphqlSpringBootStarterVersion}"
             dependency "com.graphql-java-kickstart:altair-spring-boot-starter:${graphqlSpringBootStarterVersion}"
             dependency "com.graphql-java-kickstart:graphiql-spring-boot-starter:${graphqlSpringBootStarterVersion}"

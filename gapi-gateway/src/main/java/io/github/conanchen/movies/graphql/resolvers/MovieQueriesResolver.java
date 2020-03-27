@@ -1,6 +1,6 @@
 package io.github.conanchen.movies.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.github.conanchen.movies.graphql.api.Query;
 import io.github.conanchen.movies.graphql.model.MovieGQO;
 import io.github.conanchen.movies.graphql.model.MoviesConnectionGQO;

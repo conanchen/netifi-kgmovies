@@ -1,8 +1,8 @@
 package io.github.conanchen.intangible.graphql.model;
 
-import java.util.Collection;
-
 import graphql.relay.PageInfo;
+
+import java.util.Collection;
 
 public class BrandConnectionGQO {
 

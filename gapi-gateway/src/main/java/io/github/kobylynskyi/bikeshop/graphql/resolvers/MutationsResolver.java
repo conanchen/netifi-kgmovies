@@ -1,6 +1,6 @@
 package io.github.kobylynskyi.bikeshop.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.github.kobylynskyi.bikeshop.graphql.api.Mutation;
 import io.github.kobylynskyi.bikeshop.graphql.mappers.BikeMapper;
 import io.github.kobylynskyi.bikeshop.graphql.model.BikeInputTO;

@@ -1,10 +1,9 @@
 package io.github.conanchen.shoppingman.graphql.model;
 
-import java.util.*;
-
 import io.github.conanchen.action.graphql.model.ActionGQO;
 import io.github.conanchen.shoppingdoor.graphql.model.OfferGQO;
-import io.github.conanchen.shoppingman.graphql.api.*;
+
+import java.util.Collection;
 
 public class ProductOfferOnlinePayloadGQO {
 

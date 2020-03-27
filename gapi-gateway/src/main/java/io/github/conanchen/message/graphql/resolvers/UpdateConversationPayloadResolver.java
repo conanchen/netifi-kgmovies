@@ -1,10 +1,13 @@
 package io.github.conanchen.message.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
+import graphql.kickstart.tools.GraphQLResolver;
 import graphql.relay.Connection;
 import graphql.relay.SimpleListConnection;
 import graphql.schema.DataFetchingEnvironment;
-import io.github.conanchen.message.graphql.model.*;
+import io.github.conanchen.message.graphql.model.ConversationFilterGQO;
+import io.github.conanchen.message.graphql.model.ConversationGQO;
+import io.github.conanchen.message.graphql.model.ConversationOrderGQO;
+import io.github.conanchen.message.graphql.model.UpdateConversationPayloadGQO;
 import io.github.conanchen.message.graphql.resolver.Resolvers;
 import org.springframework.stereotype.Service;
 

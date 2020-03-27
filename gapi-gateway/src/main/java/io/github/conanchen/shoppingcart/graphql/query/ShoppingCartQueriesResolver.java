@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingcart.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.shoppingcart.graphql.api.Query;
 import io.github.conanchen.shoppingcart.graphql.model.*;

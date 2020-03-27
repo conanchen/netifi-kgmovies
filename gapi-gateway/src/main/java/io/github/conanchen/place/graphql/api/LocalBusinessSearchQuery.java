@@ -1,7 +1,8 @@
 package io.github.conanchen.place.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.place.graphql.model.LocalBusinessConnectionGQO;
+import io.github.conanchen.place.graphql.model.LocalBusinessFilterGQO;
+import io.github.conanchen.place.graphql.model.LocalBusinessOrderGQO;
 
 public interface LocalBusinessSearchQuery {
 

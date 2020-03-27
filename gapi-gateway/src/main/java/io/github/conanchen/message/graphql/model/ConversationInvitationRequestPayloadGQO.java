@@ -1,12 +1,9 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.movies.graphql.model.*;
-import io.github.conanchen.person.graphql.model.*;
-import io.github.conanchen.message.graphql.api.*;
-
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.Collection;
 @Data
 @Builder
 public class ConversationInvitationRequestPayloadGQO {

@@ -1,6 +1,6 @@
 package io.github.conanchen.place.graphql.mutation;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.github.conanchen.place.graphql.api.Mutation;
 import io.github.conanchen.place.graphql.model.StoreCreateInputGQO;
 import io.github.conanchen.place.graphql.model.StoreCreatePayloadGQO;

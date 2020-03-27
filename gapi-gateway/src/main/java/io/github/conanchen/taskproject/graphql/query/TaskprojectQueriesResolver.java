@@ -1,6 +1,6 @@
 package io.github.conanchen.taskproject.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.github.conanchen.taskproject.graphql.api.Query;
 import io.github.conanchen.taskproject.graphql.model.IssueGQO;
 import io.github.conanchen.taskproject.graphql.model.PersonActivityTimelineGQO;

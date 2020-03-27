@@ -1,8 +1,8 @@
 package io.github.conanchen.shoppingman.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.shoppingman.graphql.api.*;
 import io.github.conanchen.zommon.graphql.model.DisplayableErrorGQO;
+
+import java.util.Collection;
 
 public class ProductOfferCreateErrorGQO implements DisplayableErrorGQO {
 

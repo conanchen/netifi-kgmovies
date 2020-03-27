@@ -1,7 +1,8 @@
 package io.github.conanchen.place.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.place.graphql.model.StoreConnectionGQO;
+import io.github.conanchen.place.graphql.model.StoreFilterGQO;
+import io.github.conanchen.place.graphql.model.StoreOrderGQO;
 
 public interface StoreSearchQuery {
 

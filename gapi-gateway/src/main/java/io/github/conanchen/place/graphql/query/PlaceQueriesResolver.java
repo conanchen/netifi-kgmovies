@@ -1,6 +1,6 @@
 package io.github.conanchen.place.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.github.conanchen.place.graphql.api.Query;
 import io.github.conanchen.place.graphql.model.*;
 import org.springframework.stereotype.Service;

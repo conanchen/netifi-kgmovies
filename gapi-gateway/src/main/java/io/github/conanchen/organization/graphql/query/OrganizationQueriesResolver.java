@@ -1,6 +1,6 @@
 package io.github.conanchen.organization.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.github.conanchen.organization.graphql.api.Query;
 import io.github.conanchen.organization.graphql.model.GeneralOrganizationGQO;
 import io.github.conanchen.organization.graphql.model.OrganizationGQO;

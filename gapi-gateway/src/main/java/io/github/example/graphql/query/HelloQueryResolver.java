@@ -1,6 +1,6 @@
 package io.github.example.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 

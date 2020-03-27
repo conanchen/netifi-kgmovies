@@ -30,7 +30,6 @@ dependencies {
 
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf') { exclude group: 'ch.qos.logback' }
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb") { exclude group: 'ch.qos.logback' }
     compile("org.springframework.data:spring-data-commons") { exclude group: 'ch.qos.logback' }
     compile("org.springframework.boot:spring-boot-starter-data-redis") { exclude group: 'ch.qos.logback' }
     compile 'com.github.kstyrc:embedded-redis'
@@ -38,7 +37,6 @@ dependencies {
     compile("io.projectreactor:reactor-core") { exclude group: 'ch.qos.logback' }
     compile("org.springframework.data:spring-data-redis") { exclude group: 'ch.qos.logback' }
 
-//    compile ("com.graphql-java-kickstart:graphql-java-tools:6.0.0"){exclude group: 'ch.qos.logback'}
     compile("com.graphql-java-kickstart:graphql-spring-boot-starter") { exclude group: 'ch.qos.logback' }
     compile('com.graphql-java-kickstart:altair-spring-boot-starter') { exclude group: 'ch.qos.logback' }
     compile('com.graphql-java-kickstart:graphiql-spring-boot-starter') { exclude group: 'ch.qos.logback' }

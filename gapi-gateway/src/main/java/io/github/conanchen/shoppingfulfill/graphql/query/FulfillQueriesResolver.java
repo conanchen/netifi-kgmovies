@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingfulfill.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.shoppingfulfill.graphql.api.Query;
 import io.github.conanchen.shoppingfulfill.graphql.model.HomeserviceDeliveryGQO;

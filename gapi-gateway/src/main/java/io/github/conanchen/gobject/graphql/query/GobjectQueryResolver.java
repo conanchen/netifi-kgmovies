@@ -1,6 +1,6 @@
 package io.github.conanchen.gobject.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.github.conanchen.gobject.graphql.api.Query;
 import io.github.conanchen.gobject.graphql.model.*;
 import org.springframework.stereotype.Service;

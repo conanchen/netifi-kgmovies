@@ -1,10 +1,9 @@
 package io.github.conanchen.person.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.person.graphql.model.*;
-import io.github.conanchen.zommon.graphql.model.*;
-import graphql.schema.DataFetchingEnvironment;
 import graphql.relay.Connection;
+import graphql.schema.DataFetchingEnvironment;
+import io.github.conanchen.person.graphql.model.PersonGQO;
+import io.github.conanchen.person.graphql.model.UserGQO;
 
 public interface Query {
 // KK

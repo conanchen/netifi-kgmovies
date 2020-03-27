@@ -1,7 +1,6 @@
 package io.github.conanchen.organization.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.organization.graphql.api.*;
+import java.util.Collection;
 
 public interface OwnableGQO {
 

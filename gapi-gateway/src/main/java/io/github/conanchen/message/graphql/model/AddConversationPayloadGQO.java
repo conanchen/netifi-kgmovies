@@ -1,12 +1,10 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.*;
-
-import io.github.conanchen.message.graphql.api.*;
 import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 @Data
 @Builder

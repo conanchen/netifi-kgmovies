@@ -1,11 +1,8 @@
 package io.github.conanchen.message.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.message.graphql.model.*;
-import io.github.conanchen.movies.graphql.model.*;
-import io.github.conanchen.person.graphql.model.*;
-import graphql.schema.DataFetchingEnvironment;
 import graphql.relay.Connection;
+import graphql.schema.DataFetchingEnvironment;
+import io.github.conanchen.message.graphql.model.*;
 
 public interface Query {
 // KK

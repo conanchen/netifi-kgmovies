@@ -1,6 +1,6 @@
 package io.github.conanchen.event.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.github.conanchen.event.graphql.api.Query;
 import io.github.conanchen.event.graphql.model.EventGQO;
 import io.github.conanchen.event.graphql.model.EventsConnectionGQO;

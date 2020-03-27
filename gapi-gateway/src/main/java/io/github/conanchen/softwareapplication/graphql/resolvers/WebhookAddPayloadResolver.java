@@ -1,8 +1,6 @@
 package io.github.conanchen.softwareapplication.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import io.github.conanchen.organization.graphql.model.MemberRoleConnectionGQO;
-import io.github.conanchen.person.graphql.model.PersonGQO;
+import graphql.kickstart.tools.GraphQLResolver;
 import io.github.conanchen.softwareapplication.graphql.model.WebhookAddPayloadGQO;
 import io.github.conanchen.softwareapplication.graphql.model.WebhookConnectionGQO;
 import io.github.conanchen.softwareapplication.graphql.model.WebhookFilterGQO;

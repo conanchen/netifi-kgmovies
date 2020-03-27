@@ -1,8 +1,8 @@
 package io.github.conanchen.softwareapplication.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.softwareapplication.graphql.api.*;
 import graphql.relay.PageInfo;
+
+import java.util.Collection;
 
 public class WebhookConnectionGQO {
 

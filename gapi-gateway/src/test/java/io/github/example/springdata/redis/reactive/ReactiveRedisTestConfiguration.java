@@ -15,8 +15,6 @@
  */
 package io.github.example.springdata.redis.reactive;
 
-import javax.annotation.PreDestroy;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +22,8 @@ import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.MapRecord;
 import org.springframework.data.redis.stream.StreamReceiver;
 import reactor.test.StepVerifier;
+
+import javax.annotation.PreDestroy;
 
 /**
  * @author Christoph Strobl

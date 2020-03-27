@@ -1,13 +1,8 @@
 package io.github.conanchen.person.graphql.resolver;
 
-import java.util.*;
-
-import io.github.conanchen.organization.graphql.model.MemberRoleConnectionGQO;
-import io.github.conanchen.person.graphql.model.*;
-import io.github.conanchen.person.graphql.api.*;
-import io.github.conanchen.zommon.graphql.model.*;
 import graphql.schema.DataFetchingEnvironment;
-import graphql.relay.Connection;
+import io.github.conanchen.organization.graphql.model.MemberRoleConnectionGQO;
+import io.github.conanchen.person.graphql.model.PersonGQO;
 
 public class Resolvers{
     public interface Person {

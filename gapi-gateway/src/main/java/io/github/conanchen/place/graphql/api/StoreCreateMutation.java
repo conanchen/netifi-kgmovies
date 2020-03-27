@@ -1,7 +1,7 @@
 package io.github.conanchen.place.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.place.graphql.model.StoreCreateInputGQO;
+import io.github.conanchen.place.graphql.model.StoreCreatePayloadGQO;
 
 public interface StoreCreateMutation {
 

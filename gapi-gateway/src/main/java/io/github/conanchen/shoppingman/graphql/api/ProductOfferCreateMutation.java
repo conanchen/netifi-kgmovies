@@ -1,7 +1,7 @@
 package io.github.conanchen.shoppingman.graphql.api;
 
-import io.github.conanchen.shoppingman.graphql.model.*;
-import java.util.*;
+import io.github.conanchen.shoppingman.graphql.model.ProductOfferCreateInputGQO;
+import io.github.conanchen.shoppingman.graphql.model.ProductOfferCreatePayloadGQO;
 
 public interface ProductOfferCreateMutation {
 

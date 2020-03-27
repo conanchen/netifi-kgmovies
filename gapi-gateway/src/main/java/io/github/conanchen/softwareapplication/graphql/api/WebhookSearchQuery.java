@@ -1,7 +1,10 @@
 package io.github.conanchen.softwareapplication.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.softwareapplication.graphql.model.*;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookConnectionGQO;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookFilterGQO;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookOrderGQO;
+
+import java.util.Collection;
 
 public interface WebhookSearchQuery {
 

@@ -1,18 +1,19 @@
 package io.github.conanchen.person.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.relay.Connection;
 import graphql.relay.SimpleListConnection;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.person.graphql.api.Query;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.person.graphql.model.UserGQO;
-//import io.github.kgis.Kgis;
 import io.github.utils.DataObjectBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+
+//import io.github.kgis.Kgis;
 
 
 @Service

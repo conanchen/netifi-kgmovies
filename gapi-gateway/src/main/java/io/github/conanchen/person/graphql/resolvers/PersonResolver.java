@@ -1,6 +1,6 @@
 package io.github.conanchen.person.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
+import graphql.kickstart.tools.GraphQLResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.organization.graphql.model.MemberRoleConnectionGQO;
 import io.github.conanchen.person.graphql.model.PersonGQO;

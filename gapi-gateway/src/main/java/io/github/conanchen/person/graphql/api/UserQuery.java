@@ -1,7 +1,6 @@
 package io.github.conanchen.person.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.person.graphql.model.UserGQO;
 
 public interface UserQuery {
 

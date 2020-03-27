@@ -1,7 +1,10 @@
 package io.github.conanchen.softwareapplication.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import io.github.conanchen.softwareapplication.graphql.model.*;
+import graphql.kickstart.tools.GraphQLResolver;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookConnectionGQO;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookFilterGQO;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookOrderGQO;
+import io.github.conanchen.softwareapplication.graphql.model.WebhookUpdatePayloadGQO;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

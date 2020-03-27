@@ -1,8 +1,8 @@
 package io.github.config;
 
-import com.coxautodev.graphql.tools.SchemaParserOptions;
 import graphql.GraphQL;
 import graphql.execution.AsyncExecutionStrategy;
+import graphql.kickstart.tools.SchemaParserOptions;
 import graphql.language.StringValue;
 import graphql.schema.*;
 import graphql.schema.idl.InterfaceWiringEnvironment;

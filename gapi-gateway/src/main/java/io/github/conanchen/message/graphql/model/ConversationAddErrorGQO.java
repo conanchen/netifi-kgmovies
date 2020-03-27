@@ -1,10 +1,10 @@
 package io.github.conanchen.message.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.message.graphql.api.*;
 import io.github.conanchen.zommon.graphql.model.DisplayableErrorGQO;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.Collection;
 
 @Data
 @Builder

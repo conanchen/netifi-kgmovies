@@ -1,6 +1,6 @@
 package io.github.conanchen.softwareapplication.graphql.mutation;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.github.conanchen.softwareapplication.graphql.api.Mutation;
 import io.github.conanchen.softwareapplication.graphql.model.*;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package io.github.example.graphql.subscription;
 
-import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
+import graphql.kickstart.tools.GraphQLSubscriptionResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.example.graphql.model.MapRecordGQO;
 import io.github.example.springdata.redis.SensorData;
