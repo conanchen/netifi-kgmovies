@@ -14,39 +14,30 @@ import lombok.NonNull;
 
 @Data
 @Builder
-public class ImageObjectGQO implements GObjectGQO, NodeGQO{
+public class GxrowGQO implements NodeGQO{
 
-    @lombok.NonNull
-    private String name;
+
+    private Integer rowNo;
+
+    private Collection<GxcellGQO> cells;
 
     private PersonGQO creator;
 
     private java.util.Date dateCreated;
 
     private java.util.Date dateModified;
-
-    private Integer contentSize;
-
-    private java.lang.String contentUrl;
-
-    private Integer width;
-
-    private Integer height;
     @lombok.NonNull
     private String id;
 
-    public ImageObjectGQO() {
+    public GxrowGQO() {
     }
 
-    public ImageObjectGQO( String name,  PersonGQO creator,  java.util.Date dateCreated,  java.util.Date dateModified,  Integer contentSize,  java.lang.String contentUrl,  Integer width,  Integer height,  String id) {
-        this.name = name;
+    public GxrowGQO( Integer rowNo,  Collection<GxcellGQO> cells,  PersonGQO creator,  java.util.Date dateCreated,  java.util.Date dateModified,  String id) {
+        this.rowNo = rowNo;
+        this.cells = cells;
         this.creator = creator;
         this.dateCreated = dateCreated;
         this.dateModified = dateModified;
-        this.contentSize = contentSize;
-        this.contentUrl = contentUrl;
-        this.width = width;
-        this.height = height;
         this.id = id;
     }
 

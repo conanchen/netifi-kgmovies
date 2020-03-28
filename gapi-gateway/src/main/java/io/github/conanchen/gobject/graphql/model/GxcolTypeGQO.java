@@ -1,12 +1,13 @@
 package io.github.conanchen.gobject.graphql.model;
 
-public enum GxcolumnTypeGQO {
+public enum GxcolTypeGQO {
 
-    INT, 
     STRING, 
+    INT, 
     TEXT, 
     MARKDOWN, 
     DATETIME, 
+    GEO, 
     THING
 
 }

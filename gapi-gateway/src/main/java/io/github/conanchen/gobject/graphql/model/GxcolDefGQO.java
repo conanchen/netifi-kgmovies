@@ -8,14 +8,28 @@ import io.github.conanchen.place.graphql.model.*;
 import io.github.conanchen.zommon.graphql.model.*;
 import io.github.conanchen.shoppingdoor.graphql.model.*;
 
-public interface GObjectGQO {
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
 
-    String getName();
+@Data
+@Builder
+public class GxcolDefGQO {
 
-    PersonGQO getCreator();
 
-    java.util.Date getDateCreated();
+    private Integer colNo;
 
-    java.util.Date getDateModified();
+    private String name;
+
+    private GxcolTypeGQO type;
+
+    public GxcolDefGQO() {
+    }
+
+    public GxcolDefGQO( Integer colNo,  String name,  GxcolTypeGQO type) {
+        this.colNo = colNo;
+        this.name = name;
+        this.type = type;
+    }
 
 }
