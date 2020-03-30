@@ -65,7 +65,9 @@ interface Organization {
     members: [MemberRole]
     membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""
@@ -120,7 +122,9 @@ type GeneralOrganization  implements Thing & Organization & ConversationalThing 
     members: [MemberRole]
     membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""

@@ -1,8 +1,8 @@
 extend type Query {
-    allSoftwareApplications(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection
+    allSoftwareApplications(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection  @connection(for: "SoftwareApplication")
     softwareApplication(id: ID, softwareApplicationID: ID): SoftwareApplication
     webhook(id: ID, webhookID: ID): Webhook
-    webhookSearch(filter: WebhookFilter,order: WebhookOrder,first: Int,offset: Int): [WebhookConnection]
+    webhookSearch(filter: WebhookFilter,order: WebhookOrder,first: Int,offset: Int): WebhookConnection  @connection(for: "Webhook")
 
 }
 
@@ -12,7 +12,10 @@ extend type Mutation{
     webhookDelete(filter: WebhookFilter!): WebhookDeletePayload
 }
 
-"""https://schema.org/SoftwareApplication A software application."""
+"""
+https://schema.org/SoftwareApplication A software application.
+一个软件程序应用
+"""
 type SoftwareApplication implements Node {
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -37,7 +40,7 @@ type SoftwareApplication implements Node {
 
     """fileSize    Text    Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
     installUrl    URL    URL at which the app may be installed, if different from the URL of the item."""
-    installUrl:String
+    installUrl: String
 
     """memoryRequirements    Text  or URL    Minimum memory requirements.
     operatingSystem    Text    Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
@@ -57,8 +60,20 @@ type SoftwareApplication implements Node {
     supportingData    DataFeed    Supporting data for a SoftwareApplication."""
     softwareVersion: String
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
+
+    """
+    本程序的宿主程序软件，
+    """
+    isMiniAppOf: SoftwareApplication
+
+    """
+    本程序的小程序软件，
+    """
+    hasMiniApps: [SoftwareApplication]
 
     """The id of the object."""
     id: ID!
@@ -66,41 +81,6 @@ type SoftwareApplication implements Node {
 
 
 
-"""A connection to a list of items."""
-type SoftwareApplicationsConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
-
-    """A list of edges."""
-    edges: [SoftwareApplicationsEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    films: [SoftwareApplication]
-}
-
-"""An edge in a connection."""
-type SoftwareApplicationsEdge {
-    """The item at the end of the edge"""
-    node: SoftwareApplication
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}
 
 """网络钩子是“用户定义的HTTP回调”。[2]网络钩子通常被某些事件激活，比如将代码推送到源[3]或评论博客。[4]当此事件发生时，原网站将向为网络钩子配置的URL发送HTTP请求。用户可配置它们引发网页上的事件以调用另一个网站的行为。Webhooks allow external services to be notified when certain events happen. """
 type Webhook implements Node{
@@ -127,7 +107,9 @@ type Webhook implements Node{
     """ 调用此webhook的客户端 """
     client: SoftwareApplication
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """The id of the object."""
@@ -163,6 +145,7 @@ input WebhookAddInput {
     or CreativeWork
     """
     dateCreated: DateTime
+
     client: SoftwareApplicationRef
 }
 
@@ -333,7 +316,7 @@ type WebhookAddPayload{
         order: WebhookOrder
         first: Int
         offset: Int
-    ): [WebhookConnection]
+    ): WebhookConnection  @connection(for: "Webhook")
 }
 
 """
@@ -369,12 +352,18 @@ enum WebhookAddErrorCode{
     ACTION_NOT_PERMITTED
 }
 
+"""
+Webhook变更请求输入
+"""
 input WebhookUpdateInput {
     filter: WebhookFilter!
     set: WebhookPatch
     remove: WebhookPatch
 }
 
+"""
+Webhook变更结果输出
+"""
 type WebhookUpdatePayload {
     """The updated object ."""
     item: Webhook
@@ -387,10 +376,12 @@ type WebhookUpdatePayload {
         order: WebhookOrder
         first: Int
         offset: Int
-    ): [WebhookConnection]
+    ): WebhookConnection  @connection(for: "Webhook")
 }
 
-
+"""
+Webhook变更补丁输入
+"""
 input WebhookPatch {
     identifier: String
     name: String
@@ -422,6 +413,9 @@ input WebhookPatch {
     client: SoftwareApplicationRef
 }
 
+"""
+Webhook过滤条件输入
+"""
 input WebhookFilter {
     name: StringHashFilter
     id: [ID!]
@@ -430,12 +424,18 @@ input WebhookFilter {
     not: WebhookFilter
 }
 
+"""
+Webhook排序条件输入
+"""
 input WebhookOrder {
     asc: WebhookOrderable
     desc: WebhookOrderable
     then: WebhookOrder
 }
 
+"""
+Webhook可排序字段
+"""
 enum WebhookOrderable {
     identifier
     name
@@ -447,7 +447,9 @@ enum WebhookOrderable {
     dateCreated
 }
 
-"""Represents an error that happens during execution of a store mutation."""
+"""
+Represents an error that happens during execution of a store mutation.
+"""
 type  WebhookUpdateError implements DisplayableError{
 
     """Error code to uniquely identify the error."""
@@ -461,7 +463,9 @@ type  WebhookUpdateError implements DisplayableError{
 
 }
 
-"""Possible error codes that could be returned by a store mutation."""
+"""
+Possible error codes that could be returned by a store mutation.
+"""
 enum WebhookUpdateErrorCode{
     """Input value is blank."""
     BLANK
@@ -483,10 +487,12 @@ type WebhookDeletePayload {
     """The error store."""
     message: String!
 
-    webhookSearch(filter: WebhookFilter,order: WebhookOrder,first: Int,offset: Int): [WebhookConnection]
+    webhookSearch(filter: WebhookFilter,order: WebhookOrder,first: Int,offset: Int): WebhookConnection  @connection(for: "Webhook")
 }
 
-"""Possible error codes that could be returned by a webhook mutation."""
+"""
+Possible error codes that could be returned by a webhook mutation.
+"""
 enum WebhookDeleteErrorCode{
     """Input value is blank."""
     BLANK
@@ -501,41 +507,3 @@ enum WebhookDeleteErrorCode{
     ACTION_NOT_PERMITTED
 }
 
-
-"""A connection to a list of items."""
-type WebhookConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
-
-    """A list of edges."""
-    edges: [WebhookEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    nodes: [Webhook]
-}
-
-
-
-"""An edge in a connection."""
-type WebhookEdge {
-    """The item at the end of the edge"""
-    node: Webhook
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}

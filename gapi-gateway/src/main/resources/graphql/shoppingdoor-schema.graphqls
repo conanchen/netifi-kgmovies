@@ -238,8 +238,10 @@ interface Service {
     """isSimilarTo    Product  or Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -286,8 +288,10 @@ type GeneralService implements Thing & Shoppingable & Service & Node{
     """isSimilarTo    Product  or Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -337,8 +341,10 @@ type FoodService implements Thing & Shoppingable & Service & Node{
     """isSimilarTo    Product  or  Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -388,8 +394,10 @@ type HousekeepingService implements Thing & Shoppingable & Service & Node{
     """isSimilarTo    Product  or  Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -442,8 +450,10 @@ type GovernmentService implements Thing & Service & Node{
     Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]

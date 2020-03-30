@@ -1,61 +1,44 @@
 package io.github.conanchen.softwareapplication.graphql.model;
 
-import io.github.conanchen.zommon.graphql.model.StringHashFilterGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.softwareapplication.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
 
-import java.util.Collection;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
 
+@Data
+@Builder
 public class WebhookFilterGQO {
 
+
     private StringHashFilterGQO name;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<String> id;
+
     private WebhookFilterGQO and;
+
     private WebhookFilterGQO or;
+
     private WebhookFilterGQO not;
 
     public WebhookFilterGQO() {
     }
 
-    public WebhookFilterGQO(StringHashFilterGQO name, Collection<String> id, WebhookFilterGQO and, WebhookFilterGQO or, WebhookFilterGQO not) {
+    public WebhookFilterGQO( StringHashFilterGQO name,  Collection<String> id,  WebhookFilterGQO and,  WebhookFilterGQO or,  WebhookFilterGQO not) {
         this.name = name;
         this.id = id;
         this.and = and;
         this.or = or;
-        this.not = not;
-    }
-
-    public StringHashFilterGQO getName() {
-        return name;
-    }
-    public void setName(StringHashFilterGQO name) {
-        this.name = name;
-    }
-
-    public Collection<String> getId() {
-        return id;
-    }
-    public void setId(Collection<String> id) {
-        this.id = id;
-    }
-
-    public WebhookFilterGQO getAnd() {
-        return and;
-    }
-    public void setAnd(WebhookFilterGQO and) {
-        this.and = and;
-    }
-
-    public WebhookFilterGQO getOr() {
-        return or;
-    }
-    public void setOr(WebhookFilterGQO or) {
-        this.or = or;
-    }
-
-    public WebhookFilterGQO getNot() {
-        return not;
-    }
-    public void setNot(WebhookFilterGQO not) {
         this.not = not;
     }
 
