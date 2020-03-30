@@ -15,17 +15,17 @@ public class SoftwareapplicationQueriesResolver implements Query, GraphQLQueryRe
 
 
   @Override
-  public Connection<SoftwareApplicationGQO> allSoftwareApplications(String after, Integer first, String before, Integer last, DataFetchingEnvironment env) {
+  public Connection<SoftwareApplicationGQO> softwareapplicationSearch(String after, Integer first, String before, Integer last, DataFetchingEnvironment env) {
     return null;
   }
 
   @Override
-  public SoftwareApplicationGQO softwareApplication(String id, String softwareApplicationID, DataFetchingEnvironment env) throws Exception {
+  public SoftwareApplicationGQO softwareapplicationFind(String id, String softwareApplicationID, DataFetchingEnvironment env) throws Exception {
     return null;
   }
 
   @Override
-  public WebhookGQO webhook(String id, String webhookID, DataFetchingEnvironment env) throws Exception {
+  public WebhookGQO webhookFind(String id, String webhookID, DataFetchingEnvironment env) throws Exception {
     return null;
   }
 

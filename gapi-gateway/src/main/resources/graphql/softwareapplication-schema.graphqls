@@ -1,7 +1,7 @@
 extend type Query {
-    allSoftwareApplications(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection  @connection(for: "SoftwareApplication")
-    softwareApplication(id: ID, softwareApplicationID: ID): SoftwareApplication
-    webhook(id: ID, webhookID: ID): Webhook
+    softwareapplicationSearch(after: String, first: Int, before: String, last: Int): SoftwareApplicationsConnection  @connection(for: "SoftwareApplication")
+    softwareapplicationFind(id: ID, softwareApplicationID: ID): SoftwareApplication
+    webhookFind(id: ID, webhookID: ID): Webhook
     webhookSearch(filter: WebhookFilter,order: WebhookOrder,first: Int,offset: Int): WebhookConnection  @connection(for: "Webhook")
 
 }

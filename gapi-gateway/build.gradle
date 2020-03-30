@@ -337,7 +337,7 @@ task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask, dependsOn: graph
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
                            "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
 }
 
