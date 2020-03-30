@@ -29,10 +29,13 @@ type SoftwareApplication implements Node {
     """applicationSuite    Text    The name of the application suite to which the application belongs (e.g. Excel belongs to Office)."""
     applicationSuite: String
 
-    """availableOnDevice    Text    Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
+    """
+    下载地址URL
+    availableOnDevice    Text    Device required to run the application. Used in cases where a specific make/model is required to run the application. Supersedes device.
     countriesNotSupported    Text    Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
     countriesSupported    Text    Countries for which the application is supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
-    downloadUrl    URL    If the file can be downloaded, URL to download the binary."""
+    downloadUrl    URL    If the file can be downloaded, URL to download the binary.
+    """
     downloadUrl: String
 
     """featureList    Text  or URL    Features or modules provided by this application (and possibly required by other applications)."""
