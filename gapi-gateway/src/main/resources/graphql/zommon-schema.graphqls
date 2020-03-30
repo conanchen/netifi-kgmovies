@@ -56,8 +56,20 @@ interface Node {
     id: ID!
 }
 
-"""https://schema.org/Thing The most generic type of item."""
+"""
+https://schema.org/Thing The most generic type of item.
+"""
 interface Thing{
+#    """
+#    资源对象所属的namespaces
+#    """
+#    namespaces:  [ACLNamespace!]
+#
+#    """
+#    【标识符】 标识符 The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.
+#    """
+#    identifier: String
+#
     """name    Text    The name of the item."""
     name: String
 
@@ -66,8 +78,6 @@ interface Thing{
 
     """【描述】 该项的一个简单描述。 A description of the item."""
     description: String
-
-
 }
 
 """可以被谈论来建立会话的物体"""

@@ -16,15 +16,8 @@ extend type Mutation{
 https://schema.org/SoftwareApplication A software application.
 一个软件程序应用
 """
-type SoftwareApplication implements Node {
-    """【名称】 条目的名称 The name of the item."""
-    name: String!
+type SoftwareApplication implements Thing & Node {
 
-    """【别名】 该项的别名。 An alias for the item."""
-    alternateName: String
-
-    """【描述】 该项的一个简单描述。 A description of the item."""
-    description: String
 
     """applicationSuite    Text    The name of the application suite to which the application belongs (e.g. Excel belongs to Office)."""
     applicationSuite: String
@@ -78,6 +71,29 @@ type SoftwareApplication implements Node {
     """
     hasMiniApps: [SoftwareApplication]
 
+    #    Properties From Thing
+    """
+    资源对象所属的namespaces
+    """
+    namespaces:  [ACLNamespace!]
+
+    """
+    【标识符】 标识符 The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.
+    """
+    identifier: String
+
+    """name    Text    The name of the item."""
+    name: String
+
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+
+    #/    Properties From Thing
+
+
     """The id of the object."""
     id: ID!
 }
@@ -86,16 +102,7 @@ type SoftwareApplication implements Node {
 
 
 """网络钩子是“用户定义的HTTP回调”。[2]网络钩子通常被某些事件激活，比如将代码推送到源[3]或评论博客。[4]当此事件发生时，原网站将向为网络钩子配置的URL发送HTTP请求。用户可配置它们引发网页上的事件以调用另一个网站的行为。Webhooks allow external services to be notified when certain events happen. """
-type Webhook implements Node{
-
-    """【名称】 条目的名称 The name of the item."""
-    name: String!
-
-    """【别名】 该项的别名。 An alias for the item."""
-    alternateName: String
-
-    """【描述】 该项的一个简单描述。 A description of the item."""
-    description: String
+type Webhook implements Thing & Node{
 
     payloadUrl: String
     contentType: String
@@ -114,6 +121,27 @@ type Webhook implements Node{
     [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
     """
     potentialActions: [Action]
+
+    #    Properties From Thing
+    """
+    资源对象所属的namespaces
+    """
+    namespaces:  [ACLNamespace!]
+
+    """
+    【标识符】 标识符 The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc.
+    """
+    identifier: String
+
+    """name    Text    The name of the item."""
+    name: String
+
+    """【别名】 该项的别名。 An alias for the item."""
+    alternateName: String
+
+    """【描述】 该项的一个简单描述。 A description of the item."""
+    description: String
+    #/    Properties From Thing
 
     """The id of the object."""
     id: ID!
