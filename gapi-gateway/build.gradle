@@ -249,25 +249,6 @@ task graphqlCodegenMessage(type: GraphqlCodegenGradleTask, dependsOn: graphqlCod
                            "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
 }
 
-task graphqlCodegenMovie(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
-    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/movies-schema.graphqls".toString()]
-    outputDir = new File("$buildDir/generated/graphql/movies")
-    apiPackageName = "io.github.conanchen.movies.graphql.api"
-    modelPackageName = "io.github.conanchen.movies.graphql.model"
-    resolverPackageName = "io.github.conanchen.movies.graphql.resolver"
-    customTypesMapping = [
-            DateTime: "java.util.Date"
-    ]
-    modelNameSuffix = "GQO"
-    generateApis = true
-    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
-                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
-                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
-}
 
 task graphqlCodegenPerson(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
     graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/person-schema.graphqls".toString()]
@@ -436,7 +417,7 @@ protobuf {
 
 // Automatically generate GraphQL code on project build:
 // compileJava.dependsOn 'graphqlCodegenBikeshop'
-// compileJava.dependsOn 'graphqlCodegenBikeshop','graphqlCodegenMovie'
+// compileJava.dependsOn 'graphqlCodegenBikeshop'
 
 sourceSets {
     main {
