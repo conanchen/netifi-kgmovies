@@ -25,10 +25,12 @@ public class TaskprojectQueriesResolver implements Query, GraphQLQueryResolver {
 
     @Override
     public IssueGQO issue(String id, String issueID, DataFetchingEnvironment env) throws Exception {
-        IssueGQO issueGQO = new IssueGQO();
-        issueGQO.setId("issue1");
-        issueGQO.setName("name1");
-        issueGQO.setAlternateName("alternamte");
+        IssueGQO issueGQO = IssueGQO.builder()
+                .id("issue1")
+                .name("name1")
+                .alternateName("alternamte")
+                .build();
+
         return issueGQO;
     }
 

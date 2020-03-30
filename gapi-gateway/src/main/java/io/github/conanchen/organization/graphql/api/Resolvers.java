@@ -33,4 +33,15 @@ public class Resolvers{
     public interface EmployeeRole {
     // KK
     }
+    public interface Party {
+    // KK
+    }
+    public interface Organization {
+    // KK
+        public Connection<EmployeeRoleGQO> employeesPage(OrganizationGQO parent,String after, Integer first, String before, Integer last, String personId, DataFetchingEnvironment env);
+        public Connection<MemberRoleGQO> membersPage(OrganizationGQO parent,String after, Integer first, String before, Integer last, String personId, DataFetchingEnvironment env);
+    }
+    public interface Ownable {
+    // KK
+    }
 }
