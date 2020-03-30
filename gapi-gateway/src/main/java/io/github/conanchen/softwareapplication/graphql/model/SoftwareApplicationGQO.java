@@ -31,6 +31,8 @@ public class SoftwareApplicationGQO implements ThingGQO, NodeGQO{
 
     private String installUrl;
 
+    private String iconUrl;
+
     private String releaseNotes;
 
     private String screenshot;
@@ -58,11 +60,12 @@ public class SoftwareApplicationGQO implements ThingGQO, NodeGQO{
     public SoftwareApplicationGQO() {
     }
 
-    public SoftwareApplicationGQO( String applicationSuite,  String downloadUrl,  String featureList,  String installUrl,  String releaseNotes,  String screenshot,  String softwareVersion,  Collection<ActionGQO> potentialActions,  SoftwareApplicationGQO isMiniAppOf,  Collection<SoftwareApplicationGQO> hasMiniApps,  Collection<ACLNamespaceGQO> namespaces,  String identifier,  String name,  String alternateName,  String description,  String id) {
+    public SoftwareApplicationGQO( String applicationSuite,  String downloadUrl,  String featureList,  String installUrl,  String iconUrl,  String releaseNotes,  String screenshot,  String softwareVersion,  Collection<ActionGQO> potentialActions,  SoftwareApplicationGQO isMiniAppOf,  Collection<SoftwareApplicationGQO> hasMiniApps,  Collection<ACLNamespaceGQO> namespaces,  String identifier,  String name,  String alternateName,  String description,  String id) {
         this.applicationSuite = applicationSuite;
         this.downloadUrl = downloadUrl;
         this.featureList = featureList;
         this.installUrl = installUrl;
+        this.iconUrl = iconUrl;
         this.releaseNotes = releaseNotes;
         this.screenshot = screenshot;
         this.softwareVersion = softwareVersion;
