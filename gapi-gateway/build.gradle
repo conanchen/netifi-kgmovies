@@ -77,12 +77,13 @@ task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenAction(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -95,12 +96,13 @@ task graphqlCodegenAction(type: GraphqlCodegenGradleTask, dependsOn: graphqlCode
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenAcl(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -113,12 +115,13 @@ task graphqlCodegenAcl(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegen
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 
 }
 
@@ -132,12 +135,13 @@ task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask, dependsOn: graphqlCo
     modelNameSuffix = "TO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenCreativework(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -150,12 +154,13 @@ task graphqlCodegenCreativework(type: GraphqlCodegenGradleTask, dependsOn: graph
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenEvent(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -168,12 +173,13 @@ task graphqlCodegenEvent(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodeg
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenGobject(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -186,12 +192,13 @@ task graphqlCodegenGobject(type: GraphqlCodegenGradleTask, dependsOn: graphqlCod
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenIntangible(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -204,12 +211,13 @@ task graphqlCodegenIntangible(type: GraphqlCodegenGradleTask, dependsOn: graphql
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenPlace(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -222,12 +230,13 @@ task graphqlCodegenPlace(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodeg
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 
@@ -241,12 +250,13 @@ task graphqlCodegenMessage(type: GraphqlCodegenGradleTask, dependsOn: graphqlCod
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 
@@ -260,12 +270,13 @@ task graphqlCodegenPerson(type: GraphqlCodegenGradleTask, dependsOn: graphqlCode
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegendOrganization(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -278,12 +289,13 @@ task graphqlCodegendOrganization(type: GraphqlCodegenGradleTask, dependsOn: grap
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenShoppingcart(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -296,12 +308,13 @@ task graphqlCodegenShoppingcart(type: GraphqlCodegenGradleTask, dependsOn: graph
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -314,12 +327,13 @@ task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask, dependsOn: graph
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenShoppingfulfill(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -332,12 +346,13 @@ task graphqlCodegenShoppingfulfill(type: GraphqlCodegenGradleTask, dependsOn: gr
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenShoppingman(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -350,12 +365,13 @@ task graphqlCodegenShoppingman(type: GraphqlCodegenGradleTask, dependsOn: graphq
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenSoftwareapplication(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -368,12 +384,13 @@ task graphqlCodegenSoftwareapplication(type: GraphqlCodegenGradleTask, dependsOn
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 task graphqlCodegenTaskproject(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
@@ -388,12 +405,13 @@ task graphqlCodegenTaskproject(type: GraphqlCodegenGradleTask, dependsOn: graphq
     modelNameSuffix = "GQO"
     generateApis = true
     apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
-    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model",
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
                            "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
                            "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
                            "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
-                           "io.github.conanchen.shoppingcart.graphql.model",
-                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model"]
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
 }
 
 protobuf {

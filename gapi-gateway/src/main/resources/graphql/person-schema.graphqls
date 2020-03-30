@@ -62,7 +62,7 @@ type Person implements Party & Node{
 
     """【会员】 组织或项目的成员 A member of an Organization or a ProgramMembership.在组织承担角色的个人有时间限制"""
     membersOf: [MemberRole]
-    membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MemberRoleConnection
+    membersOfPage(after: String, first: Int, before: String, last: Int, orgId: String ): MemberRoleConnection @connection(for: "MemberRole")
 
     """本人所拥有的用户账号，逆属性User.isUserOf，参考Inverse property: isPartOf"""
     hasUser: User

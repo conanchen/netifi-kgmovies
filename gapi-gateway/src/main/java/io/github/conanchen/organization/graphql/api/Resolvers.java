@@ -15,8 +15,22 @@ import io.github.conanchen.shoppingdoor.graphql.model.*;
 import graphql.schema.DataFetchingEnvironment;
 import graphql.relay.Connection;
 
-public interface Query {
-// KK
-    OrganizationGQO organization(String id, String organizationID, DataFetchingEnvironment env) throws Exception;
-    GeneralOrganizationGQO generalOrganization(String id, String organizationID, DataFetchingEnvironment env) throws Exception;
+public class Resolvers{
+    public interface Ownership {
+    // KK
+    }
+    public interface GeneralOrganization {
+    // KK
+        public Connection<EmployeeRoleGQO> employeesPage(GeneralOrganizationGQO parent,String after, Integer first, String before, Integer last, String personId, DataFetchingEnvironment env);
+        public Connection<MemberRoleGQO> membersPage(GeneralOrganizationGQO parent,String after, Integer first, String before, Integer last, String personId, DataFetchingEnvironment env);
+    }
+    public interface OrgRoleName {
+    // KK
+    }
+    public interface MemberRole {
+    // KK
+    }
+    public interface EmployeeRole {
+    // KK
+    }
 }

@@ -5,14 +5,16 @@ import graphql.relay.Connection;
 import graphql.relay.SimpleListConnection;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.person.graphql.model.UserGQO;
+import io.github.conanchen.taskproject.graphql.api.Resolvers;
 import io.github.conanchen.taskproject.graphql.model.IssueGQO;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
 @Service
-class IssueResolver implements GraphQLResolver<IssueGQO> {
-    public Connection<UserGQO> participants(IssueGQO issueGQO, String after, Integer first, String before, Integer last, DataFetchingEnvironment env) {
+class IssueResolver implements Resolvers.Issue, GraphQLResolver<IssueGQO> {
+    @Override
+    public Connection<UserGQO> participants(IssueGQO parent, String after, Integer first, String before, Integer last, DataFetchingEnvironment env) {
         return new SimpleListConnection<>(
                 Arrays.asList(
                         new UserGQO("username1", "name1", "bio1", "bioHTML1", null, "id1"),
@@ -22,5 +24,4 @@ class IssueResolver implements GraphQLResolver<IssueGQO> {
                 )
         ).get(env);
     }
-
 }
