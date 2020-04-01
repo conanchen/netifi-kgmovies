@@ -1,14 +1,16 @@
 buildscript {
 
     repositories {
+
         mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
         mavenCentral()
         jcenter()
         maven { url "https://dl.bintray.com/graphql-java-kickstart/releases" }
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url 'https://repo.spring.io/plugins-release' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+
         maven { url 'http://uk.maven.org/maven2/' }
         maven { url 'http://mirrors.ibiblio.org/pub/mirrors/maven2/' }
         maven { url 'http://repository.jboss.org/nexus/content/groups/public' }
@@ -33,7 +35,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.4.RELEASE")
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
 //        classpath("com.apollographql.apollo:apollo-gradle-plugin:${apolloVersion}")
     }
@@ -105,13 +107,14 @@ subprojects {
 
     repositories {
         mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
         mavenCentral()
         jcenter()
         maven { url "https://dl.bintray.com/graphql-java-kickstart/releases" }
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url 'https://repo.spring.io/plugins-release' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+
         maven { url 'http://uk.maven.org/maven2/' }
         maven { url 'http://mirrors.ibiblio.org/pub/mirrors/maven2/' }
         maven { url 'http://repository.jboss.org/nexus/content/groups/public' }
@@ -167,8 +170,8 @@ subprojects {
             // or
             dependency "io.jsonwebtoken:jjwt-gson:${jsonwebtokenVersion}" //for gson
            // dependency 'com.shopify.graphql.support:support:0.2.0'
-            dependency "com.apollographql.apollo:apollo-runtime:${apolloVersion}"
-            dependency "com.apollographql.apollo:apollo-rx2-support:${apolloVersion}"
+
+            dependency "com.bdlbsc:dgraph-graphql:latest-SNAPSHOT"
         }
     }
 }

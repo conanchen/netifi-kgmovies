@@ -1,5 +1,6 @@
 package io.github.config;
 
+import com.bdlbsc.graphql.GraphClient;
 import com.coxautodev.graphql.tools.SchemaParserOptions;
 import graphql.GraphQL;
 import graphql.execution.AsyncExecutionStrategy;
@@ -34,6 +35,16 @@ public class GraphQLConfiguration {
                 .build();
 
     }
+
+
+    // dgraph graphql client 客户端
+    @Bean
+    public GraphClient graphClient() {
+        return GraphClient.builder()
+                .setUrl("http://localhost:8080/graphql")
+                .build();
+    }
+
 
     @Bean
     public SchemaParserOptions schemaParserOptions() {

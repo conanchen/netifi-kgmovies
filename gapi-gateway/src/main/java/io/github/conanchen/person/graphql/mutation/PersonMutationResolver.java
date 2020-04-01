@@ -1,27 +1,64 @@
 package io.github.conanchen.person.graphql.mutation;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import com.dgraph.graphql.*;
+import com.shopify.graphql.support.ID;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.person.graphql.api.Mutation;
 import io.github.conanchen.person.graphql.model.*;
+import io.github.config.GraphQLConfiguration;
 import io.jsonwebtoken.Jwts;
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resources;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class PersonMutationResolver implements Mutation, GraphQLMutationResolver {
 
+    @Autowired
+    GraphQLConfiguration graphQLConfiguration;
 
     @Override
     public UserSigninPayloadGQO userSignin(UserSigninInputGQO auth, DataFetchingEnvironment env) throws Exception {
-        String jws = Jwts.builder()
 
+        @NotNull String email = auth.getEmail();
+        log.info("email : " + email);
+        @NotNull String password = auth.getPassword();
+        log.info("password : " + password);
+
+        QueryRootQuery query = Operations.query(queryRootQuery -> queryRootQuery.getUser(getUserArguments -> {
+            getUserArguments.username(email);
+        }, userQuery -> {
+            userQuery.id();
+            userQuery.name();
+            userQuery.username();
+        }));
+
+        log.info("查询语句 : " + query.toString());
+
+        QueryRoot queryRoot = graphQLConfiguration.graphClient().queryGraphSynchronize(
+                query
+        );
+
+        User user = queryRoot.getGetUser();
+
+        log.info("查询结果 : user : id : " + user.getId() + " username : " + user.getUsername());
+
+        String jws = Jwts.builder()
                 .setIssuer("me")
                 .setSubject("Bob")
                 .setAudience("you")
@@ -34,18 +71,19 @@ public class PersonMutationResolver implements Mutation, GraphQLMutationResolver
                 .setIssuedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) // for example, now
                 .setId(UUID.randomUUID().toString()) //just an example id)
                 .compact();
-        UserGQO user = UserGQO.builder()
-                .id("userid001").username("conanusername")
-                .name("conan").bio("bio").bioHTML("bioHTML")
+        UserGQO userGQO = UserGQO.builder()
+                .id(user.getId().toString()).username(user.getUsername())
+                .name(user.getName()).bio("bio").bioHTML("bioHTML")
                 .isUserOf(PersonGQO.builder().id("personid").personalID("2342234").name("conan").alternateName("altername").build())
                 .build();
         UserSigninPayloadGQO userSigninPayloadGQO = UserSigninPayloadGQO.builder()
                 .token(jws)
-                .user(user)
+                .user(userGQO)
                 .signinErrors(Arrays.asList(UserSigninErrorGQO.builder()
                         .code(UserSigninErrorCodeGQO.SUCC)
                         .message("成功登陆").build()))
                 .build();
+
 
         return userSigninPayloadGQO;
     }
@@ -92,8 +130,8 @@ public class PersonMutationResolver implements Mutation, GraphQLMutationResolver
                 .user(user)
                 .signinErrors(
                         Arrays.asList(UserSigninErrorGQO.builder()
-                        .code(UserSigninErrorCodeGQO.SUCC)
-                        .message("成功登陆").build()))
+                                .code(UserSigninErrorCodeGQO.SUCC)
+                                .message("成功登陆").build()))
                 .build();
 
         return UserRegisterPayloadGQO.builder()
