@@ -1,8 +1,9 @@
 package io.github.conanchen.person.graphql.mutation;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+
 import com.dgraph.graphql.*;
 import com.shopify.graphql.support.ID;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.person.graphql.api.Mutation;
 import io.github.conanchen.person.graphql.model.*;
