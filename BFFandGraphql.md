@@ -1,0 +1,6 @@
+![What BFF ](document/WhatBFF.png)
+![How BFF Works](document/HowBFFWorks.png)
+![Who owns BFF](document/Back2Mobile.png)
+![Who owns BFF](document/WhoOwnsBFF.png)
+![Who owns BFF](document/WhoOwnsBFF1.png)
+![Who owns BFF](document/WhoOwnsBFF2.png)
