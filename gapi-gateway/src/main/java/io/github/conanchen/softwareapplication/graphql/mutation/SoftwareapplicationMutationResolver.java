@@ -1,6 +1,7 @@
 package io.github.conanchen.softwareapplication.graphql.mutation;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
+import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.softwareapplication.graphql.api.Mutation;
 import io.github.conanchen.softwareapplication.graphql.model.*;
 import org.springframework.stereotype.Service;
@@ -12,17 +13,17 @@ public class SoftwareapplicationMutationResolver implements Mutation,GraphQLMuta
 
 
   @Override
-  public WebhookAddPayloadGQO webhookAdd(Collection<WebhookAddInputGQO> input) throws Exception {
+  public WebhookAddPayloadGQO webhookAdd(Collection<WebhookAddInputGQO> input, DataFetchingEnvironment env) throws Exception {
     return null;
   }
 
   @Override
-  public WebhookUpdatePayloadGQO webhookUpdate(WebhookUpdateInputGQO input) throws Exception {
+  public WebhookUpdatePayloadGQO webhookUpdate(WebhookUpdateInputGQO input, DataFetchingEnvironment env) throws Exception {
     return null;
   }
 
   @Override
-  public WebhookDeletePayloadGQO webhookDelete(WebhookFilterGQO filter) throws Exception {
+  public WebhookDeletePayloadGQO webhookDelete(WebhookFilterGQO filter, DataFetchingEnvironment env) throws Exception {
     return null;
   }
 }

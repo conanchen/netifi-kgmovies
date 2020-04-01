@@ -31,16 +31,18 @@ type Project implements Thing & Organization & ConversationalThing &  Node{
 
     """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
     employees: [EmployeeRole]
-    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection
+    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection  @connection(for: "EmployeeRole")
 
     """【关注组织的人】 社交网络上本组织被别人关注 """
     followers: [Person]
 
     """【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole.在组织承担角色的个人有时间限制"""
     members: [MemberRole]
-    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection  @connection(for: "MemberRole")
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""

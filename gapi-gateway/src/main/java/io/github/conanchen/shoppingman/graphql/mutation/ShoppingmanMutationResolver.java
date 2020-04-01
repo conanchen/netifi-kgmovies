@@ -1,6 +1,6 @@
 package io.github.conanchen.shoppingman.graphql.mutation;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.github.conanchen.shoppingman.graphql.api.Mutation;
 import io.github.conanchen.shoppingman.graphql.model.*;
 import org.springframework.stereotype.Service;

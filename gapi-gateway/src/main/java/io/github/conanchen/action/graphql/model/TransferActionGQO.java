@@ -1,11 +1,11 @@
 package io.github.conanchen.action.graphql.model;
 
-import java.util.*;
-import io.github.conanchen.action.graphql.api.*;
 import io.github.conanchen.person.graphql.model.PersonGQO;
 import io.github.conanchen.place.graphql.model.PlaceGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
 import io.github.conanchen.zommon.graphql.model.ThingGQO;
+
+import java.util.Collection;
 
 public class TransferActionGQO implements ActionGQO, NodeGQO {
 

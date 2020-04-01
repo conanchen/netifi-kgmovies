@@ -1,25 +1,39 @@
 package io.github.conanchen.shoppingfulfill.graphql.model;
 
 import io.github.conanchen.organization.graphql.model.PartyGQO;
-import io.github.conanchen.shoppingcart.graphql.model.OrderGQO;
+import io.github.conanchen.shoppingcart.graphql.model.PoderGQO;
 import io.github.conanchen.shoppingcart.graphql.model.PostalAddressGQO;
 import io.github.conanchen.shoppingdoor.graphql.model.ProductGQO;
 import io.github.conanchen.zommon.graphql.model.NodeGQO;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.Collection;
+@Data
+@Builder
+public class ParcelDeliveryGQO implements FulfillDeliveryGQO, NodeGQO{
 
-public class ParcelDeliveryGQO implements FulfillDeliveryGQO, NodeGQO {
 
     private PostalAddressGQO deliveryAddress;
+
     private Collection<DeliveryEventGQO> deliveryStatus;
+
     private java.util.Date expectedArrivalFrom;
+
     private java.util.Date expectedArrivalUntil;
+
     private DeliveryMethodGQO hasDeliveryMethod;
+
     private Collection<ProductGQO> itemShipped;
+
     private PostalAddressGQO originAddress;
-    private OrderGQO partOfOrder;
+
+    private PoderGQO partOfPoder;
+
     private PartyGQO provider;
+
     private java.lang.String trackingNumber;
+
     private java.lang.String trackingUrl;
     @javax.validation.constraints.NotNull
     private String id;
@@ -27,7 +41,7 @@ public class ParcelDeliveryGQO implements FulfillDeliveryGQO, NodeGQO {
     public ParcelDeliveryGQO() {
     }
 
-    public ParcelDeliveryGQO(PostalAddressGQO deliveryAddress, Collection<DeliveryEventGQO> deliveryStatus, java.util.Date expectedArrivalFrom, java.util.Date expectedArrivalUntil, DeliveryMethodGQO hasDeliveryMethod, Collection<ProductGQO> itemShipped, PostalAddressGQO originAddress, OrderGQO partOfOrder, PartyGQO provider, java.lang.String trackingNumber, java.lang.String trackingUrl, String id) {
+    public ParcelDeliveryGQO( PostalAddressGQO deliveryAddress,  Collection<DeliveryEventGQO> deliveryStatus,  java.util.Date expectedArrivalFrom,  java.util.Date expectedArrivalUntil,  DeliveryMethodGQO hasDeliveryMethod,  Collection<ProductGQO> itemShipped,  PostalAddressGQO originAddress,  PoderGQO partOfPoder,  PartyGQO provider,  java.lang.String trackingNumber,  java.lang.String trackingUrl,  String id) {
         this.deliveryAddress = deliveryAddress;
         this.deliveryStatus = deliveryStatus;
         this.expectedArrivalFrom = expectedArrivalFrom;
@@ -35,94 +49,10 @@ public class ParcelDeliveryGQO implements FulfillDeliveryGQO, NodeGQO {
         this.hasDeliveryMethod = hasDeliveryMethod;
         this.itemShipped = itemShipped;
         this.originAddress = originAddress;
-        this.partOfOrder = partOfOrder;
+        this.partOfPoder = partOfPoder;
         this.provider = provider;
         this.trackingNumber = trackingNumber;
         this.trackingUrl = trackingUrl;
-        this.id = id;
-    }
-
-    public PostalAddressGQO getDeliveryAddress() {
-        return deliveryAddress;
-    }
-    public void setDeliveryAddress(PostalAddressGQO deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
-
-    public Collection<DeliveryEventGQO> getDeliveryStatus() {
-        return deliveryStatus;
-    }
-    public void setDeliveryStatus(Collection<DeliveryEventGQO> deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
-    }
-
-    public java.util.Date getExpectedArrivalFrom() {
-        return expectedArrivalFrom;
-    }
-    public void setExpectedArrivalFrom(java.util.Date expectedArrivalFrom) {
-        this.expectedArrivalFrom = expectedArrivalFrom;
-    }
-
-    public java.util.Date getExpectedArrivalUntil() {
-        return expectedArrivalUntil;
-    }
-    public void setExpectedArrivalUntil(java.util.Date expectedArrivalUntil) {
-        this.expectedArrivalUntil = expectedArrivalUntil;
-    }
-
-    public DeliveryMethodGQO getHasDeliveryMethod() {
-        return hasDeliveryMethod;
-    }
-    public void setHasDeliveryMethod(DeliveryMethodGQO hasDeliveryMethod) {
-        this.hasDeliveryMethod = hasDeliveryMethod;
-    }
-
-    public Collection<ProductGQO> getItemShipped() {
-        return itemShipped;
-    }
-    public void setItemShipped(Collection<ProductGQO> itemShipped) {
-        this.itemShipped = itemShipped;
-    }
-
-    public PostalAddressGQO getOriginAddress() {
-        return originAddress;
-    }
-    public void setOriginAddress(PostalAddressGQO originAddress) {
-        this.originAddress = originAddress;
-    }
-
-    public OrderGQO getPartOfOrder() {
-        return partOfOrder;
-    }
-    public void setPartOfOrder(OrderGQO partOfOrder) {
-        this.partOfOrder = partOfOrder;
-    }
-
-    public PartyGQO getProvider() {
-        return provider;
-    }
-    public void setProvider(PartyGQO provider) {
-        this.provider = provider;
-    }
-
-    public java.lang.String getTrackingNumber() {
-        return trackingNumber;
-    }
-    public void setTrackingNumber(java.lang.String trackingNumber) {
-        this.trackingNumber = trackingNumber;
-    }
-
-    public java.lang.String getTrackingUrl() {
-        return trackingUrl;
-    }
-    public void setTrackingUrl(java.lang.String trackingUrl) {
-        this.trackingUrl = trackingUrl;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
         this.id = id;
     }
 

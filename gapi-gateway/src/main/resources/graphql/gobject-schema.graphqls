@@ -8,7 +8,9 @@ extend type Query {
     gobject(id: ID, gobjectID: ID): GObject
 }
 
-""" 文件描述接口"""
+"""
+文件描述接口
+"""
 interface GObject {
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -23,7 +25,9 @@ interface GObject {
     dateModified: DateTime
 }
 
-""" 常用文件如txt文件"""
+"""
+常用文件如txt文件
+"""
 type GeneralObject  implements GObject & Node{
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -47,7 +51,9 @@ type GeneralObject  implements GObject & Node{
     id: ID!
 }
 
-""" 图片文件 http://cnschema.org/ImageObject"""
+"""
+图片文件 http://cnschema.org/ImageObject
+"""
 type ImageObject  implements GObject & Node{
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -77,7 +83,9 @@ type ImageObject  implements GObject & Node{
     id: ID!
 }
 
-""" 音频文件"""
+"""
+音频文件
+"""
 type AudioObject  implements GObject & Node{
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -101,7 +109,9 @@ type AudioObject  implements GObject & Node{
     id: ID!
 }
 
-""" 视频文件"""
+"""
+视频文件
+"""
 type VideoObject  implements GObject & Node{
     """【名称】 条目的名称 The name of the item."""
     name: String!
@@ -125,125 +135,229 @@ type VideoObject  implements GObject & Node{
     id: ID!
 }
 
-"""云表单文件"""
+"""
+表格文件
+"""
 type GxcelObject implements GObject & Node{
-    """【名称】 条目的名称 The name of the item."""
+    """
+    【名称】 条目的名称 The name of the item.
+    """
     name: String!
 
-    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork."""
+    """
+    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
+    """
     creator: Person
 
-    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed."""
+    """
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed.
+    """
     dateCreated:	DateTime
 
-    """【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed."""
+    """
+    【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
+    """
     dateModified: DateTime
 
+    """
+    一个云表格文件Gxcel拥有多张云表单Gxsheet
+    """
     sheets: [Gxsheet]
 
     """The id of the object."""
     id: ID!
 }
 
-"""云表单"""
+"""
+表格文件的表单
+"""
 type Gxsheet implements Node{
-    """【名称】 条目的名称 The name of the item."""
+    """
+    【名称】 云表单名称
+    """
     name: String
 
-    columndefs: [GxcolumnDef]
-    aggregateCells: [AggregateGxcell]
+    """
+    云表单的列定义
+    """
+    columndefs: [GxcolDef]
 
-    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork."""
+    """
+    分组的行
+    """
+    aggregateRows: [AggregateGxrow]
+
+    """
+    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
+    """
     creator: Person
 
-    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed."""
+    """
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed.
+    """
     dateCreated:	DateTime
 
-    """【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed."""
+    """
+    【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
+    """
     dateModified: DateTime
 
-    """合并的单元格"""
-    mergedCells: [Gxmergedcell]
-
-    """The id of the object."""
+    """
+    The id of the object.
+    """
     id: ID!
 }
 
-"""云表单分区分节单元"""
-type AggregateGxcell implements Node{
+"""
+表单分区分节行
+"""
+type AggregateGxrow implements Node{
 
-    """【名称】 分组分节名称"""
+    """
+    【名称】 分组分节名称
+    """
     name: String
 
-    """具体单元格初始值"""
-    cells: [Gxcell]
+    """
+    具体行
+    """
+    rows: [Gxrow]
 
-    """分组汇总行的单元格"""
-    subtotalCells: [Gxcell]
-
-    """The id of the object."""
+    """
+    The id of the object.
+    """
     id: ID!
 }
 
-
-"""云表单某个单元格值"""
-type Gxcell implements Node{
-
-    """单元格行号"""
+"""
+表单行
+"""
+type Gxrow implements Node{
+    """
+    单元格行号
+    """
     rowNo: Int
 
-    """单元格列号"""
-    colNo: Int
+    """
+    具体单元格初始值
+    """
+    cells: [Gxcell]
 
-    """单元格值"""
-    value: String
-
-    """单元格值可从引用Thing的某个属性"""
-    valueFrom: Thing
-
-    """单元格值公式"""
-    formula: String
-
-    """正在编辑的人，一般用于共享编辑表单Gxsheet"""
-    editingBy: Person
-
-    """当前正在编辑的开始时间，一般用于共享编辑表单Gxsheet"""
-    editingStarted: DateTime
-
-    """【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork."""
+    """
+    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
+    """
     creator: Person
 
-    """【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed."""
+    """
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed.
+    """
     dateCreated:	DateTime
 
-    """【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed."""
+    """
+    【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
+    """
+    dateModified: DateTime
+
+    """
+    The id of the object.
+    """
+    id: ID!
+}
+
+"""
+表单某个单元格值
+"""
+type Gxcell implements Node{
+
+    """
+    单元格列号
+    """
+    colNo: Int
+
+    """
+    单元格具体值，可能通过 valueFrom + valueFormula 计算出来的
+    """
+    value: String
+
+    """
+    单元格值可从引用Thing的某个属性
+    """
+    valueFrom: Thing
+
+    """
+    单元格值公式
+    """
+    valueFormula: String
+
+    """
+    正在编辑的人，一般用于共享编辑表单Gxsheet
+    """
+    editingBy: Person
+
+    """
+    当前正在编辑的开始时间，一般用于共享编辑表单Gxsheet
+    """
+    editingStarted: DateTime
+
+    """
+    【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
+    """
+    creator: Person
+
+    """
+    【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a DataFeed.
+    """
+    dateCreated:	DateTime
+
+    """
+    【更新日期】 CreativeWork最近被修改过的日期。 The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
+    """
     dateModified: DateTime
 
     """The id of the object."""
     id: ID!
 }
 
-"""列定义"""
-type GxcolumnDef{
+"""
+列定义
+"""
+type GxcolDef{
+    """
+    列序号，从0开始
+    """
     colNo: Int
+
+    """
+    列名称
+    """
     name: String
-    type: GxcolumnType
+
+    """
+    列类型
+    """
+    type: GxcolType
 }
 
-"""列类型"""
-enum GxcolumnType {
-    INT
+"""
+列类型
+"""
+enum GxcolType {
+    """
+    字符串类型，默认类型
+    """
     STRING
+    INT
     TEXT
     MARKDOWN
     DATETIME
-    THING
-}
 
-"""合并的单元格"""
-type Gxmergedcell{
-    rowNoStart: Int
-    rowNoEnd: Int
-    colNoStart: Int
-    colNoEnd: Int
+    """
+    经纬度类型
+    """
+    GEO
+
+    """
+    任意系统支持的事物类型
+    """
+    THING
 }

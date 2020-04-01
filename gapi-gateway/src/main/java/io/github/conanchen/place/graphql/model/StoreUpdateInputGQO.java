@@ -1,32 +1,35 @@
 package io.github.conanchen.place.graphql.model;
 
+import java.util.*;
+import io.github.conanchen.place.graphql.api.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+
+@Data
+@Builder
 public class StoreUpdateInputGQO {
 
+
     private String clientMutationId;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String actionId;
 
     public StoreUpdateInputGQO() {
     }
 
-    public StoreUpdateInputGQO(String clientMutationId, String actionId) {
+    public StoreUpdateInputGQO( String clientMutationId,  String actionId) {
         this.clientMutationId = clientMutationId;
-        this.actionId = actionId;
-    }
-
-    public String getClientMutationId() {
-        return clientMutationId;
-    }
-
-    public void setClientMutationId(String clientMutationId) {
-        this.clientMutationId = clientMutationId;
-    }
-
-    public String getActionId() {
-        return actionId;
-    }
-
-    public void setActionId(String actionId) {
         this.actionId = actionId;
     }
 

@@ -1,32 +1,24 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.Collection;
 
+@Data
+@Builder
 public class CartPayloadGQO {
 
+
     private CartGQO cart;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private Collection<CartErrorGQO> cartErrors;
 
     public CartPayloadGQO() {
     }
 
-    public CartPayloadGQO(CartGQO cart, Collection<CartErrorGQO> cartErrors) {
+    public CartPayloadGQO( CartGQO cart,  Collection<CartErrorGQO> cartErrors) {
         this.cart = cart;
-        this.cartErrors = cartErrors;
-    }
-
-    public CartGQO getCart() {
-        return cart;
-    }
-    public void setCart(CartGQO cart) {
-        this.cart = cart;
-    }
-
-    public Collection<CartErrorGQO> getCartErrors() {
-        return cartErrors;
-    }
-    public void setCartErrors(Collection<CartErrorGQO> cartErrors) {
         this.cartErrors = cartErrors;
     }
 

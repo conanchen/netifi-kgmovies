@@ -1,9 +1,9 @@
 extend type Query {
-    allProducts(after: String, first: Int, before: String, last: Int): ProductsConnection
+    productSearch(after: String, first: Int, before: String, last: Int): ProductConnection  @connection(for: "Product")
     product(id: ID, productID: ID): Product
     generalProduct(id: ID, productID: ID): GeneralProduct
 
-    allServices(after: String, first: Int, before: String, last: Int): ServicesConnection
+    serviceSearch(after: String, first: Int, before: String, last: Int): ServiceConnection  @connection(for: "Service")
     service(id: ID, serviceID: ID): Service
     foodService(id: ID, serviceID: ID): FoodService
     generalService(id: ID, serviceID: ID): GeneralService
@@ -171,41 +171,6 @@ type GeneralProduct implements Thing & Product & Shoppingable & ConversationalTh
     id: ID!
 }
 
-"""A connection to a list of items."""
-type ProductsConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
-
-    """A list of edges."""
-    edges: [ProductsEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    products: [Product]
-}
-
-"""An edge in a connection."""
-type ProductsEdge {
-    """The item at the end of the edge"""
-    node: Product
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}
 
 
 """https://schema.org/Service
@@ -238,8 +203,10 @@ interface Service {
     """isSimilarTo    Product  or Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -286,8 +253,10 @@ type GeneralService implements Thing & Shoppingable & Service & Node{
     """isSimilarTo    Product  or Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -337,8 +306,10 @@ type FoodService implements Thing & Shoppingable & Service & Node{
     """isSimilarTo    Product  or  Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -388,8 +359,10 @@ type HousekeepingService implements Thing & Shoppingable & Service & Node{
     """isSimilarTo    Product  or  Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -442,8 +415,10 @@ type GovernmentService implements Thing & Service & Node{
     Service    A pointer to another, functionally similar product (or multiple products)."""
     isSimilarTo:    Service
 
-    """potentialAction    Action    Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."""
-    potentialAction: [Action]
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
+    potentialActions: [Action]
 
     """ 通过计算决定将该Product/Service可能归属于的ItemCategory """
     itemCategory: [ItemCategory]
@@ -464,41 +439,7 @@ type GovernmentService implements Thing & Service & Node{
 }
 
 
-"""A connection to a list of items."""
-type ServicesConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
 
-    """A list of edges."""
-    edges: [ServicesEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    services: [Service]
-}
-
-"""An edge in a connection."""
-type ServicesEdge {
-    """The item at the end of the edge"""
-    node: Service
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}
 
 """可购物：可以购买订购的产品或服务Product，Service"""
 interface Shoppingable{

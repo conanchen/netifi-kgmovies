@@ -1,7 +1,6 @@
 package io.github.conanchen.action.graphql.api;
 
-import java.util.*;
-import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.action.graphql.model.RejectActionGQO;
 
 public interface RejectActionQuery {
 

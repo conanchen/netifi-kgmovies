@@ -1,21 +1,22 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class CheckoutCompleteApproveInputGQO {
 
-    @javax.validation.constraints.NotNull
+
+    private String clientMutationId;
+    @lombok.NonNull
     private String id;
 
     public CheckoutCompleteApproveInputGQO() {
     }
 
-    public CheckoutCompleteApproveInputGQO(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
+    public CheckoutCompleteApproveInputGQO( String clientMutationId,  String id) {
+        this.clientMutationId = clientMutationId;
         this.id = id;
     }
 

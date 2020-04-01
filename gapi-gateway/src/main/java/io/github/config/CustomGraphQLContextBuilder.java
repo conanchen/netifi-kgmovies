@@ -1,25 +1,20 @@
 package io.github.config;
 
-import graphql.kickstart.execution.context.DefaultGraphQLContext;
 import graphql.kickstart.execution.context.GraphQLContext;
-import graphql.servlet.context.DefaultGraphQLServletContext;
-import graphql.servlet.context.DefaultGraphQLWebSocketContext;
-import graphql.servlet.context.GraphQLServletContextBuilder;
+import graphql.servlet.context.DefaultGraphQLServletContextBuilder;
 import org.dataloader.DataLoaderRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
-import java.security.AccessControlContext;
-import java.security.ProtectionDomain;
+import java.util.Optional;
 
 @Component
-public class CustomGraphQLContextBuilder implements GraphQLServletContextBuilder {
+public class CustomGraphQLContextBuilder extends DefaultGraphQLServletContextBuilder {
     private static final Logger LOG = LoggerFactory.getLogger(CustomGraphQLContextBuilder.class);
 
 
@@ -38,11 +33,33 @@ public class CustomGraphQLContextBuilder implements GraphQLServletContextBuilder
         // TODO: 参看 https://www.openpolicyagent.org/docs/latest/http-api-authorization/
         // https://github.com/howtographql/graphql-java/blob/master/src/main/java/com/howtographql/hackernews/GraphQLEndpoint.java
         LOG.info("public GraphQLContext build(HttpServletRequest req, HttpServletResponse response)");
-        return DefaultGraphQLServletContext.createServletContext(buildDataLoaderRegistry(), null).with(req).with(response)
-                .with(Subject.getSubject(new AccessControlContext(new ProtectionDomain[]{})))
-                .build();
+        AuthContext user = Optional.of(req)
+                .map(q -> q.getHeader("Authorization"))
+                .filter(id -> !id.isEmpty())
+                .map(id -> id.replace("Bearer ", ""))
+//                     .map(userRepository::findById)
+                .map(a -> AuthContext.builder().email("chenchunhai@bdlbs.com").password("666666").build())
+                .orElse(AuthContext.builder().email("default@bdlbs.com").password("222222").build());
 
+        return new CustomAuthGraphQLContext(buildDataLoaderRegistry(), null, user);
 
+//        return DefaultGraphQLServletContext.createServletContext(buildDataLoaderRegistry(), null)
+//                .with(req)
+//                .with(response)
+//                .with(Subject.getSubject(new AccessControlContext(new ProtectionDomain[]{})))
+//                .build();
+//
+
+    }
+
+    @Override
+    public GraphQLContext build(Session session, HandshakeRequest request) {
+        AuthContext user = Optional.of(request).map(q -> q.getHeaders())
+                .map(m -> m.get("Authorization"))
+                .map(strings -> AuthContext.builder().email("chenchunhai@bdlbs.com").password("999999").build())
+                .orElse(AuthContext.builder().email("default@bdlbs.com").password("222222").build());
+        ;
+        return new CustomAuthGraphQLContext(buildDataLoaderRegistry(), null, user);
     }
 
     // @Override
@@ -57,13 +74,7 @@ public class CustomGraphQLContextBuilder implements GraphQLServletContextBuilder
     // }
     @Override
     public GraphQLContext build() {
-        return new DefaultGraphQLContext(buildDataLoaderRegistry(), null);
-    }
-
-    @Override
-    public GraphQLContext build(Session session, HandshakeRequest request) {
-        return DefaultGraphQLWebSocketContext.createWebSocketContext(buildDataLoaderRegistry(), null).with(session)
-                .with(request).build();
+        return new CustomAuthGraphQLContext(buildDataLoaderRegistry(), null, AuthContext.builder().email("chenchunhai@bdlbs.com").password("111111").build());
     }
 
     private DataLoaderRegistry buildDataLoaderRegistry() {

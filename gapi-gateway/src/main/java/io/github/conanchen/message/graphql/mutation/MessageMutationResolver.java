@@ -1,6 +1,6 @@
 package io.github.conanchen.message.graphql.mutation;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.message.graphql.api.Mutation;
 import io.github.conanchen.message.graphql.model.*;

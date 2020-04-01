@@ -15,13 +15,9 @@ public interface OrganizationGQO {
 
     Collection<EmployeeRoleGQO> getEmployees();
 
-    EmployeeRoleConnectionGQO getEmployeesPage();
-
     Collection<PersonGQO> getFollowers();
 
     Collection<MemberRoleGQO> getMembers();
-
-    MemberRoleConnectionGQO getMembersPage();
 
     Collection<ActionGQO> getPotentialActions();
 

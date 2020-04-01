@@ -10,7 +10,7 @@ extend type Query {
     - before: 结束游标，与last搭配使用；
     - last: 指定取游标前的多少个数据，与before搭配使用；
     """
-    storeSearch(filter: StoreFilter, order: StoreOrder, after: String, first: Int, before: String, last: Int): StoreConnection
+    storeSearch(filter: StoreFilter, order: StoreOrder, after: String, first: Int, before: String, last: Int): StoreConnection  @connection(for: "Store")
     """
     [仿照Dgraph自动生成的graphql查询](https://github.com/dgraph-io/dgraph/tree/master/graphql/schema/testdata/schemagen/output)
     """
@@ -21,7 +21,7 @@ extend type Query {
     childcareFind(id: ID, lbsID: ID): Childcare
     eldercareFind(id: ID, lbsID: ID): Eldercare
 
-    localBusinessSearch(filter: LocalBusinessFilter, order: LocalBusinessOrder, first: Int, offset: Int): LocalBusinessConnection
+    localBusinessSearch(filter: LocalBusinessFilter, order: LocalBusinessOrder, first: Int, offset: Int): LocalBusinessConnection  @connection(for: "LocalBusiness")
     localBusinessFind(id: ID, lbsID: ID): LocalBusiness
 }
 
@@ -71,16 +71,18 @@ type Store implements Thing & Organization & LocalBusiness & Node{
 
     """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
     employees: [EmployeeRole]
-    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection
+    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection  @connection(for: "EmployeeRole")
 
     """【关注组织的人】 社交网络上本组织被别人关注 """
     followers: [Person]
 
     """【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole.在组织承担角色的个人有时间限制"""
     members: [MemberRole]
-    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection  @connection(for: "MemberRole")
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""
@@ -93,42 +95,6 @@ type Store implements Thing & Organization & LocalBusiness & Node{
     id: ID!
 }
 
-
-"""A connection to a list of items."""
-type StoreConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
-
-    """A list of edges."""
-    edges: [StoreEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    films: [Store]
-}
-
-"""An edge in a connection."""
-type StoreEdge {
-    """The item at the end of the edge"""
-    node: Store
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}
 
 """https://schema.org/ChildCare A Childcare center.托儿所"""
 type Childcare implements Organization & LocalBusiness & Node{
@@ -153,16 +119,18 @@ type Childcare implements Organization & LocalBusiness & Node{
 
     """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
     employees: [EmployeeRole]
-    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection
+    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection  @connection(for: "EmployeeRole")
 
     """【关注组织的人】 社交网络上本组织被别人关注 """
     followers: [Person]
 
     """【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole.在组织承担角色的个人有时间限制"""
     members: [MemberRole]
-    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection  @connection(for: "MemberRole")
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""
@@ -195,16 +163,18 @@ type Eldercare implements Organization & LocalBusiness & Node{
 
     """【雇员】 组织的雇员.在组织承担角色的个人有时间限制"""
     employees: [EmployeeRole]
-    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection
+    employeesPage(after: String, first: Int, before: String, last: Int, personId: String ): EmployeeRoleConnection  @connection(for: "EmployeeRole")
 
     """【关注组织的人】 社交网络上本组织被别人关注 """
     followers: [Person]
 
     """【会员】 组织或项目的成员 A member of an Organization or a ProgramMemberRole.在组织承担角色的个人有时间限制"""
     members: [MemberRole]
-    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection
+    membersPage(after: String, first: Int, before: String, last: Int, personId: String ): MemberRoleConnection  @connection(for: "MemberRole")
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
     """hasOrgRoleName,逆属性 OrgRoleName.isOrgRoleNameOf"""
@@ -300,41 +270,7 @@ interface LocalBusiness{
 }
 
 
-"""A connection to a list of items."""
-type LocalBusinessConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
 
-    """A list of edges."""
-    edges: [LocalBusinessEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    localBusiness: [LocalBusiness]
-}
-
-"""An edge in a connection."""
-type LocalBusinessEdge {
-    """The item at the end of the edge"""
-    node: LocalBusiness
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}
 
 input LocalBusinessOrder {
     name: String

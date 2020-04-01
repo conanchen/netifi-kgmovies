@@ -1,6 +1,8 @@
 package io.github.conanchen.shoppingdoor.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
+import graphql.relay.Connection;
+import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.shoppingdoor.graphql.api.Query;
 import io.github.conanchen.shoppingdoor.graphql.model.*;
 import org.springframework.stereotype.Service;
@@ -9,78 +11,64 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShoppingdoorQueriesResolver implements Query, GraphQLQueryResolver {
 
-  @Override
-  public ProductsConnectionGQO allProducts(final String after, final Integer first, final String before, final Integer last)
-      throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
-  @Override
-  public ProductGQO product(final String id, final String ProductID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public Connection<ProductGQO> productSearch(String after, Integer first, String before, Integer last, DataFetchingEnvironment env) {
+        return null;
+    }
 
-  @Override
-  public ServiceGQO service(final String id, final String serviceID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public ProductGQO product(String id, String productID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public FoodServiceGQO foodService(final String id, final String serviceID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public GeneralProductGQO generalProduct(String id, String productID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public GeneralServiceGQO generalService(final String id, final String serviceID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public Connection<ServiceGQO> serviceSearch(String after, Integer first, String before, Integer last, DataFetchingEnvironment env) {
+        return null;
+    }
 
-  @Override
-  public GovernmentServiceGQO governmentService(final String id, final String serviceID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public ServiceGQO service(String id, String serviceID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public ItemCategoryGQO itemCategory(final String id, final String itcgID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public FoodServiceGQO foodService(String id, String serviceID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public GeneralProductGQO generalProduct(final String id, final String productID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public GeneralServiceGQO generalService(String id, String serviceID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public ServicesConnectionGQO allServices(final String after, final Integer first, final String before, final Integer last)
-      throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public GovernmentServiceGQO governmentService(String id, String serviceID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public HousekeepingServiceGQO housekeepingService(final String id, final String serviceID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public HousekeepingServiceGQO housekeepingService(String id, String serviceID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public OfferGQO offer(final String id, final String offerID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public ItemCategoryGQO itemCategory(String id, String itcgID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
-  @Override
-  public DemandGQO demand(final String id, final String demandID) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
+    @Override
+    public OfferGQO offer(String id, String offerID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 
+    @Override
+    public DemandGQO demand(String id, String demandID, DataFetchingEnvironment env) throws Exception {
+        return null;
+    }
 }

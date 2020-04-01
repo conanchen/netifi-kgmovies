@@ -1,22 +1,29 @@
 package io.github.conanchen.person.graphql.model;
 
 import java.util.*;
+import io.github.conanchen.message.graphql.model.*;
 import io.github.conanchen.person.graphql.model.*;
 import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
 import io.github.conanchen.place.graphql.model.*;
 import io.github.conanchen.person.graphql.api.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
 import io.github.conanchen.zommon.graphql.model.*;
 import io.github.conanchen.shoppingdoor.graphql.model.*;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+
 @Data
 @Builder
 public class PersonGQO implements PartyGQO, NodeGQO{
 
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String personalID;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String name;
 
     private String alternateName;
@@ -43,18 +50,16 @@ public class PersonGQO implements PartyGQO, NodeGQO{
 
     private Collection<MemberRoleGQO> membersOf;
 
-    private MemberRoleConnectionGQO membersOfPage;
-
     private UserGQO hasUser;
 
     private Collection<ContactPointGQO> hasContactPoint;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public PersonGQO() {
     }
 
-    public PersonGQO( String personalID,  String name,  String alternateName,  String description,  Collection<OwnershipGQO> owns,  String familyName,  String givenName,  java.util.Date birthDate,  PlaceGQO birthPlace,  String gender,  String email,  Collection<PersonGQO> follows,  Collection<PersonGQO> followees,  Collection<MemberRoleGQO> membersOf,  MemberRoleConnectionGQO membersOfPage,  UserGQO hasUser,  Collection<ContactPointGQO> hasContactPoint,  String id) {
+    public PersonGQO( String personalID,  String name,  String alternateName,  String description,  Collection<OwnershipGQO> owns,  String familyName,  String givenName,  java.util.Date birthDate,  PlaceGQO birthPlace,  String gender,  String email,  Collection<PersonGQO> follows,  Collection<PersonGQO> followees,  Collection<MemberRoleGQO> membersOf,  UserGQO hasUser,  Collection<ContactPointGQO> hasContactPoint,  String id) {
         this.personalID = personalID;
         this.name = name;
         this.alternateName = alternateName;
@@ -69,7 +74,6 @@ public class PersonGQO implements PartyGQO, NodeGQO{
         this.follows = follows;
         this.followees = followees;
         this.membersOf = membersOf;
-        this.membersOfPage = membersOfPage;
         this.hasUser = hasUser;
         this.hasContactPoint = hasContactPoint;
         this.id = id;

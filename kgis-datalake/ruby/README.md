@@ -1,3 +1,6 @@
+
+# 根据dgschema.json 生成拼接graphql语句java工具
+
 [RubyGems 101: How to use a third-party Gem in your Ruby application](https://medium.com/@gratefulcheddar/rubygems-101-how-to-use-a-third-party-gem-in-your-ruby-application-37249529dbc7)
 
 
@@ -52,7 +55,7 @@ $ bundle install
 
 
 ```bash
-../gradlew :kgis-datalake:downloadApolloSchema -Pcom.apollographql.apollo.endpoint=http://localhost:8080/graphql -Pcom.apollographql.apollo.schema=ruby/kgis-dgschema.json
+../gradlew :kgis-datalake:downloadApolloSchema -Pcom.apollographql.apollo.endpoint=http://localhost:8080/graphql -Pcom.apollographql.apollo.schema=ruby/kgis-generated-dgschema.json
 ```
 也可以直接用intellij Gradle任务Tasks/apollo/downloadApolloSchema进行
 

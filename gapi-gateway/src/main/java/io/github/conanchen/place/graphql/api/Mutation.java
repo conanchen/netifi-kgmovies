@@ -1,16 +1,22 @@
 package io.github.conanchen.place.graphql.api;
 
-import io.github.conanchen.place.graphql.model.StoreCreateInputGQO;
-import io.github.conanchen.place.graphql.model.StoreCreatePayloadGQO;
-import io.github.conanchen.place.graphql.model.StoreUpdateInputGQO;
-import io.github.conanchen.place.graphql.model.StoreUpdatePayloadGQO;
+import java.util.*;
+import io.github.conanchen.person.graphql.model.*;
+import io.github.conanchen.organization.graphql.model.*;
+import io.github.conanchen.acl.graphql.model.*;
+import io.github.conanchen.shoppingfulfill.graphql.model.*;
+import io.github.conanchen.place.graphql.model.*;
+import io.github.conanchen.action.graphql.model.*;
+import io.github.conanchen.shoppingcart.graphql.model.*;
+import io.github.conanchen.zommon.graphql.model.*;
+import io.github.conanchen.shoppingdoor.graphql.model.*;
+import graphql.schema.DataFetchingEnvironment;
+import graphql.relay.Connection;
 
 public interface Mutation {
-
-    @javax.validation.constraints.NotNull
-    StoreCreatePayloadGQO storeCreate(StoreCreateInputGQO input) throws Exception;
-
-    @javax.validation.constraints.NotNull
-    StoreUpdatePayloadGQO storeUpdate(StoreUpdateInputGQO input) throws Exception;
-
+// KK
+    @lombok.NonNull
+    StoreCreatePayloadGQO storeCreate(StoreCreateInputGQO input, DataFetchingEnvironment env) throws Exception;
+    @lombok.NonNull
+    StoreUpdatePayloadGQO storeUpdate(StoreUpdateInputGQO input, DataFetchingEnvironment env) throws Exception;
 }

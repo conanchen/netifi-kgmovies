@@ -15,12 +15,6 @@
  */
 package io.github.example.springdata.redis.sync;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.springframework.data.redis.connection.stream.StreamOffset.*;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import io.github.example.springdata.redis.SensorData;
 import io.github.example.springdata.redis.test.util.RequiresRedisServer;
 import org.junit.Before;
@@ -38,6 +32,13 @@ import org.springframework.data.redis.core.StreamOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.springframework.data.redis.connection.stream.StreamOffset.fromStart;
 
 /**
  * @author Christoph Strobl

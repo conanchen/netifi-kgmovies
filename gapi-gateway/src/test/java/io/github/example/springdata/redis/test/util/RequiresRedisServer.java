@@ -18,17 +18,16 @@ package io.github.example.springdata.redis.test.util;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import io.lettuce.core.api.StatefulRedisConnection;
-
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.time.Duration;
-
 import org.junit.AssumptionViolatedException;
 import org.junit.rules.ExternalResource;
 import org.springframework.data.redis.connection.lettuce.LettuceConverters;
 import org.springframework.data.util.Version;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.time.Duration;
 
 /**
  * Implementation of junit rule {@link ExternalResource} to verify Redis (or at least something on the defined host and

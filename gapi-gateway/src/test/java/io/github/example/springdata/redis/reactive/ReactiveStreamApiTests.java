@@ -15,11 +15,6 @@
  */
 package io.github.example.springdata.redis.reactive;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.springframework.data.redis.connection.stream.StreamOffset.*;
-
-import java.time.Duration;
-
 import io.github.example.springdata.redis.SensorData;
 import io.github.example.springdata.redis.test.util.RequiresRedisServer;
 import org.junit.Before;
@@ -39,6 +34,11 @@ import org.springframework.data.redis.stream.StreamReceiver;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
+
+import java.time.Duration;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.data.redis.connection.stream.StreamOffset.fromStart;
 
 /**
  * @author Christoph Strobl

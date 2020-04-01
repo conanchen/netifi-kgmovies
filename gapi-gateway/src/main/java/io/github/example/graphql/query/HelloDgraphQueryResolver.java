@@ -1,6 +1,6 @@
 package io.github.example.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
 import io.dgraph.DgraphClient;

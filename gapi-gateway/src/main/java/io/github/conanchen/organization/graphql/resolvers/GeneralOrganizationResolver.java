@@ -1,20 +1,25 @@
 package io.github.conanchen.organization.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import io.github.conanchen.organization.graphql.model.EmployeeRoleConnectionGQO;
+import graphql.kickstart.tools.GraphQLResolver;
+import graphql.relay.Connection;
+import graphql.schema.DataFetchingEnvironment;
+import io.github.conanchen.organization.graphql.api.Resolvers;
+import io.github.conanchen.organization.graphql.model.EmployeeRoleGQO;
 import io.github.conanchen.organization.graphql.model.GeneralOrganizationGQO;
-import io.github.conanchen.organization.graphql.model.MemberRoleConnectionGQO;
+import io.github.conanchen.organization.graphql.model.MemberRoleGQO;
 import org.springframework.stereotype.Service;
 
 @Service
-class GeneralOrganizationResolver implements GraphQLResolver<GeneralOrganizationGQO> {
+class GeneralOrganizationResolver implements Resolvers.GeneralOrganization,GraphQLResolver<GeneralOrganizationGQO> {
 
-    public EmployeeRoleConnectionGQO employeesPage(GeneralOrganizationGQO generalOrganizationGQO, String after, Integer first, Integer before, String last, String personId) throws Exception {
+
+    @Override
+    public Connection<EmployeeRoleGQO> employeesPage(GeneralOrganizationGQO parent, String after, Integer first, String before, Integer last, String personId, DataFetchingEnvironment env) {
         return null;
     }
 
-    public MemberRoleConnectionGQO membersPage(GeneralOrganizationGQO generalOrganizationGQO, String after, Integer first, Integer before, String last, String personId) throws Exception {
-        // TODO Auto-generated method stub
+    @Override
+    public Connection<MemberRoleGQO> membersPage(GeneralOrganizationGQO parent, String after, Integer first, String before, Integer last, String personId, DataFetchingEnvironment env) {
         return null;
     }
 }

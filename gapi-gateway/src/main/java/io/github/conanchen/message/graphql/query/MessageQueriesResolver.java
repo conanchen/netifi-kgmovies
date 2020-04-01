@@ -1,16 +1,14 @@
 package io.github.conanchen.message.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.relay.Connection;
 import graphql.relay.SimpleListConnection;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.message.graphql.api.Query;
 import io.github.conanchen.message.graphql.model.*;
-import io.github.conanchen.person.graphql.model.UserGQO;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Collection;
 
 
 @Service

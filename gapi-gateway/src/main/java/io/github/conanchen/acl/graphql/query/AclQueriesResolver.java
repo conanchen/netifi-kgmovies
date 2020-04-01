@@ -1,19 +1,24 @@
 package io.github.conanchen.acl.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.GraphQLContext;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.acl.graphql.api.Query;
 import io.github.conanchen.acl.graphql.model.*;
+import io.github.config.CustomAuthGraphQLContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-
+@Slf4j
 @Service
 public class AclQueriesResolver implements Query, GraphQLQueryResolver {
 
 
     @Override
     public ACLRoleGQO aclRoleFind(String id, String ugId, DataFetchingEnvironment env) throws Exception {
-        return null;
+        CustomAuthGraphQLContext a = env.getContext();
+        log.info(String.format("env.getContext() = %s",a.getAuthContext().toString()));
+        return ACLRoleGQO.builder().name("rolename").alternateName("rolealtername").build();
     }
 
     @Override

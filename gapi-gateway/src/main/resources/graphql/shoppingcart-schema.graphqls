@@ -1,7 +1,7 @@
 extend type Query {
     """https://api.cartql.com/ Use this to get a cart by a custom ID. If a cart doesn't exist with this ID, it will be created for you."""
     cart(id: ID! currency: CurrencyInput): Cart
-    order(id: ID, orderID: ID): Order
+    poder(id: ID, poderID: ID): Poder
     checkout(id: ID, checkoutID: ID): Checkout
     postalAddress(id: ID, paID: ID): PostalAddress
 }
@@ -32,8 +32,8 @@ extend type Mutation {
     """结算单创建https://shopify.dev/graphiql/storefront-graphiql Creates a new checkout."""
     checkoutCreate(input: CheckoutCreateInput!): CheckoutPayload
 
-    """结算单拼单创建https://shopify.dev/graphiql/storefront-graphiql Creates a new checkout with other customer's order."""
-    checkoutCreatePlusOrder(input: CheckoutCreatePlusOrderInput!): CheckoutPayload
+    """结算单拼单创建https://shopify.dev/graphiql/storefront-graphiql Creates a new checkout with other customer's poder."""
+    checkoutCreatePlusPoder(input: CheckoutCreatePlusPoderInput!): CheckoutPayload
 
     """结算单折扣券加入Applies a discount to an existing checkout using a discount code."""
     checkoutDiscountCodeApply(discountCode: String!checkoutId: ID!): CheckoutPayload
@@ -178,7 +178,10 @@ input AddToCartInput {
     attributes: [CustomAttributeInput]
 }
 
-type Cart implements ACLable & Node{
+"""
+购物车
+"""
+type Cart implements Node{
     currency: Currency!
     email: String
     totalItems: Int
@@ -195,15 +198,15 @@ type Cart implements ACLable & Node{
     createdAt: DateTime!
     updatedAt: DateTime!
 
-    """受访问控制的Thing资源对象都有ACLMetadata，逆属性 ACLMetadata.isAclmetadataOf"""
-    hasAclmetadata: ACLMetadata
-
     """The id of the object."""
     id: ID!
 }
 
-type CartItem {
-    id: ID!
+"""
+购物车内物品、服务、优惠券等
+"""
+type CartItem  implements Node{
+
     name: String
     description: String
     type: CartItemType!
@@ -214,8 +217,14 @@ type CartItem {
     attributes: [CustomAttribute!]!
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    """The id of the object."""
+    id: ID!
 }
 
+"""
+购物车内物品、服务、优惠券等类型
+"""
 enum CartItemType {
     SKU
     TAX
@@ -273,7 +282,7 @@ input CheckoutCreateInput {
 
     id: ID!
 }
-input CheckoutCreatePlusOrderInput {
+input CheckoutCreatePlusPoderInput {
     """
     客户端变更请求的唯一标识，A unique identifier for the client performing the mutation.
     """
@@ -456,7 +465,12 @@ type AppliedGiftCard{
 type AvailableShippingRates{
     id: ID
 }
-"""Checkout:A container for all the information required to checkout items and pay."""
+
+"""
+Checkout:A container for all the information required to checkout items and pay.
+结算单，包含需要结算和支付的所有信息：税收、送货地址、发票账单寄送地址、备注说明等
+结算单信息完备后才可以创建订单
+"""
 type Checkout implements Node{
     """The gift cards used on the checkout."""
     appliedGiftCards: [AppliedGiftCard!]!
@@ -477,13 +491,13 @@ type Checkout implements Node{
     customAttributes: [CustomAttribute!]!
 
     """Discounts that have been applied on the checkout."""
-    discountApplications(first: Int after: String last: Int before: String reverse: Boolean = false): DiscountApplicationConnection!
+    discountApplications(first: Int after: String last: Int before: String reverse: Boolean = false): DiscountApplicationConnection!  @connection(for: "DiscountApplication")
 
     """The email attached to this checkout."""
     email: String
 
     """A list of line item objects, each one containing information about an item in the checkout."""
-    lineItems(first: Int after: String last: Int before: String reverse: Boolean = false): CheckoutLineItemConnection!
+    lineItems(first: Int after: String last: Int before: String reverse: Boolean = false): CheckoutItemConnection! @connection(for: "CheckoutItem")
 
     """The sum of all the prices of all the items in the checkout. Taxes, shipping and discounts excluded."""
     lineItemsSubtotalPrice: Money!
@@ -491,11 +505,11 @@ type Checkout implements Node{
     """The note associated with the checkout."""
     note: String
 
-    """The resulting order from a paid checkout."""
-    order: Order
+    """The resulting poder from a paid checkout."""
+    poder: Poder
 
-    """The Order Status Page for this Checkout, null when checkout is not completed."""
-    orderStatusUrl: URL
+    """The Poder Status Page for this Checkout, null when checkout is not completed."""
+    poderStatusUrl: URL
 
     """The amount left to be paid. This is equal to the cost of the line items, taxes and shipping minus discounts and gift cards."""
     paymentDueV2: Money!
@@ -541,45 +555,12 @@ type Checkout implements Node{
 
 }
 
-"""A connection to a list of items."""
-type CheckoutLineItemConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
 
-    """A list of edges."""
-    edges: [CheckoutLineItemEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    films: [CheckoutLineItem]
-}
-
-"""An edge in a connection."""
-type CheckoutLineItemEdge {
-    """The item at the end of the edge"""
-    node: CheckoutLineItem
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}
-
-
-"""A single line item in the checkout, grouped by variant and attributes."""
-type CheckoutLineItem implements Node{
+"""
+A single line item in the checkout, grouped by variant and attributes.
+结算单内容项
+"""
+type CheckoutItem implements Node{
     """Extra information in the form of an array of Key-Value pairs about the line item."""
     customAttributes: [CustomAttribute!]!
 
@@ -613,42 +594,6 @@ type DiscountAllocation implements Node{
 
 }
 
-"""A connection to a list of items."""
-type DiscountApplicationConnection {
-    """Information to aid in pagination."""
-    pageInfo: PageInfo!
-
-    """A list of edges."""
-    edges: [DiscountApplicationEdge]
-
-    """
-    A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-    """
-    totalCount: Int
-
-    """
-    A list of all of the objects returned in the connection. This is a convenience
-    field provided for quickly exploring the API; rather than querying for
-    "{ edges { node } }" when no edge data is needed, this field can be be used
-    instead. Note that when clients like Relay need to fetch the "cursor" field on
-    the edge to enable efficient pagination, this shortcut cannot be used, and the
-    full "{ edges { node } }" version should be used instead.
-    """
-    films: [DiscountApplication]
-}
-
-"""An edge in a connection."""
-type DiscountApplicationEdge {
-    """The item at the end of the edge"""
-    node: DiscountApplication
-
-    """A cursor for use in pagination"""
-    cursor: String!
-}
-
 type DiscountApplication implements Node{
 
     """The id of the object. Globally unique identifier."""
@@ -667,8 +612,8 @@ type CheckoutPayload{
 
 """Checkout complete mutation api response payload"""
 type CheckoutCompletePayload{
-    """The order object ."""
-    order: Order
+    """The poder object ."""
+    poder: Poder
 
     """List of errors that occurred executing the mutation."""
     checkoutErrors: [CheckoutError!]!
@@ -676,8 +621,8 @@ type CheckoutCompletePayload{
 
 """Payment complete mutation api response payload"""
 type PaymentCompletePayload{
-    """The order object ."""
-    order: Order
+    """The poder object ."""
+    poder: Poder
 
     """List of errors that occurred executing the mutation."""
     paymentErrors: [PaymentError!]!
@@ -862,122 +807,140 @@ type Money{
     formatted: String!
 }
 
-"""https://schema.org/Order An order is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted by the customer."""
-type Order implements Node{
+"""
+https://schema.org/Poder An poder is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted by the customer.
+命名为Poder即是PurchaseOrder购物订单的意思,为了区分排序单词Order
+"""
+type Poder implements Node{
     """
-    acceptedOffer    Offer    The offer(s) -- e.g., product, quantity and price combinations -- included in the order.
-    billingAddress    PostalAddress    The billing address for the order.
-    broker    Organization  or Person    An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. Supersedes bookingAgent."""
+    acceptedOffer    Offer    The offer(s) -- e.g., product, quantity and price combinations -- included in the poder.
+    billingAddress    PostalAddress    The billing address for the poder.
+    broker    Organization  or Person    An entity that arranges for an exchange between a buyer and a seller. In most cases a broker never acquires or releases ownership of a product or service involved in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred. Supersedes bookingAgent.
+    """
     broker:    Party
 
-    """confirmationNumber    Text    A number that confirms the given order or payment has been received.
-    customer    Organization  or Person    Party placing the order or paying the invoice."""
+    """
+    confirmationNumber    Text    A number that confirms the given poder or payment has been received.
+    customer    Organization  or Person    Party placing the poder or paying the invoice.
+    """
     customer:    Party
 
-    """discount    Number  or Text    Any discount applied (to an Order).
+    """
+    discount    Number  or Text    Any discount applied (to an Poder).
     discountCode    Text    Code used to redeem a discount.
     discountCurrency    Text    The currency of the discount.
 
     Use standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g. "BTC"; well known names for Local Exchange Tradings Systems (LETS) and other currency types e.g. "Ithaca HOUR".
 
-    isGift    Boolean    Was the offer accepted as a gift for someone other than the buyer."""
+    isGift    Boolean    Was the offer accepted as a gift for someone other than the buyer.
+    """
     isGift: Boolean
 
-    """orderDate    DateTime  or DateTime    DateTime order was placed."""
-    orderDate: DateTime
+    """
+    poderDate    DateTime  or DateTime    DateTime poder was placed.
+    """
+    poderDate: DateTime
 
-    """orderDelivery    FulfillDelivery    The delivery of the parcel related to this order or order item."""
-    orderDelivery:    FulfillDelivery
+    """
+    poderDelivery    FulfillDelivery    The delivery of the parcel related to this poder or poder item.
+    """
+    poderDelivery:    FulfillDelivery
 
-    """orderNumber    Text    The identifier of the transaction."""
-    orderNumber: String
+    """
+    poderNumber    Text    The identifier of the transaction.
+    """
+    poderNumber: String
 
-    """orderStatus    OrderStatus    The current status of the order."""
-    orderStatus:    OrderStatus
+    """
+    poderStatus    PoderStatus    The current status of the poder.
+    """
+    poderStatus:    PoderStatus
 
-    """orderedItem    OrderItem  or Product  or Service    The item ordered."""
-    orderedItem:    [OrderItem]
+    """
+    poderedItem    PoderItem  or Product  or Service    The item podered.
+    """
+    poderedItem:    [PoderItem]
 
-    """partOfInvoice    Invoice    The order is being paid as part of the referenced Invoice.
+    """
+    partOfInvoice    Invoice    The poder is being paid as part of the referenced Invoice.
     paymentDueDate    DateTime  or DateTime    The date that payment is due. Supersedes paymentDue.
-    paymentMethod    PaymentMethod    The name of the credit card or other method of payment for the order.
+    paymentMethod    PaymentMethod    The name of the credit card or other method of payment for the poder.
     paymentMethodId    Text    An identifier for the method of payment used (e.g. the last 4 digits of the credit card).
     paymentUrl    URL    The URL for sending a payment.
     seller    Organization  or Person    An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
     """
     seller:    Organization
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
-    cartId: ID!
-    email: String!
-    shipping: PostalAddress!
-    billing: PostalAddress!
-    subTotal: Money!
-    shippingTotal: Money!
-    taxTotal: Money!
-    grandTotal: Money!
-    totalItems: Int!
-    totalUniqueItems: Int!
-    notes: String
-    attributes: [CustomAttribute!]!
-    createdAt: DateTime!
-    updatedAt: DateTime!
-
-    """The id of the object."""
+    """
+    The id of the object.
+    """
     id: ID!
 }
 
-"""https://schema.org/OrderItem
-An order item is a line of an order. It includes the quantity and shipping details of a bought offer."""
-type OrderItem implements Node{
+"""
+https://schema.org/PoderItem
+An poder item is a line of an poder. It includes the quantity and shipping details of a bought offer.
+购物订单内容项
+"""
+type PoderItem implements Node{
 
-    """partOfOrder    Order    The overall order the items in this delivery were included in."""
-    partOfOrder:    Order
+    """
+    partOfPoder    Poder    The overall poder the items in this delivery were included in.
+    """
+    partOfPoder:    Poder
 
-    """orderDelivery    FulfillDelivery    The delivery of the parcel related to this order or order item."""
-    orderDelivery:    FulfillDelivery
+    """
+    poderDelivery    FulfillDelivery    The delivery of the parcel related to this poder or poder item.
+    """
+    poderDelivery:    FulfillDelivery
 
-    """orderItemNumber    Text    The identifier of the order item."""
-    orderItemNumber: String
+    """
+    poderItemNumber    Text    The identifier of the poder item.
+    """
+    poderItemNumber: String
 
-    """orderItemStatus    OrderStatus    The current status of the order item."""
-    orderItemStatus:    OrderStatus
+    """
+    poderItemStatus    PoderStatus    The current status of the poder item.
+    """
+    poderItemStatus:    PoderStatus
 
-    """orderQuantity    Number    The number of the item ordered. If the property is not set, assume the quantity is one."""
-    orderQuantity: Int
+    """
+    poderQuantity    Number    The number of the item podered. If the property is not set, assume the quantity is one.
+    """
+    poderQuantity: Int
 
-    """orderedItem    OrderItem  or Product  or Service"""
-    orderedItem: Shoppingable
+    """
+    poderedItem    PoderItem  or Product  or Service
+    """
+    poderedItem: Shoppingable
 
-    """[Potential Action:There is an action status for potential actions, if you want to markup actions that have not occurred yet but are possible. potentialAction is defined by schema.org as “an idealized action in which this thing would play an 'object' role”](https://ondyr.com/what-is-action-schema/)"""
+    """
+    [【预期的行动】潜在的与之搭配的动作，它描述了一个理想化的动作，在这个动作中，这个东西会起到“对象”的作用。](https://ondyr.com/what-is-action-schema/)
+    """
     potentialActions: [Action]
 
-    type: CartItemType!
-    images: [String]
-    unitTotal: Money!
-    lineTotal: Money!
-    quantity: Int!
-    createdAt: DateTime!
-    updatedAt: DateTime!
-    attributes: [CustomAttribute!]!
-
-    """The id of the object."""
+    """
+    The id of the object.
+    """
     id: ID!
 }
 
-enum OrderStatus{
-    OrderCancelled
-    OrderDelivered
-    OrderInTransit
-    OrderPaymentDue
-    OrderUNPAID
-    OrderPAID
-    OrderPickupAvailable
-    OrderProblem
-    OrderProcessing
-    OrderReturned
+enum PoderStatus{
+    PoderCancelled
+    PoderDelivered
+    PoderInTransit
+    PoderPaymentDue
+    PoderUNPAID
+    PoderPAID
+    PoderPickupAvailable
+    PoderProblem
+    PoderProcessing
+    PoderReturned
 }
 
 

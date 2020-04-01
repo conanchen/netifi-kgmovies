@@ -1,6 +1,6 @@
 package io.github.example.graphql.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.github.example.graphql.model.HelloPerson;
 import io.github.example.graphql.service.HelloPersonService;
 import org.springframework.stereotype.Service;

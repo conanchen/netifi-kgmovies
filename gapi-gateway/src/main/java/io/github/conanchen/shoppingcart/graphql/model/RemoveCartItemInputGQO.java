@@ -1,31 +1,25 @@
 package io.github.conanchen.shoppingcart.graphql.model;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class RemoveCartItemInputGQO {
 
-    @javax.validation.constraints.NotNull
+
+    private String clientMutationId;
+    @lombok.NonNull
     private String cartId;
-    @javax.validation.constraints.NotNull
+    @lombok.NonNull
     private String id;
 
     public RemoveCartItemInputGQO() {
     }
 
-    public RemoveCartItemInputGQO(String cartId, String id) {
+    public RemoveCartItemInputGQO( String clientMutationId,  String cartId,  String id) {
+        this.clientMutationId = clientMutationId;
         this.cartId = cartId;
-        this.id = id;
-    }
-
-    public String getCartId() {
-        return cartId;
-    }
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
-    }
-
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
         this.id = id;
     }
 
