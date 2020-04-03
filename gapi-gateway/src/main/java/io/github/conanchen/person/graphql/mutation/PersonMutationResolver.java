@@ -2,6 +2,7 @@ package io.github.conanchen.person.graphql.mutation;
 
 
 import com.dgraph.graphql.*;
+import com.google.gson.Gson;
 import com.shopify.graphql.support.ID;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.schema.DataFetchingEnvironment;
@@ -81,10 +82,13 @@ public class PersonMutationResolver implements Mutation, GraphQLMutationResolver
                 .token(jws)
                 .user(userGQO)
                 .signinErrors(Arrays.asList(UserSigninErrorGQO.builder()
-                        .code(UserSigninErrorCodeGQO.SUCC)
-                        .message("成功登陆").build()))
+                        .code(UserSigninErrorCodeGQO.INVALID)
+                        .message("邮箱格式错误").build()))
                 .build();
 
+
+
+        log.info("res : "+new Gson().toJson(userSigninPayloadGQO));
 
         return userSigninPayloadGQO;
     }

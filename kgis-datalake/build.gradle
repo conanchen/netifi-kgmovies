@@ -1,100 +1,93 @@
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
-
-plugins {
-    id 'java'
-    id 'application'
-    id 'org.springframework.boot'
-    id 'com.google.protobuf'
-    id 'java-library'
-    id 'com.bmuschko.docker-remote-api' version '3.4.4'
-    id 'com.apollographql.apollo' version '1.3.3'
-}
-
-
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'com.apollographql.apollo'
 dependencies {
-
-//    implementation ("com.netifi:netifi-spring-boot-starter"){
-//        exclude group: 'ch.qos.logback'
-//    }
-    implementation ('org.springframework.boot:spring-boot-starter-web')
-
-    compile 'io.dgraph:dgraph4j'
-
-  //  compile 'com.shopify.graphql.support:support'
-
-
-    compile project(':support')
-
-    compile "joda-time:joda-time:2.10.5"
-    
-    // If not already on your classpath, you might need the jetbrains annotations
-    compileOnly("org.jetbrains:annotations:13.0")
-    testCompileOnly("org.jetbrains:annotations:13.0")
-    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
-
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'joda-time', name: 'joda-time', version: '2.10.5'
+    compile "com.squareup.okhttp3:logging-interceptor:3.7.0"
+    compile "com.google.code.gson:gson:2.7"
+    compile "io.reactivex.rxjava2:rxjava:2.0.6"
+    compile group: 'org.json', name: 'json', version: '20190722'
 }
 
-mainClassName = 'io.github.kgis.KgisApplication'
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-// Packaging
-task buildImage(type: DockerBuildImage, dependsOn: build) {
-    buildArgs = ['JAR_FILE': "${bootJar.archiveName}"]
-    dockerFile = file("${projectDir}/Dockerfile")
-    inputDir = file("${projectDir}")
-    tags = ["gregnetifi/${projectDir.name}", "gregnetifi/${projectDir.name}:${version}"]
-}
 
-protobuf {
-    protoc {
-        artifact = 'com.google.protobuf:protoc'
-    }
-    plugins {
-        rsocketRpc {
-            artifact = 'io.rsocket.rpc:rsocket-rpc-protobuf'
-        }
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.plugins {
-                rsocketRpc {}
+
+
+
+
+// 仓库
+def local = true
+// 是否为快照版本
+def snapshot = true
+
+
+if (local) {
+    uploadArchives {
+        repositories.mavenDeployer {
+            repository(url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath)
+            snapshotRepository(url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath)
+
+            pom.project {
+                // 注意：【这里通过切换 versionName 的赋值来区分上传快照包还是正式包（snapshot 版本必须以 -SNAPSHOT 结尾）】
+                //version snapshotVersionName
+                //组 maven_pom_groupid
+                groupId "com.bdlbsc"
+                //项目名称
+                artifactId "dgraph-graphql"
+                //  类型
+                packaging "jar"
+                // 描述
+                description "dgraph graphql sdk"
+                if (snapshot) {
+                    // 版本
+                    version "latest-SNAPSHOT"
+                } else {
+                    // 版本
+                    version "latest"
+                }
+
+
             }
         }
     }
-}
 
-apollo {
-    onCompilationUnit {
-        graphqlSourceDirectorySet.srcDirs += "src/main/graphql/dgraph"
-        graphqlSourceDirectorySet.exclude("**/*.gql")
-        rootPackageName.set("io.github.kgis")
-    }
-    customTypeMapping = [
-            "Date" : "java.util.Date",
-            "DateTime" : "java.util.Date"
-    ]
-}
+} else {
+    uploadArchives {
+        repositories.mavenDeployer {
+            repository(url: 'http://localhost:8081') {
+                authentication(userName: 'admin', password: 'admin')
+            }
 
+            snapshotRepository(url: 'http://localhost:8081') {
+                authentication(userName: 'admin', password: 'admin')
+            }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java',
-                       'build/generated/source/proto/main/java',
-                       'build/generated/source/proto/main/rsocketRpc']
+            pom.project {
+                // 注意：【这里通过切换 versionName 的赋值来区分上传快照包还是正式包（snapshot 版本必须以 -SNAPSHOT 结尾）】
+                //version snapshotVersionName
+                //组 maven_pom_groupid
+                groupId "com.bdlbsc"
+                //项目名称
+                artifactId "dgraph-graphql"
+                //  类型
+                packaging "jar"
+                // 描述
+                description "dgraph graphql sdk"
+                // 版本
+                if (snapshot) {
+                    // 版本
+                    version "latest-SNAPSHOT"
+                } else {
+                    // 版本
+                    version "latest"
+                }
+            }
         }
-        resources {
-            srcDirs = ['src/main/resources']
-        }
-    }
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
     }
 }
