@@ -33,3 +33,22 @@
         - 1.3. README.md
 
 ![How Graphql BFFWorks](document/HowBFFWorks.png)
+
+
+使用 GraphQL 搭建 BFF，如果出现前后端分工、沟通等方面的矛盾。我们可以将 GraphQL 服务降级为 RESTful 服务，无非就是把需要前端编写的查询语句，写死在后端接口里面罢了。
+
+如果实现的是 RESTful 服务，要转换成 GraphQL 服务，就没有那么简单了。
+
+有了这种优雅降级的能力，我们可以更加放心大胆的推动 GraphQL-BFF 方案。
+
+两类 GraphQL API Gateway 服务
+同样是 API Gateway 角色的 GraphQL 服务，在实现方式上也有不同的分类。
+
+1）包含大量真实的数据操作和处理的 GraphQL
+
+2）转发数据请求，聚合数据结果的 GraphQL
+
+第一类，是传统意义上的后端服务；第二类，[则是我们今天的重点，GraphQL as BFF。](https://www.infoq.cn/article/8CTAakhd*EsUtwqIcGNl)
+
+
+
