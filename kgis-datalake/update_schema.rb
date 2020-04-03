@@ -40,7 +40,7 @@ custom_scalars = [
 GraphQLJavaGen.new(
   schema,
   package_name: "io.github.kgis.graphql",
-  nest_under: 'Storefront',
+  nest_under: 'Kgisfront',
   custom_scalars: custom_scalars,
   include_deprecated: true
 ).save_granular(target_filename)
