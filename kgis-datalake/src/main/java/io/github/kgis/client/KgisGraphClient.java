@@ -15,13 +15,11 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 
-
-public class GraphClient {
+public class KgisGraphClient {
     private HttpResponseParser httpResponseParser;
 
-    private GraphClient() {
+    private KgisGraphClient() {
         httpResponseParser = new HttpResponseParser();
     }
 
@@ -35,30 +33,30 @@ public class GraphClient {
 
     public static class Builder {
 
-        private static GraphClient graphClient;
+        private static KgisGraphClient kgisGraphClient;
 
         private Builder() {
-            graphClient = new GraphClient();
+            kgisGraphClient = new KgisGraphClient();
         }
 
         public Builder setUrl(String url) {
-            graphClient.url = url;
+            kgisGraphClient.url = url;
             return this;
         }
 
         public Builder setHttpClient(OkHttpClient client) {
-            graphClient.okHttpClient = client;
+            kgisGraphClient.okHttpClient = client;
             OkHttpUtils.getInstance().setClient(client);
             return this;
         }
 
         public Builder setHeaders(Map<String, String> headers) {
-            graphClient.headers = headers;
+            kgisGraphClient.headers = headers;
             return this;
         }
 
-        public GraphClient build() {
-            return graphClient;
+        public KgisGraphClient build() {
+            return kgisGraphClient;
         }
     }
 

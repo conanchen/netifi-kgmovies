@@ -1,7 +1,6 @@
 package io.github.conanchen.person.graphql.mutation;
 
 
-import com.dgraph.graphql.*;
 import com.google.gson.Gson;
 import com.shopify.graphql.support.ID;
 import graphql.kickstart.tools.GraphQLMutationResolver;
@@ -9,6 +8,11 @@ import graphql.schema.DataFetchingEnvironment;
 import io.github.conanchen.person.graphql.api.Mutation;
 import io.github.conanchen.person.graphql.model.*;
 import io.github.config.GraphQLConfiguration;
+import io.github.kgis.client.KgisGraphClient;
+import io.github.kgis.graphql.Operations;
+import io.github.kgis.graphql.QueryRoot;
+import io.github.kgis.graphql.QueryRootQuery;
+import io.github.kgis.graphql.User;
 import io.jsonwebtoken.Jwts;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
@@ -32,7 +36,7 @@ import java.util.UUID;
 public class PersonMutationResolver implements Mutation, GraphQLMutationResolver {
 
     @Autowired
-    GraphQLConfiguration graphQLConfiguration;
+    KgisGraphClient kgisGraphClient;
 
     @Override
     public UserSigninPayloadGQO userSignin(UserSigninInputGQO auth, DataFetchingEnvironment env) throws Exception {
@@ -45,14 +49,13 @@ public class PersonMutationResolver implements Mutation, GraphQLMutationResolver
         QueryRootQuery query = Operations.query(queryRootQuery -> queryRootQuery.getUser(getUserArguments -> {
             getUserArguments.username(email);
         }, userQuery -> {
-            userQuery.id();
             userQuery.name();
             userQuery.username();
         }));
 
         log.info("查询语句 : " + query.toString());
 
-        QueryRoot queryRoot = graphQLConfiguration.graphClient().queryGraphSynchronize(
+        QueryRoot queryRoot = kgisGraphClient.queryGraphSynchronize(
                 query
         );
 

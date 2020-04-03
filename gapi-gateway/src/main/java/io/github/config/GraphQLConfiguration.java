@@ -1,6 +1,5 @@
 package io.github.config;
 
-import com.bdlbsc.graphql.GraphClient;
 import graphql.GraphQL;
 import graphql.execution.AsyncExecutionStrategy;
 import graphql.kickstart.tools.SchemaParserOptions;
@@ -10,6 +9,7 @@ import graphql.schema.idl.InterfaceWiringEnvironment;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.UnionWiringEnvironment;
 import graphql.schema.idl.WiringFactory;
+import io.github.kgis.client.KgisGraphClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,8 +39,8 @@ public class GraphQLConfiguration {
 
     // dgraph graphql client 客户端
     @Bean
-    public GraphClient graphClient() {
-        return GraphClient.builder()
+    public KgisGraphClient graphClient() {
+        return KgisGraphClient.builder()
                 .setUrl("http://localhost:8080/graphql")
                 .build();
     }
