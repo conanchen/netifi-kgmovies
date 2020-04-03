@@ -52,3 +52,15 @@
 
 
 
+# 基于函数计算的 BFF 架构
+![基于函数计算的 BFF 架构](document/BFFAndApigateway.png)
+[基于函数计算的 BFF 架构](https://yq.aliyun.com/articles/752780)
+函数计算平台的 BFF 架构方案有四层：端侧、网关层、BFF 层和中台服务。
+
+端侧可以保持自己熟悉的技术方案进行开发。比如网页端可以选择 React 或者 Vue.js，移动端可以选择 Java/Kotlin 或者 Objective C/Swift。也可以选择 React Native 或者 Flutter 这种跨多端的方案。
+
+网关层有两种选择：API Gateway 和 HTTP Trigger。API Gateway 的功能丰富，支持限流，但是会产生额外的费用。HTTP Trigger 支持简单的路由映射，绑定域名，虽然不支持限流但是免费的，适用于轻量级应用。
+
+本地调试。偏好命令行的开发者可以使用 [funcraft](https://github.com/alibaba/funcraft) 工具通过 fun local start 本地启动服务。偏好桌面 GUI 的开发者可以使用函数计算提供的 [VSCode Plugin](https://marketplace.visualstudio.com/items?itemName=aliyun.aliyun-serverless)。
+
+单元测试可以选中自己喜欢的测试框架：Mocha 或者 Jest
