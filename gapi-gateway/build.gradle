@@ -38,7 +38,6 @@ dependencies {
     compile ("io.projectreactor:reactor-core"){exclude group: 'ch.qos.logback'}
     compile ("org.springframework.data:spring-data-redis"){exclude group: 'ch.qos.logback'}
 
-//    compile ("com.graphql-java-kickstart:graphql-java-tools:6.0.0"){exclude group: 'ch.qos.logback'}
     compile ("com.graphql-java-kickstart:graphql-spring-boot-starter"){exclude group: 'ch.qos.logback'}
     compile ('com.graphql-java-kickstart:altair-spring-boot-starter'){exclude group: 'ch.qos.logback'}
     compile ('com.graphql-java-kickstart:graphiql-spring-boot-starter'){exclude group: 'ch.qos.logback'}

@@ -166,7 +166,7 @@ subprojects {
            // dependency 'com.shopify.graphql.support:support:0.2.0'
 
             dependency "com.bdlbsc:dgraph-graphql:latest-SNAPSHOT"
-            dependency "io.cloudevents:cloudevents-api${cloudeventsVersion}"
+            dependency "io.cloudevents:cloudevents-api:${cloudeventsVersion}"
         }
     }
 }
