@@ -1,7 +1,6 @@
 package io.github.kgis.client;
 
 
-import com.dgraph.graphql.*;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
