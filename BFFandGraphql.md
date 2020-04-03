@@ -64,3 +64,12 @@
 本地调试。偏好命令行的开发者可以使用 [funcraft](https://github.com/alibaba/funcraft) 工具通过 fun local start 本地启动服务。偏好桌面 GUI 的开发者可以使用函数计算提供的 [VSCode Plugin](https://marketplace.visualstudio.com/items?itemName=aliyun.aliyun-serverless)。
 
 单元测试可以选中自己喜欢的测试框架：Mocha 或者 Jest
+
+发布流程
+日常开发建议使用命令行发布，安装和配置 fun 工具以后，在 BFF 项目中放置一个 template.yml 的 ROS 描述文件，然后借助于 fun deploy 命令进行快速部署。
+
+新手也可以选择去函数计算控制台，使用 ZIP 文件包上传的方式发布。
+
+对于更复杂的场景可以配置 CI/CD。比如说代码仓库选择 Gitlab/Github，构建系统选择 Travis CI/Gitlab CI/Jenkins ，提交代码到代码仓库自动触发构建和发布。更多细节可以参考Serverless 实战 —— [Funcraft + OSS + ROS 进行 CI/CD](https://yq.aliyun.com/articles/727171)
+
+![Funcraft + OSS + ROS 进行 CI/CD](document/AliyunServerlessDeploy.png)
