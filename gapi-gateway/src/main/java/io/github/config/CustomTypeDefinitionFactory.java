@@ -13,14 +13,16 @@ class CustomTypeDefinitionFactory implements TypeDefinitionFactory {
                 ObjectTypeDefinition.newObjectTypeDefinition()
                         .name("MyType")
                         .fieldDefinition(new FieldDefinition("myField", new TypeName("String")))
-                        .fieldDefinition(new FieldDefinition("name", new TypeName("String")))
+                        .fieldDefinition(new FieldDefinition("myName", new TypeName("String")))
+                        .fieldDefinition(new FieldDefinition("myField1", new TypeName("String")))
+                        .fieldDefinition(new FieldDefinition("myName1", new TypeName("String")))
                         .build(),
 
                 ObjectTypeDefinition.newObjectTypeDefinition()
                         .name("HisType")
                         .fieldDefinition(new FieldDefinition("hisField", new TypeName("String")))
                         .fieldDefinition(FieldDefinition.newFieldDefinition()
-                                .name("name")
+                                .name("hisName")
                                 .type(new TypeName("String"))
                                 .description(new Description("【名称】该项目名称", null, false))
                                 .build())

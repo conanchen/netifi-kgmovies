@@ -1,6 +1,7 @@
 package io.github.config;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.schema.DataFetchingEnvironment;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +16,13 @@ import java.util.HashMap;
 public class MyTypeQueriesResolver implements GraphQLQueryResolver {
 
     public MyType findMyType(String id, DataFetchingEnvironment env) throws Exception {
-        MyType myType = new MyType();
-        myType.put("myField", "my field value");
-        myType.put("name", "my name value");
+
+        MyType myType  = MyType.builder()
+                .myField("my fieldvalue")
+                .myName("myname value")
+                .build()
+                .put("myField1", "my field value111")
+                .put("myName1", "my name value111");
         return myType;
 
     }

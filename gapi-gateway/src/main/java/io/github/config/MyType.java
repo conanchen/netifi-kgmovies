@@ -1,22 +1,35 @@
 package io.github.config;
 
-import com.google.common.collect.Sets;
-import org.jetbrains.annotations.NotNull;
+import lombok.Builder;
+import lombok.Data;
 
-import java.util.AbstractMap;
-import java.util.Set;
+import java.util.HashMap;
 
-public class MyType extends AbstractMap<String,Object>{
+@Builder
+public class MyType extends HashMap<String, Object> {
 
-    @NotNull
-    @Override
-    public Set<Entry<String, Object>> entrySet() {
-        return Sets.newHashSet(new SimpleImmutableEntry("myField","myfieldvalue"),
-                new SimpleImmutableEntry("name","my defined name"));
+    String myField;
+    String myName;
+
+    public MyType put(String key, Object value) {
+
+        super.put(key, value);
+        return this;
     }
 
-    @Override
-    public Object put(String key, Object value) {
-        return entrySet().add(new SimpleImmutableEntry(key,value));
+    public String getMyField() {
+        return myField;
+    }
+
+    public void setMyField(String myField) {
+        this.myField = myField;
+    }
+
+    public String getMyName() {
+        return myName;
+    }
+
+    public void setMyName(String myName) {
+        this.myName = myName;
     }
 }
