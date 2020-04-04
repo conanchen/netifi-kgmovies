@@ -28,11 +28,14 @@ class CustomTypeDefinitionFactory implements TypeDefinitionFactory {
                                 .build())
                         .build(),
 
-                //TODO : dynmically add resolvers?
                 ObjectTypeDefinition.newObjectTypeDefinition()
                         .name("Query")
                         .fieldDefinition(FieldDefinition.newFieldDefinition().name("findMyType")
                                 .type(new TypeName("MyType"))
+                                .inputValueDefinition(InputValueDefinition.newInputValueDefinition().name("id")
+                                        .type(new TypeName("String")).build()).build())
+                        .fieldDefinition(FieldDefinition.newFieldDefinition().name("findHisType")
+                                .type(new TypeName("HisType"))
                                 .inputValueDefinition(InputValueDefinition.newInputValueDefinition().name("id")
                                         .type(new TypeName("String")).build()).build())
                         .fieldDefinition(FieldDefinition.newFieldDefinition().name("searchHisType")

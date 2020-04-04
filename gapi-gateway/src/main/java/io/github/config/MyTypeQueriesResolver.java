@@ -1,5 +1,6 @@
 package io.github.config;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import graphql.kickstart.tools.GraphQLQueryResolver;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -17,7 +19,7 @@ public class MyTypeQueriesResolver implements GraphQLQueryResolver {
 
     public MyType findMyType(String id, DataFetchingEnvironment env) throws Exception {
 
-        MyType myType  = MyType.builder()
+        MyType myType = MyType.builder()
                 .myField("my fieldvalue")
                 .myName("myname value")
                 .build()
@@ -27,7 +29,15 @@ public class MyTypeQueriesResolver implements GraphQLQueryResolver {
 
     }
 
-    public Collection<HashMap> searchHisType(String id, Integer page, DataFetchingEnvironment env) throws Exception {
+    public Map findHisType(String id, DataFetchingEnvironment env) throws Exception {
+
+       return  ImmutableMap.builder()
+               .put("hisField", "his field value")
+               .put("hisName", "his name value")
+               .build();
+    }
+
+    public Collection<Map> searchHisType(String id, Integer page, DataFetchingEnvironment env) throws Exception {
         return Lists.newArrayList(
                 new HashMap() {{
                     put("hisField", "his field value");
