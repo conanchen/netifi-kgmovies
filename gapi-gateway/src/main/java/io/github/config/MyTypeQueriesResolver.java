@@ -37,6 +37,11 @@ public class MyTypeQueriesResolver implements GraphQLQueryResolver {
                .build();
     }
 
+    public SomeObject findSomeObject(String id, DataFetchingEnvironment env) throws Exception {
+
+       return  SomeObject.builder().field("field value").build();
+    }
+
     public Collection<Map> searchHisType(String id, Integer page, DataFetchingEnvironment env) throws Exception {
         return Lists.newArrayList(
                 new HashMap() {{

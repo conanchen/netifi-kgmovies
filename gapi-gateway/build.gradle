@@ -60,7 +60,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
 
 
-
+    compile "io.github.graphql-java:graphql-java-annotations:8.0"
 
 }
 
