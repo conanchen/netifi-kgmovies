@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 public class GeneratedMinimal {
-    public static TueryRootTuery query(TueryRootTueryDefinition queryDef) {
+    public static QueryTuery query(QueryTueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("{");
-        TueryRootTuery query = new TueryRootTuery(queryString);
+        QueryTuery query = new QueryTuery(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;
@@ -62,16 +62,16 @@ public class GeneratedMinimal {
         }
     }
 
-    public interface TueryRootTueryDefinition {
-        void define(TueryRootTuery _queryBuilder);
+    public interface QueryTueryDefinition {
+        void define(QueryTuery _queryBuilder);
     }
 
-    public static class TueryRootTuery extends Tuery<TueryRootTuery> {
-        TueryRootTuery(StringBuilder _queryBuilder) {
+    public static class QueryTuery extends Tuery<QueryTuery> {
+        QueryTuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
 
-        public TueryRootTuery version() {
+        public QueryTuery version() {
             startField("version");
 
             return this;

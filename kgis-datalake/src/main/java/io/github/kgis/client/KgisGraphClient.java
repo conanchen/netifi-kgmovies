@@ -61,13 +61,13 @@ public class KgisGraphClient {
     }
 
 
-    public Single<Query> queryGraph(final QueryTuery queryRootQuery) {
+    public Single<Query> queryGraph(final QueryTuery queryTuery) {
 
         return Single.create(new SingleOnSubscribe<Query>() {
             @Override
             public void subscribe(final SingleEmitter<Query> singleEmitter) throws Exception {
 
-                String queryString = queryRootQuery.toString();
+                String queryString = queryTuery.toString();
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("query", queryString);
 

@@ -6,17 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.shopify.graphql.support.AbstractResponse;
-import com.shopify.graphql.support.Arguments;
-import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Tuery;
-import com.shopify.graphql.support.SchemaViolationError;
-import com.shopify.graphql.support.TopLevelResponse;
-import com.shopify.graphql.support.Input;
-
-import com.shopify.graphql.support.ID;
-
-import com.shopify.graphql.support.Nullable;
 
 import java.time.LocalDateTime;
 
@@ -26,9 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Generated {
-    public static TueryRootTuery query(TueryRootTueryDefinition queryDef) {
+    public static QueryTuery query(QueryTueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("{");
-        TueryRootTuery query = new TueryRootTuery(queryString);
+        QueryTuery query = new QueryTuery(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;
@@ -182,6 +171,7 @@ public class Generated {
                         responseData.put(key, jsonAsString(field.getValue(), key));
                         break;
                     }
+
                     default: {
                         throw new SchemaViolationError(this, key, field.getValue());
                     }
@@ -636,12 +626,12 @@ public class Generated {
         }
     }
 
-    public interface TueryRootTueryDefinition {
-        void define(TueryRootTuery _queryBuilder);
+    public interface QueryTueryDefinition {
+        void define(QueryTuery _queryBuilder);
     }
 
-    public static class TueryRootTuery extends Tuery<TueryRootTuery> {
-        TueryRootTuery(StringBuilder _queryBuilder) {
+    public static class QueryTuery extends Tuery<QueryTuery> {
+        QueryTuery(StringBuilder _queryBuilder) {
             super(_queryBuilder);
         }
 
@@ -663,11 +653,11 @@ public class Generated {
             void define(EntriesArguments args);
         }
 
-        public TueryRootTuery entries(int first, EntryTueryDefinition queryDef) {
+        public QueryTuery entries(int first, EntryTueryDefinition queryDef) {
             return entries(first, args -> {}, queryDef);
         }
 
-        public TueryRootTuery entries(int first, EntriesArgumentsDefinition argsDef, EntryTueryDefinition queryDef) {
+        public QueryTuery entries(int first, EntriesArgumentsDefinition argsDef, EntryTueryDefinition queryDef) {
             startField("entries");
 
             _queryBuilder.append("(first:");
@@ -687,7 +677,7 @@ public class Generated {
         /**
         * Get an entry of any type with the given key
         */
-        public TueryRootTuery entry(String key, EntryTueryDefinition queryDef) {
+        public QueryTuery entry(String key, EntryTueryDefinition queryDef) {
             startField("entry");
 
             _queryBuilder.append("(key:");
@@ -705,7 +695,7 @@ public class Generated {
         /**
         * Get an entry of any type with the given key as a union
         */
-        public TueryRootTuery entryUnion(String key, EntryUnionTueryDefinition queryDef) {
+        public QueryTuery entryUnion(String key, EntryUnionTueryDefinition queryDef) {
             startField("entry_union");
 
             _queryBuilder.append("(key:");
@@ -723,7 +713,7 @@ public class Generated {
         /**
         * Get a integer value with the given key
         */
-        public TueryRootTuery integer(String key) {
+        public QueryTuery integer(String key) {
             startField("integer");
 
             _queryBuilder.append("(key:");
@@ -760,11 +750,11 @@ public class Generated {
             void define(KeysArguments args);
         }
 
-        public TueryRootTuery keys(int first) {
+        public QueryTuery keys(int first) {
             return keys(first, args -> {});
         }
 
-        public TueryRootTuery keys(int first, KeysArgumentsDefinition argsDef) {
+        public QueryTuery keys(int first, KeysArgumentsDefinition argsDef) {
             startField("keys");
 
             _queryBuilder.append("(first:");
@@ -780,7 +770,7 @@ public class Generated {
         /**
         * Get a string value with the given key
         */
-        public TueryRootTuery string(String key) {
+        public QueryTuery string(String key) {
             startField("string");
 
             _queryBuilder.append("(key:");
@@ -791,7 +781,7 @@ public class Generated {
             return this;
         }
 
-        public TueryRootTuery ttl(String key) {
+        public QueryTuery ttl(String key) {
             startField("ttl");
 
             _queryBuilder.append("(key:");
@@ -802,7 +792,7 @@ public class Generated {
             return this;
         }
 
-        public TueryRootTuery type(String key) {
+        public QueryTuery type(String key) {
             startField("type");
 
             _queryBuilder.append("(key:");
@@ -813,7 +803,7 @@ public class Generated {
             return this;
         }
 
-        public TueryRootTuery version() {
+        public QueryTuery version() {
             startField("version");
 
             return this;
