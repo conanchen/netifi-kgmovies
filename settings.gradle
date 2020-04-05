@@ -1,9 +1,9 @@
-//pluginManagement {
-//    repositories {
-//        mavenLocal()
-//        gradlePluginPortal()
-//    }
-//}
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
 
 rootProject.name = 'netifi-kgmovies'
 //include 'product-service'

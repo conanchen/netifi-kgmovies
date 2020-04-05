@@ -4,7 +4,7 @@ plugins {
     id 'application'
     id "net.ltgt.apt" version "0.20"
 //    id "io.github.kobylynskyi.graphql.codegen" version "1.3.0"
-//    id "io.github.conanchen.graphql.codegen" version "1.3.0"
+    id "io.github.conanchen.graphql.codegen" version "1.3.0"
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
     id 'com.google.protobuf'
@@ -13,7 +13,7 @@ plugins {
 }
 
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
-//import io.github.kobylynskyi.graphql.codegen.gradle.GraphqlCodegenGradleTask
+import io.github.kobylynskyi.graphql.codegen.gradle.GraphqlCodegenGradleTask
 
 dependencies {
     // protobuf project(':product-service-idl')
@@ -60,15 +60,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
 
 
-    compile "io.github.graphql-java:graphql-java-annotations:8.0"
+//    compile "io.github.graphql-java:graphql-java-annotations:8.0"
 
 }
 
 mainClassName = 'io.github.GapiApplication'
-
-
-def task_graphql_enable = false;
-
 
 
 // Packaging
@@ -80,6 +76,352 @@ task buildImage(type: DockerBuildImage, dependsOn: build) {
 }
 
 
+task graphqlCodegenZommon(type: GraphqlCodegenGradleTask) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/zommon-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/zommon")
+    apiPackageName = "io.github.conanchen.zommon.graphql.api"
+    modelPackageName = "io.github.conanchen.zommon.graphql.model"
+    resolverPackageName = "io.github.conanchen.zommon.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = false
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenAction(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/action-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/action")
+    apiPackageName = "io.github.conanchen.action.graphql.api"
+    modelPackageName = "io.github.conanchen.action.graphql.model"
+    resolverPackageName = "io.github.conanchen.action.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = false
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenAcl(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/acl-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/acl")
+    apiPackageName = "io.github.conanchen.acl.graphql.api"
+    modelPackageName = "io.github.conanchen.acl.graphql.model"
+    resolverPackageName = "io.github.conanchen.acl.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+
+}
+
+task graphqlCodegenBikeshop(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/bikeshop-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/bikeshop")
+    apiPackageName = "io.github.kobylynskyi.bikeshop.graphql.api"
+    modelPackageName = "io.github.kobylynskyi.bikeshop.graphql.model"
+    resolverPackageName = "io.github.conanchen.bikeshop.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "TO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenCreativework(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/creativework-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/creativework")
+    apiPackageName = "io.github.conanchen.creativework.graphql.api"
+    modelPackageName = "io.github.conanchen.creativework.graphql.model"
+    resolverPackageName = "io.github.conanchen.creativework.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenEvent(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/event-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/event")
+    apiPackageName = "io.github.conanchen.event.graphql.api"
+    modelPackageName = "io.github.conanchen.event.graphql.model"
+    resolverPackageName = "io.github.conanchen.event.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenGobject(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/gobject-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/gobject")
+    apiPackageName = "io.github.conanchen.gobject.graphql.api"
+    modelPackageName = "io.github.conanchen.gobject.graphql.model"
+    resolverPackageName = "io.github.conanchen.gobject.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenIntangible(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/intangible-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/intangible")
+    apiPackageName = "io.github.conanchen.intangible.graphql.api"
+    modelPackageName = "io.github.conanchen.intangible.graphql.model"
+    resolverPackageName = "io.github.conanchen.intangible.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenPlace(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/place-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/place")
+    apiPackageName = "io.github.conanchen.place.graphql.api"
+    modelPackageName = "io.github.conanchen.place.graphql.model"
+    resolverPackageName = "io.github.conanchen.place.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+
+task graphqlCodegenMessage(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/message-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/message")
+    apiPackageName = "io.github.conanchen.message.graphql.api"
+    modelPackageName = "io.github.conanchen.message.graphql.model"
+    resolverPackageName = "io.github.conanchen.message.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+
+task graphqlCodegenPerson(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/person-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/person")
+    apiPackageName = "io.github.conanchen.person.graphql.api"
+    modelPackageName = "io.github.conanchen.person.graphql.model"
+    resolverPackageName = "io.github.conanchen.person.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", Markdown: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegendOrganization(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/organization-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/organization")
+    apiPackageName = "io.github.conanchen.organization.graphql.api"
+    modelPackageName = "io.github.conanchen.organization.graphql.model"
+    resolverPackageName = "io.github.conanchen.organization.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenShoppingcart(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingcart-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shoppingcart")
+    apiPackageName = "io.github.conanchen.shoppingcart.graphql.api"
+    modelPackageName = "io.github.conanchen.shoppingcart.graphql.model"
+    resolverPackageName = "io.github.conanchen.shoppingcart.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenShoppingdoor(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingdoor-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shoppingdoor")
+    apiPackageName = "io.github.conanchen.shoppingdoor.graphql.api"
+    modelPackageName = "io.github.conanchen.shoppingdoor.graphql.model"
+    resolverPackageName = "io.github.conanchen.shoppingdoor.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenShoppingfulfill(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingfulfill-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shoppingfulfill")
+    apiPackageName = "io.github.conanchen.shoppingfulfill.graphql.api"
+    modelPackageName = "io.github.conanchen.shoppingfulfill.graphql.model"
+    resolverPackageName = "io.github.conanchen.shoppingfulfill.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenShoppingman(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/shoppingman-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/shoppingman")
+    apiPackageName = "io.github.conanchen.shoppingman.graphql.api"
+    modelPackageName = "io.github.conanchen.shoppingman.graphql.model"
+    resolverPackageName = "io.github.conanchen.shoppingman.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenSoftwareapplication(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/softwareapplication-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/softwareapplication")
+    apiPackageName = "io.github.conanchen.softwareapplication.graphql.api"
+    modelPackageName = "io.github.conanchen.softwareapplication.graphql.model"
+    resolverPackageName = "io.github.conanchen.softwareapplication.graphql.resolver"
+    customTypesMapping = [DateTime: "java.util.Date", URL: "java.lang.String", Text: "java.lang.String", BigDecimal: "java.math.BigDecimal"]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
+
+task graphqlCodegenTaskproject(type: GraphqlCodegenGradleTask, dependsOn: graphqlCodegenZommon) {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphql/taskproject-schema.graphqls".toString()]
+    outputDir = new File("$buildDir/generated/graphql/taskproject")
+    apiPackageName = "io.github.conanchen.taskproject.graphql.api"
+    modelPackageName = "io.github.conanchen.taskproject.graphql.model"
+    resolverPackageName = "io.github.conanchen.taskproject.graphql.resolver"
+    customTypesMapping = [
+            DateTime: "java.util.Date"
+    ]
+    modelNameSuffix = "GQO"
+    generateApis = true
+    apiPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model"]
+    modelPackageImports = ["java.util", "io.github.conanchen.zommon.graphql.model","io.github.conanchen.event.graphql.model",
+                           "io.github.conanchen.shoppingdoor.graphql.model", "io.github.conanchen.place.graphql.model",
+                           "io.github.conanchen.person.graphql.model", "io.github.conanchen.organization.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model", "io.github.conanchen.acl.graphql.model",
+                           "io.github.conanchen.shoppingcart.graphql.model","io.github.conanchen.message.graphql.model",
+                           "io.github.conanchen.shoppingfulfill.graphql.model", "io.github.conanchen.action.graphql.model",
+    ]
+}
 
 protobuf {
     protoc {

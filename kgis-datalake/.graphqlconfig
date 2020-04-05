@@ -11,7 +11,8 @@
         "url": "http://localhost:8080/graphql",
         "headers": {
           "Authorization": "Bearer ${env:KGIS-DGRAPH-ACCESS-TOKEN}",
-          "user-agent": "JS GraphQL"
+          "user-agent": "JS GraphQL",
+          "Accept-Charset":"utf-8"
         },
         "introspect": false
       }
