@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -247,7 +248,7 @@ public class Ownership extends AbstractResponse<Ownership> implements Node, Thin
     }
 
     /**
-    * 【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.
+    *     【获取来源】 产品获取的机构来源 The organization or person from which the product was acquired.    
     */
 
     public Party getAcquiredFrom() {
@@ -260,7 +261,7 @@ public class Ownership extends AbstractResponse<Ownership> implements Node, Thin
     }
 
     /**
-    * 【东西类型】 拥有的东西Thing。
+    *     【东西类型】 拥有的东西Thing。    
     */
 
     public Thing getOwned() {
@@ -273,7 +274,7 @@ public class Ownership extends AbstractResponse<Ownership> implements Node, Thin
     }
 
     /**
-    * 【个人或组织】拥有者
+    *     【个人或组织】拥有者    
     */
 
     public Party getOwner() {
@@ -286,7 +287,7 @@ public class Ownership extends AbstractResponse<Ownership> implements Node, Thin
     }
 
     /**
-    * 【开始日期】 某事的开始日期和时间
+    *     【开始日期】 某事的开始日期和时间    
     */
 
     public DateTime getDateFrom() {
@@ -299,7 +300,7 @@ public class Ownership extends AbstractResponse<Ownership> implements Node, Thin
     }
 
     /**
-    * 【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+    *     【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).    
     */
 
     public DateTime getDateThrough() {

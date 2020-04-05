@@ -1,4 +1,4 @@
-// Generated from <%= script_name %>
+// Generated from <%= script_name %>  with template Operations.java.erb
 
 package <%= package_name %>;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -25,9 +26,9 @@ import java.util.Map;
 public class Operations {
     <% [[:query, schema.query_root_name], [:mutation, schema.mutation_root_name]].each do |operation_type, root_name| %>
         <% next unless root_name %>
-        public static <%= root_name %>Query <%= operation_type %>(<%= root_name %>QueryDefinition queryDef) {
+        public static <%= root_name %>Tuery <%= operation_type %>(<%= root_name %>TueryDefinition queryDef) {
             StringBuilder queryString = new StringBuilder("<%= operation_type unless operation_type == :query %>{");
-            <%= root_name %>Query query = new <%= root_name %>Query(queryString);
+            <%= root_name %>Tuery query = new <%= root_name %>Tuery(queryString);
             queryDef.define(query);
             queryString.append('}');
             return query;

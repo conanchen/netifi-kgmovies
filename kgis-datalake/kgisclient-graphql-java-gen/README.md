@@ -115,7 +115,7 @@ and provide methods for accessing the field data with it already coerced to the
 correct type.
 
 ```java
-ExampleSchema.QueryResponse response = ExampleSchema.QueryResponse.fromJson(responseJson);
+ExampleSchema.TueryResponse response = ExampleSchema.TueryResponse.fromJson(responseJson);
 if (!response.getErrors().isEmpty()) {
     for (Error error : response.getErrors()) {
         System.err.println("GraphQL error: " + error.message());

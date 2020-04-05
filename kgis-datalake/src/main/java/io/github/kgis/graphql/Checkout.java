@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -26,9 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* Checkout:A container for all the information required to checkout items and pay.
-* 结算单，包含需要结算和支付的所有信息：税收、送货地址、发票账单寄送地址、备注说明等
-* 结算单信息完备后才可以创建订单
+* Checkout:A container for all the information required to checkout items and
+* pay.结算单，包含需要结算和支付的所有信息：税收、送货地址、发票账单寄送地址、备注说明等结算单信息完备后才可以创建订单
 */
 public class Checkout extends AbstractResponse<Checkout> implements Node, Thing {
     public Checkout() {
@@ -298,7 +298,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * 结算单所有者
+    *     结算单所有者    
     */
 
     public User getOwner() {
@@ -311,7 +311,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * The date and time when the checkout was completed.
+    *     The date and time when the checkout was completed.    
     */
 
     public DateTime getCompletedAt() {
@@ -324,7 +324,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * The date and time when the checkout was created.
+    *     The date and time when the checkout was created.    
     */
 
     public DateTime getCreatedAt() {
@@ -337,7 +337,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * The email attached to this checkout.
+    *     The email attached to this checkout.    
     */
 
     public String getEmail() {
@@ -350,7 +350,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * A list of line item objects, each one containing information about an item in the checkout.
+    *     A list of line item objects, each one containing information about an item in the checkout.    
     */
 
     public List<CheckoutItem> getItems() {
@@ -363,7 +363,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * The note associated with the checkout.
+    *     The note associated with the checkout.    
     */
 
     public String getNote() {
@@ -376,9 +376,9 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous
+    *     Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous
     * operations that can take time to finish. If you want to complete a checkout or ensure all the fields
-    * are populated and up to date, polling is required until the value is true.
+    * are populated and up to date, polling is required until the value is true.    
     */
 
     public Boolean getReady() {
@@ -391,7 +391,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * States whether or not the fulfillment requires shipping.
+    *     States whether or not the fulfillment requires shipping.    
     */
 
     public Boolean getRequiresShipping() {
@@ -404,7 +404,7 @@ public class Checkout extends AbstractResponse<Checkout> implements Node, Thing 
     }
 
     /**
-    * The date and time when the checkout was last updated.
+    *     The date and time when the checkout was last updated.    
     */
 
     public DateTime getUpdatedAt() {

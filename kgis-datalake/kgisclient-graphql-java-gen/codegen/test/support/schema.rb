@@ -43,8 +43,8 @@ module Support
       possible_types [StringEntryType, IntegerEntryType]
     end
 
-    QueryType = GraphQL::ObjectType.define do
-      name "QueryRoot"
+    TueryType = GraphQL::ObjectType.define do
+      name "TueryRoot"
 
       field :version, types.String
       field :get, types.String do
@@ -115,25 +115,25 @@ module Support
     end
 
     ExampleSchema = GraphQL::Schema.define do
-      query QueryType
+      query TueryType
       mutation MutationType
       orphan_types [StringEntryType, IntegerEntryType]
       resolve_type ->(obj, ctx) {}
     end
 
-    MinimalQueryType = GraphQL::ObjectType.define do
-      name "QueryRoot"
+    MinimalTueryType = GraphQL::ObjectType.define do
+      name "TueryRoot"
 
       field :version, types.String
     end
 
     MinimalSchema = GraphQL::Schema.define do
-      query MinimalQueryType
+      query MinimalTueryType
       resolve_type ->(obj, ctx) {}
     end
 
     def self.introspection_result(schema = ExampleSchema)
-      GraphQL::Query.new(schema, GraphQL::Introspection::INTROSPECTION_QUERY).result
+      GraphQL::Tuery.new(schema, GraphQL::Introspection::INTROSPECTION_QUERY).result
     end
   end
 end

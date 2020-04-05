@@ -9,6 +9,9 @@ require 'net/http'
 require 'fileutils'
 
 target_filename = 'src/main/java/io/github/kgis/graphql'
+
+FileUtils.rm_rf Dir.glob("#{target_filename}/*") if #{target_filename}.present?
+
 OptionParser.new do |opts|
   opts.on("-tFILENAME", "--target=FILENAME", "Target file name") do |filename|
     target_filename = filename
@@ -16,7 +19,7 @@ OptionParser.new do |opts|
 end.parse!
 
 
-introspection_result = File.read("src/main/graphql/schema.json")
+introspection_result = File.read("kgis_schema.json")
 schema = GraphQLSchema.new(JSON.parse(introspection_result))
 
 

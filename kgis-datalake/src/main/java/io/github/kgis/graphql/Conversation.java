@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -291,7 +292,7 @@ public class Conversation extends AbstractResponse<Conversation> implements Node
     }
 
     /**
-    * 【关于】 事物的关于信息 The subject matter of the content.
+    *     【关于】 事物的关于信息 The subject matter of the content.    
     */
 
     public Thing getAbout() {
@@ -304,8 +305,8 @@ public class Conversation extends AbstractResponse<Conversation> implements Node
     }
 
     /**
-    * 【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the
-    * CreativeWork.
+    *     【负责人】 对CreativeWork负有法律责任的特定的人。 Specifies the Person that is legally accountable for the
+    * CreativeWork.    
     */
 
     public User getAccountablePerson() {
@@ -318,7 +319,7 @@ public class Conversation extends AbstractResponse<Conversation> implements Node
     }
 
     /**
-    * 【作者】 该 CreativeWork 的创作者/作者。
+    *     【作者】 该 CreativeWork 的创作者/作者。    
     */
 
     public User getCreator() {
@@ -331,8 +332,8 @@ public class Conversation extends AbstractResponse<Conversation> implements Node
     }
 
     /**
-    * 【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a
-    * DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
+    *     【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added
+    * to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    
     */
 
     public DateTime getDateCreated() {
@@ -345,7 +346,7 @@ public class Conversation extends AbstractResponse<Conversation> implements Node
     }
 
     /**
-    * 【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset.
+    *     【所在数据集目录】所在的数据集目录 A data catalog which contains this dataset.    
     */
 
     public DataCatalog getIncludedInDataCatalog() {
@@ -358,7 +359,7 @@ public class Conversation extends AbstractResponse<Conversation> implements Node
     }
 
     /**
-    * 参照 hasPart【作品组件】 表示某个作品是该作品的一部分
+    *     参照 hasPart【作品组件】 表示某个作品是该作品的一部分    
     */
 
     public List<Message> getHasMessages() {
@@ -371,7 +372,7 @@ public class Conversation extends AbstractResponse<Conversation> implements Node
     }
 
     /**
-    * 本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息
+    *     本会话Conversation给第三方软件如Github、阿里云代码创建的webhook，第三方软件向本会话推送事件消息    
     */
 
     public List<Webhook> getWebhook() {

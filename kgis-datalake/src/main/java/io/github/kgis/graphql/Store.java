@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -487,7 +488,7 @@ public class Store extends AbstractResponse<Store> implements Node, Organization
     }
 
     /**
-    * 【雇员】 组织的雇员.在组织承担角色的个人有时间限制
+    *     【雇员】 组织的雇员.在组织承担角色的个人有时间限制    
     */
 
     public List<EmployeeRole> getEmployees() {
@@ -500,7 +501,7 @@ public class Store extends AbstractResponse<Store> implements Node, Organization
     }
 
     /**
-    * 【关注组织的人】 社交网络上本组织被别人关注
+    *     【关注组织的人】 社交网络上本组织被别人关注    
     */
 
     public List<FollowerRole> getFollowers() {
@@ -513,7 +514,7 @@ public class Store extends AbstractResponse<Store> implements Node, Organization
     }
 
     /**
-    * 【会员】 组织或项目的成员,在组织承担角色的个人有时间限制
+    *     【会员】 组织或项目的成员,在组织承担角色的个人有时间限制    
     */
 
     public List<MemberRole> getMembers() {
@@ -526,7 +527,7 @@ public class Store extends AbstractResponse<Store> implements Node, Organization
     }
 
     /**
-    * 【创建日期】
+    *     【创建日期】    
     */
 
     public DateTime getDateCreated() {
@@ -539,7 +540,7 @@ public class Store extends AbstractResponse<Store> implements Node, Organization
     }
 
     /**
-    * 【更新日期】
+    *     【更新日期】    
     */
 
     public DateTime getDateModified() {
@@ -552,7 +553,7 @@ public class Store extends AbstractResponse<Store> implements Node, Organization
     }
 
     /**
-    * 【创建人】 该物体的创作者/作者。
+    *     【创建人】 该物体的创作者/作者。    
     */
 
     public User getCreator() {

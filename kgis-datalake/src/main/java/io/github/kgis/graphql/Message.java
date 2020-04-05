@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -339,8 +340,8 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 参照isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in some
-    * sense), is part of.
+    *     参照isPartOf【从属于】 是它的一部分 Indicates an item or CreativeWork that this item, or CreativeWork (in
+    * some sense), is part of.    
     */
 
     public List<Conversation> getIsMessageOf() {
@@ -353,8 +354,8 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 【发送者】 参与者的子属性。例如邮件的发送者。 A sub property of participant. The participant who is at the sending end of
-    * the action.
+    *     【发送者】 参与者的子属性。例如邮件的发送者。 A sub property of participant. The participant who is at the sending end
+    * of the action.    
     */
 
     public User getSender() {
@@ -367,7 +368,7 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.
+    *     【发送日期】 消息被发送的日期/时间。 The date/time at which the message was sent.    
     */
 
     public DateTime getDateSent() {
@@ -380,7 +381,7 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 【收件人】 消息的直接收件人 A sub property of recipient. The recipient who was directly sent the message.
+    *     【收件人】 消息的直接收件人 A sub property of recipient. The recipient who was directly sent the message.    
     */
 
     public User getToRecipient() {
@@ -393,8 +394,8 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has been read by the
-    * recipient if a single recipient exists.
+    *     【阅读日期】 如果存在单个的收件人，就是消息被收件人读取的日期/时间。 The date/time at which the message has been read by the
+    * recipient if a single recipient exists.    
     */
 
     public DateTime getDateRead() {
@@ -407,8 +408,8 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient
-    * exists.
+    *     【接收日期】 如果存在单个的收件人，就是消息被收件人接收的日期/时间。 The date/time the message was received if a single recipient
+    * exists.    
     */
 
     public DateTime getDateReceived() {
@@ -421,8 +422,8 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 【接收者】 参与者的子属性。 在行动接收端的参与者。 A sub property of participant. The participant who is at the receiving
-    * end of the action.
+    *     【接收者】 参与者的子属性。 在行动接收端的参与者。 A sub property of participant. The participant who is at the
+    * receiving end of the action.    
     */
 
     public List<User> getRecipient() {
@@ -435,7 +436,7 @@ public class Message extends AbstractResponse<Message> implements Node, Readable
     }
 
     /**
-    * 【评论】 评论，一般是用户对CreativeWork的评论。
+    *     【评论】 评论，一般是用户对CreativeWork的评论。    
     */
 
     public List<Review> getHasReviews() {

@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -226,10 +227,9 @@ public class User extends AbstractResponse<User> implements Node, Thing {
     }
 
     /**
-    * The username used to login.
-    * We also want to make sure that usernames are unique. The @id directive takes care of that - it also
-    * automatically adds hash searching, so we can drop the @search(by: [hash]), though having it also
-    * causes no harm.
+    *     The username used to login.    We also want to make sure that usernames are unique. The @id
+    * directive takes care of that - it also automatically adds hash searching, so we can drop the
+    * @search(by: [hash]), though having it also causes no harm.    
     */
 
     public String getUsername() {
@@ -242,7 +242,7 @@ public class User extends AbstractResponse<User> implements Node, Thing {
     }
 
     /**
-    * The password used to login.
+    *     The password used to login.    
     */
 
     public String getPassword() {
@@ -255,7 +255,7 @@ public class User extends AbstractResponse<User> implements Node, Thing {
     }
 
     /**
-    * The user's public profile bio.
+    *     The user's public profile bio.    
     */
 
     public String getBio() {
@@ -268,7 +268,7 @@ public class User extends AbstractResponse<User> implements Node, Thing {
     }
 
     /**
-    * 用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart
+    *     用户账号对应的人，有账号一定有相关的Person，逆属性 Person.hasUser，参考Inverse property: hasPart    
     */
 
     public Person getIsUserOf() {

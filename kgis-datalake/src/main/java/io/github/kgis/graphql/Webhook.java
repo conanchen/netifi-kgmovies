@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -259,7 +260,7 @@ public class Webhook extends AbstractResponse<Webhook> implements Node, Thing {
     }
 
     /**
-    * 回调url
+    *     回调url    
     */
 
     public String getPayloadUrl() {
@@ -272,7 +273,7 @@ public class Webhook extends AbstractResponse<Webhook> implements Node, Thing {
     }
 
     /**
-    * 回调提交的数据内容类型如application/json
+    *     回调提交的数据内容类型如application/json    
     */
 
     public String getContentType() {
@@ -285,7 +286,7 @@ public class Webhook extends AbstractResponse<Webhook> implements Node, Thing {
     }
 
     /**
-    * 使用payloadUrl的安全token
+    *     使用payloadUrl的安全token    
     */
 
     public String getSecret() {
@@ -298,7 +299,7 @@ public class Webhook extends AbstractResponse<Webhook> implements Node, Thing {
     }
 
     /**
-    * 【作者】 该 CreativeWork 的创作者/作者。
+    *     【作者】 该 CreativeWork 的创作者/作者。    
     */
 
     public User getCreator() {
@@ -311,8 +312,8 @@ public class Webhook extends AbstractResponse<Webhook> implements Node, Thing {
     }
 
     /**
-    * 【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a
-    * DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
+    *     【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added
+    * to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    
     */
 
     public DateTime getDateCreated() {
@@ -325,7 +326,7 @@ public class Webhook extends AbstractResponse<Webhook> implements Node, Thing {
     }
 
     /**
-    * 调用此webhook的客户端
+    *     调用此webhook的客户端    
     */
 
     public SoftwareApplication getClient() {

@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -26,8 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* 资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
-* 如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+* 资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order,
+* 默认值是default如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
 */
 public class Namespace extends AbstractResponse<Namespace> implements Node, Thing {
     public Namespace() {
@@ -215,8 +216,8 @@ public class Namespace extends AbstractResponse<Namespace> implements Node, Thin
     }
 
     /**
-    * 资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default
-    * 如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限
+    *     资源对象所属的namespace,根据一定规则由平台生成或配置定义如：io.shurui.store001.order, 默认值是default   
+    * 如果某个角色拥有inamespace：'io.shurui'的权限，则拥有'io.shurui'一下所有子namespace的相应权限    
     */
 
     public String getNamespace() {
@@ -229,7 +230,7 @@ public class Namespace extends AbstractResponse<Namespace> implements Node, Thin
     }
 
     /**
-    * 拥有namespace的组织或用户
+    *     拥有namespace的组织或用户    
     */
 
     public Party getIsNamespaceOf() {

@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -236,7 +237,7 @@ public class PartyRoleName extends AbstractResponse<PartyRoleName> implements No
     }
 
     /**
-    * isPartyRoleNameOf,逆属性 Organization.hasPartyRoleName
+    *     isPartyRoleNameOf,逆属性 Organization.hasPartyRoleName    
     */
 
     public Organization getIsRoleNameOf() {
@@ -249,7 +250,7 @@ public class PartyRoleName extends AbstractResponse<PartyRoleName> implements No
     }
 
     /**
-    * 角色分组,如员工角色组、会员角色组
+    *     角色分组,如员工角色组、会员角色组    
     */
 
     public String getGroup() {
@@ -262,9 +263,9 @@ public class PartyRoleName extends AbstractResponse<PartyRoleName> implements No
     }
 
     /**
-    * 【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork. This
-    * is the same as the Author property for CreativeWork.creator    Organization or Person or
-    * CreativeWork or UserReviews
+    *     【作者】 该 CreativeWork 的创作者/作者。跟CreativeWork的Author属性一样。 The creator/author of this CreativeWork.
+    * This is the same as the Author property for CreativeWork.creator    Organization or Person or
+    * CreativeWork or UserReviews    
     */
 
     public User getCreator() {
@@ -277,8 +278,8 @@ public class PartyRoleName extends AbstractResponse<PartyRoleName> implements No
     }
 
     /**
-    * 【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a
-    * DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
+    *     【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added
+    * to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    
     */
 
     public DateTime getDateCreated() {

@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -118,7 +119,7 @@ public class UnknownPartyRole extends AbstractResponse<UnknownPartyRole> impleme
     }
 
     /**
-    * 在组织承担角色的个人
+    *     在组织承担角色的个人    
     */
 
     public Person getPerson() {
@@ -131,7 +132,7 @@ public class UnknownPartyRole extends AbstractResponse<UnknownPartyRole> impleme
     }
 
     /**
-    * 个人在团体内承担的角色
+    *     个人在团体内承担的角色    
     */
 
     public PartyRoleName getRoleName() {
@@ -144,7 +145,7 @@ public class UnknownPartyRole extends AbstractResponse<UnknownPartyRole> impleme
     }
 
     /**
-    * 【开始日期】 某事的开始日期和时间
+    *     【开始日期】 某事的开始日期和时间    
     */
 
     public DateTime getDateFrom() {
@@ -157,7 +158,7 @@ public class UnknownPartyRole extends AbstractResponse<UnknownPartyRole> impleme
     }
 
     /**
-    * 【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).
+    *     【结束日期】 活动（事件）结束时间。 The end date and time of the item (in ISO 8601 date format).    
     */
 
     public DateTime getDateThrough() {

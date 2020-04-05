@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -299,7 +300,7 @@ public class Review extends AbstractResponse<Review> implements Node, Thing {
     }
 
     /**
-    * ratingValue    评分 The rating for the content.
+    *     ratingValue    评分 The rating for the content.    
     */
 
     public Integer getRatingValue() {
@@ -312,7 +313,7 @@ public class Review extends AbstractResponse<Review> implements Node, Thing {
     }
 
     /**
-    * 【作者】 此内容或评分的作者。
+    *     【作者】 此内容或评分的作者。    
     */
 
     public User getAuthor() {
@@ -325,7 +326,7 @@ public class Review extends AbstractResponse<Review> implements Node, Thing {
     }
 
     /**
-    * 【创建日期】 创作出CreativeWork的日期。
+    *     【创建日期】 创作出CreativeWork的日期。    
     */
 
     public DateTime getDateCreated() {

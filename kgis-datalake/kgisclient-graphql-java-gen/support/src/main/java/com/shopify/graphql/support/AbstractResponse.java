@@ -24,7 +24,7 @@ public abstract class AbstractResponse<T extends AbstractResponse> implements Se
         if (aliasSuffix == null || aliasSuffix.isEmpty()) {
             throw new IllegalArgumentException("Can't specify an empty alias");
         }
-        if (aliasSuffix.contains(Query.ALIAS_SUFFIX_SEPARATOR)) {
+        if (aliasSuffix.contains(Tuery.ALIAS_SUFFIX_SEPARATOR)) {
             throw new IllegalArgumentException("Alias must not contain __");
         }
 
@@ -42,7 +42,7 @@ public abstract class AbstractResponse<T extends AbstractResponse> implements Se
     }
 
     protected String getFieldName(String key) {
-        int i = key.lastIndexOf(Query.ALIAS_SUFFIX_SEPARATOR);
+        int i = key.lastIndexOf(Tuery.ALIAS_SUFFIX_SEPARATOR);
         if (i > 1) {
             key = key.substring(0, i);
         }
@@ -51,7 +51,7 @@ public abstract class AbstractResponse<T extends AbstractResponse> implements Se
 
     protected String getKey(String field) {
         if (aliasSuffix != null) {
-            field += Query.ALIAS_SUFFIX_SEPARATOR + aliasSuffix;
+            field += Tuery.ALIAS_SUFFIX_SEPARATOR + aliasSuffix;
             aliasSuffix = null;
         }
         return field;

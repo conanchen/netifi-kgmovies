@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -26,8 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* Canonical URL: http://cnschema.org/DataCatalog
-* 【数据目录】数据集的目录 A collection of datasets.
+* Canonical URL: http://cnschema.org/DataCatalog【数据目录】数据集的目录 A collection of datasets.
 */
 public class DataCatalog extends AbstractResponse<DataCatalog> implements Node, Thing {
     public DataCatalog() {
@@ -247,7 +247,7 @@ public class DataCatalog extends AbstractResponse<DataCatalog> implements Node, 
     }
 
     /**
-    * 【所在父数据集目录】所在的父数据集目录 A data catalog which contains this dataset.
+    *     【所在父数据集目录】所在的父数据集目录 A data catalog which contains this dataset.    
     */
 
     public DataCatalog getParentDataCatalog() {
@@ -260,7 +260,7 @@ public class DataCatalog extends AbstractResponse<DataCatalog> implements Node, 
     }
 
     /**
-    * 【包含子数据集目录】包含子的数据集目录
+    *     【包含子数据集目录】包含子的数据集目录    
     */
 
     public List<DataCatalog> getSubDataCatalogs() {
@@ -273,7 +273,7 @@ public class DataCatalog extends AbstractResponse<DataCatalog> implements Node, 
     }
 
     /**
-    * 【作者】 该 CreativeWork 的创作者/作者。
+    *     【作者】 该 CreativeWork 的创作者/作者。    
     */
 
     public User getCreator() {
@@ -286,8 +286,8 @@ public class DataCatalog extends AbstractResponse<DataCatalog> implements Node, 
     }
 
     /**
-    * 【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added to a
-    * DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork
+    *     【创建日期】 创作出CreativeWork的日期。 The date on which the CreativeWork was created or the item was added
+    * to a DataFeed. dateCreated    DateTime or Date or DataFeedItem or CreativeWork    
     */
 
     public DateTime getDateCreated() {

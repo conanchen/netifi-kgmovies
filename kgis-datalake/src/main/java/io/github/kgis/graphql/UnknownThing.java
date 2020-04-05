@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -225,7 +226,7 @@ public class UnknownThing extends AbstractResponse<UnknownThing> implements Thin
     }
 
     /**
-    * 资源对象所属的namespaces
+    *     资源对象所属的namespaces    
     */
 
     public List<Namespace> getNamespaces() {
@@ -238,8 +239,8 @@ public class UnknownThing extends AbstractResponse<UnknownThing> implements Thin
     }
 
     /**
-    * 【标识符】 标识符 The identifier property represents any kind of identifier for any kind of Thing, such as
-    * ISBNs, GTIN codes, UUIDs etc.
+    *     【标识符】 标识符 The identifier property represents any kind of identifier for any kind of Thing, such
+    * as ISBNs, GTIN codes, UUIDs etc.    
     */
 
     public String getIdentifier() {
@@ -252,7 +253,7 @@ public class UnknownThing extends AbstractResponse<UnknownThing> implements Thin
     }
 
     /**
-    * 【名称】name    Text    The name of the item.
+    *     【名称】name    Text    The name of the item.    
     */
 
     public String getName() {
@@ -265,7 +266,7 @@ public class UnknownThing extends AbstractResponse<UnknownThing> implements Thin
     }
 
     /**
-    * 【别名】 该项的别名。 An alias for the item.
+    *     【别名】 该项的别名。 An alias for the item.    
     */
 
     public String getAlternateName() {

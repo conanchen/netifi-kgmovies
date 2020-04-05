@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -26,8 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* A single line item in the checkout, grouped by variant and attributes.
-* 结算单内容项
+* A single line item in the checkout, grouped by variant and attributes.结算单内容项
 */
 public class CheckoutItem extends AbstractResponse<CheckoutItem> implements Node, Thing {
     public CheckoutItem() {
@@ -221,7 +221,7 @@ public class CheckoutItem extends AbstractResponse<CheckoutItem> implements Node
     }
 
     /**
-    * 所属结算单
+    *     所属结算单    
     */
 
     public Checkout getIsItemOf() {
@@ -234,7 +234,7 @@ public class CheckoutItem extends AbstractResponse<CheckoutItem> implements Node
     }
 
     /**
-    * The quantity of the line item.
+    *     The quantity of the line item.    
     */
 
     public Integer getQuantity() {
@@ -247,7 +247,7 @@ public class CheckoutItem extends AbstractResponse<CheckoutItem> implements Node
     }
 
     /**
-    * Product/Service variant of the line item.
+    *     Product/Service variant of the line item.    
     */
 
     public Shoppingable getVariant() {

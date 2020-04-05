@@ -79,8 +79,8 @@ class GraphQLJavaGen
   def write_entities(path)
     schema.types.reject{ |type| type.name.start_with?('__') || type.scalar? }.each do |type|
       case type.kind when 'OBJECT', 'INTERFACE', 'UNION'
-                       File.write(path + "/#{type.name}QueryDefinition.java", generate_entity("QueryDefinition.java", type))
-                       File.write(path + "/#{type.name}Query.java", generate_entity("Query.java", type))
+                       File.write(path + "/#{type.name}TueryDefinition.java", generate_entity("TueryDefinition.java", type))
+                       File.write(path + "/#{type.name}Tuery.java", generate_entity("Tuery.java", type))
                        File.write(path + "/#{type.name}.java", generate_entity("Interface.java", type))
 
                        class_name = type.object? ? type.name : "Unknown#{type.name}"
@@ -185,7 +185,7 @@ class GraphQLJavaGen
       if ['Int', 'Float', 'Boolean'].include?(type.name)
         "_queryBuilder.append(#{expr});"
       else
-        "Query.appendQuotedString(_queryBuilder, #{expr}.toString());"
+        "Tuery.appendQuotedString(_queryBuilder, #{expr}.toString());"
       end
     when 'ENUM'
       "_queryBuilder.append(#{expr}.toString());"
@@ -267,7 +267,7 @@ class GraphQLJavaGen
       defs << "#{field.classify_name}ArgumentsDefinition argsDef"
     end
     if field.subfields?
-      defs << "#{field.type.unwrap.name}QueryDefinition queryDef"
+      defs << "#{field.type.unwrap.name}TueryDefinition queryDef"
     end
     defs.join(', ')
   end
@@ -281,7 +281,7 @@ class GraphQLJavaGen
       defs << "#{field.classify_name}ArgumentsDefinition argsDef"
     end
     if field.subfields?
-      defs << "#{field.type.unwrap.classify_name}QueryDefinition queryDef"
+      defs << "#{field.type.unwrap.classify_name}TueryDefinition queryDef"
     end
     defs.join(', ')
   end

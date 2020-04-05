@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem  with template Operations.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -26,17 +27,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Operations {
-    public static QueryRootQuery query(QueryRootQueryDefinition queryDef) {
+    public static QueryTuery query(QueryTueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("{");
-        QueryRootQuery query = new QueryRootQuery(queryString);
+        QueryTuery query = new QueryTuery(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;
     }
 
-    public static MutationQuery mutation(MutationQueryDefinition queryDef) {
+    public static MutationTuery mutation(MutationTueryDefinition queryDef) {
         StringBuilder queryString = new StringBuilder("mutation{");
-        MutationQuery query = new MutationQuery(queryString);
+        MutationTuery query = new MutationTuery(queryString);
         queryDef.define(query);
         queryString.append('}');
         return query;

@@ -12,9 +12,9 @@ import okhttp3.Response;
 
 public class HttpResponseParser {
 
-    public QueryRoot parseQueryRoot(Response response) throws Exception {
+    public Query parseQuery(Response response) throws Exception {
         TopLevelResponse topLevelResponse = successResponse(response);
-        QueryRoot root = new QueryRoot(topLevelResponse.getData());
+        Query root = new Query(topLevelResponse.getData());
         new GraphResponse(root, topLevelResponse.getErrors());
         return root;
     }

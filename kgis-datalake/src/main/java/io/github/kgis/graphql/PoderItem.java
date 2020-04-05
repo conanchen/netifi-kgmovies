@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -26,10 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* https://schema.org/PoderItem
-* An poder item is a line of an poder. It includes the quantity and shipping details of a bought
-* offer.
-* 购物订单内容项
+* https://schema.org/PoderItemAn poder item is a line of an poder. It includes the quantity and
+* shipping details of a bought offer.购物订单内容项
 */
 public class PoderItem extends AbstractResponse<PoderItem> implements Node, Thing {
     public PoderItem() {
@@ -250,7 +249,7 @@ public class PoderItem extends AbstractResponse<PoderItem> implements Node, Thin
     }
 
     /**
-    * partOfPoder    Poder    The overall poder the items in this delivery were included in.
+    *     partOfPoder    Poder    The overall poder the items in this delivery were included in.    
     */
 
     public Poder getIsItemOf() {
@@ -263,7 +262,7 @@ public class PoderItem extends AbstractResponse<PoderItem> implements Node, Thin
     }
 
     /**
-    * poderItemNumber    Text    The identifier of the poder item.
+    *     poderItemNumber    Text    The identifier of the poder item.    
     */
 
     public String getPoderItemNumber() {
@@ -276,7 +275,7 @@ public class PoderItem extends AbstractResponse<PoderItem> implements Node, Thin
     }
 
     /**
-    * poderItemStatus    PoderStatus    The current status of the poder item.
+    *     poderItemStatus    PoderStatus    The current status of the poder item.    
     */
 
     public PoderStatus getPoderItemStatus() {
@@ -289,8 +288,8 @@ public class PoderItem extends AbstractResponse<PoderItem> implements Node, Thin
     }
 
     /**
-    * poderQuantity    Number    The number of the item podered. If the property is not set, assume the
-    * quantity is one.
+    *     poderQuantity    Number    The number of the item podered. If the property is not set, assume
+    * the quantity is one.    
     */
 
     public Integer getPoderQuantity() {
@@ -303,7 +302,7 @@ public class PoderItem extends AbstractResponse<PoderItem> implements Node, Thin
     }
 
     /**
-    * poderedItem    PoderItem  or Product  or Service
+    *     poderedItem    PoderItem  or Product  or Service    
     */
 
     public Shoppingable getPoderedItem() {

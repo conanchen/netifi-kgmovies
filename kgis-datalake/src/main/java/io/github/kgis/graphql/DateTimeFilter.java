@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem  with template Input.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -150,7 +151,7 @@ public class DateTimeFilter implements Serializable {
             separator = ",";
             _queryBuilder.append("eq:");
             if (eq.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, eq.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, eq.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -161,7 +162,7 @@ public class DateTimeFilter implements Serializable {
             separator = ",";
             _queryBuilder.append("le:");
             if (le.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, le.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, le.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -172,7 +173,7 @@ public class DateTimeFilter implements Serializable {
             separator = ",";
             _queryBuilder.append("lt:");
             if (lt.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, lt.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, lt.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -183,7 +184,7 @@ public class DateTimeFilter implements Serializable {
             separator = ",";
             _queryBuilder.append("ge:");
             if (ge.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, ge.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, ge.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -194,7 +195,7 @@ public class DateTimeFilter implements Serializable {
             separator = ",";
             _queryBuilder.append("gt:");
             if (gt.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, gt.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, gt.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }

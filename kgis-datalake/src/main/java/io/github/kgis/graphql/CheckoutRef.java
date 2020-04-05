@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem  with template Input.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -380,7 +381,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("id:");
             if (id.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, id.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, id.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -411,7 +412,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("identifier:");
             if (identifier.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, identifier.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, identifier.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -422,7 +423,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("name:");
             if (name.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, name.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, name.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -433,7 +434,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("alternateName:");
             if (alternateName.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, alternateName.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, alternateName.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -444,7 +445,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("description:");
             if (description.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, description.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, description.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -466,7 +467,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("completedAt:");
             if (completedAt.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, completedAt.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, completedAt.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -477,7 +478,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("createdAt:");
             if (createdAt.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, createdAt.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, createdAt.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -488,7 +489,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("email:");
             if (email.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, email.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, email.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -519,7 +520,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("note:");
             if (note.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, note.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, note.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -552,7 +553,7 @@ public class CheckoutRef implements Serializable {
             separator = ",";
             _queryBuilder.append("updatedAt:");
             if (updatedAt.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, updatedAt.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, updatedAt.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }

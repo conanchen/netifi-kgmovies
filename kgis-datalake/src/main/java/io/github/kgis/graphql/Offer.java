@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -247,7 +248,7 @@ public class Offer extends AbstractResponse<Offer> implements Node, Thing {
     }
 
     /**
-    * 可购物的一个商品供应
+    *     可购物的一个商品供应    
     */
 
     public Shoppingable getItemOffered() {
@@ -260,7 +261,7 @@ public class Offer extends AbstractResponse<Offer> implements Node, Thing {
     }
 
     /**
-    * 供应商品的组织或个人 Inverse property: makesOffer.
+    *     供应商品的组织或个人 Inverse property: makesOffer.    
     */
 
     public Party getOfferedBy() {
@@ -273,8 +274,8 @@ public class Offer extends AbstractResponse<Offer> implements Node, Thing {
     }
 
     /**
-    * 商品价格The offer price of a product, or of a price component when attached to PriceSpecification and
-    * its subtypes.
+    *     商品价格The offer price of a product, or of a price component when attached to PriceSpecification
+    * and its subtypes.    
     */
 
     public Integer getPrice() {
@@ -287,7 +288,7 @@ public class Offer extends AbstractResponse<Offer> implements Node, Thing {
     }
 
     /**
-    * 【价格有效开始日期】
+    *     【价格有效开始日期】    
     */
 
     public DateTime getDateFrom() {
@@ -300,7 +301,7 @@ public class Offer extends AbstractResponse<Offer> implements Node, Thing {
     }
 
     /**
-    * 【价格有效结束日期】
+    *     【价格有效结束日期】    
     */
 
     public DateTime getDateThrough() {

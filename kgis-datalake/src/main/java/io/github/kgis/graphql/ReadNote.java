@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -235,7 +236,7 @@ public class ReadNote extends AbstractResponse<ReadNote> implements Node, Thing 
     }
 
     /**
-    * 【阅读内容】 逆属性: Message.hasReadNotes
+    *     【阅读内容】 逆属性: Message.hasReadNotes    
     */
 
     public List<Readable> getIsReadNoteOf() {
@@ -248,7 +249,7 @@ public class ReadNote extends AbstractResponse<ReadNote> implements Node, Thing 
     }
 
     /**
-    * 【读者】 内容的阅读者。
+    *     【读者】 内容的阅读者。    
     */
 
     public User getReader() {
@@ -261,7 +262,7 @@ public class ReadNote extends AbstractResponse<ReadNote> implements Node, Thing 
     }
 
     /**
-    * 【阅读日期】
+    *     【阅读日期】    
     */
 
     public DateTime getDateRead() {

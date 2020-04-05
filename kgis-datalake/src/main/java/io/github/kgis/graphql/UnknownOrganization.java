@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -154,7 +155,7 @@ public class UnknownOrganization extends AbstractResponse<UnknownOrganization> i
     }
 
     /**
-    * 【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织
+    *     【上级组织】 subOrganization的反向属性，即包含这个组织的更大组织    
     */
 
     public List<Organization> getParentOrganization() {
@@ -167,7 +168,7 @@ public class UnknownOrganization extends AbstractResponse<UnknownOrganization> i
     }
 
     /**
-    * 【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。
+    *     【子机构】 两个组织之间的关系。其中第二个组织，例如以子公司的名字，属于第一个组织。    
     */
 
     public List<Organization> getSubOrganizations() {
@@ -180,10 +181,10 @@ public class UnknownOrganization extends AbstractResponse<UnknownOrganization> i
     }
 
     /**
-    * 【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A relationship between an
-    * organization and a department of that organization, also described as an organization (allowing
+    *     【部门】 组织与该组织某个部门之间的关系，也被描述成组织（允许不同的网址，标识，开放时间）。 例如：一家有药店的商店，或者是一间带咖啡厅的面包店。 A relationship between
+    * an organization and a department of that organization, also described as an organization (allowing
     * different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a
-    * cafe.
+    * cafe.    
     */
 
     public List<Organization> getDepartments() {
@@ -196,7 +197,7 @@ public class UnknownOrganization extends AbstractResponse<UnknownOrganization> i
     }
 
     /**
-    * 组织定义的角色名称,hasPartyRoleName,逆属性 PartyRoleName.isPartyRoleNameOf
+    *     组织定义的角色名称,hasPartyRoleName,逆属性 PartyRoleName.isPartyRoleNameOf    
     */
 
     public List<PartyRoleName> getHasPartyRoleName() {

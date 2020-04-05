@@ -61,11 +61,11 @@ public class KgisGraphClient {
     }
 
 
-    public Single<QueryRoot> queryGraph(final QueryRootQuery queryRootQuery) {
+    public Single<Query> queryGraph(final QueryTuery queryRootQuery) {
 
-        return Single.create(new SingleOnSubscribe<QueryRoot>() {
+        return Single.create(new SingleOnSubscribe<Query>() {
             @Override
-            public void subscribe(final SingleEmitter<QueryRoot> singleEmitter) throws Exception {
+            public void subscribe(final SingleEmitter<Query> singleEmitter) throws Exception {
 
                 String queryString = queryRootQuery.toString();
                 JSONObject jsonObject = new JSONObject();
@@ -80,7 +80,7 @@ public class KgisGraphClient {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         try {
-                            QueryRoot root = httpResponseParser.parseQueryRoot(response);
+                            Query root = httpResponseParser.parseQuery(response);
                             singleEmitter.onSuccess(root);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -92,16 +92,16 @@ public class KgisGraphClient {
         });
     }
 
-    public QueryRoot queryGraphSynchronize(final QueryRootQuery queryRootQuery) throws Exception {
+    public Query queryGraphSynchronize(final QueryTuery queryRootQuery) throws Exception {
         String queryString = queryRootQuery.toString();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("query", queryString);
         Response response = OkHttpUtils.doRequestBody(headers, url, jsonObject.toString());
-        return httpResponseParser.parseQueryRoot(response);
+        return httpResponseParser.parseQuery(response);
 
     }
 
-    public Mutation mutateGraphSynchronize(MutationQuery mutationQuery) throws Exception {
+    public Mutation mutateGraphSynchronize(MutationTuery mutationQuery) throws Exception {
         String queryString = mutationQuery.toString();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("query", queryString);
@@ -109,7 +109,7 @@ public class KgisGraphClient {
         return httpResponseParser.parseMutation(response);
     }
 
-    public Single<Mutation> mutateGraph(MutationQuery mutationQuery) {
+    public Single<Mutation> mutateGraph(MutationTuery mutationQuery) {
         return Single.create(new SingleOnSubscribe<Mutation>() {
             @Override
             public void subscribe(SingleEmitter<Mutation> singleEmitter) throws Exception {

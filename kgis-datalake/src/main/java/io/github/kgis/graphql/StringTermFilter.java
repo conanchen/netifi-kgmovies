@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem  with template Input.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -81,7 +82,7 @@ public class StringTermFilter implements Serializable {
             separator = ",";
             _queryBuilder.append("allofterms:");
             if (allofterms.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, allofterms.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, allofterms.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }
@@ -92,7 +93,7 @@ public class StringTermFilter implements Serializable {
             separator = ",";
             _queryBuilder.append("anyofterms:");
             if (anyofterms.getValue() != null) {
-                Query.appendQuotedString(_queryBuilder, anyofterms.getValue().toString());
+                Tuery.appendQuotedString(_queryBuilder, anyofterms.getValue().toString());
             } else {
                 _queryBuilder.append("null");
             }

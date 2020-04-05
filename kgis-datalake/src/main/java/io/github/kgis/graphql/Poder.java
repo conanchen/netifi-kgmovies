@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -27,8 +28,8 @@ import java.util.Map;
 
 /**
 * https://schema.org/Poder An poder is a confirmation of a transaction (a receipt), which can contain
-* multiple line items, each represented by an Offer that has been accepted by the customer.
-* 命名为Poder即是PurchaseOrder购物订单的意思,为了区分排序单词Order
+* multiple line items, each represented by an Offer that has been accepted by the
+* customer.命名为Poder即是PurchaseOrder购物订单的意思,为了区分排序单词Order
 */
 public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     public Poder() {
@@ -292,13 +293,12 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * acceptedOffer    Offer    The offer(s) -- e.g., product, quantity and price combinations -- included
-    * in the poder.
-    * billingAddress    PostalAddress    The billing address for the poder.
+    *     acceptedOffer    Offer    The offer(s) -- e.g., product, quantity and price combinations --
+    * included in the poder.    billingAddress    PostalAddress    The billing address for the poder.   
     * broker    Organization  or Person    An entity that arranges for an exchange between a buyer and a
     * seller. In most cases a broker never acquires or releases ownership of a product or service involved
     * in an exchange. If it is not clear whether an entity is a broker, seller, or buyer, the latter two
-    * terms are preferred. Supersedes bookingAgent.
+    * terms are preferred. Supersedes bookingAgent.    
     */
 
     public Party getBroker() {
@@ -311,8 +311,8 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * confirmationNumber    Text    A number that confirms the given poder or payment has been received.
-    * customer    Organization  or Person    Party placing the poder or paying the invoice.
+    *     confirmationNumber    Text    A number that confirms the given poder or payment has been
+    * received.    customer    Organization  or Person    Party placing the poder or paying the invoice.  
     */
 
     public Party getCustomer() {
@@ -325,13 +325,12 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * discount    Number  or Text    Any discount applied (to an Poder).
-    * discountCode    Text    Code used to redeem a discount.
-    * discountCurrency    Text    The currency of the discount.
-    * Use standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g.
+    *     discount    Number  or Text    Any discount applied (to an Poder).    discountCode    Text   
+    * Code used to redeem a discount.    discountCurrency    Text    The currency of the discount.    Use
+    * standard formats: ISO 4217 currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g.
     * "BTC"; well known names for Local Exchange Tradings Systems (LETS) and other currency types e.g.
-    * "Ithaca HOUR".
-    * isGift    Boolean    Was the offer accepted as a gift for someone other than the buyer.
+    * "Ithaca HOUR".    isGift    Boolean    Was the offer accepted as a gift for someone other than the
+    * buyer.    
     */
 
     public Boolean getIsGift() {
@@ -344,7 +343,7 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * poderDate    DateTime  or DateTime    DateTime poder was placed.
+    *     poderDate    DateTime  or DateTime    DateTime poder was placed.    
     */
 
     public DateTime getPoderDate() {
@@ -357,7 +356,7 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * poderNumber    Text    The identifier of the transaction.
+    *     poderNumber    Text    The identifier of the transaction.    
     */
 
     public String getPoderNumber() {
@@ -370,7 +369,7 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * poderStatus    PoderStatus    The current status of the poder.
+    *     poderStatus    PoderStatus    The current status of the poder.    
     */
 
     public PoderStatus getPoderStatus() {
@@ -383,7 +382,7 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * poderedItem    PoderItem  or Product  or Service    The item podered.
+    *     poderedItem    PoderItem  or Product  or Service    The item podered.    
     */
 
     public List<PoderItem> getItems() {
@@ -396,15 +395,13 @@ public class Poder extends AbstractResponse<Poder> implements Node, Thing {
     }
 
     /**
-    * partOfInvoice    Invoice    The poder is being paid as part of the referenced Invoice.
-    * paymentDueDate    DateTime  or DateTime    The date that payment is due. Supersedes paymentDue.
+    *     partOfInvoice    Invoice    The poder is being paid as part of the referenced Invoice.   
+    * paymentDueDate    DateTime  or DateTime    The date that payment is due. Supersedes paymentDue.   
     * paymentMethod    PaymentMethod    The name of the credit card or other method of payment for the
-    * poder.
-    * paymentMethodId    Text    An identifier for the method of payment used (e.g. the last 4 digits of
-    * the credit card).
-    * paymentUrl    URL    The URL for sending a payment.
-    * seller    Organization  or Person    An entity which offers (sells / leases / lends / loans) the
-    * services / goods. A seller may also be a provider. Supersedes merchant, vendor.
+    * poder.    paymentMethodId    Text    An identifier for the method of payment used (e.g. the last 4
+    * digits of the credit card).    paymentUrl    URL    The URL for sending a payment.    seller   
+    * Organization  or Person    An entity which offers (sells / leases / lends / loans) the services /
+    * goods. A seller may also be a provider. Supersedes merchant, vendor.    
     */
 
     public Organization getSeller() {

@@ -1,4 +1,4 @@
-// Generated from graphql_java_gen gem
+// Generated from graphql_java_gen gem with template Object.java.erb
 
 package io.github.kgis.graphql;
 
@@ -9,7 +9,8 @@ import com.google.gson.JsonObject;
 import com.shopify.graphql.support.AbstractResponse;
 import com.shopify.graphql.support.Arguments;
 import com.shopify.graphql.support.Error;
-import com.shopify.graphql.support.Query;
+import com.shopify.graphql.support.Tuery;
+import com.shopify.graphql.support.Utils;
 import com.shopify.graphql.support.SchemaViolationError;
 import com.shopify.graphql.support.TopLevelResponse;
 import com.shopify.graphql.support.Input;
@@ -87,7 +88,7 @@ public class UnknownReadable extends AbstractResponse<UnknownReadable> implement
     }
 
     /**
-    * 【阅读收条】 记录每个人阅读本条消息的时间,逆属性: ReadNote.isReadNoteOf
+    *     【阅读收条】 记录每个人阅读本条消息的时间,逆属性: ReadNote.isReadNoteOf    
     */
 
     public List<ReadNote> getHasReadNotes() {
